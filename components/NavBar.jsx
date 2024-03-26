@@ -15,7 +15,7 @@ export default function NavBar() {
         <div
           className={clsx(
             "flex items-center px-4 gap-1 py-[18px] min-[980px]:py-3",
-            "min-[980px]:pl-20 min-[980px]:pr-0"
+            " sm:px-14  min-[980px]:pl-20 min-[980px]:pr-0"
           )}
         >
           <img
@@ -46,7 +46,7 @@ export default function NavBar() {
         <div
           onClick={() => setIsOpen(!isOpen)}
           className={clsx(
-            "w-7 h-7 absolute right-4 top-4",
+            "w-7 h-7 absolute right-4 top-6 sm:right-14",
             "cursor-pointer min-[980px]:hidden",
             "min-[980px]:w-8 min-[980px]:h-8"
           )}
@@ -62,7 +62,7 @@ export default function NavBar() {
           className={clsx(
             "flex flex-col gap-4",
             "py-5 px-4 max-w-[360px] ",
-            "min-[980px]:flex-row min-[980px]:max-w-[740px] min-[980px]:pr-20 min-[980px]:pl-0 min-[980px]:gap-7 min-[980px]:py-3  ",
+            "min-[980px]:flex-row min-[980px]:max-w-[740px] min-[980px]:pr-20 min-[980px]:pl-0 min-[980px]:gap-7 min-[980px]:py-3",
             "absolute min-[980px]:static z-[-1] right-0 top-[60spx] w-full min-[980px]:z-auto bg-white min-[980px]:items-center min-[980px]:justify-end",
             "transition-all, ease-in duration-300",
             isOpen ? "top-12" : "top-[-490px]"
