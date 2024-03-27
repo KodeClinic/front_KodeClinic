@@ -7,7 +7,7 @@ import DashboardPat from "./DashboardPat";
 export default function Home() {
   return (
     <main>
-      <LandinPage />
+      <Login />
     </main>
   );
 }
