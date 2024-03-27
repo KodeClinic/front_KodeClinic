@@ -1,0 +1,2 @@
+# Ignorar cambios de EOL para el archivo LogIn.jsx
+pages/LogIn.jsx -text
