@@ -9,7 +9,8 @@ export default function NavBar() {
       <div
         className={clsx(
           "flex flex-col",
-          "min-[980px]:flex-row min-[980px]:justify-between"
+          "min-[980px]:flex-row min-[980px]:justify-between",
+          "lg:max-w-[1440px] lg:m-auto"
         )}
       >
         <div
