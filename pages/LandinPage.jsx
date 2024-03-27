@@ -10,7 +10,7 @@ export default function LandinPage() {
         id="Hero-Section-1"
         className={clsx(
           "sm:flex sm:flex-row  min-[980px]:justify-between",
-          "px-4 pt-5 pb-4",
+          "px-4 pt-[84px] pb-4",
           "sm:px-14 min-[980px]:px-20",
           "lg:max-w-[1440px] lg:m-auto"
         )}

@@ -5,10 +5,10 @@ export default function NavBar() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <nav className={clsx("bg-white drop-shadow-md")}>
+    <nav className={clsx("bg-white drop-shadow-md", "fixed top-0 z-50 w-full")}>
       <div
         className={clsx(
-          "flex flex-col",
+          "flex flex-col ",
           "min-[980px]:flex-row min-[980px]:justify-between",
           "lg:max-w-[1440px] lg:m-auto"
         )}
@@ -43,7 +43,6 @@ export default function NavBar() {
             </span>
           </div>
         </div>
-
         <div
           onClick={() => setIsOpen(!isOpen)}
           className={clsx(
@@ -58,7 +57,6 @@ export default function NavBar() {
             <img src="assets/icons/menu-icon.svg" alt="menu" />
           )}
         </div>
-
         <div
           className={clsx(
             "flex flex-col gap-4",
