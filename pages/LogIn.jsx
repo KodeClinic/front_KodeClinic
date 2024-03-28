@@ -4,7 +4,7 @@ export default function Login() {
   return (
     <div className="flex h-screen justify-center items-center">
       <div className="w-full max-w-sm">
-        <div className="bg-white shadow-md rounded px-8 py-10 pt-6 pb-8 mb-4">
+        <div className="bg-white  rounded px-8 py-10 pt-6 pb-8 mb-4">
           <div className="mb-4">
             <h1 className="text-2xl font-bold text-center">
               Iniciar<span className="text-blue-500"> Sesión</span>
