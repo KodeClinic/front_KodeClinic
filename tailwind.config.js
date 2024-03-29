@@ -22,6 +22,7 @@ module.exports = {
       main_text: "#212C33",
       primary_main: "#2196F3",
       black: "#000000",
+      primary_main: "#2196F3",
       blue_gray: {
         100: "#CFD8DC",
         200: "#B0BEC5",
