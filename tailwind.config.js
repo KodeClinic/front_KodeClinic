@@ -20,6 +20,7 @@ module.exports = {
       green_button: "#008278",
       green_title: "#004A45",
       main_text: "#212C33",
+      primary_main: "#2196F3",
       blue_gray: {
         100: "#CFD8DC",
         200: "#B0BEC5",
