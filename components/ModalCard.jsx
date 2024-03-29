@@ -691,6 +691,8 @@ export default function ModalCard() {
           </div>
         </div>
       </div>
+
+      {/* Segunda Card  */}
     </>
   );
 }
