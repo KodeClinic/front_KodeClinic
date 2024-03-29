@@ -4,7 +4,7 @@ export default function SpecialistCard({ name, gender, email, cel, cedProf }) {
   return (
     <section
       className={clsx(
-        "pt-[132px] px-4",
+        "pt-[88px] px-4 min-[980px]:pt-[132px]",
         "sm:px-14 min-[980px]:px-20",
         "min-[980px]:flex min-[980px]:flex-row ",
         "lg:max-w-[1440px] lg:m-auto",
