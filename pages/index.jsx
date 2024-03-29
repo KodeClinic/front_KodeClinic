@@ -1,4 +1,5 @@
 
+import LoginPage from "./LogIn";
 import Login from "./LogIn";
 import DashboardSpe from "./DashboardSpe";
 import DashboardPat from "./DashboardPat";
