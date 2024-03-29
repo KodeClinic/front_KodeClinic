@@ -41,18 +41,20 @@ export default function ModalCard() {
           "md:max-w-3xl"
         )}
       >
-        <div class="md:flex">
-          <div class="md:shrink-0"></div>
-          <div class="p-8">
+        <div class="md:flex justify-between">
+          <div className={clsx("p-8")}>
             <div
               className={clsx(
+                "min-[360px]:flex-col",
+                "justify-center",
                 "tracking-wide",
-                " text-xl",
-                " md:text-3xl",
-                " flex ",
-                " justify-center",
-                " justify-items-center"
-                // "min-[320px]:flex-col"
+                "text-xl",
+                "md:text-3xl",
+                "flex ",
+                "justify-items-center",
+                "place-items-center",
+                "justify-center",
+                "space-x-2"
               )}
             >
               <span className={clsx("text-green_title")}> Bienvenido a</span>
@@ -65,8 +67,9 @@ export default function ModalCard() {
               <span
                 className={clsx(
                   "text-blue_gray-700",
-                  "text-sm",
-                  "md:text-base"
+                  "md:text-base",
+                  "mt-2",
+                  "text-center"
                 )}
               >
                 Antes de continuar completa tu perfil
@@ -74,54 +77,75 @@ export default function ModalCard() {
             </div>
             <div
               className={clsx(
-                "mt-2 text-base md:text-xl flex flex-col",
+                "mt-2",
+                "text-base",
+                "md:text-xl",
+                "flex-col",
                 "space-y-2",
-                "md:flex"
+                "m-2",
+                "p-2",
+                "sm:grid",
+                "sm:grid-cols-2",
+                "gap-5",
+                "sm:grid-rows-2"
               )}
             >
-              <p> Nombre(s)</p>
-              <Input
-                disabled={false}
-                placeholder="Nombre(s)"
-                size="md"
-                variant="outlined"
-                sx={{ "--Input-focused": 1 }}
-              />
-              <p> Apellido(s)</p>
-              <Input
-                disabled={false}
-                placeholder="Apellido(s)"
-                size="md"
-                variant="outlined"
-                sx={{ "--Input-focused": 1 }}
-              />
-              <p> Fecha de Nacimiento</p>
-              <Input
-                type="date"
-                slotProps={{
-                  input: {
-                    max: "",
-                  },
-                }}
-                sx={{ "--Input-focused": 1 }}
-              />
-              <p>Sexo</p>
-              {/* <Box sx={{ minWidth: 40 }}> */}
-              <FormControl sx={{ m: 1, maxWidth: 600 }}>
-                <InputLabel id="demo-simple-select-label">Sexo</InputLabel>
-                <Select
-                  labelId="demo-simple-select-label"
-                  id="demo-simple-select"
-                  value={sex}
-                  label="Sexo"
-                  onChange={handleChange}
-                >
-                  <MenuItem value={0}>Femenino</MenuItem>
-                  <MenuItem value={1}>Masculino</MenuItem>
-                </Select>
-              </FormControl>
-              {/* </Box> */}
+              <div className={clsx("space-y-2", "ml-2")}>
+                <p> Nombre(s)</p>
+                <Input
+                  disabled={false}
+                  placeholder="Nombre(s)"
+                  size="md"
+                  variant="outlined"
+                  sx={{ "--Input-focused": 1 }}
+                />
+              </div>
+
+              <div className={clsx("space-y-2")}>
+                <p> Fecha de Nacimiento</p>
+                <Input
+                  type="date"
+                  slotProps={{
+                    input: {
+                      max: "",
+                    },
+                  }}
+                  sx={{ "--Input-focused": 1 }}
+                />
+              </div>
+
+              <div>
+                <p> Apellido(s)</p>
+                <Input
+                  disabled={false}
+                  placeholder="Apellido(s)"
+                  size="md"
+                  variant="outlined"
+                  sx={{ "--Input-focused": 1 }}
+                />
+              </div>
+
+              <div>
+                <p>Sexo</p>
+                <FormControl sx={{ m: 1, maxWidth: 600 }}>
+                  <InputLabel id="demo-simple-select-label">Sexo</InputLabel>
+                  <Select
+                    size="lg"
+                    labelId="demo-simple-select-label"
+                    id="demo-simple-select"
+                    value={sex}
+                    label="Sexo"
+                    onChange={handleChange}
+                  >
+                    <MenuItem value={0}>Femenino</MenuItem>
+                    <MenuItem value={1}>Masculino</MenuItem>
+                  </Select>
+                </FormControl>
+              </div>
             </div>
+
+            {/* stepper */}
+
             <div className={clsx("flex", "justify-center", "mt-10")}>
               <Stack spacing={2}>
                 <Pagination count={4} />
@@ -139,30 +163,32 @@ export default function ModalCard() {
               <p>Información Personal</p>
             </div>
           </div>
+
           <div
             className={clsx(
               "hidden",
               "md:flex",
               "flex-col",
               "justify-center",
-              "m-5",
-              "space-y-5"
+              "place-items-center",
+              "space-y-5",
+              "bg-[#E4ECFF]",
+              "p-5"
             )}
           >
             <img
-              className={clsx("max-w-20", "mx-3", "justify-items-center")}
+              className={clsx("max-w-20")}
               src="/assets/KodeClinic_logo_1.svg"
               alt=""
             />
             <img
+              className={clsx("m-10")}
               src="/assets/_Pngtree_original_hand_drawn_cartoon_of_7119176-removebg 1.png"
               alt="imgFisio"
             />
           </div>
         </div>
       </div>
-
-      {/* Segunda Card  */}
     </>
   );
 }
