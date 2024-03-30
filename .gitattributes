@@ -4,3 +4,4 @@ components/Login.jsx -text
 components/RecoveryEmail.jsx -text
 components/VerificationCode.jsx -text
 components/NewPassword.jsx -text
+components/PasswordChanged.jsx -text
