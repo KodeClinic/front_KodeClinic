@@ -1,3 +1,4 @@
 # Ignorar cambios de EOL para el archivo LogIn.jsx
 pages/LogIn.jsx -text
 components/Login.jsx -text
+components/recoveryEmail.jsx -text
