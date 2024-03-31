@@ -3,10 +3,11 @@ import RecoveryEmail from "@/components/RecoveryEmail";
 import VerificationCode from "@/components/VerificationCode";
 import NewPassword from "@/components/NewPassword";
 import PasswordChaged from "@/components/PasswordChanged";
+import Registration from "@/components/Registration";
 
 export default function LoginPage() {
   return (
-    <PasswordChaged/>
+    <Registration/>
   );
 }
 
