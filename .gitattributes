@@ -6,3 +6,4 @@ components/VerificationCode.jsx -text
 components/NewPassword.jsx -text
 components/PasswordChanged.jsx -text
 components/Registration.jsx -text
+components/VerificationEmail.jsx -text
