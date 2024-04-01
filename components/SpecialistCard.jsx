@@ -4,6 +4,7 @@ export default function SpecialistCard({ name, gender, email, cel, cedProf }) {
   return (
     <section
       className={clsx(
+        "drop-shadow-md",
         "pt-[88px] px-4 min-[980px]:pt-[132px]",
         "sm:px-14 min-[980px]:px-20",
         "min-[980px]:flex min-[980px]:flex-row ",
@@ -21,7 +22,7 @@ export default function SpecialistCard({ name, gender, email, cel, cedProf }) {
       >
         <span
           className={clsx(
-            "text-base font-semibold text-blue_gray-700",
+            "text-base font-semibold text-green_title",
             "min-[980px]:text-xl "
           )}
         >

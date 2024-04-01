@@ -21,6 +21,8 @@ module.exports = {
       green_title: "#004A45",
       main_text: "#212C33",
       blue_gray: {
+        100: "#CFD8DC",
+        200: "#B0BEC5",
         300: "#90A4AE",
         400: "#78909C",
         500: "#607D8B",
