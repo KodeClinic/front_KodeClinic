@@ -2,6 +2,7 @@ import NavBarSpe from "@/components/NavBarSpe";
 import SpecialistCard from "@/components/SpecialistCard";
 import clsx from "clsx";
 import PatientCard from "@/components/PatientCard";
+import PatientsDischarged from "@/components/PatientsDischarged";
 
 
 
@@ -26,7 +27,8 @@ export default function PatientList() {
       > 
       </section>
 
-    <section className="px-5  flex ml-20 flex-col bg-white w-[820px] rounded-[20px] ">
+      <section className="flex flex-row">
+        <div className="px-5  flex ml-20 flex-col bg-white w-[820px] rounded-[20px] py-5"> {/* Lista de pacientes */}
         <div className="min-[980px]:flex min-[980px]:flex-row justify-between items-center gap-5 px-6 py-4 bg-white min-[980px]:px-7 ">
             <p className="text-xl">Mis pacientes</p>
             <div className="flex items-center border-2 border-primary_main py-1 rounded-lg">
@@ -34,16 +36,26 @@ export default function PatientList() {
                 <img src="assets/icons/browser.png" alt="Buscador" className="px-2" />
             </div>
         </div>
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-2 gap-4 py-2">
             <PatientCard />
             <PatientCard />
             <PatientCard />
             <PatientCard />
-            <PatientCard />
-            <PatientCard />
+
         </div>
-        
-    </section>
+    </div>
+
+    <div className="bg-white w-[412px] h-[375px] mx-20 rounded-[20px]"> {/* Pacientes dados de alta */}
+        <p className="text-center my-3 text-lg font-semibold">Pacientes dados de Alta Médica</p>
+        <PatientsDischarged />
+        <PatientsDischarged />
+        <PatientsDischarged />
+        <PatientsDischarged />
+    </div>
+
+      </section>
+
+
 
     </main>
   );

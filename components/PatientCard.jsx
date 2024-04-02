@@ -7,7 +7,7 @@ export default function PatientCard({ children, title}) {
                 <p className="font-bold">Maria Ritos</p>
             </div>
             <div className="flex flex-row items-center">
-                <div className="bg-pink rounded-[25px] flex flex-row object-center w-[160px] h-[30px] px-3">
+                <div className="bg-pink rounded-[25px] flex flex-row object-center w-[160px] h-[30px] px-3 mx-2">
                     <img src="assets/icons/stethoscope.png" alt="stethoscope" className="w-[13px] h-[13px] mx-2 my-2" />
                     <p className="mx-1 text-center my-1">Tendinitis</p>
                 </div>
