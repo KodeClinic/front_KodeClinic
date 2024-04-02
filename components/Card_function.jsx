@@ -55,22 +55,39 @@ const functionalities = [
 
 export default function Card_function() {
   const [selectedIndex, setSelectedIndex] = useState(0);
+  const [selectedIndex_2, setSelectedIndex_2] = useState(7);
   const [selectedCard, setSelectedCard] = useState(functionalities[0]);
+  const [selectedCard_2, setSelectedCard_2] = useState(functionalities[1]);
 
   const previous = () => {
     const condition = selectedIndex > 0;
+    const condition_2 = selectedIndex_2 > 0;
+
     const nextIndex = condition
       ? selectedIndex - 1
       : functionalities.length - 1;
+
+    const nextIndex_2 = condition_2
+      ? selectedIndex_2 - 1
+      : functionalities.length - 1;
+
     setSelectedCard(functionalities[nextIndex]);
+    setSelectedCard_2(functionalities[nextIndex_2]);
     setSelectedIndex(nextIndex);
+    setSelectedIndex_2(nextIndex_2);
   };
 
   const next = () => {
     const condition = selectedIndex < functionalities.length - 1;
+    const condition_2 = selectedIndex_2 < functionalities.length - 1;
+
     const nextIndex = condition ? selectedIndex + 1 : 0;
+    const nextIndex_2 = condition_2 ? selectedIndex_2 + 1 : 0;
+
     setSelectedCard(functionalities[nextIndex]);
+    setSelectedCard_2(functionalities[nextIndex_2]);
     setSelectedIndex(nextIndex);
+    setSelectedIndex_2(nextIndex_2);
   };
 
   return (
@@ -102,17 +119,16 @@ export default function Card_function() {
 
         <article
           className={clsx(
-            "bg-white rounded-3xl shadow-2xl p-2 flex flex-col justify-center items-center",
+            "bg-white rounded-3xl shadow-2xl p-2 md:flex md:flex-col md:justify-center md:items-center",
             "w-[159px] h-[223px]",
-            "md:w-[240px] h-[260px]",
-            "lg:w-[290px] h-[250px]",
+            "md:w-[240px] md:h-[260px]",
             "hidden md:block lg:hidden"
           )}
         >
-          <img className="w-12 h-12" src={selectedCard.icon} alt="MDN" />
-          <h1 className="font-bold text-[14px] mt-2">{selectedCard.title}</h1>
+          <img className="w-12 h-12" src={selectedCard_2.icon} alt="MDN" />
+          <h1 className="font-bold text-[14px] mt-2">{selectedCard_2.title}</h1>
           <p className="text-blue_gray-600 text-[14px] mt-3">
-            {selectedCard.description}
+            {selectedCard_2.description}
           </p>
         </article>
 

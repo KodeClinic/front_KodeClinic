@@ -285,7 +285,7 @@ export default function LandinPage() {
         </h1>
         <span
           className={clsx(
-            "text-center text-[#0745CB]",
+            "px-4 text-center text-[#0745CB]",
             "sm:text-[14px] md:text-[18px] lg:text-[22px]"
           )}
         >
