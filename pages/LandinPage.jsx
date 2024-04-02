@@ -40,7 +40,8 @@ export default function LandinPage() {
         </span>
 
         <div className="flex flex-row justify-center gap-16 over">
-          <Card_function />
+          <Card_function />      
+
         </div>
       </section>
 

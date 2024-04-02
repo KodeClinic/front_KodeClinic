@@ -78,7 +78,8 @@ export default function Card_function() {
       <button
         onClick={previous}
         className={clsx(
-          "bg-[#0745CB] text-white font-medium text-3xl w-14 h-14 rounded-full"
+          "bg-[#0745CB] text-white font-medium text-3xl w-14 h-14 rounded-full",
+          "lg:hidden"
         )}
       >
         {"<"}
@@ -89,7 +90,7 @@ export default function Card_function() {
             "bg-white rounded-3xl shadow-2xl p-2 flex flex-col justify-center items-center",
             "w-[159px] h-[223px]",
             "md:w-[240px] h-[260px]",
-            "lg:w-[290px] h-[250px]"
+            "lg:hidden"
           )}
         >
           <img className="w-12 h-12" src={selectedCard.icon} alt="MDN" />
@@ -98,11 +99,50 @@ export default function Card_function() {
             {selectedCard.description}
           </p>
         </article>
+
+        <article
+          className={clsx(
+            "bg-white rounded-3xl shadow-2xl p-2 flex flex-col justify-center items-center",
+            "w-[159px] h-[223px]",
+            "md:w-[240px] h-[260px]",
+            "lg:w-[290px] h-[250px]",
+            "hidden md:block lg:hidden"
+          )}
+        >
+          <img className="w-12 h-12" src={selectedCard.icon} alt="MDN" />
+          <h1 className="font-bold text-[14px] mt-2">{selectedCard.title}</h1>
+          <p className="text-blue_gray-600 text-[14px] mt-3">
+            {selectedCard.description}
+          </p>
+        </article>
+
+        <div className="lg:grid lg:grid-cols-4 lg:gap-10 hidden">
+          {functionalities.map((funtionality) => {
+            return (
+              <article
+                className={clsx(
+                  "bg-white rounded-3xl shadow-2xl p-2 flex flex-col justify-center items-center",
+                  "w-[159px] h-[223px]",
+                  "md:w-[240px] h-[260px]"
+                )}
+              >
+                <img className="w-12 h-12" src={funtionality.icon} alt="MDN" />
+                <h1 className="font-bold text-[14px] mt-2">
+                  {funtionality.title}
+                </h1>
+                <p className="text-blue_gray-600 text-[14px] mt-3">
+                  {funtionality.description}
+                </p>
+              </article>
+            );
+          })}
+        </div>
       </main>
       <button
         onClick={next}
         className={clsx(
-          "bg-[#0745CB] text-white font-medium text-3xl w-14 h-14 rounded-full"
+          "bg-[#0745CB] text-white font-medium text-3xl w-14 h-14 rounded-full",
+          "lg:hidden"
         )}
       >
         {">"}
