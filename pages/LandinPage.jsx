@@ -1,9 +1,7 @@
 import NavBar from "@/components/NavBar";
 import HeroCard from "@/components/HeroCard";
 import clsx from "clsx";
-
 import Card_function from "@/components/Card_function";
-import clsx from "clsx";
 
 export default function LandinPage() {
   return (
@@ -275,7 +273,7 @@ export default function LandinPage() {
           </div>
         </div>
       </section>
-    <main>
+      {/* <main> */}
       <section className="bg-background p-4">
         <h1
           className={clsx(
@@ -312,8 +310,7 @@ export default function LandinPage() {
         </span>
 
         <div className="flex flex-row justify-center gap-16 over">
-          <Card_function />      
-
+          <Card_function />
         </div>
       </section>
 

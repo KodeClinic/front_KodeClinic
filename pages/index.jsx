@@ -5,8 +5,8 @@ import DashboardPat from "./DashboardPat";
 export default function Home() {
   return (
     <main>
-      {/* <LandinPage /> */}
-      <DashboardSpe />
+      <LandinPage />
+      {/* <DashboardSpe /> */}
       {/* <DashboardPat /> */}
     </main>
   );
