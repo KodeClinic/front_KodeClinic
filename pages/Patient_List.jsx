@@ -1,9 +1,8 @@
 import NavBarSpe from "@/components/NavBarSpe";
 import SpecialistCard from "@/components/SpecialistCard";
-import Calendar from "@/components/Calendar";
 import clsx from "clsx";
-import AppointmentCard from "@/components/AppointmentCard";
 import PatientCard from "@/components/PatientCard";
+
 
 
 
@@ -27,14 +26,23 @@ export default function PatientList() {
       > 
       </section>
 
-    <section className="px-20">
-        <div className="flex flex-row justify-between items-center gap-5 px-6 py-4 bg-white rounded-[20px] min-[980px]:px-7 w-1/2">
+    <section className="px-5  flex ml-20 flex-col bg-white w-[820px] rounded-[20px] ">
+        <div className="min-[980px]:flex min-[980px]:flex-row justify-between items-center gap-5 px-6 py-4 bg-white min-[980px]:px-7 ">
             <p className="text-xl">Mis pacientes</p>
             <div className="flex items-center border-2 border-primary_main py-1 rounded-lg">
                 <input type="text" placeholder="Buscar Paciente" className="max-w-[90%] w-full py-1 focus:outline-none pl-3  mr-2" />
                 <img src="assets/icons/browser.png" alt="Buscador" className="px-2" />
             </div>
         </div>
+        <div className="grid grid-cols-2 gap-4">
+            <PatientCard />
+            <PatientCard />
+            <PatientCard />
+            <PatientCard />
+            <PatientCard />
+            <PatientCard />
+        </div>
+        
     </section>
 
     </main>

@@ -28,6 +28,8 @@ module.exports = {
         600: "#546E7A",
         700: "#455A64",
       },
+      white_grey: "#E8EDF0",
+      pink: "#DABCFF"
     },
   },
   plugins: [],
