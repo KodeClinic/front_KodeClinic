@@ -136,6 +136,7 @@ export default function Card_function() {
           {functionalities.map((funtionality) => {
             return (
               <article
+                key={funtionality.title}
                 className={clsx(
                   "bg-white rounded-3xl shadow-2xl p-2 flex flex-col justify-center items-center",
                   "w-[159px] h-[223px]",
