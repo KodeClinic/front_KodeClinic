@@ -565,6 +565,9 @@ export default function ModalCard() {
           </div>
         </div>
       </div>
+
+      {/* Sexta Card */}
+
       <div
         className={clsx(
           "max-w-md",
@@ -599,30 +602,6 @@ export default function ModalCard() {
                 alt="imgCheck"
               />
             </div>
-            <div className={clsx("flex justify-center")}>
-              <span
-                className={clsx(
-                  "text-blue_gray-700",
-                  "md:text-base",
-                  "mt-2",
-                  "text-center"
-                )}
-              >
-                Ahora formas parte de la comunidad
-              </span>
-            </div>
-            <div className={clsx("flex justify-center")}>
-              <span
-                className={clsx(
-                  "text-blue_button",
-                  "md:text-base",
-                  "mt-2",
-                  "text-center"
-                )}
-              >
-                KodeClinic
-              </span>
-            </div>
 
             <div
               className={clsx(
@@ -637,23 +616,50 @@ export default function ModalCard() {
                 "gap-5"
               )}
             >
+              <div className={clsx("flex flex-col justify-center")}>
+                <span className="text-center">
+                  Ahora formas parte de la comunidad
+                </span>
+                <span className="text-center text-blue_button">KodeClinic</span>
+              </div>
+
               <div className={clsx("flex justify-center")}>
-                <span>
+                <span className="text-center">
                   Si deseas consultar, editar o mejorar la información de tu
-                  perfilpodrás realizar los cambios accediendo desde el menú
+                  perfil podrás realizar los cambios accediendo desde el menú
                   lateral
                 </span>
               </div>
             </div>
 
+            <div className={clsx("flex", "justify-center")}>
+              <button
+                className={clsx(
+                  "border",
+                  " border-2",
+                  "rounded-md",
+                  "p-2",
+                  "px-5",
+                  "mt-20",
+                  "m-10",
+                  "text-white",
+                  "bg-green_button",
+                  "text-sm",
+                  "md:text-lg"
+                )}
+              >
+                Confirmar
+              </button>
+            </div>
+
             {/* stepper */}
 
-            <div className={clsx("flex", "justify-center", "mt-10")}>
+            {/* <div className={clsx("flex", "justify-center", "mt-10")}>
               <Stack spacing={2}>
                 <Pagination count={4} />
               </Stack>
-            </div>
-            <div
+            </div> */}
+            {/* <div
               className={clsx(
                 "flex",
                 "justify-center",
@@ -663,7 +669,7 @@ export default function ModalCard() {
               )}
             >
               <p>Perfil Completado</p>
-            </div>
+            </div> */}
           </div>
 
           <div
