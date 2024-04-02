@@ -141,6 +141,7 @@ export default function Card_function() {
                   "w-[159px] h-[223px]",
                   "md:w-[240px] h-[260px]"
                 )}
+                key={funtionality.title}
               >
                 <img className="w-12 h-12" src={funtionality.icon} alt="MDN" />
                 <h1 className="font-bold text-[14px] mt-2">

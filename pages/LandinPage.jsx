@@ -274,7 +274,7 @@ export default function LandinPage() {
         </div>
       </section>
       {/* <main> */}
-      <section className="bg-background p-4">
+      <section className="bg-background px-4 py-4 min-[980px]:px-20">
         <h1
           className={clsx(
             "text-green_title font-semibold text-center p-4",
@@ -285,7 +285,7 @@ export default function LandinPage() {
         </h1>
         <span
           className={clsx(
-            "px-4 text-center text-[#0745CB]",
+            "text-center text-[#0745CB]",
             "sm:text-[14px] md:text-[18px] lg:text-[22px]"
           )}
         >
@@ -314,7 +314,7 @@ export default function LandinPage() {
         </div>
       </section>
 
-      <section className="bg-white p-4 mt-3">
+      <section className="bg-white p-4 mt-3 min-[980px]:px-20">
         <div className="grid grid-cols-2 justify-center">
           <div>
             <h1 className="text-green_title font-bold text-[14px] md:text-[20px]">
