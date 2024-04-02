@@ -273,7 +273,7 @@ export default function LandinPage() {
           </div>
         </div>
       </section>
-      {/* <main> */}
+
       <section className="bg-background p-4">
         <h1
           className={clsx(
