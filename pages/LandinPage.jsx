@@ -39,42 +39,39 @@ export default function LandinPage() {
           médica para que saques el mejor provecho a tu Consultorio
         </span>
 
-        <div>
-          <Card_function
-            icon="assets/icons/medical_exp.svg"
-            title="Expediente Medico"
-            description="Digitaliza el Expediente Medico de tus pacientes y accede a él en cualquier momento"
-            className="p-4"
-          />
+        <div className="flex flex-row justify-center gap-16 over">
+          <Card_function />
         </div>
       </section>
 
       <section className="bg-white p-4 mt-3">
         <div className="grid grid-cols-2 justify-center">
           <div>
-            <h1 className="text-green_title font-bold text-[14px]">
+            <h1 className="text-green_title font-bold text-[14px] md:text-[20px]">
               Navegacion
             </h1>
 
-            <p className="text-[12px]">Inicio</p>
-            <p className="text-[12px]">Nosotros</p>
-            <p className="text-[12px]">Funcionalidades</p>
+            <p className="text-[12px] md:text-[18px]">Inicio</p>
+            <p className="text-[12px] md:text-[18px]">Nosotros</p>
+            <p className="text-[12px] md:text-[18px]">Funcionalidades</p>
           </div>
           <div>
-            <h1 className="text-green_title font-bold">Contacto</h1>
-            <p className="text-[12px] flex gap-2">
+            <h1 className="text-green_title font-bold text-[14px] md:text-[20px]">
+              Contacto
+            </h1>
+            <p className="text-[12px] md:text-[18px] flex gap-2">
               <span>
                 <img src="assets/icons/telephone.svg" alt="" />
               </span>
               5513044788
             </p>
-            <p className="text-[12px] flex gap-2">
+            <p className="text-[12px] md:text-[18px] flex gap-2">
               <span>
                 <img src="assets/icons/envelope.svg" alt="" />
               </span>
               kodeclinic@mail.com
             </p>
-            <p className="text-[12px] flex gap-2">
+            <p className="text-[12px] md:text-[18px] flex gap-2">
               <span>
                 <img src="assets/icons/geo-alt.svg" alt="" />
               </span>
@@ -86,14 +83,14 @@ export default function LandinPage() {
         <div
           className={clsx(
             "flex items-center mt-4 gap-2",
-            "sm:flex-col md:flex-row lg:flex-row lg:justify-center"
+            "flex-col md:flex-row lg:flex-row lg:justify-center"
           )}
         >
           <input
             className={clsx(
               "border-2 rounded-full border-[#0745CB] font-bold placeholder:text-[#0745CB] placeholder:text-center h-[48px] text-[13px]",
-              "sm:w-[328px]",
-              "lg:w-[353px]"
+              "w-[328px]",
+              "lg:w-[400px]"
             )}
             type="mail"
             name=""
@@ -106,9 +103,13 @@ export default function LandinPage() {
         </div>
 
         <div className="mt-4">
-          <span className="text-green_title text-[20px]">Kode</span>
-          <span className="text-green_title text-[20px] font-bold">Clinic</span>
-          <p className="text-[14px] mt-4 text-blue_gray-600">
+          <span className="text-green_title text-[20px] md:text-[25px]">
+            Kode
+          </span>
+          <span className="text-green_title text-[20px] md:text-[25px] font-bold">
+            Clinic
+          </span>
+          <p className="text-[14px] md:text-[16px] mt-4 text-blue_gray-600">
             Nuestra plataforma facilita la organización de expedientes médicos y
             la gestión de citas para terapeutas. Contáctanos para más
             información. ¡Gracias por confiar en nosotros para cuidar de tu
