@@ -9,9 +9,6 @@ export default function Home() {
   return (
     <main>
       <LandinPage />
-      {/* <DashboardSpe /> */}
-      {/* <DashboardPat /> */}
-      {/* <LoginPage /> */}
     </main>
   );
 }

@@ -2,17 +2,20 @@ import NavBar from "@/components/NavBar";
 import HeroCard from "@/components/HeroCard";
 import clsx from "clsx";
 import Card_function from "@/components/Card_function";
+import { useRouter } from "next/router";
 
 export default function LandinPage() {
+  const router = useRouter();
+
   return (
     <main className="bg-background h-full w-full">
       <NavBar />
       <section
         id="Hero-Section-1"
         className={clsx(
-          "sm:flex sm:flex-row  min-[980px]:justify-between",
-          "px-4 pt-[84px] pb-4",
-          "sm:px-14 min-[980px]:px-20",
+          "sm:flex sm:flex-row sm:justify-between",
+          "px-4 pb-7 pt-24 min-[980px]:pt-[134px]",
+          "sm:px-14 min-[980px]:px-20 ",
           "lg:max-w-[1440px] lg:m-auto"
         )}
       >
@@ -21,17 +24,21 @@ export default function LandinPage() {
           className={clsx("flex flex-col justify-between items-start gap-4")}
         >
           <div className={clsx("flex flex- col justify-between items-center")}>
-            <div className={clsx("min-[980px]:max-w-[910px]")}>
-              <h1
+            <div
+              className={clsx(
+                "max-w-[328px] sm:max-w-[406px] min-[980px]:max-w-[604px]"
+              )}
+            >
+              <span
                 className={clsx(
-                  "font-semibold text-green_title text-[20px] tracking-[2px]",
-                  "sm:text-[38px] sm:tracking-[4px]",
+                  "font-semibold text-green_title text-[20px] ",
+                  "sm:text-[38px] ",
                   "min-[980px]:text-[64px]"
                 )}
               >
                 El perfecto aliado para{" "}
-              </h1>
-              <h1
+              </span>
+              <span
                 className={clsx(
                   "font-extrabold text-blue_button text-[20px] tracking-[2px]",
                   "sm:text-[38px] sm:tracking-[4px]",
@@ -39,7 +46,7 @@ export default function LandinPage() {
                 )}
               >
                 administrar tu Consultorio
-              </h1>
+              </span>
             </div>
             <img
               className={clsx("drop-shadow-md", "max-h-[136px]", "sm:hidden")}
@@ -49,7 +56,11 @@ export default function LandinPage() {
           </div>
 
           <div
-            className={clsx("flex flex-col gap-4", "min-[980px]:max-w-[910px]")}
+            className={clsx(
+              "flex flex-col gap-4",
+              "text-justify",
+              "max-w-[328px] sm:max-w-[406px] min-[980px]:max-w-[604px]"
+            )}
           >
             <span
               className={clsx(
@@ -71,8 +82,9 @@ export default function LandinPage() {
               permitiéndote brindarles la atención médica que merecen
             </span>
             <button
+              onClick={() => router.push("/CreateAccount")}
               className={clsx(
-                "text-white font-semibold text-[14px] min-[980px]:text-xl",
+                "text-white drop-shadow-md font-semibold text-[14px] min-[980px]:text-xl",
                 "border-2 border-blue_button bg-blue_button rounded-full",
                 "max-w-[327px] px-4 py-2 max-h-[40px] sm:max-h-[140px] min-[980px]:max-h-[198px]",
                 "sm:max-w-[156px] min-[980px]:max-w-[222px]"
@@ -95,7 +107,7 @@ export default function LandinPage() {
           className={clsx(
             "drop-shadow-md",
             "hidden",
-            "min-[980px]:block min-[980px]:max-h-[526px]"
+            "min-[980px]:block min-[980px]:max-h-[526px] pl-7"
           )}
           src="assets/img-doctor-heroSection.png"
           alt="doctor-image"
@@ -116,7 +128,7 @@ export default function LandinPage() {
         id="Hero-Section-2"
         className={clsx(
           "flex flex-col items-center gap-2",
-          "px-4 py-4",
+          "px-4 pt-7 pb-4",
           "sm:px-14 min-[980px]:px-20",
           "divide-y-2 divide-green_button"
         )}
@@ -178,7 +190,7 @@ export default function LandinPage() {
       </section>
       <section
         id="about-us"
-        className={clsx("flex flex-col items-center", "py-4")}
+        className={clsx("flex flex-col items-center", "py-7")}
       >
         <h2
           className={clsx(
@@ -188,21 +200,26 @@ export default function LandinPage() {
         >
           Sobre Nosotros
         </h2>
-        <div className={clsx("bg-white w-full", "lg:flex lg:justify-center")}>
+        <div
+          className={clsx(
+            "bg-white w-full",
+            "px-4 py-8 sm:px-14 min-[980px]:px-20",
+            "lg:flex lg:justify-center"
+          )}
+        >
           <div
             className={clsx(
               "flex flex-col items-center",
-              "px-4 py-8 sm:px-14 min-[980px]:px-20",
               "min-[980px]:flex-row lg:max-w-[1280px]"
             )}
           >
             <div
               className={clsx(
-                "flex flex-col items-center gap-4",
+                "flex flex-col items-center gap-4 min-[980px]:items-stretch",
                 "min-[980px]:max-w-[679px] "
               )}
             >
-              <div className={clsx("text-center")}>
+              <div className={clsx("text-center min-[980px]:text-justify")}>
                 <span
                   className={clsx(
                     "text-[14px] sm:text-base min-[980px]:text-[22px] text-blue_button font-medium"
@@ -229,7 +246,7 @@ export default function LandinPage() {
               </div>
               <span
                 className={clsx(
-                  "text-[14px] sm:text-base min-[980px]:text-[22px] text-blue_gray-700 font-medium text-center"
+                  "text-[14px] sm:text-base min-[980px]:text-[22px] text-blue_gray-700 font-medium text-center min-[980px]:text-justify"
                 )}
               >
                 Actualmente contamos con el Módulo de Fisioterápia y seguimos
@@ -237,7 +254,7 @@ export default function LandinPage() {
               </span>
               <span
                 className={clsx(
-                  "text-[14px] sm:text-base min-[980px]:text-[22px] text-blue_gray-700 font-bold text-center"
+                  "text-[14px] sm:text-base min-[980px]:text-[22px] text-blue_gray-700 font-bold text-center min-[980px]:text-justify"
                 )}
               >
                 ¿Qué esperas? Registrate y forma parte de la comunidad
@@ -245,7 +262,7 @@ export default function LandinPage() {
 
               <button
                 className={clsx(
-                  "text-blue_button font-semibold text-[14px] min-[980px]:text-xl",
+                  "text-blue_button font-semibold drop-shadow-md text-[14px] min-[980px]:text-xl",
                   "border-2 border-blue_button rounded-full",
                   "max-w-[327px] px-4 py-2 max-h-[40px] sm:max-h-[140px] min-[980px]:max-h-[198px]",
                   "sm:max-w-[156px] min-[980px]:max-w-[222px]"
@@ -254,7 +271,7 @@ export default function LandinPage() {
                 ¡Comienza ahora!
               </button>
             </div>
-            <div className={clsx("py-4 pl-5")}>
+            <div className={clsx("py-4 pl-8")}>
               <img
                 className={clsx("max-h-[188px] drop-shadow-md", "sm:hidden")}
                 src="assets/img-aboutUsSection-mobile.png"
