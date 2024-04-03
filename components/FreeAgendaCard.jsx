@@ -5,9 +5,9 @@ export default function FreeAgendaCard({ props }) {
   return (
     <div
       className={clsx(
-        "bg-white",
-        "py-3 px-3",
-        "border rounded-[20px] flex flex-col items-center justify-center gap-3",
+        "bg-white drop-shadow-md",
+        "py-3 px-4",
+        "border border-blue_gray-300 rounded-lg flex flex-col items-center justify-center gap-3",
         "min-[980px]:items-start min-[980px]:max-w-[416px]"
       )}
     >

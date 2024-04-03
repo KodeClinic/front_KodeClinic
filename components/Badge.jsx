@@ -42,19 +42,19 @@ export default function Badge({ badgeType, timeLapse, consultingAddress }) {
     label = "comped";
     description = "Completada";
     styles = "sm:w-[140px] bg-[#455A64] text-white";
-    img_styles = "p-1";
+    img_styles = "p-[5px]";
   } else if (badgeType == "start") {
     icon = "assets/icons/play_white-icon.svg";
     label = "start";
     description = "Comenzar";
     styles = "sm:w-[140px] bg-[#46B251] text-white";
-    img_styles = "p-1";
+    img_styles = "p-[5px]";
   } else if (badgeType == "schedule") {
     icon = "assets/icons/schedule_white-icon.svg";
     label = "schedule";
     description = "Agendar cita";
     styles = "sm:w-[140px] bg-[#0745CB] text-white";
-    img_styles = "p-1";
+    img_styles = "p-[6px]";
   } else if (badgeType == "appointment") {
     icon = "assets/icons/access_time-icon.svg";
     label = "appointment";

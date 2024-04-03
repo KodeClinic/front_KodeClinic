@@ -83,6 +83,7 @@ export default function DashboardEsp() {
         {/* Lista de Citas */}
         <div
           className={clsx(
+            "flex gap-5",
             "w-full drop-shadow-md px-6 py-4 min-[980px]:px-7",
             "bg-white rounded-[20px] py-4 flex flex-col gap-3"
           )}
