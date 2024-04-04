@@ -162,7 +162,7 @@ export default function LandinPage() {
       <section
         id="Hero-Section-3"
         className={clsx(
-          "px-4 py-4 sm:px-14 min-[980px]:px-20",
+          "px-4 pt-4 sm:px-14 min-[980px]:px-20",
           "flex flex-col gap-5 sm:flex-row sm:justify-center"
         )}
       >
@@ -190,7 +190,7 @@ export default function LandinPage() {
       </section>
       <section
         id="about-us"
-        className={clsx("flex flex-col items-center", "py-7")}
+        className={clsx("flex flex-col items-center", "pt-16")}
       >
         <h2
           className={clsx(
@@ -291,7 +291,7 @@ export default function LandinPage() {
         </div>
       </section>
 
-      <section className="bg-background p-4">
+      <section id="functionalities" className="bg-background px-4 pt-16">
         <h1
           className={clsx(
             "text-green_title font-semibold text-center p-4",

@@ -1,6 +1,7 @@
 import clsx from "clsx";
 import { useState } from "react";
 import { useRouter } from "next/router";
+import Link from "next/link";
 
 export default function NavBar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -76,15 +77,24 @@ export default function NavBar() {
               "min-[980px]:flex-row min-[980px]:gap-6"
             )}
           >
-            <button className={clsx("px-4 py-2", "min-[980px]:px-0")}>
+            <Link
+              href="#Hero-Section-1"
+              className={clsx("px-4 py-2", "min-[980px]:px-0")}
+            >
               Inicio
-            </button>
-            <button className={clsx("px-4 py-2", "min-[980px]:px-0")}>
+            </Link>
+            <Link
+              href="#about-us"
+              className={clsx("px-4 py-2", "min-[980px]:px-0")}
+            >
               Sobre Nosotros
-            </button>
-            <button className={clsx("px-4 py-2", "min-[980px]:px-0")}>
+            </Link>
+            <Link
+              href="#functionalities"
+              className={clsx("px-4 py-2", "min-[980px]:px-0")}
+            >
               Funcionalidades
-            </button>
+            </Link>
           </div>
           <div
             className={clsx(
