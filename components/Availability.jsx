@@ -1,9 +1,7 @@
 import clsx from "clsx";
 import { useState } from "react";
 import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
-import Select from "@mui/material/Select";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 
@@ -15,84 +13,27 @@ export default function Availability() {
   };
   return (
     <>
-      <div className={clsx("flex", "items-center")}>
+      <div className={clsx("flex-col", "flex", "items-center", "md:flex-row")}>
         <FormControlLabel control={<Checkbox defaultChecked />} label="Lunes" />
 
         <FormControl className={clsx("w-full")} sx={{ m: 1 }}>
           <InputLabel id="demo-simple-select-label"></InputLabel>
-          <Select
-            size="lg"
-            labelId="demo-simple-select-label"
-            id="demo-simple-select"
-            value={hour}
-            label="hour"
-            onChange={handleHourChange}
-          >
-            <MenuItem value={0}>5:00</MenuItem>
-            <MenuItem value={0}>6:00</MenuItem>
-            <MenuItem value={0}>7:00</MenuItem>
-            <MenuItem value={0}>8:00</MenuItem>
-            <MenuItem value={0}>9:00</MenuItem>
-            <MenuItem value={0}>10:00</MenuItem>
-            <MenuItem value={0}>11:00</MenuItem>
-            <MenuItem value={0}>12:00</MenuItem>
-            <MenuItem value={0}>13:00</MenuItem>
-            <MenuItem value={0}>14:00</MenuItem>
-            <MenuItem value={0}>15:00</MenuItem>
-            <MenuItem value={0}>16:00</MenuItem>
-            <MenuItem value={0}>17:00</MenuItem>
-            <MenuItem value={0}>18:00</MenuItem>
-            <MenuItem value={0}>19:00</MenuItem>
-            <MenuItem value={0}>20:00</MenuItem>
-            <MenuItem value={0}>21:00</MenuItem>
-            <MenuItem value={0}>22:00</MenuItem>
-            <MenuItem value={0}>23:00</MenuItem>
-            <MenuItem value={0}>24:00</MenuItem>
-            <MenuItem value={0}>1:00</MenuItem>
-            <MenuItem value={0}>2:00</MenuItem>
-            <MenuItem value={0}>3:00</MenuItem>
-            <MenuItem value={0}>4:00</MenuItem>
-          </Select>
+
+          <input
+            className={clsx("border", "p-1", "rounded", "border-[#C4C4C4]")}
+            type="time"
+          />
         </FormControl>
         <p>a</p>
         <FormControl className={clsx("w-full")} sx={{ m: 1 }}>
           <InputLabel id="demo-simple-select-label"></InputLabel>
-          <Select
-            size="lg"
-            labelId="demo-simple-select-label"
-            id="demo-simple-select"
-            value={hour}
-            label="hour"
-            onChange={handleHourChange}
-          >
-            <MenuItem value={0}>5:00</MenuItem>
-            <MenuItem value={0}>6:00</MenuItem>
-            <MenuItem value={0}>7:00</MenuItem>
-            <MenuItem value={0}>8:00</MenuItem>
-            <MenuItem value={0}>9:00</MenuItem>
-            <MenuItem value={0}>10:00</MenuItem>
-            <MenuItem value={0}>11:00</MenuItem>
-            <MenuItem value={0}>12:00</MenuItem>
-            <MenuItem value={0}>13:00</MenuItem>
-            <MenuItem value={0}>14:00</MenuItem>
-            <MenuItem value={0}>15:00</MenuItem>
-            <MenuItem value={0}>16:00</MenuItem>
-            <MenuItem value={0}>17:00</MenuItem>
-            <MenuItem value={0}>18:00</MenuItem>
-            <MenuItem value={0}>19:00</MenuItem>
-            <MenuItem value={0}>20:00</MenuItem>
-            <MenuItem value={0}>21:00</MenuItem>
-            <MenuItem value={0}>22:00</MenuItem>
-            <MenuItem value={0}>23:00</MenuItem>
-            <MenuItem value={0}>24:00</MenuItem>
-            <MenuItem value={0}>1:00</MenuItem>
-            <MenuItem value={0}>2:00</MenuItem>
-            <MenuItem value={0}>3:00</MenuItem>
-            <MenuItem value={0}>4:00</MenuItem>
-          </Select>
+          <input
+            className={clsx("border", "p-1", "rounded", "border-[#C4C4C4]")}
+            type="time"
+          />
         </FormControl>
       </div>
-      <div className={clsx("flex", "items-center")}>
+      <div className={clsx("flex-col", "flex", "items-center", "md:flex-row")}>
         <FormControlLabel
           control={<Checkbox defaultChecked />}
           label="Martes"
@@ -100,79 +41,22 @@ export default function Availability() {
 
         <FormControl className={clsx("w-full")} sx={{ m: 1 }}>
           <InputLabel id="demo-simple-select-label"></InputLabel>
-          <Select
-            size="lg"
-            labelId="demo-simple-select-label"
-            id="demo-simple-select"
-            value={hour}
-            label="hour"
-            onChange={handleHourChange}
-          >
-            <MenuItem value={0}>5:00</MenuItem>
-            <MenuItem value={0}>6:00</MenuItem>
-            <MenuItem value={0}>7:00</MenuItem>
-            <MenuItem value={0}>8:00</MenuItem>
-            <MenuItem value={0}>9:00</MenuItem>
-            <MenuItem value={0}>10:00</MenuItem>
-            <MenuItem value={0}>11:00</MenuItem>
-            <MenuItem value={0}>12:00</MenuItem>
-            <MenuItem value={0}>13:00</MenuItem>
-            <MenuItem value={0}>14:00</MenuItem>
-            <MenuItem value={0}>15:00</MenuItem>
-            <MenuItem value={0}>16:00</MenuItem>
-            <MenuItem value={0}>17:00</MenuItem>
-            <MenuItem value={0}>18:00</MenuItem>
-            <MenuItem value={0}>19:00</MenuItem>
-            <MenuItem value={0}>20:00</MenuItem>
-            <MenuItem value={0}>21:00</MenuItem>
-            <MenuItem value={0}>22:00</MenuItem>
-            <MenuItem value={0}>23:00</MenuItem>
-            <MenuItem value={0}>24:00</MenuItem>
-            <MenuItem value={0}>1:00</MenuItem>
-            <MenuItem value={0}>2:00</MenuItem>
-            <MenuItem value={0}>3:00</MenuItem>
-            <MenuItem value={0}>4:00</MenuItem>
-          </Select>
+
+          <input
+            className={clsx("border", "p-1", "rounded", "border-[#C4C4C4]")}
+            type="time"
+          />
         </FormControl>
         <p>a</p>
         <FormControl className={clsx("w-full")} sx={{ m: 1 }}>
           <InputLabel id="demo-simple-select-label"></InputLabel>
-          <Select
-            size="lg"
-            labelId="demo-simple-select-label"
-            id="demo-simple-select"
-            value={hour}
-            label="hour"
-            onChange={handleHourChange}
-          >
-            <MenuItem value={0}>5:00</MenuItem>
-            <MenuItem value={0}>6:00</MenuItem>
-            <MenuItem value={0}>7:00</MenuItem>
-            <MenuItem value={0}>8:00</MenuItem>
-            <MenuItem value={0}>9:00</MenuItem>
-            <MenuItem value={0}>10:00</MenuItem>
-            <MenuItem value={0}>11:00</MenuItem>
-            <MenuItem value={0}>12:00</MenuItem>
-            <MenuItem value={0}>13:00</MenuItem>
-            <MenuItem value={0}>14:00</MenuItem>
-            <MenuItem value={0}>15:00</MenuItem>
-            <MenuItem value={0}>16:00</MenuItem>
-            <MenuItem value={0}>17:00</MenuItem>
-            <MenuItem value={0}>18:00</MenuItem>
-            <MenuItem value={0}>19:00</MenuItem>
-            <MenuItem value={0}>20:00</MenuItem>
-            <MenuItem value={0}>21:00</MenuItem>
-            <MenuItem value={0}>22:00</MenuItem>
-            <MenuItem value={0}>23:00</MenuItem>
-            <MenuItem value={0}>24:00</MenuItem>
-            <MenuItem value={0}>1:00</MenuItem>
-            <MenuItem value={0}>2:00</MenuItem>
-            <MenuItem value={0}>3:00</MenuItem>
-            <MenuItem value={0}>4:00</MenuItem>
-          </Select>
+          <input
+            className={clsx("border", "p-1", "rounded", "border-[#C4C4C4]")}
+            type="time"
+          />
         </FormControl>
       </div>
-      <div className={clsx("flex", "items-center")}>
+      <div className={clsx("flex-col", "flex", "items-center", "md:flex-row")}>
         <FormControlLabel
           control={<Checkbox defaultChecked />}
           label="Miercoles"
@@ -180,79 +64,22 @@ export default function Availability() {
 
         <FormControl className={clsx("w-full")} sx={{ m: 1 }}>
           <InputLabel id="demo-simple-select-label"></InputLabel>
-          <Select
-            size="lg"
-            labelId="demo-simple-select-label"
-            id="demo-simple-select"
-            value={hour}
-            label="hour"
-            onChange={handleHourChange}
-          >
-            <MenuItem value={0}>5:00</MenuItem>
-            <MenuItem value={0}>6:00</MenuItem>
-            <MenuItem value={0}>7:00</MenuItem>
-            <MenuItem value={0}>8:00</MenuItem>
-            <MenuItem value={0}>9:00</MenuItem>
-            <MenuItem value={0}>10:00</MenuItem>
-            <MenuItem value={0}>11:00</MenuItem>
-            <MenuItem value={0}>12:00</MenuItem>
-            <MenuItem value={0}>13:00</MenuItem>
-            <MenuItem value={0}>14:00</MenuItem>
-            <MenuItem value={0}>15:00</MenuItem>
-            <MenuItem value={0}>16:00</MenuItem>
-            <MenuItem value={0}>17:00</MenuItem>
-            <MenuItem value={0}>18:00</MenuItem>
-            <MenuItem value={0}>19:00</MenuItem>
-            <MenuItem value={0}>20:00</MenuItem>
-            <MenuItem value={0}>21:00</MenuItem>
-            <MenuItem value={0}>22:00</MenuItem>
-            <MenuItem value={0}>23:00</MenuItem>
-            <MenuItem value={0}>24:00</MenuItem>
-            <MenuItem value={0}>1:00</MenuItem>
-            <MenuItem value={0}>2:00</MenuItem>
-            <MenuItem value={0}>3:00</MenuItem>
-            <MenuItem value={0}>4:00</MenuItem>
-          </Select>
+
+          <input
+            className={clsx("border", "p-1", "rounded", "border-[#C4C4C4]")}
+            type="time"
+          />
         </FormControl>
         <p>a</p>
         <FormControl className={clsx("w-full")} sx={{ m: 1 }}>
           <InputLabel id="demo-simple-select-label"></InputLabel>
-          <Select
-            size="lg"
-            labelId="demo-simple-select-label"
-            id="demo-simple-select"
-            value={hour}
-            label="hour"
-            onChange={handleHourChange}
-          >
-            <MenuItem value={0}>5:00</MenuItem>
-            <MenuItem value={0}>6:00</MenuItem>
-            <MenuItem value={0}>7:00</MenuItem>
-            <MenuItem value={0}>8:00</MenuItem>
-            <MenuItem value={0}>9:00</MenuItem>
-            <MenuItem value={0}>10:00</MenuItem>
-            <MenuItem value={0}>11:00</MenuItem>
-            <MenuItem value={0}>12:00</MenuItem>
-            <MenuItem value={0}>13:00</MenuItem>
-            <MenuItem value={0}>14:00</MenuItem>
-            <MenuItem value={0}>15:00</MenuItem>
-            <MenuItem value={0}>16:00</MenuItem>
-            <MenuItem value={0}>17:00</MenuItem>
-            <MenuItem value={0}>18:00</MenuItem>
-            <MenuItem value={0}>19:00</MenuItem>
-            <MenuItem value={0}>20:00</MenuItem>
-            <MenuItem value={0}>21:00</MenuItem>
-            <MenuItem value={0}>22:00</MenuItem>
-            <MenuItem value={0}>23:00</MenuItem>
-            <MenuItem value={0}>24:00</MenuItem>
-            <MenuItem value={0}>1:00</MenuItem>
-            <MenuItem value={0}>2:00</MenuItem>
-            <MenuItem value={0}>3:00</MenuItem>
-            <MenuItem value={0}>4:00</MenuItem>
-          </Select>
+          <input
+            className={clsx("border", "p-1", "rounded", "border-[#C4C4C4]")}
+            type="time"
+          />
         </FormControl>
       </div>
-      <div className={clsx("flex", "items-center")}>
+      <div className={clsx("flex-col", "flex", "items-center", "md:flex-row")}>
         <FormControlLabel
           control={<Checkbox defaultChecked />}
           label="Jueves"
@@ -260,79 +87,22 @@ export default function Availability() {
 
         <FormControl className={clsx("w-full")} sx={{ m: 1 }}>
           <InputLabel id="demo-simple-select-label"></InputLabel>
-          <Select
-            size="lg"
-            labelId="demo-simple-select-label"
-            id="demo-simple-select"
-            value={hour}
-            label="hour"
-            onChange={handleHourChange}
-          >
-            <MenuItem value={0}>5:00</MenuItem>
-            <MenuItem value={0}>6:00</MenuItem>
-            <MenuItem value={0}>7:00</MenuItem>
-            <MenuItem value={0}>8:00</MenuItem>
-            <MenuItem value={0}>9:00</MenuItem>
-            <MenuItem value={0}>10:00</MenuItem>
-            <MenuItem value={0}>11:00</MenuItem>
-            <MenuItem value={0}>12:00</MenuItem>
-            <MenuItem value={0}>13:00</MenuItem>
-            <MenuItem value={0}>14:00</MenuItem>
-            <MenuItem value={0}>15:00</MenuItem>
-            <MenuItem value={0}>16:00</MenuItem>
-            <MenuItem value={0}>17:00</MenuItem>
-            <MenuItem value={0}>18:00</MenuItem>
-            <MenuItem value={0}>19:00</MenuItem>
-            <MenuItem value={0}>20:00</MenuItem>
-            <MenuItem value={0}>21:00</MenuItem>
-            <MenuItem value={0}>22:00</MenuItem>
-            <MenuItem value={0}>23:00</MenuItem>
-            <MenuItem value={0}>24:00</MenuItem>
-            <MenuItem value={0}>1:00</MenuItem>
-            <MenuItem value={0}>2:00</MenuItem>
-            <MenuItem value={0}>3:00</MenuItem>
-            <MenuItem value={0}>4:00</MenuItem>
-          </Select>
+
+          <input
+            className={clsx("border", "p-1", "rounded", "border-[#C4C4C4]")}
+            type="time"
+          />
         </FormControl>
         <p>a</p>
         <FormControl className={clsx("w-full")} sx={{ m: 1 }}>
           <InputLabel id="demo-simple-select-label"></InputLabel>
-          <Select
-            size="lg"
-            labelId="demo-simple-select-label"
-            id="demo-simple-select"
-            value={hour}
-            label="hour"
-            onChange={handleHourChange}
-          >
-            <MenuItem value={0}>5:00</MenuItem>
-            <MenuItem value={0}>6:00</MenuItem>
-            <MenuItem value={0}>7:00</MenuItem>
-            <MenuItem value={0}>8:00</MenuItem>
-            <MenuItem value={0}>9:00</MenuItem>
-            <MenuItem value={0}>10:00</MenuItem>
-            <MenuItem value={0}>11:00</MenuItem>
-            <MenuItem value={0}>12:00</MenuItem>
-            <MenuItem value={0}>13:00</MenuItem>
-            <MenuItem value={0}>14:00</MenuItem>
-            <MenuItem value={0}>15:00</MenuItem>
-            <MenuItem value={0}>16:00</MenuItem>
-            <MenuItem value={0}>17:00</MenuItem>
-            <MenuItem value={0}>18:00</MenuItem>
-            <MenuItem value={0}>19:00</MenuItem>
-            <MenuItem value={0}>20:00</MenuItem>
-            <MenuItem value={0}>21:00</MenuItem>
-            <MenuItem value={0}>22:00</MenuItem>
-            <MenuItem value={0}>23:00</MenuItem>
-            <MenuItem value={0}>24:00</MenuItem>
-            <MenuItem value={0}>1:00</MenuItem>
-            <MenuItem value={0}>2:00</MenuItem>
-            <MenuItem value={0}>3:00</MenuItem>
-            <MenuItem value={0}>4:00</MenuItem>
-          </Select>
+          <input
+            className={clsx("border", "p-1", "rounded", "border-[#C4C4C4]")}
+            type="time"
+          />
         </FormControl>
       </div>
-      <div className={clsx("flex", "items-center")}>
+      <div className={clsx("flex-col", "flex", "items-center", "md:flex-row")}>
         <FormControlLabel
           control={<Checkbox defaultChecked />}
           label="Viernes"
@@ -340,159 +110,45 @@ export default function Availability() {
 
         <FormControl className={clsx("w-full")} sx={{ m: 1 }}>
           <InputLabel id="demo-simple-select-label"></InputLabel>
-          <Select
-            size="lg"
-            labelId="demo-simple-select-label"
-            id="demo-simple-select"
-            value={hour}
-            label="hour"
-            onChange={handleHourChange}
-          >
-            <MenuItem value={0}>5:00</MenuItem>
-            <MenuItem value={0}>6:00</MenuItem>
-            <MenuItem value={0}>7:00</MenuItem>
-            <MenuItem value={0}>8:00</MenuItem>
-            <MenuItem value={0}>9:00</MenuItem>
-            <MenuItem value={0}>10:00</MenuItem>
-            <MenuItem value={0}>11:00</MenuItem>
-            <MenuItem value={0}>12:00</MenuItem>
-            <MenuItem value={0}>13:00</MenuItem>
-            <MenuItem value={0}>14:00</MenuItem>
-            <MenuItem value={0}>15:00</MenuItem>
-            <MenuItem value={0}>16:00</MenuItem>
-            <MenuItem value={0}>17:00</MenuItem>
-            <MenuItem value={0}>18:00</MenuItem>
-            <MenuItem value={0}>19:00</MenuItem>
-            <MenuItem value={0}>20:00</MenuItem>
-            <MenuItem value={0}>21:00</MenuItem>
-            <MenuItem value={0}>22:00</MenuItem>
-            <MenuItem value={0}>23:00</MenuItem>
-            <MenuItem value={0}>24:00</MenuItem>
-            <MenuItem value={0}>1:00</MenuItem>
-            <MenuItem value={0}>2:00</MenuItem>
-            <MenuItem value={0}>3:00</MenuItem>
-            <MenuItem value={0}>4:00</MenuItem>
-          </Select>
+
+          <input
+            className={clsx("border", "p-1", "rounded", "border-[#C4C4C4]")}
+            type="time"
+          />
         </FormControl>
         <p>a</p>
         <FormControl className={clsx("w-full")} sx={{ m: 1 }}>
           <InputLabel id="demo-simple-select-label"></InputLabel>
-          <Select
-            size="lg"
-            labelId="demo-simple-select-label"
-            id="demo-simple-select"
-            value={hour}
-            label="hour"
-            onChange={handleHourChange}
-          >
-            <MenuItem value={0}>5:00</MenuItem>
-            <MenuItem value={0}>6:00</MenuItem>
-            <MenuItem value={0}>7:00</MenuItem>
-            <MenuItem value={0}>8:00</MenuItem>
-            <MenuItem value={0}>9:00</MenuItem>
-            <MenuItem value={0}>10:00</MenuItem>
-            <MenuItem value={0}>11:00</MenuItem>
-            <MenuItem value={0}>12:00</MenuItem>
-            <MenuItem value={0}>13:00</MenuItem>
-            <MenuItem value={0}>14:00</MenuItem>
-            <MenuItem value={0}>15:00</MenuItem>
-            <MenuItem value={0}>16:00</MenuItem>
-            <MenuItem value={0}>17:00</MenuItem>
-            <MenuItem value={0}>18:00</MenuItem>
-            <MenuItem value={0}>19:00</MenuItem>
-            <MenuItem value={0}>20:00</MenuItem>
-            <MenuItem value={0}>21:00</MenuItem>
-            <MenuItem value={0}>22:00</MenuItem>
-            <MenuItem value={0}>23:00</MenuItem>
-            <MenuItem value={0}>24:00</MenuItem>
-            <MenuItem value={0}>1:00</MenuItem>
-            <MenuItem value={0}>2:00</MenuItem>
-            <MenuItem value={0}>3:00</MenuItem>
-            <MenuItem value={0}>4:00</MenuItem>
-          </Select>
+          <input
+            className={clsx("border", "p-1", "rounded", "border-[#C4C4C4]")}
+            type="time"
+          />
         </FormControl>
       </div>
-      <div className={clsx("flex", "items-center")}>
+      <div className={clsx("flex-col", "flex", "items-center", "md:flex-row")}>
         <FormControlLabel
           control={<Checkbox defaultChecked />}
-          label="Sabado"
+          label="Sábado"
         />
 
         <FormControl className={clsx("w-full")} sx={{ m: 1 }}>
           <InputLabel id="demo-simple-select-label"></InputLabel>
-          <Select
-            size="lg"
-            labelId="demo-simple-select-label"
-            id="demo-simple-select"
-            value={hour}
-            label="hour"
-            onChange={handleHourChange}
-          >
-            <MenuItem value={0}>5:00</MenuItem>
-            <MenuItem value={0}>6:00</MenuItem>
-            <MenuItem value={0}>7:00</MenuItem>
-            <MenuItem value={0}>8:00</MenuItem>
-            <MenuItem value={0}>9:00</MenuItem>
-            <MenuItem value={0}>10:00</MenuItem>
-            <MenuItem value={0}>11:00</MenuItem>
-            <MenuItem value={0}>12:00</MenuItem>
-            <MenuItem value={0}>13:00</MenuItem>
-            <MenuItem value={0}>14:00</MenuItem>
-            <MenuItem value={0}>15:00</MenuItem>
-            <MenuItem value={0}>16:00</MenuItem>
-            <MenuItem value={0}>17:00</MenuItem>
-            <MenuItem value={0}>18:00</MenuItem>
-            <MenuItem value={0}>19:00</MenuItem>
-            <MenuItem value={0}>20:00</MenuItem>
-            <MenuItem value={0}>21:00</MenuItem>
-            <MenuItem value={0}>22:00</MenuItem>
-            <MenuItem value={0}>23:00</MenuItem>
-            <MenuItem value={0}>24:00</MenuItem>
-            <MenuItem value={0}>1:00</MenuItem>
-            <MenuItem value={0}>2:00</MenuItem>
-            <MenuItem value={0}>3:00</MenuItem>
-            <MenuItem value={0}>4:00</MenuItem>
-          </Select>
+
+          <input
+            className={clsx("border", "p-1", "rounded", "border-[#C4C4C4]")}
+            type="time"
+          />
         </FormControl>
         <p>a</p>
         <FormControl className={clsx("w-full")} sx={{ m: 1 }}>
           <InputLabel id="demo-simple-select-label"></InputLabel>
-          <Select
-            size="lg"
-            labelId="demo-simple-select-label"
-            id="demo-simple-select"
-            value={hour}
-            label="hour"
-            onChange={handleHourChange}
-          >
-            <MenuItem value={0}>5:00</MenuItem>
-            <MenuItem value={0}>6:00</MenuItem>
-            <MenuItem value={0}>7:00</MenuItem>
-            <MenuItem value={0}>8:00</MenuItem>
-            <MenuItem value={0}>9:00</MenuItem>
-            <MenuItem value={0}>10:00</MenuItem>
-            <MenuItem value={0}>11:00</MenuItem>
-            <MenuItem value={0}>12:00</MenuItem>
-            <MenuItem value={0}>13:00</MenuItem>
-            <MenuItem value={0}>14:00</MenuItem>
-            <MenuItem value={0}>15:00</MenuItem>
-            <MenuItem value={0}>16:00</MenuItem>
-            <MenuItem value={0}>17:00</MenuItem>
-            <MenuItem value={0}>18:00</MenuItem>
-            <MenuItem value={0}>19:00</MenuItem>
-            <MenuItem value={0}>20:00</MenuItem>
-            <MenuItem value={0}>21:00</MenuItem>
-            <MenuItem value={0}>22:00</MenuItem>
-            <MenuItem value={0}>23:00</MenuItem>
-            <MenuItem value={0}>24:00</MenuItem>
-            <MenuItem value={0}>1:00</MenuItem>
-            <MenuItem value={0}>2:00</MenuItem>
-            <MenuItem value={0}>3:00</MenuItem>
-            <MenuItem value={0}>4:00</MenuItem>
-          </Select>
+          <input
+            className={clsx("border", "p-1", "rounded", "border-[#C4C4C4]")}
+            type="time"
+          />
         </FormControl>
       </div>
-      <div className={clsx("flex", "items-center")}>
+      <div className={clsx("flex-col", "flex", "items-center", "md:flex-row")}>
         <FormControlLabel
           control={<Checkbox defaultChecked />}
           label="Domingo"
@@ -500,76 +156,19 @@ export default function Availability() {
 
         <FormControl className={clsx("w-full")} sx={{ m: 1 }}>
           <InputLabel id="demo-simple-select-label"></InputLabel>
-          <Select
-            size="lg"
-            labelId="demo-simple-select-label"
-            id="demo-simple-select"
-            value={hour}
-            label="hour"
-            onChange={handleHourChange}
-          >
-            <MenuItem value={0}>5:00</MenuItem>
-            <MenuItem value={0}>6:00</MenuItem>
-            <MenuItem value={0}>7:00</MenuItem>
-            <MenuItem value={0}>8:00</MenuItem>
-            <MenuItem value={0}>9:00</MenuItem>
-            <MenuItem value={0}>10:00</MenuItem>
-            <MenuItem value={0}>11:00</MenuItem>
-            <MenuItem value={0}>12:00</MenuItem>
-            <MenuItem value={0}>13:00</MenuItem>
-            <MenuItem value={0}>14:00</MenuItem>
-            <MenuItem value={0}>15:00</MenuItem>
-            <MenuItem value={0}>16:00</MenuItem>
-            <MenuItem value={0}>17:00</MenuItem>
-            <MenuItem value={0}>18:00</MenuItem>
-            <MenuItem value={0}>19:00</MenuItem>
-            <MenuItem value={0}>20:00</MenuItem>
-            <MenuItem value={0}>21:00</MenuItem>
-            <MenuItem value={0}>22:00</MenuItem>
-            <MenuItem value={0}>23:00</MenuItem>
-            <MenuItem value={0}>24:00</MenuItem>
-            <MenuItem value={0}>1:00</MenuItem>
-            <MenuItem value={0}>2:00</MenuItem>
-            <MenuItem value={0}>3:00</MenuItem>
-            <MenuItem value={0}>4:00</MenuItem>
-          </Select>
+
+          <input
+            className={clsx("border", "p-1", "rounded", "border-[#C4C4C4]")}
+            type="time"
+          />
         </FormControl>
         <p>a</p>
         <FormControl className={clsx("w-full")} sx={{ m: 1 }}>
           <InputLabel id="demo-simple-select-label"></InputLabel>
-          <Select
-            size="lg"
-            labelId="demo-simple-select-label"
-            id="demo-simple-select"
-            value={hour}
-            label="hour"
-            onChange={handleHourChange}
-          >
-            <MenuItem value={0}>5:00</MenuItem>
-            <MenuItem value={0}>6:00</MenuItem>
-            <MenuItem value={0}>7:00</MenuItem>
-            <MenuItem value={0}>8:00</MenuItem>
-            <MenuItem value={0}>9:00</MenuItem>
-            <MenuItem value={0}>10:00</MenuItem>
-            <MenuItem value={0}>11:00</MenuItem>
-            <MenuItem value={0}>12:00</MenuItem>
-            <MenuItem value={0}>13:00</MenuItem>
-            <MenuItem value={0}>14:00</MenuItem>
-            <MenuItem value={0}>15:00</MenuItem>
-            <MenuItem value={0}>16:00</MenuItem>
-            <MenuItem value={0}>17:00</MenuItem>
-            <MenuItem value={0}>18:00</MenuItem>
-            <MenuItem value={0}>19:00</MenuItem>
-            <MenuItem value={0}>20:00</MenuItem>
-            <MenuItem value={0}>21:00</MenuItem>
-            <MenuItem value={0}>22:00</MenuItem>
-            <MenuItem value={0}>23:00</MenuItem>
-            <MenuItem value={0}>24:00</MenuItem>
-            <MenuItem value={0}>1:00</MenuItem>
-            <MenuItem value={0}>2:00</MenuItem>
-            <MenuItem value={0}>3:00</MenuItem>
-            <MenuItem value={0}>4:00</MenuItem>
-          </Select>
+          <input
+            className={clsx("border", "p-1", "rounded", "border-[#C4C4C4]")}
+            type="time"
+          />
         </FormControl>
       </div>
     </>
