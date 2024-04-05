@@ -11,7 +11,7 @@ export default function LandinPage() {
     <main className="bg-background h-full w-full">
       <NavBar />
       <section
-        id="Hero-Section-1"
+        id="Inicio"
         className={clsx(
           "sm:flex sm:flex-row sm:justify-between",
           "px-4 pb-7 pt-24 min-[980px]:pt-[134px]",
@@ -189,7 +189,7 @@ export default function LandinPage() {
         />
       </section>
       <section
-        id="about-us"
+        id="Sobre-Nosotros"
         className={clsx("flex flex-col items-center", "pt-16")}
       >
         <h2
@@ -291,7 +291,7 @@ export default function LandinPage() {
         </div>
       </section>
 
-      <section id="functionalities" className="bg-background px-4 pt-16">
+      <section id="Funcionalidades" className="bg-background px-4 pt-16">
         <h1
           className={clsx(
             "text-green_title font-semibold text-center p-4",

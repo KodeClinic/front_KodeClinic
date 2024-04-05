@@ -78,19 +78,19 @@ export default function NavBar() {
             )}
           >
             <Link
-              href="#Hero-Section-1"
+              href="#Inicio"
               className={clsx("px-4 py-2", "min-[980px]:px-0")}
             >
               Inicio
             </Link>
             <Link
-              href="#about-us"
+              href="#Sobre-Nosotros"
               className={clsx("px-4 py-2", "min-[980px]:px-0")}
             >
               Sobre Nosotros
             </Link>
             <Link
-              href="#functionalities"
+              href="#Funcionalidades"
               className={clsx("px-4 py-2", "min-[980px]:px-0")}
             >
               Funcionalidades
