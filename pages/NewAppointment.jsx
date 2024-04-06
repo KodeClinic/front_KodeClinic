@@ -1,4 +1,5 @@
 import clsx from "clsx";
+import SuccessModal from "@/components/SuccessModal";
 
 export default function NewAppointment() {
   //   const tabs = document.querySelectorAll(`[data-tab-target]`);
@@ -360,6 +361,10 @@ export default function NewAppointment() {
             </button>
           </div>
         </div>
+        <SuccessModal
+          text="Cita guardada con éxito"
+          button="Confirmar"
+        ></SuccessModal>
       </main>
     </>
   );
