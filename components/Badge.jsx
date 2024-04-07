@@ -77,7 +77,7 @@ export default function Badge({ badgeType, timeLapse, consultingAddress }) {
       )}
     >
       <img className={clsx("w-7 h-7", img_styles)} src={icon} alt={label} />
-      <p className={clsx("text-[14px] font-normal text-start max-w-[104px]")}>
+      <p className={clsx("text-[14px] font-normal text-start max-w-[108px]")}>
         {description}
       </p>
     </div>

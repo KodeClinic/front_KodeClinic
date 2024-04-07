@@ -4,9 +4,7 @@ export default function PatientBand({
   name_Patient,
   gender_Patient,
   name_Specialist,
-  email_Specialist,
   cel_Specialist,
-  cedProf,
 }) {
   return (
     <section
