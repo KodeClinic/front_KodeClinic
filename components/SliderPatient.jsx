@@ -40,7 +40,7 @@ export default function SliderPatient({ props }) {
           alt="left-arrow"
         />
       </div>
-      {/* <div className={clsx("flex gap-4 sm:flex-row")}> */}
+
       <div className={clsx("sm:hidden")}>
         {newArrayMobile.map((appointment, index) => {
           return (
@@ -79,7 +79,7 @@ export default function SliderPatient({ props }) {
           );
         })}
       </div>
-      {/* </div> */}
+
       <div className={clsx("flex items-center pl-3")}>
         <img
           onClick={nextCard}

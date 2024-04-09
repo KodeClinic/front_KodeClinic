@@ -2,6 +2,7 @@ import NavBarPat from "@/components/NavBarPat";
 import clsx from "clsx";
 import PatientBand from "@/components/PatientBand";
 import SliderPatient from "@/components/SliderPatient";
+import AppointmentListPatient from "@/components/AppointmentListPatient";
 
 const data = [
   {
@@ -109,6 +110,8 @@ export default function DashboardPat() {
           >
             Historial de citas
           </p>
+
+          <AppointmentListPatient />
         </div>
       </section>
     </main>
