@@ -9,11 +9,7 @@ import New_pacient from "./New_pacient";
 export default function Home() {
   return (
     <main>
-      {/* <LandinPage /> */}
-      {/* <DashboardSpe /> */}
-      <DashboardPat />
-      {/* <LoginPage /> */}
-      <New_pacient />
+      <LandinPage />
     </main>
   );
 }

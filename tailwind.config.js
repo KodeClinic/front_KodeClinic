@@ -22,6 +22,7 @@ module.exports = {
       main_text: "#212C33",
       primary_main: "#2196F3",
       blue_gray: {
+        50: "#ECEFF1",
         100: "#CFD8DC",
         200: "#B0BEC5",
         300: "#90A4AE",
@@ -29,6 +30,7 @@ module.exports = {
         500: "#607D8B",
         600: "#546E7A",
         700: "#455A64",
+        800: "#37474f",
       },
       white_grey: "#E8EDF0",
       pink: "#DABCFF",

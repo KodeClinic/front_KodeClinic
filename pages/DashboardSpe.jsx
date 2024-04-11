@@ -5,14 +5,15 @@ import SpecialistCard from "@/components/SpecialistCard";
 import AccordionAppointments from "@/components/AccordionAppointments";
 import AccordionFreeAgenda from "@/components/AccordeonFreeAgenda";
 import { useState } from "react";
-
 // Para utilizar el calendario
+import { esES } from "@mui/x-date-pickers/locales";
 import dayjs from "dayjs";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DateCalendar } from "@mui/x-date-pickers/DateCalendar";
-import es from "dayjs/locale/es";
-dayjs.locale(es);
+
+// import { es } from "dayjs/locale/es";
+// dayjs.locale(es);
 // import localeData from "dayjs/plugin/localeData";
 // dayjs.extend(localeData);
 
@@ -62,6 +63,7 @@ const freeAgendaData = [
 
 export default function DashboardEsp() {
   const [Date, setDate] = useState(dayjs());
+  console.log(Date);
 
   return (
     <main className={clsx("bg-background min-h-screen w-full")}>
@@ -83,6 +85,7 @@ export default function DashboardEsp() {
         {/* Lista de Citas */}
         <div
           className={clsx(
+            "flex gap-5",
             "w-full drop-shadow-md px-6 py-4 min-[980px]:px-7",
             "bg-white rounded-[20px] py-4 flex flex-col gap-3"
           )}
@@ -118,7 +121,12 @@ export default function DashboardEsp() {
           >
             Calendario
           </p>
-          <LocalizationProvider dateAdapter={AdapterDayjs}>
+          <LocalizationProvider
+            dateAdapter={AdapterDayjs}
+            localeText={
+              esES.components.MuiLocalizationProvider.defaultProps.localeText
+            }
+          >
             <DateCalendar
               value={Date}
               onChange={(newValue) => setDate(newValue)}

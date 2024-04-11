@@ -6,18 +6,34 @@ import FreeAgendaCard from "./FreeAgendaCard";
 export default function AccordionFreeAgenda({ props }) {
   const [accordionOpen, setAccordionOpen] = useState(false);
   return (
-    <div className={clsx("px-3 py-3 rounded-[20px]  bg-[#05C2B3]")}>
+    <div
+      className={clsx(
+        "px-5 py-4 rounded-lg  bg-blue_gray-50 drop-shadow-md transition-all duration-300 ease-in-out"
+      )}
+    >
       <button
         onClick={() => {
           setAccordionOpen(!accordionOpen);
         }}
         className={clsx(
-          "flex justify-between w-full  text-[18px] font-medium text-white",
-          accordionOpen ? "pb-3" : ""
+          "flex justify-between w-full  text-[18px] font-semibold text-blue_gray-700 transition-all duration-300 ease-in-out",
+          accordionOpen ? "py-4" : ""
         )}
       >
-        <span>Horarios Libres de la Agenda</span>
-        {accordionOpen ? <span>-</span> : <span>+</span>}
+        <span>Horarios Libres</span>
+        {accordionOpen ? (
+          <img
+            className={clsx("rotate-90 transition-transform")}
+            src="/assets/icons/collapse_arrow-icon.svg"
+            alt="collapse-icon"
+          />
+        ) : (
+          <img
+            className={clsx("-rotate-90 transition-transform")}
+            src="/assets/icons/collapse_arrow-icon.svg"
+            alt="collapse-icon"
+          />
+        )}
       </button>
       <div
         className={clsx(
