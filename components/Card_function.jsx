@@ -91,26 +91,26 @@ export default function Card_function() {
   };
 
   return (
-    <div className="flex flex-row gap-9 items-center">
-      <button
+    <div className="flex flex-row gap-16 items-center">
+      <img
+        src="assets/icons/back.svg"
         onClick={previous}
         className={clsx(
-          "bg-[#0745CB] text-white font-medium text-3xl w-14 h-14 rounded-full",
-          "lg:hidden"
+          "w-14 h-14 rounded-full",
+          "lg:hidden",
+          "cursor-pointer"
         )}
-      >
-        {"<"}
-      </button>
+      />
       <main className="flex gap-3 justify-center items-center mt-5">
         <article
           className={clsx(
-            "bg-white rounded-3xl shadow-2xl p-2 flex flex-col justify-center items-center",
-            "w-[159px] h-[223px]",
+            "bg-white rounded-3xl shadow-2xl p-4 flex flex-col justify-center items-center",
+            "w-[180px] h-[223px]",
             "md:w-[240px] h-[260px]",
             "lg:hidden"
           )}
         >
-          <img className="w-12 h-12" src={selectedCard.icon} alt="MDN" />
+          <img className="w-15 h-15" src={selectedCard.icon} alt="MDN" />
           <h1 className="font-bold text-[14px] mt-2">{selectedCard.title}</h1>
           <p className="text-blue_gray-600 text-[14px] mt-3">
             {selectedCard.description}
@@ -155,15 +155,15 @@ export default function Card_function() {
           })}
         </div>
       </main>
-      <button
+      <img
+        src="assets/icons/next.svg"
         onClick={next}
         className={clsx(
-          "bg-[#0745CB] text-white font-medium text-3xl w-14 h-14 rounded-full",
-          "lg:hidden"
+          "w-14 h-14 rounded-full",
+          "lg:hidden",
+          "cursor-pointer"
         )}
-      >
-        {">"}
-      </button>
+      />
     </div>
   );
 }

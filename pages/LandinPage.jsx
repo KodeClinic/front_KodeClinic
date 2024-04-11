@@ -274,18 +274,23 @@ export default function LandinPage() {
         </div>
       </section>
 
-      <section className="bg-background p-4">
+      <section
+        className={clsx(
+          "bg-background sm:px-14 min-[980px]:px-20",
+          "lg:max-w-[1440px] lg:m-auto"
+        )}
+      >
         <h1
           className={clsx(
             "text-green_title font-semibold text-center p-4",
-            "sm:text-[20px] md:text-[38px]"
+            "sm:text-[20px] md:text-[38px] "
           )}
         >
           Funcionalidades
         </h1>
         <span
           className={clsx(
-            "px-4 text-center text-[#0745CB]",
+            "text-center text-[#0745CB]",
             "sm:text-[14px] md:text-[18px] lg:text-[22px]"
           )}
         >
@@ -314,34 +319,34 @@ export default function LandinPage() {
         </div>
       </section>
 
-      <section className="bg-white p-4 mt-3">
-        <div className="grid grid-cols-2 justify-center">
-          <div>
+      <section className="bg-white px-16 mt-14">
+        <div className="grid grid-cols-2 justify-center lg:hidden">
+          <div className="mt-5">
             <h1 className="text-green_title font-bold text-[14px] md:text-[20px]">
               Navegacion
             </h1>
 
-            <p className="text-[12px] md:text-[18px]">Inicio</p>
-            <p className="text-[12px] md:text-[18px]">Nosotros</p>
-            <p className="text-[12px] md:text-[18px]">Funcionalidades</p>
+            <p className="text-[12px] md:text-[18px] mt-2">Inicio</p>
+            <p className="text-[12px] md:text-[18px] mt-2">Nosotros</p>
+            <p className="text-[12px] md:text-[18px] mt-2">Funcionalidades</p>
           </div>
-          <div>
+          <div className="mt-5">
             <h1 className="text-green_title font-bold text-[14px] md:text-[20px]">
               Contacto
             </h1>
-            <p className="text-[12px] md:text-[18px] flex gap-2">
+            <p className="text-[12px] md:text-[18px] flex justify-start items-center gap-2 mt-2">
               <span>
                 <img src="assets/icons/telephone.svg" alt="" />
               </span>
               5513044788
             </p>
-            <p className="text-[12px] md:text-[18px] flex gap-2">
+            <p className="text-[12px] md:text-[18px] flex justify-start items-center gap-2 mt-2">
               <span>
                 <img src="assets/icons/envelope.svg" alt="" />
               </span>
               kodeclinic@mail.com
             </p>
-            <p className="text-[12px] md:text-[18px] flex gap-2">
+            <p className="text-[12px] md:text-[18px] flex justify-start items-center gap-2 mt-2">
               <span>
                 <img src="assets/icons/geo-alt.svg" alt="" />
               </span>
@@ -352,6 +357,7 @@ export default function LandinPage() {
 
         <div
           className={clsx(
+            "bg-white",
             "flex items-center mt-4 gap-2",
             "flex-col md:flex-row lg:flex-row lg:justify-center"
           )}
@@ -359,20 +365,35 @@ export default function LandinPage() {
           <input
             className={clsx(
               "border-2 rounded-full border-[#0745CB] font-bold placeholder:text-[#0745CB] placeholder:text-center h-[48px] text-[13px]",
-              "w-[328px]",
-              "lg:w-[400px]"
+              "w-[500px]",
+              "lg:w-[400px]",
+              "mt-3 lg:mt-12"
             )}
             type="mail"
             name=""
             id=""
             placeholder="Correo electronico"
           />
-          <button className="w-[328px] h-[48px] text-[12px] border-2 rounded-full border-[#0745CB] bg-[#0745CB] text-white font-bold">
+          <button
+            className={clsx(
+              "w-[500px] h-[48px] text-[12px] font-bold mt-2",
+              "border-2 rounded-full border-[#0745CB] bg-[#0745CB] text-white",
+              "md:w-[280px] md:ml-6 lg:mt-12"
+            )}
+          >
             Recibir Información
           </button>
         </div>
+      </section>
 
-        <div className="mt-4">
+      <section
+        className={clsx(
+          "bg-white w-full px-14",
+          "lg:px-16 min-[980px]:px-20 pt-4",
+          "lg:max-w-[1440px] grid lg:grid-cols-3 lg:justify-center lg:pt-9"
+        )}
+      >
+        <div>
           <span className="text-green_title text-[20px] md:text-[25px]">
             Kode
           </span>
@@ -386,14 +407,53 @@ export default function LandinPage() {
             salud!
           </p>
         </div>
-        <div className="flex gap-6 mt-4">
-          <img src="assets/icons/facebook.svg" alt="" />
-          <img src="assets/icons/twitter.svg" alt="" />
-          <img src="assets/icons/google.svg" alt="" />
-          <img src="assets/icons/instagram.svg" alt="" />
-          <img src="assets/icons/whatsapp.svg" alt="" />
+        <div className="hidden lg:block lg:max-w-[1440px] lg:m-auto lg:mt-0">
+          <h1 className="lg:text-green_title lg:font-bold lg:text-[20px]">
+            Navegacion
+          </h1>
+
+          <p className="lg:text-[18px] lg:mt-2">Inicio</p>
+          <p className="lg:text-[18px] lg:mt-2">Nosotros</p>
+          <p className="lg:text-[18px] lg:mt-2">Funcionalidades</p>
+        </div>
+        <div className="hidden lg:block lg:ml-40 lg:mt-0">
+          <h1 className="lg:text-green_title lg:font-bold lg:text-[20px]">
+            Contacto
+          </h1>
+          <p className="lg:text-[18px] lg:flex lg:justify-start lg:items-center lg:gap-2 lg:mt-2">
+            <span>
+              <img src="assets/icons/telephone.svg" alt="" />
+            </span>
+            5513044788
+          </p>
+          <p className="lg:text-[18px] lg:flex lg:justify-start lg:items-center lg:gap-2 lg:mt-2">
+            <span>
+              <img src="assets/icons/envelope.svg" alt="" />
+            </span>
+            kodeclinic@mail.com
+          </p>
+          <p className="lg:text-[18px] lg:flex lg:justify-start lg:items-center lg:gap-2 lg:mt-2">
+            <span>
+              <img src="assets/icons/geo-alt.svg" alt="" />
+            </span>
+            26, Libertad, CDMX
+          </p>
         </div>
       </section>
+      <div
+        className={clsx(
+          "bg-white",
+          "flex gap-6 pt-4 py-10",
+          "px-14 min-[980px]:px-20",
+          "lg:max-w-[1440px] lg:m-auto lg:pt-4 lg:py-10"
+        )}
+      >
+        <img src="assets/icons/facebook.svg" alt="" />
+        <img src="assets/icons/twitter.svg" alt="" />
+        <img src="assets/icons/google.svg" alt="" />
+        <img src="assets/icons/instagram.svg" alt="" />
+        <img src="assets/icons/whatsapp.svg" alt="" />
+      </div>
     </main>
   );
 }

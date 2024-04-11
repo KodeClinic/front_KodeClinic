@@ -4,14 +4,16 @@ import DashboardPat from "./DashboardPat";
 
 import LoginPage from "./LogIn";
 import Login from "./LogIn";
+import New_pacient from "./New_pacient";
 
 export default function Home() {
   return (
     <main>
-      <LandinPage />
+      {/* <LandinPage /> */}
       {/* <DashboardSpe /> */}
       {/* <DashboardPat /> */}
       {/* <LoginPage /> */}
+      <New_pacient />
     </main>
   );
 }
