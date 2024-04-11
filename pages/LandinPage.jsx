@@ -2,17 +2,20 @@ import NavBar from "@/components/NavBar";
 import HeroCard from "@/components/HeroCard";
 import clsx from "clsx";
 import Card_function from "@/components/Card_function";
+import { useRouter } from "next/router";
 
 export default function LandinPage() {
+  const router = useRouter();
+
   return (
     <main className="bg-background h-full w-full">
       <NavBar />
       <section
-        id="Hero-Section-1"
+        id="Inicio"
         className={clsx(
-          "sm:flex sm:flex-row  min-[980px]:justify-between",
-          "px-4 pt-[84px] pb-4",
-          "sm:px-14 min-[980px]:px-20",
+          "sm:flex sm:flex-row sm:justify-between",
+          "px-4 pb-7 pt-24 min-[980px]:pt-[134px]",
+          "sm:px-14 min-[980px]:px-20 ",
           "lg:max-w-[1440px] lg:m-auto"
         )}
       >
@@ -21,17 +24,21 @@ export default function LandinPage() {
           className={clsx("flex flex-col justify-between items-start gap-4")}
         >
           <div className={clsx("flex flex- col justify-between items-center")}>
-            <div className={clsx("min-[980px]:max-w-[910px]")}>
-              <h1
+            <div
+              className={clsx(
+                "max-w-[328px] sm:max-w-[406px] min-[980px]:max-w-[604px]"
+              )}
+            >
+              <span
                 className={clsx(
-                  "font-semibold text-green_title text-[20px] tracking-[2px]",
-                  "sm:text-[38px] sm:tracking-[4px]",
+                  "font-semibold text-green_title text-[20px] ",
+                  "sm:text-[38px] ",
                   "min-[980px]:text-[64px]"
                 )}
               >
                 El perfecto aliado para{" "}
-              </h1>
-              <h1
+              </span>
+              <span
                 className={clsx(
                   "font-extrabold text-blue_button text-[20px] tracking-[2px]",
                   "sm:text-[38px] sm:tracking-[4px]",
@@ -39,7 +46,7 @@ export default function LandinPage() {
                 )}
               >
                 administrar tu Consultorio
-              </h1>
+              </span>
             </div>
             <img
               className={clsx("drop-shadow-md", "max-h-[136px]", "sm:hidden")}
@@ -49,7 +56,11 @@ export default function LandinPage() {
           </div>
 
           <div
-            className={clsx("flex flex-col gap-4", "min-[980px]:max-w-[910px]")}
+            className={clsx(
+              "flex flex-col gap-4",
+              "text-justify",
+              "max-w-[328px] sm:max-w-[406px] min-[980px]:max-w-[604px]"
+            )}
           >
             <span
               className={clsx(
@@ -71,8 +82,9 @@ export default function LandinPage() {
               permitiéndote brindarles la atención médica que merecen
             </span>
             <button
+              onClick={() => router.push("/CreateAccount")}
               className={clsx(
-                "text-white font-semibold text-[14px] min-[980px]:text-xl",
+                "text-white drop-shadow-md font-semibold text-[14px] min-[980px]:text-xl",
                 "border-2 border-blue_button bg-blue_button rounded-full",
                 "max-w-[327px] px-4 py-2 max-h-[40px] sm:max-h-[140px] min-[980px]:max-h-[198px]",
                 "sm:max-w-[156px] min-[980px]:max-w-[222px]"
@@ -95,7 +107,7 @@ export default function LandinPage() {
           className={clsx(
             "drop-shadow-md",
             "hidden",
-            "min-[980px]:block min-[980px]:max-h-[526px]"
+            "min-[980px]:block min-[980px]:max-h-[526px] pl-7"
           )}
           src="assets/img-doctor-heroSection.png"
           alt="doctor-image"
@@ -116,7 +128,7 @@ export default function LandinPage() {
         id="Hero-Section-2"
         className={clsx(
           "flex flex-col items-center gap-2",
-          "px-4 py-4",
+          "px-4 pt-7 pb-4",
           "sm:px-14 min-[980px]:px-20",
           "divide-y-2 divide-green_button"
         )}
@@ -150,7 +162,7 @@ export default function LandinPage() {
       <section
         id="Hero-Section-3"
         className={clsx(
-          "px-4 py-4 sm:px-14 min-[980px]:px-20",
+          "px-4 pt-4 sm:px-14 min-[980px]:px-20",
           "flex flex-col gap-5 sm:flex-row sm:justify-center"
         )}
       >
@@ -177,8 +189,8 @@ export default function LandinPage() {
         />
       </section>
       <section
-        id="about-us"
-        className={clsx("flex flex-col items-center", "py-4")}
+        id="Sobre-Nosotros"
+        className={clsx("flex flex-col items-center", "pt-16")}
       >
         <h2
           className={clsx(
@@ -188,21 +200,26 @@ export default function LandinPage() {
         >
           Sobre Nosotros
         </h2>
-        <div className={clsx("bg-white w-full", "lg:flex lg:justify-center")}>
+        <div
+          className={clsx(
+            "bg-white w-full",
+            "px-4 py-8 sm:px-14 min-[980px]:px-20",
+            "lg:flex lg:justify-center"
+          )}
+        >
           <div
             className={clsx(
               "flex flex-col items-center",
-              "px-4 py-8 sm:px-14 min-[980px]:px-20",
               "min-[980px]:flex-row lg:max-w-[1280px]"
             )}
           >
             <div
               className={clsx(
-                "flex flex-col items-center gap-4",
+                "flex flex-col items-center gap-4 min-[980px]:items-stretch",
                 "min-[980px]:max-w-[679px] "
               )}
             >
-              <div className={clsx("text-center")}>
+              <div className={clsx("text-center min-[980px]:text-justify")}>
                 <span
                   className={clsx(
                     "text-[14px] sm:text-base min-[980px]:text-[22px] text-blue_button font-medium"
@@ -229,7 +246,7 @@ export default function LandinPage() {
               </div>
               <span
                 className={clsx(
-                  "text-[14px] sm:text-base min-[980px]:text-[22px] text-blue_gray-700 font-medium text-center"
+                  "text-[14px] sm:text-base min-[980px]:text-[22px] text-blue_gray-700 font-medium text-center min-[980px]:text-justify"
                 )}
               >
                 Actualmente contamos con el Módulo de Fisioterápia y seguimos
@@ -237,7 +254,7 @@ export default function LandinPage() {
               </span>
               <span
                 className={clsx(
-                  "text-[14px] sm:text-base min-[980px]:text-[22px] text-blue_gray-700 font-bold text-center"
+                  "text-[14px] sm:text-base min-[980px]:text-[22px] text-blue_gray-700 font-bold text-center min-[980px]:text-justify"
                 )}
               >
                 ¿Qué esperas? Registrate y forma parte de la comunidad
@@ -245,7 +262,7 @@ export default function LandinPage() {
 
               <button
                 className={clsx(
-                  "text-blue_button font-semibold text-[14px] min-[980px]:text-xl",
+                  "text-blue_button font-semibold drop-shadow-md text-[14px] min-[980px]:text-xl",
                   "border-2 border-blue_button rounded-full",
                   "max-w-[327px] px-4 py-2 max-h-[40px] sm:max-h-[140px] min-[980px]:max-h-[198px]",
                   "sm:max-w-[156px] min-[980px]:max-w-[222px]"
@@ -254,7 +271,7 @@ export default function LandinPage() {
                 ¡Comienza ahora!
               </button>
             </div>
-            <div className={clsx("py-4 pl-5")}>
+            <div className={clsx("py-4 pl-8")}>
               <img
                 className={clsx("max-h-[188px] drop-shadow-md", "sm:hidden")}
                 src="assets/img-aboutUsSection-mobile.png"
@@ -274,18 +291,24 @@ export default function LandinPage() {
         </div>
       </section>
 
-      <section className="bg-background p-4">
+      <section
+        id="Funcionalidades"
+        className={clsx(
+          "bg-background sm:px-14 min-[980px]:px-20",
+          "lg:max-w-[1440px] lg:m-auto"
+        )}
+      >
         <h1
           className={clsx(
             "text-green_title font-semibold text-center p-4",
-            "sm:text-[20px] md:text-[38px]"
+            "sm:text-[20px] md:text-[38px] "
           )}
         >
           Funcionalidades
         </h1>
         <span
           className={clsx(
-            "px-4 text-center text-[#0745CB]",
+            "text-center text-[#0745CB]",
             "sm:text-[14px] md:text-[18px] lg:text-[22px]"
           )}
         >
@@ -314,34 +337,34 @@ export default function LandinPage() {
         </div>
       </section>
 
-      <section className="bg-white p-4 mt-3">
-        <div className="grid grid-cols-2 justify-center">
-          <div>
+      <section className="bg-white px-16 mt-14">
+        <div className="grid grid-cols-2 justify-center lg:hidden">
+          <div className="mt-5">
             <h1 className="text-green_title font-bold text-[14px] md:text-[20px]">
               Navegacion
             </h1>
 
-            <p className="text-[12px] md:text-[18px]">Inicio</p>
-            <p className="text-[12px] md:text-[18px]">Nosotros</p>
-            <p className="text-[12px] md:text-[18px]">Funcionalidades</p>
+            <p className="text-[12px] md:text-[18px] mt-2">Inicio</p>
+            <p className="text-[12px] md:text-[18px] mt-2">Nosotros</p>
+            <p className="text-[12px] md:text-[18px] mt-2">Funcionalidades</p>
           </div>
-          <div>
+          <div className="mt-5">
             <h1 className="text-green_title font-bold text-[14px] md:text-[20px]">
               Contacto
             </h1>
-            <p className="text-[12px] md:text-[18px] flex gap-2">
+            <p className="text-[12px] md:text-[18px] flex justify-start items-center gap-2 mt-2">
               <span>
                 <img src="assets/icons/telephone.svg" alt="" />
               </span>
               5513044788
             </p>
-            <p className="text-[12px] md:text-[18px] flex gap-2">
+            <p className="text-[12px] md:text-[18px] flex justify-start items-center gap-2 mt-2">
               <span>
                 <img src="assets/icons/envelope.svg" alt="" />
               </span>
               kodeclinic@mail.com
             </p>
-            <p className="text-[12px] md:text-[18px] flex gap-2">
+            <p className="text-[12px] md:text-[18px] flex justify-start items-center gap-2 mt-2">
               <span>
                 <img src="assets/icons/geo-alt.svg" alt="" />
               </span>
@@ -352,6 +375,7 @@ export default function LandinPage() {
 
         <div
           className={clsx(
+            "bg-white",
             "flex items-center mt-4 gap-2",
             "flex-col md:flex-row lg:flex-row lg:justify-center"
           )}
@@ -359,20 +383,35 @@ export default function LandinPage() {
           <input
             className={clsx(
               "border-2 rounded-full border-[#0745CB] font-bold placeholder:text-[#0745CB] placeholder:text-center h-[48px] text-[13px]",
-              "w-[328px]",
-              "lg:w-[400px]"
+              "w-[500px]",
+              "lg:w-[400px]",
+              "mt-3 lg:mt-12"
             )}
             type="mail"
             name=""
             id=""
             placeholder="Correo electronico"
           />
-          <button className="w-[328px] h-[48px] text-[12px] border-2 rounded-full border-[#0745CB] bg-[#0745CB] text-white font-bold">
+          <button
+            className={clsx(
+              "w-[500px] h-[48px] text-[12px] font-bold mt-2",
+              "border-2 rounded-full border-[#0745CB] bg-[#0745CB] text-white",
+              "md:w-[280px] md:ml-6 lg:mt-12"
+            )}
+          >
             Recibir Información
           </button>
         </div>
+      </section>
 
-        <div className="mt-4">
+      <section
+        className={clsx(
+          "bg-white w-full px-14",
+          "lg:px-16 min-[980px]:px-20 pt-4",
+          "lg:max-w-[1440px] grid lg:grid-cols-3 lg:justify-center lg:pt-9"
+        )}
+      >
+        <div>
           <span className="text-green_title text-[20px] md:text-[25px]">
             Kode
           </span>
@@ -386,14 +425,53 @@ export default function LandinPage() {
             salud!
           </p>
         </div>
-        <div className="flex gap-6 mt-4">
-          <img src="assets/icons/facebook.svg" alt="" />
-          <img src="assets/icons/twitter.svg" alt="" />
-          <img src="assets/icons/google.svg" alt="" />
-          <img src="assets/icons/instagram.svg" alt="" />
-          <img src="assets/icons/whatsapp.svg" alt="" />
+        <div className="hidden lg:block lg:max-w-[1440px] lg:m-auto lg:mt-0">
+          <h1 className="lg:text-green_title lg:font-bold lg:text-[20px]">
+            Navegacion
+          </h1>
+
+          <p className="lg:text-[18px] lg:mt-2">Inicio</p>
+          <p className="lg:text-[18px] lg:mt-2">Nosotros</p>
+          <p className="lg:text-[18px] lg:mt-2">Funcionalidades</p>
+        </div>
+        <div className="hidden lg:block lg:ml-40 lg:mt-0">
+          <h1 className="lg:text-green_title lg:font-bold lg:text-[20px]">
+            Contacto
+          </h1>
+          <p className="lg:text-[18px] lg:flex lg:justify-start lg:items-center lg:gap-2 lg:mt-2">
+            <span>
+              <img src="assets/icons/telephone.svg" alt="" />
+            </span>
+            5513044788
+          </p>
+          <p className="lg:text-[18px] lg:flex lg:justify-start lg:items-center lg:gap-2 lg:mt-2">
+            <span>
+              <img src="assets/icons/envelope.svg" alt="" />
+            </span>
+            kodeclinic@mail.com
+          </p>
+          <p className="lg:text-[18px] lg:flex lg:justify-start lg:items-center lg:gap-2 lg:mt-2">
+            <span>
+              <img src="assets/icons/geo-alt.svg" alt="" />
+            </span>
+            26, Libertad, CDMX
+          </p>
         </div>
       </section>
+      <div
+        className={clsx(
+          "bg-white",
+          "flex gap-6 pt-4 py-10",
+          "px-14 min-[980px]:px-20",
+          "lg:max-w-[1440px] lg:m-auto lg:pt-4 lg:py-10"
+        )}
+      >
+        <img src="assets/icons/facebook.svg" alt="" />
+        <img src="assets/icons/twitter.svg" alt="" />
+        <img src="assets/icons/google.svg" alt="" />
+        <img src="assets/icons/instagram.svg" alt="" />
+        <img src="assets/icons/whatsapp.svg" alt="" />
+      </div>
     </main>
   );
 }

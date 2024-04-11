@@ -1,8 +1,11 @@
 import clsx from "clsx";
 import { useState } from "react";
+import { useRouter } from "next/router";
+import Link from "next/link";
 
 export default function NavBar() {
   const [isOpen, setIsOpen] = useState(false);
+  const router = useRouter();
 
   return (
     <nav className={clsx("bg-white drop-shadow-md", "fixed top-0 z-50 w-full")}>
@@ -60,7 +63,7 @@ export default function NavBar() {
         <div
           className={clsx(
             "flex flex-col gap-4",
-            "py-5 px-4 max-w-[360px] ",
+            "py-5 px-4 sm:pr-14 max-w-[360px] ",
             "min-[980px]:flex-row min-[980px]:max-w-[740px] min-[980px]:pr-20 min-[980px]:pl-0 min-[980px]:gap-7 min-[980px]:py-3",
             "absolute min-[980px]:static z-[-1] right-0 top-[60spx] w-full min-[980px]:z-auto bg-white min-[980px]:items-center min-[980px]:justify-end",
             "transition-all, ease-in duration-300",
@@ -74,15 +77,24 @@ export default function NavBar() {
               "min-[980px]:flex-row min-[980px]:gap-6"
             )}
           >
-            <button className={clsx("px-4 py-2", "min-[980px]:px-0")}>
+            <Link
+              href="#Inicio"
+              className={clsx("px-4 py-2", "min-[980px]:px-0")}
+            >
               Inicio
-            </button>
-            <button className={clsx("px-4 py-2", "min-[980px]:px-0")}>
+            </Link>
+            <Link
+              href="#Sobre-Nosotros"
+              className={clsx("px-4 py-2", "min-[980px]:px-0")}
+            >
               Sobre Nosotros
-            </button>
-            <button className={clsx("px-4 py-2", "min-[980px]:px-0")}>
+            </Link>
+            <Link
+              href="#Funcionalidades"
+              className={clsx("px-4 py-2", "min-[980px]:px-0")}
+            >
               Funcionalidades
-            </button>
+            </Link>
           </div>
           <div
             className={clsx(
@@ -92,6 +104,7 @@ export default function NavBar() {
             )}
           >
             <button
+              onClick={() => router.push("/CreateAccount")}
               className={clsx(
                 "text-white font-semibold",
                 "border-2 border-blue_button bg-blue_button rounded-md",
@@ -102,6 +115,7 @@ export default function NavBar() {
               ¡Registrate!
             </button>
             <button
+              onClick={() => router.push("/LogIn")}
               className={clsx(
                 "text-blue_button font-semibold",
                 "border-2 border-blue_button rounded-md",

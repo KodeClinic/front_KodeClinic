@@ -1,12 +1,17 @@
+import { useRouter } from "next/router";
+
 export default function Login() {
-    return (
-        <div className="flex h-screen justify-center items-center">
+  const router = useRouter();
+  return (
+    <div className="flex h-screen justify-center items-center">
       <div className="w-full max-w-sm">
         <div className="bg-white  rounded px-8 py-10 pt-6 pb-8 mb-4">
           <div className="flex justify-center items-center mb-7 flex-col">
             <img src="assets\img-kodeclinic-logo.png" alt="KodeClinic_Logo" />
-            <h2 className="text-2xl text-blue_button text-center"
-            ><span>Kode</span><span className="font-bold">Clinic</span></h2>
+            <h2 className="text-2xl text-blue_button text-center">
+              <span>Kode</span>
+              <span className="font-bold">Clinic</span>
+            </h2>
           </div>
           <div className="mb-4">
             <h1 className="text-2xl font-bold text-center">
@@ -32,10 +37,13 @@ export default function Login() {
               id="password"
               type="password"
             />
-            <p className="text-blue_grey-700 text-xs italic">¿Olvidaste tu contraseña?</p>
+            <p className="text-blue_grey-700 text-xs italic">
+              ¿Olvidaste tu contraseña?
+            </p>
           </div>
           <div className="flex items-center justify-between">
             <button
+              onClick={() => router.push("/DashboardSpe")}
               className="bg-blue_button w-full hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
               type="button"
             >
@@ -56,7 +64,5 @@ export default function Login() {
         </div>
       </div>
     </div>
-      
-    );
-  }
-  
+  );
+}
