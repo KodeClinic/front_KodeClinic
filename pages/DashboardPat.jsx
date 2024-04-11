@@ -423,14 +423,3 @@ const historyAppointmentData = [
     },
   },
 ];
-export default function DashboardPat() {
-import EditInformation from "@/components/EditInformation";
-import { Fragment } from "react";
-
-export default function DashboardEsp() {
-  return (
-    <main>
-      <NavBarPat />
-    </main>
-  );
-}
