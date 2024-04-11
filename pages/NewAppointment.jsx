@@ -1,5 +1,8 @@
 import clsx from "clsx";
 import SuccessModal from "@/components/SuccessModal";
+import { PaymentModal } from "@/components/Payment_Modal";
+import TwoButtonsModal from "@/components/TwoButtons_Modal.jsx";
+import NewPatientModal from "@/components/NewPatient_Modal";
 
 export default function NewAppointment() {
   //   const tabs = document.querySelectorAll(`[data-tab-target]`);
@@ -365,6 +368,13 @@ export default function NewAppointment() {
           text="Cita guardada con éxito"
           button="Confirmar"
         ></SuccessModal>
+        {/* <PaymentModal></PaymentModal> */}
+        {/* <TwoButtonsModal
+          title="Cerrar Sesión"
+          button1="Cancelar"
+          button2="Confirmar"
+        ></TwoButtonsModal> */}
+        <NewPatientModal></NewPatientModal>
       </main>
     </>
   );
