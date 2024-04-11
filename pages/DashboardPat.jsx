@@ -423,3 +423,70 @@ const historyAppointmentData = [
     },
   },
 ];
+export default function DashboardPat() {
+  return (
+    <main className={clsx("bg-background min-h-screen w-full")}>
+      <NavBarPat pageName={"Home"} />
+      <PatientBand
+        patient_name={dataPatient.name}
+        patient_gender={dataPatient.gender}
+        specialist_name={dataSpecialist.name}
+        specialist_gender={dataSpecialist.gender}
+        cel_Specialist={dataSpecialist.contactPhone}
+      />
+
+      {/* Proximas Citas */}
+      <section
+        className={clsx(
+          "px-4 sm:px-14 min-[980px]:px-20 lg:max-w-[1440px] lg:m-auto",
+          "py-5"
+        )}
+      >
+        <div
+          className={clsx(
+            "flex gap-5",
+            "w-full drop-shadow-md px-6 pt-4 pb-8 min-[980px]:px-7",
+            "bg-white rounded-[20px] py-4 flex flex-col gap-3"
+          )}
+        >
+          <p
+            className={clsx(
+              "text-xl text-center font-medium text-green_title",
+              "min-[980px]:text-2xl min-[980px]:text-start"
+            )}
+          >
+            Proximas citas
+          </p>
+          <SliderPatient props={nextAppointmentData} />
+        </div>
+      </section>
+
+      {/* Historial de citas */}
+      <section
+        className={clsx(
+          "px-4 sm:px-14 min-[980px]:px-20 lg:max-w-[1440px] lg:m-auto",
+          "py-5"
+        )}
+      >
+        <div
+          className={clsx(
+            "flex gap-5",
+            "w-full drop-shadow-md px-6 py-4 min-[980px]:px-7",
+            "bg-white rounded-[20px] py-4 flex flex-col gap-3"
+          )}
+        >
+          <p
+            className={clsx(
+              "text-xl text-center font-medium text-green_title",
+              "min-[980px]:text-2xl min-[980px]:text-start"
+            )}
+          >
+            Historial de citas
+          </p>
+
+          <AppointmentListPatient props={historyAppointmentData} />
+        </div>
+      </section>
+    </main>
+  );
+}
