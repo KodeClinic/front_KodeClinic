@@ -1,6 +1,5 @@
 import { useState } from "react";
 import clsx from "clsx";
-import styled from "styled-components"; 
 
 const functionalities = [
   {
@@ -91,20 +90,20 @@ export default function Card_function() {
   };
 
   return (
-    <div className="flex flex-row gap-16 items-center">
+    <div className="flex flex-row  gap-8 items-center">
       <img
         src="assets/icons/back.svg"
         onClick={previous}
         className={clsx(
-          "w-14 h-14 rounded-full",
+          "w-12 h-12 rounded-full",
           "lg:hidden",
           "cursor-pointer"
         )}
       />
-      <main className="flex gap-3 justify-center items-center mt-5">
+      <div className="flex gap-3 justify-center items-center mt-5">
         <article
           className={clsx(
-            "bg-white rounded-3xl shadow-2xl p-4 flex flex-col justify-center items-center",
+            "bg-white rounded-3xl drop-shadow-lg p-4 flex flex-col justify-center items-center",
             "w-[180px] h-[223px]",
             "md:w-[240px] h-[260px]",
             "lg:hidden"
@@ -119,7 +118,7 @@ export default function Card_function() {
 
         <article
           className={clsx(
-            "bg-white rounded-3xl shadow-2xl p-2 md:flex md:flex-col md:justify-center md:items-center",
+            "bg-white rounded-3xl drop-shadow-lg p-2 md:flex md:flex-col md:justify-center md:items-center",
             "w-[159px] h-[223px]",
             "md:w-[240px] md:h-[260px]",
             "hidden md:block lg:hidden"
@@ -138,7 +137,7 @@ export default function Card_function() {
               <article
                 key={funtionality.title}
                 className={clsx(
-                  "bg-white rounded-3xl shadow-2xl p-2 flex flex-col justify-center items-center",
+                  "bg-white rounded-3xl drop-shadow-lg p-2 flex flex-col justify-center items-center",
                   "w-[159px] h-[223px]",
                   "md:w-[240px] h-[260px]"
                 )}
@@ -154,12 +153,12 @@ export default function Card_function() {
             );
           })}
         </div>
-      </main>
+      </div>
       <img
         src="assets/icons/next.svg"
         onClick={next}
         className={clsx(
-          "w-14 h-14 rounded-full",
+          "w-12 h-12 rounded-full",
           "lg:hidden",
           "cursor-pointer"
         )}
