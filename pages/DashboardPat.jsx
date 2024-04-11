@@ -16,7 +16,7 @@ export default function DashboardEsp() {
       </div>
     </div>
 
-    <EditInformation isVisible/>
+    <EditInformation />
 
     </Fragment>
   );
