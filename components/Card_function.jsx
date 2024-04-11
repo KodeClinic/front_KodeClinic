@@ -1,6 +1,6 @@
 import { useState } from "react";
 import clsx from "clsx";
-import styled from "styled-components";
+import styled from "styled-components"; 
 
 const functionalities = [
   {

@@ -21,7 +21,6 @@ module.exports = {
       green_title: "#004A45",
       main_text: "#212C33",
       primary_main: "#2196F3",
-      black: "#000000",
       blue_gray: {
         300: "#90A4AE",
         400: "#78909C",
@@ -29,6 +28,9 @@ module.exports = {
         600: "#546E7A",
         700: "#455A64",
       },
+      white_grey: "#E8EDF0",
+      pink: "#DABCFF",
+      black: "#000000",
     },
   },
   plugins: [],

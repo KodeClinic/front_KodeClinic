@@ -1,16 +1,16 @@
 import LandinPage from "./LandinPage";
 import DashboardSpe from "./DashboardSpe";
 import DashboardPat from "./DashboardPat";
-
+import clsx from "clsx";
 import LoginPage from "./LogIn";
 import Login from "./LogIn";
 
 export default function Home() {
   return (
     <main>
-      <LandinPage />
+      {/* <LandinPage /> */}
       {/* <DashboardSpe /> */}
-      {/* <DashboardPat /> */}
+      <DashboardPat />
       {/* <LoginPage /> */}
     </main>
   );
