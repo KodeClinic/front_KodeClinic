@@ -1,17 +1,83 @@
 import clsx from "clsx";
 import Badge from "./Badge";
 
+function MonthNames(number) {
+  let month = "";
+  switch (number) {
+    case 0:
+      month = "ENE";
+      return month;
+    case 1:
+      month = "FEB";
+      return month;
+    case 2:
+      month = "MAR";
+      return month;
+    case 3:
+      month = "ABR";
+      return month;
+    case 4:
+      month = "MAY";
+      return month;
+    case 5:
+      month = "JUN";
+      return month;
+    case 6:
+      month = "JUL";
+      return month;
+    case 7:
+      month = "AGO";
+      return month;
+    case 8:
+      month = "SEP";
+      return month;
+    case 9:
+      month = "OCT";
+      return month;
+    case 10:
+      month = "NOV";
+      return month;
+    case 11:
+      month = "DIC";
+      return month;
+  }
+}
+function DayNames(number) {
+  let day = "";
+  switch (number) {
+    case 0:
+      day = "DOM";
+      return day;
+    case 1:
+      day = "LUN";
+      return day;
+    case 2:
+      day = "MAR";
+      return day;
+    case 3:
+      day = "MIE";
+      return day;
+    case 4:
+      day = "JUE";
+      return day;
+    case 5:
+      day = "VIE";
+      return day;
+    case 6:
+      day = "SAB";
+      return day;
+  }
+}
+
 export default function AppointmentCard_Patient({ props }) {
   const {
-    name,
-    gender,
     consultType,
-    paymentType,
     paymentStatus,
     timeLapse,
     consultingAddress,
-    appointmentStatus,
+    appointment_date,
   } = props;
+
   return (
     <div
       className={clsx(
@@ -82,10 +148,16 @@ export default function AppointmentCard_Patient({ props }) {
         {/* Fehca y Pagos */}
         <div className={clsx("inline-flex flex-col gap-3 items-center")}>
           <div className={clsx("flex items-center gap-2")}>
-            <div className={clsx("text-[42px] font-bold")}>{"26"}</div>
+            <div className={clsx("text-[42px] font-bold")}>
+              {appointment_date.D}
+            </div>
             <div>
-              <div className={clsx("text-[16px] font-bold")}>{"NOV"}</div>
-              <div className={clsx("text-[16px] font-normal")}>{"VIER"}</div>
+              <div className={clsx("text-[16px] font-bold")}>
+                {MonthNames(appointment_date.M)}
+              </div>
+              <div className={clsx("text-[16px] font-normal")}>
+                {DayNames(appointment_date.W)}
+              </div>
             </div>
           </div>
           <Badge

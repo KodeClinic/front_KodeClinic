@@ -1,7 +1,18 @@
 import clsx from "clsx";
 import Badge from "./Badge";
+import Link from "next/link";
 
-export default function AppointmentListCardPatient() {
+export default function AppointmentListCardPatient({ props }) {
+  const {
+    id,
+    timeLapse,
+    appointment_date,
+    consultingAddress,
+    consultType,
+    paymentType,
+    condition,
+  } = props;
+
   return (
     <tr className={clsx("")}>
       <td
@@ -9,45 +20,56 @@ export default function AppointmentListCardPatient() {
           "text-[18px] text-blue_gray-700 font-normal p-4 text-nowrap"
         )}
       >
-        {"31/10/2023"}
+        {appointment_date.D +
+          "/" +
+          appointment_date.M +
+          "/" +
+          appointment_date.y}
       </td>
       <td
         className={clsx(
           "text-[18px] text-blue_gray-700 font-normal p-4 text-nowrap"
         )}
       >
-        {"3:00 pm"}
-      </td>
-      <td>{"Fisura"}</td>
-      <td
-        className={clsx(
-          "text-[18px] text-blue_gray-700 font-normal p-4 text-nowrap"
-        )}
-      >
-        <Badge badgeType={"valoration"} timeLapse={""} consultingAddress={""} />
+        {timeLapse}
       </td>
       <td
         className={clsx(
           "text-[18px] text-blue_gray-700 font-normal p-4 text-nowrap"
         )}
       >
-        {"Consultorio"}
+        {condition}
       </td>
       <td
         className={clsx(
           "text-[18px] text-blue_gray-700 font-normal p-4 text-nowrap"
         )}
       >
-        {"Efectivo"}
+        <Badge badgeType={consultType} timeLapse={""} consultingAddress={""} />
+      </td>
+      <td
+        className={clsx(
+          "text-[18px] text-blue_gray-700 font-normal p-4 text-nowrap"
+        )}
+      >
+        {consultingAddress}
+      </td>
+      <td
+        className={clsx(
+          "text-[18px] text-blue_gray-700 font-normal p-4 text-nowrap"
+        )}
+      >
+        <Badge badgeType={paymentType} timeLapse={""} consultingAddress={""} />
       </td>
       <td>
-        <button
+        <Link
+          href={`appointment/${id}`}
           className={clsx(
-            "text-green_button font-bold w-[165px] text-center border-2 border-green_button px-6 py-1 rounded-md"
+            "text-green_button font-bold w-[165px] text-center border-2 border-green_button px-6 py-1 rounded-md cursor-pointer"
           )}
         >
           Ver detalle
-        </button>
+        </Link>
       </td>
     </tr>
   );

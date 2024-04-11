@@ -1,9 +1,10 @@
 import clsx from "clsx";
 
 export default function PatientBand({
-  name_Patient,
-  gender_Patient,
-  name_Specialist,
+  patient_name,
+  patient_gender,
+  specialist_name,
+  specialist_gender,
   cel_Specialist,
 }) {
   return (
@@ -39,7 +40,7 @@ export default function PatientBand({
 
           <div className={clsx("flex flex-col gap-[10px]")}>
             <div className={clsx("flex gap-[10px] items-center")}>
-              {gender_Patient == "male" ? (
+              {patient_gender == "male" ? (
                 <img
                   className={clsx("w-5 h-5")}
                   src="assets/icons/man-icon.svg"
@@ -59,7 +60,7 @@ export default function PatientBand({
                   "min-[980px]:text-[18px]"
                 )}
               >
-                {name_Patient}
+                {patient_name}
               </span>
             </div>
 
@@ -93,18 +94,26 @@ export default function PatientBand({
             Tu Especialista
           </span>
           <div className={clsx("flex gap-[10px] items-center")}>
-            <img
-              className={clsx("w-5 h-5")}
-              src="assets/icons/woman-icon.svg"
-              alt=""
-            />
+            {specialist_gender == "male" ? (
+              <img
+                className={clsx("w-5 h-5")}
+                src="assets/icons/man-icon.svg"
+                alt=""
+              />
+            ) : (
+              <img
+                className={clsx("w-5 h-5")}
+                src="assets/icons/woman-icon.svg"
+                alt=""
+              />
+            )}
             <span
               className={clsx(
                 "text-base font-normal",
                 "min-[980px]:text-[18px]"
               )}
             >
-              {name_Specialist}
+              {specialist_name}
             </span>
           </div>
           <div
