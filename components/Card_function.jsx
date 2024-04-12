@@ -90,7 +90,7 @@ export default function Card_function() {
   };
 
   return (
-    <div className="flex flex-row  gap-8 items-center">
+    <div className="flex flex-row gap-8 items-center">
       <img
         src="assets/icons/back.svg"
         onClick={previous}
