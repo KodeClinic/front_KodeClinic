@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function EditInformation({ isVisible }) {
+export default function EditInformation({ isVisible, closeModal }) {
     if (!isVisible) return null;
 
     return (
@@ -9,7 +9,7 @@ export default function EditInformation({ isVisible }) {
                 <div className="flex-col flex text-center items-center ">
                     <div className="max-h-[500px]  overflow-y-auto lg:w-full ">
                         <div className="flex justify-end w-full mt-2">
-                            <img src="assets/icons/Close-icon.png" alt="Close" className="w-[20px] h-[20px] absolute" />
+                            <img src="assets/icons/Close-icon.png" alt="Close" className="w-[20px] h-[20px] absolute" onClick={closeModal} style={{cursor: "pointer"}}/>
                         </div>
                         <div className="text-center">
                             <p className='text-2xl

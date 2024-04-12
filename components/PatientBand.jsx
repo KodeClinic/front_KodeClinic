@@ -6,7 +6,11 @@ export default function PatientBand({
   specialist_name,
   specialist_gender,
   cel_Specialist,
+  mostrarModal,
 }) {
+  const handleShowModal = () => { mostrarModal(true)}
+
+
   return (
     <section
       className={clsx(
@@ -148,7 +152,9 @@ export default function PatientBand({
                   "text-base font-normal",
                   "min-[980px]:text-[18px]",
                   "underline"
-                )}
+                )} 
+                onClick={handleShowModal}
+                style={{cursor: "pointer"}}
               >
                 Ver más
               </span>
