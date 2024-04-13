@@ -14,7 +14,11 @@ export default function Availability() {
   return (
     <>
       <div className={clsx("flex-col", "flex", "items-center", "md:flex-row")}>
-        <FormControlLabel control={<Checkbox defaultChecked />} label="Lunes" />
+        <FormControlLabel
+          className="max-w-[90px]"
+          control={<Checkbox defaultChecked />}
+          label="Lunes"
+        />
 
         <FormControl className={clsx("w-full")} sx={{ m: 1 }}>
           <InputLabel id="demo-simple-select-label"></InputLabel>
@@ -35,6 +39,7 @@ export default function Availability() {
       </div>
       <div className={clsx("flex-col", "flex", "items-center", "md:flex-row")}>
         <FormControlLabel
+          className="max-w-[90px]"
           control={<Checkbox defaultChecked />}
           label="Martes"
         />
@@ -58,6 +63,7 @@ export default function Availability() {
       </div>
       <div className={clsx("flex-col", "flex", "items-center", "md:flex-row")}>
         <FormControlLabel
+          className="max-w-[90px]"
           control={<Checkbox defaultChecked />}
           label="Miercoles"
         />
@@ -81,6 +87,7 @@ export default function Availability() {
       </div>
       <div className={clsx("flex-col", "flex", "items-center", "md:flex-row")}>
         <FormControlLabel
+          className="max-w-[90px]"
           control={<Checkbox defaultChecked />}
           label="Jueves"
         />
@@ -104,6 +111,7 @@ export default function Availability() {
       </div>
       <div className={clsx("flex-col", "flex", "items-center", "md:flex-row")}>
         <FormControlLabel
+          className="max-w-[90px]"
           control={<Checkbox defaultChecked />}
           label="Viernes"
         />
@@ -127,6 +135,7 @@ export default function Availability() {
       </div>
       <div className={clsx("flex-col", "flex", "items-center", "md:flex-row")}>
         <FormControlLabel
+          className="max-w-[90px]"
           control={<Checkbox defaultChecked />}
           label="Sábado"
         />
@@ -150,6 +159,7 @@ export default function Availability() {
       </div>
       <div className={clsx("flex-col", "flex", "items-center", "md:flex-row")}>
         <FormControlLabel
+          className="max-w-[90px]"
           control={<Checkbox defaultChecked />}
           label="Domingo"
         />

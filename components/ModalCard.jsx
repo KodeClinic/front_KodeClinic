@@ -108,40 +108,11 @@ export default function ModalCard() {
                     <div>
                       <div className={clsx("space-y-2", "ml-2")}>
                         {/* Select */}
-                        <label
-                          id="listbox-label"
-                          class="block md:text-lg leading-6 text-gray-900"
-                        >
-                          Sexo
-                        </label>
-
-                        <div class="relative mt-2">
-                          <button
-                            type="button"
-                            class="relative w-full cursor-default rounded bg-white px-3 pr-10 text-left text-gray-700 ring-1 ring-inset ring-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 sm:text-sm sm:leading-6 border-2 border-primary_main rounded w-full py-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                            aria-haspopup="listbox"
-                            aria-expanded="true"
-                            aria-labelledby="listbox-label"
-                          >
-                            <span class="flex items-center">
-                              <span class="ml-3 block truncate">Femenino</span>
-                            </span>
-                            <span class="pointer-events-none absolute inset-y-0 right-0 ml-3 flex items-center pr-2">
-                              <svg
-                                class="h-5 w-5 text-gray-400"
-                                viewBox="0 0 20 20"
-                                fill="currentColor"
-                                aria-hidden="true"
-                              >
-                                <path
-                                  fill-rule="evenodd"
-                                  d="M10 3a.75.75 0 01.55.24l3.25 3.5a.75.75 0 11-1.1 1.02L10 4.852 7.3 7.76a.75.75 0 01-1.1-1.02l3.25-3.5A.75.75 0 0110 3zm-3.76 9.2a.75.75 0 011.06.04l2.7 2.908 2.7-2.908a.75.75 0 111.1 1.02l-3.25 3.5a.75.75 0 01-1.1 0l-3.25-3.5a.75.75 0 01.04-1.06z"
-                                  clip-rule="evenodd"
-                                />
-                              </svg>
-                            </span>
-                          </button>
-                        </div>
+                        <p>Sexo</p>
+                        <select className="shadow border-2 border-primary_main rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ">
+                          <option value="Femenino">Femenino</option>
+                          <option value="Masculino">Masculino</option>
+                        </select>
                       </div>
                     </div>
                   </div>
@@ -265,7 +236,7 @@ export default function ModalCard() {
                         className="shadow appearance-none border-2 border-primary_main rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                         id="calleYnumero"
                         type="text"
-                        placeholder=""
+                        placeholder="Calle y Número"
                       />
                     </div>
                     <div className={clsx("space-y-2", "ml-2")}>
@@ -274,18 +245,52 @@ export default function ModalCard() {
                         className="shadow appearance-none border-2 border-primary_main rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                         id="colonia"
                         type="text"
-                        placeholder=""
+                        placeholder="Colonia"
                       />
                     </div>
 
                     <div className={clsx("space-y-2", "ml-2")}>
-                      <p> Estado</p>
-                      <input
-                        className="shadow appearance-none border-2 border-primary_main rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                        id="estado"
-                        type="text"
-                        placeholder=""
-                      />
+                      <p>Estado</p>
+                      <select className="shadow border-2 border-primary_main rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ">
+                        <option value="Ciudad_de_Mexico">
+                          Ciudad de México
+                        </option>
+                        <option value="Ciudad_de_Mexico">
+                          Estado de México
+                        </option>
+                        <option value="Aguascalientes">Aguascalientes</option>
+                        <option value="Baja_California">Baja California</option>
+                        <option value="Baja_California_sur">
+                          Baja California Sur
+                        </option>
+                        <option value="Campeche">Campeche</option>
+                        <option value="Coahuila">Coahuila</option>
+                        <option value="Colima">Colima</option>
+                        <option value="Chiapas">Chiapas</option>
+                        <option value="Chihuahua">Chihuahua</option>
+                        <option value="Durango">Durango</option>
+                        <option value="Guanajuato">Guanajuato</option>
+                        <option value="Guerrero">Guerrero</option>
+                        <option value="Hidalgo">Hidalgo</option>
+                        <option value="Jalisco">Jalisco</option>
+                        <option value="Michoacan">Michoacán</option>
+                        <option value="Morelos">Morelos</option>
+                        <option value="Nayarit">Nayarit</option>
+                        <option value="Nuevo_Leon">Nuevo León</option>
+                        <option value="Oaxaca">Oaxaca</option>
+                        <option value="Puebla">Puebla</option>
+                        <option value="Queretaro">Querétaro</option>
+                        <option value="Quintana_Roo">Quintana Roo</option>
+                        <option value="San_Luis_Potosi">San Luis Potosí</option>
+                        <option value="Sinaloa">Sinaloa</option>
+                        <option value="Sonora">Sonora</option>
+                        <option value="Tabasco">Tabasco</option>
+                        <option value="Tamaulipas">Tamaulipas</option>
+                        <option value="Tlaxcala">Tlaxcala</option>
+                        <option value="Veracruz">Veracruz</option>
+                        <option value="Yucatan">Yucatán</option>
+                        <option value="Zacatecas">Zacatecas</option>
+                      </select>
                     </div>
                   </div>
 
@@ -400,7 +405,7 @@ export default function ModalCard() {
                         className="shadow appearance-none border-2 border-primary_main rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                         id="cedulaProfesional"
                         type="text"
-                        placeholder=""
+                        placeholder="Cédula Profesional"
                       />
                     </div>
                     <div className={clsx("space-y-2", "ml-2")}>
@@ -409,7 +414,7 @@ export default function ModalCard() {
                         className="shadow appearance-none border-2 border-primary_main rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                         id="especialidad"
                         type="text"
-                        placeholder=""
+                        placeholder="Especialidad"
                       />
                     </div>
                   </div>

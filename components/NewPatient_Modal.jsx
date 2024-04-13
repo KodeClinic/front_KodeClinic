@@ -1,4 +1,5 @@
 import clsx from "clsx";
+import { useState } from "react";
 
 export default function NewPatientModal() {
   return (
@@ -30,11 +31,7 @@ export default function NewPatientModal() {
           )}
         >
           <div className={clsx("flex", "justify-end")}>
-            <button
-              onClick={() => {
-                () => onClose();
-              }}
-            >
+            <button>
               <svg
                 width="25"
                 height="25"
