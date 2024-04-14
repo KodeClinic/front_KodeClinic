@@ -16,36 +16,38 @@ export default function NavBar() {
           "lg:max-w-[1440px] lg:m-auto"
         )}
       >
-        <div
-          className={clsx(
-            "flex items-center px-4 gap-1 py-[18px] min-[980px]:py-3",
-            " sm:px-14  min-[980px]:pl-20 min-[980px]:pr-0"
-          )}
-        >
-          <img
-            className={clsx("w-7 h-7", "min-[980px]:w-8 min-[980px]:h-8")}
-            src="assets/img-kodeclinic-logo.png"
-            alt="kodeclinic_logo"
-          />
-          <div>
-            <span
-              className={clsx(
-                "text-blue_button text-[16px] font-medium",
-                "min-[980px]:text-2xl"
-              )}
-            >
-              Kode
-            </span>
-            <span
-              className={clsx(
-                "text-blue_button text-[16px] font-extrabold",
-                "min-[980px]:text-[22px]"
-              )}
-            >
-              Clinic
-            </span>
+        <Link href="#Inicio">
+          <div
+            className={clsx(
+              "flex items-center px-4 gap-1 py-[18px] min-[980px]:py-3",
+              " sm:px-14  min-[980px]:pl-20 min-[980px]:pr-0"
+            )}
+          >
+            <img
+              className={clsx("w-7 h-7", "min-[980px]:w-8 min-[980px]:h-8")}
+              src="assets/img-kodeclinic-logo.png"
+              alt="kodeclinic_logo"
+            />
+            <div>
+              <span
+                className={clsx(
+                  "text-blue_button text-[16px] font-medium",
+                  "min-[980px]:text-2xl"
+                )}
+              >
+                Kode
+              </span>
+              <span
+                className={clsx(
+                  "text-blue_button text-[16px] font-extrabold",
+                  "min-[980px]:text-[22px]"
+                )}
+              >
+                Clinic
+              </span>
+            </div>
           </div>
-        </div>
+        </Link>
         <div
           onClick={() => setIsOpen(!isOpen)}
           className={clsx(

@@ -3,6 +3,7 @@ import HeroCard from "@/components/HeroCard";
 import clsx from "clsx";
 import Card_function from "@/components/Card_function";
 import { useRouter } from "next/router";
+import Link from "next/link";
 
 export default function LandinPage() {
   const router = useRouter();
@@ -295,6 +296,7 @@ export default function LandinPage() {
         id="Funcionalidades"
         className={clsx(
           "bg-background sm:px-14 min-[980px]:px-20",
+          "pt-16",
           "lg:max-w-[1440px] lg:m-auto"
         )}
       >
@@ -416,12 +418,14 @@ export default function LandinPage() {
           )}
         >
           <div>
-            <span className="text-green_title text-[20px] md:text-[25px]">
-              Kode
-            </span>
-            <span className="text-green_title text-[20px] md:text-[25px] font-bold">
-              Clinic
-            </span>
+            <Link href="#Inicio">
+              <span className="text-green_title text-[20px] md:text-[25px]">
+                Kode
+              </span>
+              <span className="text-green_title text-[20px] md:text-[25px] font-bold">
+                Clinic
+              </span>
+            </Link>
             <p className="text-[14px] md:text-[16px] mt-4 text-blue_gray-600">
               Nuestra plataforma facilita la organización de expedientes médicos
               y la gestión de citas para terapeutas. Contáctanos para más
@@ -433,10 +437,15 @@ export default function LandinPage() {
             <h1 className="lg:text-green_title lg:font-bold lg:text-[20px]">
               Navegacion
             </h1>
-
-            <p className="lg:text-[18px] lg:mt-2">Inicio</p>
-            <p className="lg:text-[18px] lg:mt-2">Nosotros</p>
-            <p className="lg:text-[18px] lg:mt-2">Funcionalidades</p>
+            <Link href="#Inicio">
+              <p className="lg:text-[18px] lg:mt-2">Inicio</p>
+            </Link>
+            <Link href="#Sobre-Nosotros">
+              <p className="lg:text-[18px] lg:mt-2">Nosotros</p>
+            </Link>
+            <Link href="#Funcionalidades">
+              <p className="lg:text-[18px] lg:mt-2">Funcionalidades</p>
+            </Link>
           </div>
           <div className="hidden lg:block lg:ml-40 lg:mt-0">
             <h1 className="lg:text-green_title lg:font-bold lg:text-[20px]">
