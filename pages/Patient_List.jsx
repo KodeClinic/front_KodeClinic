@@ -27,8 +27,8 @@ export default function PatientList() {
       > 
       </section>
 
-      <section className="flex flex-col lg:flex-row  justify-start w-full gap-6 lg:gap-0 px-4 sm:px-14 lg:m-auto bg-background">
-        <div className=" lg:w-[820px] flex flex-col gap-6 bg-white rounded-md items-center  "> {/* Lista de pacientes */}
+      <section className="flex flex-col lg:flex-row  justify-start w-full gap-6 lg:gap-0 px-4 sm:px-14 lg:m-auto bg-background lg:max-w-[1440px] ">
+        <div className=" lg:w-[820px] lg:h-[600px] flex flex-col gap-6 bg-white rounded-md items-center  "> {/* Lista de pacientes */}
           <div className="flex items-center justify-between gap-5 px-6 py-4 rounded-lg flex-col lg:w-full lg:flex-row">
             <p className="text-xl font-semibold  text-main_text min-[980px]:text-xl ">Mis pacientes</p>
             <div className="flex items-center border-2 border-primary_main py-1 rounded-lg ">
@@ -37,7 +37,9 @@ export default function PatientList() {
             </div>
           </div>
 
-          <div className="grid grid-cols-1  gap-4 py-2 lg:grid-cols-2 mb-4">
+          <div className="grid grid-cols-1  gap-4 py-2 lg:grid-cols-2 mb-4 lg:h-[600px] overflow-auto">
+            <PatientCard />
+            <PatientCard />
             <PatientCard />
             <PatientCard />
             <PatientCard />
@@ -56,13 +58,18 @@ export default function PatientList() {
           > 
         </section>
 
-        <div className="  flex-col gap-4 items-center max-w-[412px] lg:h-auto bg-white mx-auto rounded-lg"> {/* Pacientes dados de alta */}
-          <p className="text-center my-3 text-lg font-semibold">Pacientes dados de Alta Médica</p>
-          <div className="flex flex-col gap-4 items-center">
+        <div className=" flex flex-col gap-4 items-center max-w-[412px] lg:h-[500px] bg-white mx-auto rounded-lg"> {/* Pacientes dados de alta */}
+          <p className="text-center my-3 text-lg font-semibold maxhidden">Pacientes dados de Alta Médica</p>
+          <div className="flex-col gap-4 items-center lg:overflow-auto lg:h-[400px]">
             <PatientsDischarged />
             <PatientsDischarged />
             <PatientsDischarged />
             <PatientsDischarged />
+            <PatientsDischarged />
+            <PatientsDischarged />
+            <PatientsDischarged />
+            <PatientsDischarged />
+           
           </div>
         </div>
 

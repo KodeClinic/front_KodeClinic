@@ -2,7 +2,7 @@
 export default function PatientCard({ children, title}) {
     return(
         <div className="shadow-outline shadow-lg w-[230px] h-[170px] lg:w-[362px] lg:h-[160px] border border-white_grey items-center ">
-            <div className="flex flex-col gap-1 px-6 py-1 items-center lg:flex-row ">
+            <div className="flex flex-col gap-1 px-6 py-1 items-center lg:flex-row lg:mt-5">
                 <img src="assets/icons/women-icon.png" alt="Women" className="w-[24px] h-[24px] " />
                 <p className="font-bold mb-2 lg:mb-0">Maria Ritos</p>
             </div>
