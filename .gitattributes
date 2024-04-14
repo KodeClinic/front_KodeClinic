@@ -9,3 +9,4 @@ components/Registration.jsx -text
 components/VerificationEmail.jsx -text
 components/RegistrationComplete.jsx -text
 components/EditInformation.jsx -text
+pages/ProfileInformation.jsx -text
