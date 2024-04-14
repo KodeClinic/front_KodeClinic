@@ -1,4 +1,16 @@
+import React from "react";
+import Select from "react-select";
 import clsx from "clsx";
+
+const selectStyles = {
+  control: (styles) => ({
+    ...styles,
+    width: 300,
+    minHeight: 48,
+    borderRadius: 6,
+    border: "2px solid #2196F3",
+  }),
+};
 
 export default function Input({ props }) {
   const { label, inputType, placeholder, isCheckbox, isSelect, optionSelect } =
@@ -13,7 +25,7 @@ export default function Input({ props }) {
       )}
     >
       <label
-        class={clsx(
+        className={clsx(
           "text-gray-900 font-semibold ",
           isCheckbox ? "text-[16px] w-[150px]" : "text-[14px]"
         )}
@@ -22,22 +34,16 @@ export default function Input({ props }) {
       </label>
       <div>
         {isSelect ? (
-          <select className="ring-2 ring-inset ring-primary_main rounded-md w-[300px] h-12 py-2 text-gray-900 drop-shadow-sm cursor-pointer">
-            <option hidden selected>
-              Selecciona una opción
-            </option>
-            {optionSelect.map((option) => {
-              return (
-                <option key={option} value={option}>
-                  {option}
-                </option>
-              );
-            })}
-          </select>
+          <Select
+            isMulti
+            styles={selectStyles}
+            placeholder={"Selecciona las opciones"}
+            // className="ring-2 ring-inset ring-primary_main rounded-md w-[300px] h-12 py-2 text-gray-900 drop-shadow-sm cursor-pointer"
+            options={optionSelect}
+          />
         ) : (
           <input
             type={inputType}
-            //   autocomplete="email"
             required
             placeholder={placeholder}
             class={clsx(

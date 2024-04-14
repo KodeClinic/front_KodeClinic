@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import React from "react";
 
-export default function NavBarPat() {
+export default function NavBarPat({ pageName }) {
   return (
     <nav className={clsx("bg-white drop-shadow-md", "fixed top-0 z-50 w-full")}>
       <div
@@ -25,14 +25,14 @@ export default function NavBarPat() {
           >
             <img
               className={clsx("w-auto min-h-5", "cursor-pointer")}
-              src="assets/icons/menu-icon.svg"
+              src="/assets/icons/menu-icon.svg"
               alt="menu"
             />
           </a>
 
           <img
             className={clsx("w-7 h-7", "min-[980px]:w-8 min-[980px]:h-8")}
-            src="assets/img-kodeclinic-logo.png"
+            src="/assets/img-kodeclinic-logo.png"
             alt="kodeclinic_logo"
           />
 
@@ -42,7 +42,7 @@ export default function NavBarPat() {
               "min-[980px]:text-[22px]"
             )}
           >
-            Home
+            {pageName}
           </span>
         </div>
 
@@ -55,13 +55,13 @@ export default function NavBarPat() {
           <div
             className={clsx(
               "flex justify-center p-[6px] bg-background w-10 rounded-md",
-              "invisible sm:visible"
+              "hidden sm:block"
             )}
           >
             <a href="">
               <img
                 className={clsx("w-auto min-h-5 cursor-pointer")}
-                src="assets/icons/settings-icon.svg"
+                src="/assets/icons/settings-icon.svg"
                 alt="settings"
               />
             </a>
@@ -69,13 +69,13 @@ export default function NavBarPat() {
           <div
             className={clsx(
               "flex justify-center p-[6px] bg-background w-10 rounded-md",
-              "invisible sm:visible"
+              "hidden sm:block"
             )}
           >
             <a href="">
               <img
                 className={clsx("w-auto min-h-5 cursor-pointer")}
-                src="assets/icons/logout-icon.svg"
+                src="/assets/icons/logout-icon.svg"
                 alt="log-out"
               />
             </a>

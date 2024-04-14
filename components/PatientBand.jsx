@@ -43,13 +43,13 @@ export default function PatientBand({
               {patient_gender == "male" ? (
                 <img
                   className={clsx("w-5 h-5")}
-                  src="assets/icons/man-icon.svg"
+                  src="/assets/icons/man-icon.svg"
                   alt=""
                 />
               ) : (
                 <img
                   className={clsx("w-5 h-5")}
-                  src="assets/icons/woman-icon.svg"
+                  src="/assets/icons/woman-icon.svg"
                   alt=""
                 />
               )}
@@ -67,7 +67,7 @@ export default function PatientBand({
             <div className={clsx("flex gap-[10px] items-center")}>
               <img
                 className={clsx("w-5 h-5")}
-                src="assets/icons/source_notes-icon.svg"
+                src="/assets/icons/source_notes-icon.svg"
                 alt=""
               />
               <span
@@ -97,13 +97,13 @@ export default function PatientBand({
             {specialist_gender == "male" ? (
               <img
                 className={clsx("w-5 h-5")}
-                src="assets/icons/man-icon.svg"
+                src="/assets/icons/man-icon.svg"
                 alt=""
               />
             ) : (
               <img
                 className={clsx("w-5 h-5")}
-                src="assets/icons/woman-icon.svg"
+                src="/assets/icons/woman-icon.svg"
                 alt=""
               />
             )}
@@ -124,7 +124,7 @@ export default function PatientBand({
             <div className={clsx("flex gap-[10px] items-center")}>
               <img
                 className={clsx("w-5 h-5")}
-                src="assets/icons/phone-icon.svg"
+                src="/assets/icons/phone-icon.svg"
                 alt=""
               />
               <span
@@ -140,7 +140,7 @@ export default function PatientBand({
             <div className={clsx("flex gap-[10px] items-center")}>
               <img
                 className={clsx("w-5 h-5")}
-                src="assets/icons/med_info-icon.svg"
+                src="/assets/icons/med_info-icon.svg"
                 alt=""
               />
               <span
@@ -163,7 +163,7 @@ export default function PatientBand({
           "absolute",
           "bottom-0 sm:right-10 min-[980px]:right-14"
         )}
-        src="assets/img-PatientCard.png"
+        src="/assets/img-PatientCard.png"
         alt="psiotherapy"
       />
     </section>

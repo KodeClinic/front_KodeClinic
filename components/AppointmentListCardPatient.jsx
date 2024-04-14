@@ -63,7 +63,7 @@ export default function AppointmentListCardPatient({ props }) {
       </td>
       <td>
         <Link
-          href={`appointment/${id}`}
+          href={`/appointment/${id}`}
           className={clsx(
             "text-green_button font-bold w-[165px] text-center border-2 border-green_button px-6 py-1 rounded-md cursor-pointer"
           )}
