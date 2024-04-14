@@ -27,21 +27,24 @@ export default function PatientList() {
       > 
       </section>
 
-      <section className="flex flex-col items-center justify-start gap-6 px-4 sm:px-14 min-[980px]:px-20 lg:max-w-[1440px] lg:m-auto">
-      <div className="w-full max-w-[820px] flex flex-col gap-6 bg-white rounded-md items-center"> {/* Lista de pacientes */}
-          <div className="flex items-center justify-between gap-5 px-6 py-4 rounded-lg flex-col">
-            <p className="text-xl">Mis pacientes</p>
-            <div className="flex items-center border-2 border-primary_main py-1 rounded-lg w-full">
-              <input type="text" placeholder="Buscar Paciente" className="max-w-[90%] w-full py-1 focus:outline-none pl-3  mr-2" />
+      <section className="flex flex-col lg:flex-row  justify-start w-full gap-6 lg:gap-0 px-4 sm:px-14 lg:m-auto bg-background">
+        <div className=" lg:w-[820px] flex flex-col gap-6 bg-white rounded-md items-center  "> {/* Lista de pacientes */}
+          <div className="flex items-center justify-between gap-5 px-6 py-4 rounded-lg flex-col lg:w-full lg:flex-row">
+            <p className="text-xl font-semibold  text-main_text min-[980px]:text-xl ">Mis pacientes</p>
+            <div className="flex items-center border-2 border-primary_main py-1 rounded-lg ">
+              <input type="text" placeholder="Buscar Paciente" className="max-w-[90%] w-full  py-1 focus:outline-none pl-3  mr-2" />
               <img src="assets/icons/browser.png" alt="Buscador" className="px-2" />
             </div>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 py-2">
+          <div className="grid grid-cols-1  gap-4 py-2 lg:grid-cols-2 mb-4">
             <PatientCard />
             <PatientCard />
             <PatientCard />
             <PatientCard />
+            <PatientCard />
+            <PatientCard />
+
           </div>
         </div>
 
@@ -49,13 +52,13 @@ export default function PatientList() {
         className={clsx(
           "flex flex-col gap-6 sm:flex-row",
           "pt-6 px-4 sm:px-14 min-[980px]:px-20 lg:max-w-[1440px] lg:m-auto"
-        )}
-      > 
-      </section>
+          )}
+          > 
+        </section>
 
-        <div className="w-full max-w-[412px] bg-white mx-auto rounded-lg"> {/* Pacientes dados de alta */}
+        <div className="  flex-col gap-4 items-center max-w-[412px] lg:h-auto bg-white mx-auto rounded-lg"> {/* Pacientes dados de alta */}
           <p className="text-center my-3 text-lg font-semibold">Pacientes dados de Alta Médica</p>
-          <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-4 items-center">
             <PatientsDischarged />
             <PatientsDischarged />
             <PatientsDischarged />
