@@ -10,3 +10,4 @@ components/VerificationEmail.jsx -text
 components/RegistrationComplete.jsx -text
 components/EditInformation.jsx -text
 pages/ProfileInformation.jsx -text
+components/AvailabilityEspecialistinformation.jsx -text

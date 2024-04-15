@@ -2,6 +2,7 @@
 import clsx from "clsx";
 import NavBarSpe from "@/components/NavBarSpe";
 import React, { useState } from 'react';
+import AvailabilityEspecialist from "@/components/AvailabilityEspecialistinformation";
 
 export default function ProfileInformation() {
   const [isChecked, setIsChecked] = useState(false);
@@ -141,47 +142,26 @@ export default function ProfileInformation() {
         {/* Formulario Horarios */}
 
         <div className="flex flex-col items-center">
-          <div className="bg-white flex flex-col w-[328px] rounded-[20px] lg:w-[800px] lg:[870px]">
-            <div className="flex-col flex text-center items-center">
-              <div className=" lg:w-full">
-                <div className="text-start mx-2 mt-2">
+          <div className="bg-white rounded-lg lg:w-[800px] ">
+            <div className="flex flex-col items-center">
+              <div className="max-w-[328px] mx-auto"> {/* Utilizamos mx-auto para centrar horizontalmente */}
+                <div className="text-start mx-2 mt-2 items-center ">
                   <p className='text-2xl font-bold'>Disponibilidad</p>
+                  <AvailabilityEspecialist />
                 </div>
-
-                {/* Formulario datos principales*/}
-                <form className="lg:mx-20 mx-auto items-center bg-white px-8 pt-1 pb-8 mb-4 lg:w-auto lg:p-0 mt-4">
-                <div>
-                  <input
-                    type="checkbox"
-                    id="miCheckbox"
-                    name="miCheckbox"
-                    className="rounded border-gray-300 focus:border-blue-500 focus:ring-blue-500"
-                    checked={isChecked}
-                    onChange={handleCheckboxChange}
-                  />
-                  <label htmlFor="miCheckbox" className="ml-2 text-gray-700">Lunes</label>
-                  <input
-                        className=" border-2 border-primary_main rounded text-gray-700 "
-                        id="telefono"
-                        type="tel"
-                        placeholder="Nombres"
-                      />
-                </div>
-
-
-                  {/* Botón de guardar */}
+                  
+               </div>
                   <button
-                    className="bg-green_button w-full lg:w-1/3 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                    className="bg-green_button w-[80%] lg:w-1/3 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded focus:outline-none focus:shadow-outline mt-5"
                     type="button"
-                  >
+                    >
                     Editar
                   </button>
-                </form>
-              </div>
-              {/* Formulario Horarios */}
             </div>
+            <img src="assets/Doctor-list.png" alt="Doctor" className="mx-auto mt-3"/>
           </div>
         </div>
+
 
 
       </div>
