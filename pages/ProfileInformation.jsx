@@ -11,39 +11,46 @@ export default function ProfileInformation() {
     setIsChecked(!isChecked);
   };
   return (
-    <div className="bg-background min-h-screen w-full">
+    <div className="bg-background min-h-screen ">
       <NavBarSpe pageName={"Informacion de perfil"} />
-      <div className=" inset-0  flex justify-center items-center mt-20 flex-col ">
-        <div className="flex flex-col items-center mb-10">
-          <div className="bg-white flex flex-col w-[328px] rounded-[20px] lg:w-[800px] lg:[870px]">
-            <div className="flex-col flex text-center items-center">
+      <div className="   flex justify-center items-center mt-20 flex-col lg:flex-row mx-auto max-w-[1440px] ">
+        <div className=" flex-col items-center mb-10 mx-10 lg:mb-0">
+          <div className="bg-white flex flex-col w-[328px] rounded-[20px] lg:w-[800px] shadow-lg">
+            <div className="flex-col  text-center items-center">
               <div className=" lg:w-full">
                 <div className="text-start mx-2 mt-2">
-                  <p className='text-2xl font-bold'>Datos Personales</p>
+                  <p className='text-2xl font-bold mx-10'>Datos Personales</p>
                 </div>
 
-                <div className="flex items-center justify-center bg-gray-200 rounded-full mt-5">
-                  <label htmlFor="upload" className="cursor-pointer flex flex-col items-center justify-center rounded-full w-28 h-28 bg-blue_gray-200">
-                    <input type="file" id="upload" className="hidden" />
-                    <span className="text-center">Sube tu foto</span>
-                  </label>
-                </div>
-                <form className="lg:mx-20 mx-auto items-center bg-white px-8 pt-1 pb-8 mb-4 lg:w-auto lg:p-0 mt-4">
-                  <div className="mb-0">
-                    {/* Información de contacto */}
-                    <div className="flex flex-col lg:grid-cols-2 lg:grid lg:gap-4">
-                      <input
-                        className="shadow mb-4 flex appearance-none border-2 border-primary_main rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline lg:mb-4"
+                <form className="lg:mx-20 mx-auto items-center bg-white px-8 pt-1 pb-8 mb-4 lg:w-auto lg:p-0 mt-4 lg:mt-6">
+                <div className="lg:flex-row lg:flex">
+                  <div className="flex items-center justify-center lg:w-1/2 bg-gray-200 rounded-full mb-5 ">
+                    <label htmlFor="upload" className="cursor-pointer flex flex-col items-center justify-center rounded-full w-28 h-28 bg-blue_gray-200 ">
+                      <input type="file" id="upload" className="hidden" />
+                      <span className="text-center">Sube tu foto</span>
+                    </label>
+                  </div>
+                  <div className="flex-col flex lg:w-1/2">
+                    <input
+                        className="shadow mb-4  appearance-none border-2 border-primary_main rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline lg:mb-4"
                         id="telefono"
                         type="tel"
                         placeholder="Nombres"
                       />
                       <input
-                        className="shadow mb-8 flex appearance-none border-2 border-primary_main rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline lg:mb-4"
+                        className="shadow mb-8  appearance-none border-2 border-primary_main rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline lg:mb-4"
                         id="direccion"
                         type="text"
                         placeholder="Apellidos"
                       />
+                </div>
+                </div>
+                
+                
+                
+                    {/* Información de contacto */}
+                    <div className="flex flex-col lg:grid-cols-2 lg:grid lg:gap-4">
+                     
                       <input
                         className="shadow mb-4 flex appearance-none border-2 border-primary_main rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline lg:mb-4"
                         id="colonia"
@@ -75,11 +82,11 @@ export default function ProfileInformation() {
                         placeholder="Alcaldía"
                       />
                     </div>
-                  </div>
+                  
                   <div className="mb-0">
                     {/* Información de emergencia */}
                     <p className="py-6 text-lg justify-start text-left font-bold">Educación</p>
-                    <div className="flex flex-col lg:grid-cols-3 lg:grid lg:gap-4">
+                    <div className="flex flex-col lg:grid-cols-2 lg:grid lg:gap-4">
                       <input
                         className="shadow mb-4 flex appearance-none border-2 border-primary_main rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline lg:mb-4"
                         id="contacto_emergencia_1"
@@ -104,7 +111,7 @@ export default function ProfileInformation() {
                   <div className="mb-0">
                     {/* Información de emergencia */}
                     <p className="py-6 text-lg justify-start text-left font-bold">Certificaciones y Diplomados</p>
-                    <div className="flex flex-col lg:grid-cols-3 lg:grid lg:gap-4">
+                    <div className="flex flex-col lg:grid-cols-2 lg:grid lg:gap-4">
                       <input
                         className="shadow mb-4 flex appearance-none border-2 border-primary_main rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline lg:mb-4"
                         id="contacto_emergencia_1"
@@ -141,8 +148,8 @@ export default function ProfileInformation() {
 
         {/* Formulario Horarios */}
 
-        <div className="flex flex-col items-center">
-          <div className="bg-white rounded-lg lg:w-[800px] ">
+        <div className="flex flex-col items-center lg:mx-auto ">
+          <div className="bg-white rounded-lg lg:w-[500px] mb-20 lg:mb-[200px] shadow-lg">
             <div className="flex flex-col items-center">
               <div className="max-w-[328px] mx-auto"> {/* Utilizamos mx-auto para centrar horizontalmente */}
                 <div className="text-start mx-2 mt-2 items-center ">
