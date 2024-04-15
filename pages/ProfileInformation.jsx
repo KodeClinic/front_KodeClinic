@@ -153,11 +153,12 @@ export default function ProfileInformation() {
             <div className="flex flex-col items-center">
               <div className="max-w-[328px] mx-auto"> {/* Utilizamos mx-auto para centrar horizontalmente */}
                 <div className="text-start mx-2 mt-2 items-center ">
-                  <p className='text-2xl font-bold'>Disponibilidad</p>
-                  <AvailabilityEspecialist />
-                </div>
+                  <p className='text-2xl font-bold '>Disponibilidad</p>
                   
+                </div>
+                <AvailabilityEspecialist />
                </div>
+               
                   <button
                     className="bg-green_button w-[80%] lg:w-1/3 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded focus:outline-none focus:shadow-outline mt-5"
                     type="button"
