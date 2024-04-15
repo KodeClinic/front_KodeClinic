@@ -1,8 +1,14 @@
-import React from "react";
+
 import clsx from "clsx";
 import NavBarSpe from "@/components/NavBarSpe";
+import React, { useState } from 'react';
 
 export default function ProfileInformation() {
+  const [isChecked, setIsChecked] = useState(false);
+
+  const handleCheckboxChange = () => {
+    setIsChecked(!isChecked);
+  };
   return (
     <div className="bg-background min-h-screen w-full">
       <NavBarSpe pageName={"Informacion de perfil"} />
@@ -144,53 +150,31 @@ export default function ProfileInformation() {
 
                 {/* Formulario datos principales*/}
                 <form className="lg:mx-20 mx-auto items-center bg-white px-8 pt-1 pb-8 mb-4 lg:w-auto lg:p-0 mt-4">
-                  <div className="mb-0">
-                    {/* Información de contacto */}
-                    <div className="flex flex-col lg:grid-cols-2 lg:grid lg:gap-4">
-                      <input
-                        className="shadow mb-4 flex appearance-none border-2 border-primary_main rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline lg:mb-4"
+                <div>
+                  <input
+                    type="checkbox"
+                    id="miCheckbox"
+                    name="miCheckbox"
+                    className="rounded border-gray-300 focus:border-blue-500 focus:ring-blue-500"
+                    checked={isChecked}
+                    onChange={handleCheckboxChange}
+                  />
+                  <label htmlFor="miCheckbox" className="ml-2 text-gray-700">Lunes</label>
+                  <input
+                        className=" border-2 border-primary_main rounded text-gray-700 "
                         id="telefono"
                         type="tel"
                         placeholder="Nombres"
                       />
-                      
-                      
-                    </div>
-                  </div>
-                  <div className="mb-0">
-                    {/* Información de emergencia */}
-                    <p className="py-6 text-lg justify-start text-left font-bold">Educación</p>
-                    <div className="flex flex-col lg:grid-cols-3 lg:grid lg:gap-4">
-                      <input
-                        className="shadow mb-4 flex appearance-none border-2 border-primary_main rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline lg:mb-4"
-                        id="contacto_emergencia_1"
-                        type="tel"
-                        placeholder="Institución educativa"
-                      />
-                      
-                    </div>
-                  </div>
+                </div>
 
-                  <div className="mb-0">
-                    {/* Información de emergencia */}
-                    <p className="py-6 text-lg justify-start text-left font-bold">Certificaciones y Diplomados</p>
-                    <div className="flex flex-col lg:grid-cols-3 lg:grid lg:gap-4">
-                      <input
-                        className="shadow mb-4 flex appearance-none border-2 border-primary_main rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline lg:mb-4"
-                        id="contacto_emergencia_1"
-                        type="tel"
-                        placeholder="Institución educativa"
-                      />
-                     
-                    </div>
-                  </div>
 
                   {/* Botón de guardar */}
                   <button
                     className="bg-green_button w-full lg:w-1/3 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                     type="button"
                   >
-                    Guardar
+                    Editar
                   </button>
                 </form>
               </div>
