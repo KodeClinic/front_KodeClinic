@@ -138,7 +138,7 @@ export default function DashboardEsp() {
           </LocalizationProvider>
         </div>
       </section>
-      
+      <HamburgerMenu isVisible={true} />
     </main>
     
   );
