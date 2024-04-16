@@ -5,8 +5,8 @@ export default function HamburgerMenu({ isVisible }) {
     if (!isVisible) return null;
 
     return (
-            <div className="fixed inset-0 bg-black bg-opacity-25 backdrop-blur-sm flex justify-start items-center">
-                <div className=" bg-background w-[280px] rounded-r-[20px] items-center flex-col">
+            <div className="fixed inset-0 z-50 bg-black bg-opacity-25 backdrop-blur-sm flex justify-start items-center">
+                <div className=" bg-background w-[280px] rounded-r-[20px] items-center flex-col h-screen">
                     <div className='items-center flex-col justify-center '>
                     <div className={clsx(
                             "flex items-center px-4 gap-1 py-[18px] min-[980px]:py-3",
