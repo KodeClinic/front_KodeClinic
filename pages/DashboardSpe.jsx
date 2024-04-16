@@ -11,6 +11,7 @@ import dayjs from "dayjs";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DateCalendar } from "@mui/x-date-pickers/DateCalendar";
+import HamburgerMenu from "@/components/HamburgerMenu";
 
 // import { es } from "dayjs/locale/es";
 // dayjs.locale(es);
@@ -66,8 +67,11 @@ export default function DashboardEsp() {
   console.log(Date);
 
   return (
+    
     <main className={clsx("bg-background min-h-screen w-full")}>
+      
       <NavBarSpe pageName={"Agenda"} />
+      
 
       <SpecialistCard
         name={"Juan José Martinez Perez"}
@@ -134,6 +138,8 @@ export default function DashboardEsp() {
           </LocalizationProvider>
         </div>
       </section>
+      
     </main>
+    
   );
 }
