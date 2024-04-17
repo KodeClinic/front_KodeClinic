@@ -18,6 +18,7 @@
     "@mui/x-date-pickers": "^7.1.0",
     "clsx": "^2.1.0",
     "dayjs": "^1.11.10",
+    "formik": "^2.4.5",
     "materialui-pagination-component": "^1.1.12",
     "next": "14.1.4",
     "react": "^18",
@@ -25,7 +26,8 @@
     "react-hook-form": "^7.51.1",
     "react-router-dom": "^6.22.3",
     "react-select": "^5.8.0",
-    "styled-components": "^6.1.8"
+    "styled-components": "^6.1.8",
+    "yup": "^1.4.0"
   },
   "devDependencies": {
     "autoprefixer": "^10.0.1",

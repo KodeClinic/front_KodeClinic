@@ -1,7 +1,48 @@
 import { useRouter } from "next/router";
+import { useFormik } from "formik";
+import { loginSchema } from "@/schemas/loginForm";
+import { useState } from "react";
+import clsx from "clsx";
+import Link from "next/link";
+import { login } from "@/services/users/auth";
 
 export default function Login() {
   const router = useRouter();
+  const [isLoading, setIsLoading] = useState(false);
+  const [isFailed, setIsFailed] = useState(false);
+
+  const onSubmit = async () => {
+    setIsLoading(true);
+
+    try {
+      const response = await login(values);
+      if (response.status === 201) {
+        const dataJSON = await response.json();
+        localStorage.setItem("token", dataJSON.token);
+        router.push("/DashboardSpe");
+        setIsLoading(false);
+        setIsFailed(false);
+      } else if (response.status === 401) {
+        setIsLoading(false);
+        setIsFailed(true);
+      }
+    } catch (error) {
+      console.log(error);
+      setIsLoading(false);
+      setIsFailed(true);
+    }
+  };
+
+  const { values, errors, handleBlur, touched, handleChange, handleSubmit } =
+    useFormik({
+      initialValues: {
+        email: "",
+        password: "",
+      },
+      validationSchema: loginSchema,
+      onSubmit,
+    });
+
   return (
     <div className="flex h-screen justify-center items-center">
       <div className="w-full max-w-sm">
@@ -18,48 +59,91 @@ export default function Login() {
               Iniciar<span className="text-blue-500"> Sesión</span>
             </h1>
           </div>
-          <div className="mb-4">
-            <label className="block text-gray-700 text-sm  mb-2">
-              Correo electrónico
-            </label>
-            <input
-              className="shadow appearance-none border-2 border-primary_main rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              id="email"
-              type="text"
-            />
-          </div>
-          <div className="mb-6">
-            <label className="block text-gray-700 text-sm  mb-2">
-              Contraseña
-            </label>
-            <input
-              className="shadow appearance-none border-2 border-primary_main rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
-              id="password"
-              type="password"
-            />
-            <p className="text-blue_grey-700 text-xs italic">
-              ¿Olvidaste tu contraseña?
-            </p>
-          </div>
-          <div className="flex items-center justify-between">
-            <button
-              onClick={() => router.push("/DashboardSpe")}
-              className="bg-blue_button w-full hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-              type="button"
-            >
-              Ingresar
-            </button>
-          </div>
+          <form onSubmit={handleSubmit} autoComplete="off">
+            <div className="mb-4">
+              <label className="block text-gray-700 text-sm  mb-2">
+                Correo electrónico
+              </label>
+              <input
+                className={clsx(
+                  "shadow appearance-none border-2 rounded w-full py-2 px-3 text-gray-700 leading-tight focus:shadow-outline",
+                  errors.email && touched.email
+                    ? "border-red"
+                    : "border-primary_main"
+                )}
+                id="email"
+                type="email"
+                value={values.email}
+                onChange={handleChange}
+                onBlur={handleBlur}
+              />
+              {errors.email && touched.email ? (
+                <p className={clsx("text-sm text-red text-center font-medium")}>
+                  {errors.email}
+                </p>
+              ) : (
+                ""
+              )}
+            </div>
+            <div className="mb-6">
+              <label className="block text-gray-700 text-sm  mb-2">
+                Contraseña
+              </label>
+              <input
+                className={clsx(
+                  "shadow appearance-none border-2 border-primary_main rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:shadow-outline",
+                  errors.password && touched.password
+                    ? "border-red"
+                    : "border-primary_main"
+                )}
+                id="password"
+                type="password"
+                value={values.password}
+                onChange={handleChange}
+                onBlur={handleBlur}
+              />
+
+              <p className="text-blue_grey-700 text-xs italic">
+                ¿Olvidaste tu contraseña?
+              </p>
+            </div>
+            <div className="flex flex-col items-center justify-between">
+              <button
+                className={clsx(
+                  "bg-blue_button w-full hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline  flex justify-center items-center gap-2",
+                  isLoading ? "opacity-65" : ""
+                )}
+                type="submit"
+                disabled={isLoading}
+              >
+                <img
+                  className={clsx(
+                    "animate-spin h-5 w-5",
+                    isLoading ? "block" : "hidden"
+                  )}
+                  src="/assets/icons/loading-icon.svg"
+                  alt="loading-icon"
+                />
+                {isLoading ? "Cargando..." : "Ingresar"}
+              </button>
+              {isFailed && (
+                <p className="text-sm font-medium text-red p-2 rounded flex text-center">
+                  Imposible logearte con estas crendeciales, por favor intenta
+                  con otras
+                </p>
+              )}
+            </div>
+          </form>
         </div>
         <div className="bg-gray-100 rounded-b flex flex-col w-full p-4 items-center justify-between">
           <p className="text-gray-600 text-sm">
             ¿Aún no tienes una cuenta?
-            <a
+            <Link
               className="text-blue_button font-bold hover:underline ml-2"
-              href="#"
+              href="/CreateAccount"
             >
               Registrate
-            </a>
+            </Link>
           </p>
         </div>
       </div>
