@@ -16,10 +16,14 @@ export default function Login() {
 
     try {
       const response = await login(values);
-      if (response.status === 201) {
+      if (response.status === 200) {
         const dataJSON = await response.json();
         localStorage.setItem("token", dataJSON.token);
-        router.push("/DashboardSpe");
+        // router.push("/DashboardSpe");
+        router.push({
+          pathname: "identify/EmailVerfication",
+          query: { email: values.email },
+        });
         setIsLoading(false);
         setIsFailed(false);
       } else if (response.status === 401) {
