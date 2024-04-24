@@ -5,7 +5,8 @@
     "placeholder": "",
     "isCheckbox": true,
     "isSelect": false,
-    "optionSelect": []
+    "optionSelect": [],
+    "fieldName": "1"
   },
   "hypertension": {
     "label": "Hipertensión",

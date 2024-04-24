@@ -1,32 +1,28 @@
 import { useFormik } from "formik";
 import { useRouter } from "next/router";
 import { useState } from "react";
-import { createAccountSchema } from "@/schemas/CreateAccount";
+import { restorePasswordSchema } from "@/schemas/restorePassword";
 import clsx from "clsx";
-import { createAccount } from "@/services/users/auth";
+import { restorePassword } from "@/services/users/auth";
 import Link from "next/link";
 
-export default function CreateAccount() {
+export default function NewPassword() {
   const [isLoading, setIsLoading] = useState(false);
   const [isFailed, setIsFailed] = useState(false);
   const router = useRouter();
+  const data = router.query;
 
   const onSubmit = async () => {
     setIsLoading(true);
 
     try {
-      const req = {
-        email: values.email,
-        password: values.password,
-        role: "specialist",
-      };
-      const response = await createAccount(req);
+      const req = { email: data.email, newpassword: values.newPassword };
+      const response = await restorePassword(req);
       if (response.status === 201) {
         const dataJSON = await response.json();
         localStorage.setItem("token", dataJSON.token);
         router.push({
-          pathname: "identify/EmailVerfication",
-          query: { email: values.email },
+          pathname: "../PasswordChanged",
         });
         setIsLoading(false);
         setIsFailed(false);
@@ -43,18 +39,17 @@ export default function CreateAccount() {
   const { values, errors, handleBlur, touched, handleChange, handleSubmit } =
     useFormik({
       initialValues: {
-        email: "",
-        password: "",
+        newPassword: "",
         confirmPassword: "",
       },
-      validationSchema: createAccountSchema,
+      validationSchema: restorePasswordSchema,
       onSubmit,
     });
 
   return (
     <div className="flex h-screen justify-center items-center">
       <div className="w-full max-w-sm">
-        <div className="bg-white  rounded px-8 py-10 pt-6 pb-8 mb-1">
+        <div className="bg-white  rounded px-8 py-10 pt-6 pb-8 mb-4">
           <Link
             href={"LandinPage"}
             className="flex justify-center items-center mb-7 flex-col"
@@ -65,66 +60,51 @@ export default function CreateAccount() {
               <span className="font-bold">Clinic</span>
             </h2>
           </Link>
-          <div className="mb-4">
+          <div className="mb-4 flex flex-col justify-center text-center">
             <h1 className="text-2xl font-bold text-center">
-              Registro de Especialistas
+              Crear nueva contraseña
             </h1>
+            <p className="text-blue_grey-700 text-xs mt-2 sm:text-sm">
+              Tu nueva contraseña debe ser diferente de
+            </p>
+            <p className="text-blue_grey-700 text-xs sm:text-sm ">
+              las que utilizaste previamente
+            </p>
           </div>
           <form onSubmit={handleSubmit}>
             <div className="mb-4">
-              <label className="block text-gray-700 text-sm font-semibold  mb-2">
-                Correo electrónico
+              <label className="block text-gray-700 text-sm font-semibold mb-2">
+                Nueva contraseña
               </label>
               <input
                 className={clsx(
-                  "shadow appearance-none border-2 border-primary_main rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline",
-                  errors.email && touched.email
+                  "shadow appearance-none border-2 border-primary_main rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline",
+                  errors.newPassword && touched.newPassword
                     ? "border-red"
-                    : "border-primary_main"
+                    : "border-primary_main",
+                  values.confirmPassword === values.newPassword
+                    ? ""
+                    : "border-red"
                 )}
-                id="email"
-                type="email"
-                value={values.email}
+                id="newPassword"
+                type="password"
+                value={values.newPassword}
                 onChange={handleChange}
                 onBlur={handleBlur}
               />
-              {errors.email && touched.email ? (
-                <p className={clsx("text-sm text-red text-center font-medium")}>
-                  {errors.email}
+              {errors.newPassword && touched.newPassword ? (
+                <p
+                  className={clsx(
+                    "text-sm text-red text-center font-medium mb-4"
+                  )}
+                >
+                  {errors.newPassword}
                 </p>
               ) : (
                 ""
               )}
             </div>
             <div className="mb-6">
-              <label className="block text-gray-700 text-sm font-semibold  mb-2">
-                Contraseña
-              </label>
-              <input
-                className={clsx(
-                  "shadow appearance-none border-2 border-primary_main rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline",
-                  errors.password && touched.password
-                    ? "border-red"
-                    : "border-primary_main",
-                  values.confirmPassword === values.password ? "" : "border-red"
-                )}
-                id="password"
-                type="password"
-                value={values.password}
-                onChange={handleChange}
-                onBlur={handleBlur}
-              />
-              {errors.password && touched.password ? (
-                <p
-                  className={clsx(
-                    "text-sm text-red text-center font-medium mb-4"
-                  )}
-                >
-                  {errors.password}
-                </p>
-              ) : (
-                ""
-              )}
               <label className="block text-gray-700 text-sm font-semibold  mb-2">
                 Confirmar contraseña
               </label>
@@ -134,7 +114,9 @@ export default function CreateAccount() {
                   errors.confirmPassword && touched.confirmPassword
                     ? "border-red"
                     : "border-primary_main",
-                  values.confirmPassword === values.password ? "" : "border-red"
+                  values.confirmPassword === values.newPassword
+                    ? ""
+                    : "border-red"
                 )}
                 id="confirmPassword"
                 type="password"
@@ -142,7 +124,7 @@ export default function CreateAccount() {
                 onChange={handleChange}
                 onBlur={handleBlur}
               />
-              {values.confirmPassword === values.password ? (
+              {values.confirmPassword === values.newPassword ? (
                 ""
               ) : (
                 <p
@@ -171,30 +153,15 @@ export default function CreateAccount() {
                   src="/assets/icons/loading-icon.svg"
                   alt="loading-icon"
                 />
-                {isLoading ? "Cargando..." : "Ingresar"}
+                {isLoading ? "Cargando..." : "Cambiar contraseña"}
               </button>
               {isFailed && (
                 <p className="text-sm font-medium text-red p-2 rounded flex text-center">
-                  Imposible registrarte con estas crendeciales, por favor
-                  intenta con otras
+                  Imposible utilizar esta contraseña, por favor intenta con otra
                 </p>
               )}
             </div>
           </form>
-        </div>
-        <div className="bg-gray-100 rounded-b flex flex-col w-full items-center text-center justify-between">
-          <p className="text-black text-sm ">
-            Al crear una cuenta estás aceptando los{" "}
-            <span className="text-blue_button font-semibold">
-              Términos de Servicio
-            </span>
-            y
-            <span className="text-blue_button font-semibold">
-              {" "}
-              Politicas de Privacidad
-            </span>{" "}
-            de Kode<span className="font-bold">Clinic</span>
-          </p>
         </div>
       </div>
     </div>
