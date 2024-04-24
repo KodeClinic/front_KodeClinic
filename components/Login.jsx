@@ -5,33 +5,53 @@ import { useState } from "react";
 import clsx from "clsx";
 import Link from "next/link";
 import { login } from "@/services/users/auth";
+import { sendEmailCode } from "@/services/users/auth";
 
 export default function Login() {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
   const [isFailed, setIsFailed] = useState(false);
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+
+  function showPassword() {
+    setIsPasswordVisible(!isPasswordVisible);
+  }
 
   const onSubmit = async () => {
     setIsLoading(true);
 
     try {
       const response = await login(values);
+
       if (response.status === 200) {
         const dataJSON = await response.json();
         localStorage.setItem("token", dataJSON.token);
-        // router.push("/DashboardSpe");
-        router.push({
-          pathname: "identify/EmailVerfication",
-          query: { email: values.email },
-        });
         setIsLoading(false);
         setIsFailed(false);
+        router.push("/DashboardSpe");
       } else if (response.status === 401) {
+        emailValidation();
+      } else if (response.status === 400) {
         setIsLoading(false);
         setIsFailed(true);
       }
     } catch (error) {
-      console.log(error);
+      setIsLoading(false);
+      setIsFailed(true);
+    }
+  };
+
+  const emailValidation = async () => {
+    try {
+      const response = await sendEmailCode({ email: values.email });
+      console.log("response de funcion", response);
+      if (response.status === 201) {
+        router.push({
+          pathname: "identify/EmailVerfication",
+          query: { email: values.email },
+        });
+      }
+    } catch (error) {
       setIsLoading(false);
       setIsFailed(true);
     }
@@ -51,21 +71,22 @@ export default function Login() {
     <div className="flex h-screen justify-center items-center">
       <div className="w-full max-w-sm">
         <div className="bg-white  rounded px-8 py-10 pt-6 pb-8 mb-4">
-          <div className="flex justify-center items-center mb-7 flex-col">
+          <Link
+            href={"/LandinPage"}
+            className="flex justify-center items-center mb-7 flex-col"
+          >
             <img src="assets\img-kodeclinic-logo.png" alt="KodeClinic_Logo" />
             <h2 className="text-2xl text-blue_button text-center">
               <span>Kode</span>
               <span className="font-bold">Clinic</span>
             </h2>
-          </div>
+          </Link>
           <div className="mb-4">
-            <h1 className="text-2xl font-bold text-center">
-              Iniciar<span className="text-blue-500"> Sesión</span>
-            </h1>
+            <h1 className="text-2xl font-bold text-center">Iniciar Sesión</h1>
           </div>
-          <form onSubmit={handleSubmit} autoComplete="off">
+          <form onSubmit={handleSubmit}>
             <div className="mb-4">
-              <label className="block text-gray-700 text-sm  mb-2">
+              <label className="block text-gray-700 text-sm font-semibold mb-2">
                 Correo electrónico
               </label>
               <input
@@ -90,26 +111,35 @@ export default function Login() {
               )}
             </div>
             <div className="mb-6">
-              <label className="block text-gray-700 text-sm  mb-2">
+              <label className="block text-gray-700 text-sm font-semibold mb-2">
                 Contraseña
               </label>
               <input
                 className={clsx(
-                  "shadow appearance-none border-2 border-primary_main rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:shadow-outline",
+                  "shadow appearance-none border-2 border-primary_main rounded w-full py-2 px-3 text-gray-700 mb-1 leading-tight focus:shadow-outline",
                   errors.password && touched.password
                     ? "border-red"
                     : "border-primary_main"
                 )}
                 id="password"
-                type="password"
+                type={isPasswordVisible ? "text" : "password"}
                 value={values.password}
                 onChange={handleChange}
                 onBlur={handleBlur}
               />
+              <span
+                className="text-xs text-black/50 flex justify-end mb-3 cursor-pointer"
+                onClick={showPassword}
+              >
+                {isPasswordVisible ? "Ocultar" : "Mostrar"} contraseña
+              </span>
 
-              <p className="text-blue_grey-700 text-xs italic">
+              <Link
+                href={"identify/recoveryEmail"}
+                className="text-blue_grey-700 text-xs italic"
+              >
                 ¿Olvidaste tu contraseña?
-              </p>
+              </Link>
             </div>
             <div className="flex flex-col items-center justify-between">
               <button

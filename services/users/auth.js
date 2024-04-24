@@ -29,3 +29,33 @@ export function createAccount(credentials) {
   };
   return fetch(URL, options);
 }
+
+export function forgotPassword(credentials) {
+  const URL = `${URL_BASE}users/forgotPassword`;
+  const options = {
+    method: "POST",
+    body: JSON.stringify(credentials),
+    headers: { "Content-Type": "application/json" },
+  };
+  return fetch(URL, options);
+}
+
+export function restorePassword(credentials) {
+  const URL = `${URL_BASE}users/restorePassword`;
+  const options = {
+    method: "PATCH",
+    body: JSON.stringify(credentials),
+    headers: { "Content-Type": "application/json" },
+  };
+  return fetch(URL, options);
+}
+
+export function sendEmailCode(credentials) {
+  const URL = `${URL_BASE}users/sendEmailCode`;
+  const options = {
+    method: "POST",
+    body: JSON.stringify(credentials),
+    headers: { "Content-Type": "application/json" },
+  };
+  return fetch(URL, options);
+}

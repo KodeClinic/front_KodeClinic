@@ -1,14 +1,14 @@
-import { useFormik } from "formik";
-import { verificationEmailSchema } from "@/schemas/validateEmail";
-import { useState } from "react";
 import { useRouter } from "next/router";
-import clsx from "clsx";
+import { useFormik } from "formik";
+import { useState } from "react";
+import { verificationEmailSchema } from "@/schemas/validateEmail";
 import { validateEmail } from "@/services/users/auth";
+import clsx from "clsx";
 
-export default function EmailVerification() {
+export default function passwordVerification() {
+  const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
   const [isFailed, setIsFailed] = useState(false);
-  const router = useRouter();
   const data = router.query;
 
   const onSubmit = async () => {
@@ -20,10 +20,9 @@ export default function EmailVerification() {
       if (response.status === 200) {
         const dataJSON = await response.json();
         localStorage.setItem("token", dataJSON.token);
-        // router.push("/DashboardSpe");
         router.push({
-          pathname: "/RegistrationComplete",
-          query: { email: data.email },
+          pathname: "restorePassword",
+          query: { email: data.email }, //pendiente conocer cómo se valida el token del lado del front
         });
         setIsLoading(false);
         setIsFailed(false);
@@ -52,6 +51,7 @@ export default function EmailVerification() {
     validationSchema: verificationEmailSchema,
     onSubmit,
   });
+
   return (
     <div className="flex h-screen justify-center items-center">
       <div className="w-full max-w-sm">
@@ -65,11 +65,11 @@ export default function EmailVerification() {
           </div>
           <div className="mb-4 flex flex-col justify-center text-center">
             <h1 className="text-2xl font-bold text-center">
-              Verificación de Email
+              ¿Olvidaste tu contraseña?
             </h1>
-            <p className="text-blue_grey-700 text-sm mt-2">
-              Tu Email no ha sido verificado, por favor ingresa el código que
-              enviamos a tu correo
+            <p className="text-blue_grey-700 text-xs mt-2 sm:text-base mb-3">
+              Por favor ingresa el codigo que enviamos al correo electronico
+              registrado
             </p>
           </div>
           <form onSubmit={handleSubmit}>
@@ -77,21 +77,20 @@ export default function EmailVerification() {
               <label className="block text-gray-300 font-semibold text-sm  mb-2">
                 Código
               </label>
-              <div className="flex">
-                <input
-                  className={clsx(
-                    "text-center shadow flex appearance-none border-2 border-primary_main rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mx-0.5",
-                    errors.code && touched.code
-                      ? "border-red"
-                      : "border-primary_main"
-                  )}
-                  maxLength="4"
-                  id="code"
-                  value={values.code}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                />
-              </div>
+
+              <input
+                className={clsx(
+                  "text-center shadow flex appearance-none border-2 border-primary_main rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mx-0.5",
+                  errors.code && touched.code
+                    ? "border-red"
+                    : "border-primary_main"
+                )}
+                maxLength="4"
+                id="code"
+                value={values.code}
+                onChange={handleChange}
+                onBlur={handleBlur}
+              />
             </div>
 
             <div className="flex flex-col items-center justify-between">

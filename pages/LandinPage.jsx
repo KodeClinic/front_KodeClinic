@@ -51,7 +51,7 @@ export default function LandinPage() {
             </div>
             <img
               className={clsx("drop-shadow-md", "max-h-[136px]", "sm:hidden")}
-              src="assets/img-doctor-heroSection-mobile.png"
+              src="/assets/img-doctor-heroSection-mobile.png"
               alt="doctor-image"
             />
           </div>
@@ -101,7 +101,7 @@ export default function LandinPage() {
             "hidden",
             "sm:block sm:max-h-[233px] min-[980px]:hidden"
           )}
-          src="assets/img-doctor-heroSection-mobile.png"
+          src="/assets/img-doctor-heroSection-mobile.png"
           alt="doctor-image"
         />
         <img
@@ -110,7 +110,7 @@ export default function LandinPage() {
             "hidden",
             "min-[980px]:block min-[980px]:max-h-[526px] pl-7"
           )}
-          src="assets/img-doctor-heroSection.png"
+          src="/assets/img-doctor-heroSection.png"
           alt="doctor-image"
         />
         {/* <button
@@ -136,7 +136,7 @@ export default function LandinPage() {
       >
         <img
           className={clsx("h-7 w-7 fill-green_button")}
-          src="assets/icons/heart1-icon.svg"
+          src="/assets/icons/heart1-icon.svg"
           alt="doctor-image"
         />
 
@@ -275,7 +275,7 @@ export default function LandinPage() {
             <div className={clsx("py-4 pl-8")}>
               <img
                 className={clsx("max-h-[188px] drop-shadow-md", "sm:hidden")}
-                src="assets/img-aboutUsSection-mobile.png"
+                src="/assets/img-aboutUsSection-mobile.png"
                 alt="sobre nosotros"
               />
               <img
@@ -284,7 +284,7 @@ export default function LandinPage() {
                   "hidden sm:block",
                   "min-[980px]:min-w-[539px] min-[980px]:min-h-[390px]"
                 )}
-                src="assets/img-aboutUsSection.png"
+                src="/assets/img-aboutUsSection.png"
                 alt="sobre nosotros"
               />
             </div>
@@ -356,19 +356,19 @@ export default function LandinPage() {
             </h1>
             <p className="text-[12px] sm:text-[18px] flex justify-start items-center gap-2 mt-2">
               <span>
-                <img src="assets/icons/telephone.svg" alt="" />
+                <img src="/assets/icons/telephone.svg" alt="" />
               </span>
               5513044788
             </p>
             <p className="text-[12px] sm:text-[18px] flex justify-start items-center gap-2 mt-2">
               <span>
-                <img src="assets/icons/envelope.svg" alt="" />
+                <img src="/assets/icons/envelope.svg" alt="" />
               </span>
               kodeclinic@mail.com
             </p>
             <p className="text-[12px] sm:text-[18px] flex justify-start items-center gap-2 mt-2">
               <span>
-                <img src="assets/icons/geo-alt.svg" alt="" />
+                <img src="/assets/icons/geo-alt.svg" alt="" />
               </span>
               26, Libertad, CDMX
             </p>
@@ -453,19 +453,19 @@ export default function LandinPage() {
             </h1>
             <p className="lg:text-[18px] lg:flex lg:justify-start lg:items-center lg:gap-2 lg:mt-2">
               <span>
-                <img src="assets/icons/telephone.svg" alt="" />
+                <img src="/assets/icons/telephone.svg" alt="" />
               </span>
               5513044788
             </p>
             <p className="lg:text-[18px] lg:flex lg:justify-start lg:items-center lg:gap-2 lg:mt-2">
               <span>
-                <img src="assets/icons/envelope.svg" alt="" />
+                <img src="/assets/icons/envelope.svg" alt="" />
               </span>
               kodeclinic@email.com
             </p>
             <p className="lg:text-[18px] lg:flex lg:justify-start lg:items-center lg:gap-2 lg:mt-2">
               <span>
-                <img src="assets/icons/geo-alt.svg" alt="" />
+                <img src="/assets/icons/geo-alt.svg" alt="" />
               </span>
               26, Libertad, CDMX
             </p>
@@ -482,11 +482,11 @@ export default function LandinPage() {
             "lg:max-w-[1440px] lg:m-auto lg:pt-4 lg:py-10"
           )}
         >
-          <img src="assets/icons/facebook.svg" alt="" />
-          <img src="assets/icons/twitter.svg" alt="" />
-          <img src="assets/icons/google.svg" alt="" />
-          <img src="assets/icons/instagram.svg" alt="" />
-          <img src="assets/icons/whatsapp.svg" alt="" />
+          <img src="/assets/icons/facebook.svg" alt="" />
+          <img src="/assets/icons/twitter.svg" alt="" />
+          <img src="/assets/icons/google.svg" alt="" />
+          <img src="/assets/icons/instagram.svg" alt="" />
+          <img src="/assets/icons/whatsapp.svg" alt="" />
         </div>
       </div>
     </main>

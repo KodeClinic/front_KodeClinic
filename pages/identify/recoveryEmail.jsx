@@ -1,29 +1,26 @@
-import { useFormik } from "formik";
-import { verificationEmailSchema } from "@/schemas/validateEmail";
-import { useState } from "react";
 import { useRouter } from "next/router";
+import { useFormik } from "formik";
+import { recoveryEmailSchema } from "@/schemas/recoveryEmail";
+import { useState } from "react";
+import { forgotPassword } from "@/services/users/auth";
 import clsx from "clsx";
-import { validateEmail } from "@/services/users/auth";
+import Link from "next/link";
 
-export default function EmailVerification() {
+export default function RecoveryEmail() {
+  const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
   const [isFailed, setIsFailed] = useState(false);
-  const router = useRouter();
-  const data = router.query;
 
   const onSubmit = async () => {
     setIsLoading(true);
 
     try {
-      const req = { email: data.email, securityCode: values.code };
-      const response = await validateEmail(req);
-      if (response.status === 200) {
+      const response = await forgotPassword(values);
+      if (response.status === 201) {
         const dataJSON = await response.json();
-        localStorage.setItem("token", dataJSON.token);
-        // router.push("/DashboardSpe");
         router.push({
-          pathname: "/RegistrationComplete",
-          query: { email: data.email },
+          pathname: "passwordVerification",
+          query: { email: values.email },
         });
         setIsLoading(false);
         setIsFailed(false);
@@ -37,21 +34,14 @@ export default function EmailVerification() {
     }
   };
 
-  const {
-    values,
-    errors,
-    isValid,
-    handleBlur,
-    touched,
-    handleChange,
-    handleSubmit,
-  } = useFormik({
-    initialValues: {
-      code: "",
-    },
-    validationSchema: verificationEmailSchema,
-    onSubmit,
-  });
+  const { values, errors, handleBlur, touched, handleChange, handleSubmit } =
+    useFormik({
+      initialValues: {
+        email: "",
+      },
+      validationSchema: recoveryEmailSchema,
+      onSubmit,
+    });
   return (
     <div className="flex h-screen justify-center items-center">
       <div className="w-full max-w-sm">
@@ -65,36 +55,40 @@ export default function EmailVerification() {
           </div>
           <div className="mb-4 flex flex-col justify-center text-center">
             <h1 className="text-2xl font-bold text-center">
-              Verificación de Email
+              ¿Olvidaste tu contraseña?
             </h1>
-            <p className="text-blue_grey-700 text-sm mt-2">
-              Tu Email no ha sido verificado, por favor ingresa el código que
-              enviamos a tu correo
+            <p className="text-blue_grey-700 text-xs mt-2 sm:text-base mb-3">
+              Por favor ingresa el correo electrónico registrado
             </p>
           </div>
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit} autoComplete="off">
             <div className="mb-4">
               <label className="block text-gray-300 font-semibold text-sm  mb-2">
-                Código
+                Correo electrónico
               </label>
-              <div className="flex">
-                <input
-                  className={clsx(
-                    "text-center shadow flex appearance-none border-2 border-primary_main rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline mx-0.5",
-                    errors.code && touched.code
-                      ? "border-red"
-                      : "border-primary_main"
-                  )}
-                  maxLength="4"
-                  id="code"
-                  value={values.code}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                />
-              </div>
+              <input
+                className={clsx(
+                  "shadow appearance-none border-2 border-primary_main rounded w-full py-2 px-3 mb-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline",
+                  errors.email && touched.email
+                    ? "border-red"
+                    : "border-primary_main"
+                )}
+                id="email"
+                type="email"
+                value={values.email}
+                onChange={handleChange}
+                onBlur={handleBlur}
+              />
+              {errors.email && touched.email ? (
+                <p className={clsx("text-sm text-red text-center font-medium")}>
+                  {errors.email}
+                </p>
+              ) : (
+                ""
+              )}
             </div>
 
-            <div className="flex flex-col items-center justify-between">
+            <div className="flex items-center justify-between">
               <button
                 className={clsx(
                   "bg-blue_button w-full hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline flex justify-center items-center gap-2",
@@ -111,18 +105,12 @@ export default function EmailVerification() {
                   src="/assets/icons/loading-icon.svg"
                   alt="loading-icon"
                 />
-                {isLoading ? "Cargando..." : "Verificar"}
+                {isLoading ? "Enviando..." : "Enviar código"}
               </button>
-              {isValid ? (
-                ""
-              ) : (
-                <p className="text-sm font-medium text-red p-2 rounded flex text-center">
-                  Ingresa el código correcto
-                </p>
-              )}
               {isFailed && (
                 <p className="text-sm font-medium text-red p-2 rounded flex text-center">
-                  Código incorrecto, por favor ingresa el código correcto
+                  El correo proporcionado no está registrado, por favor intenta
+                  con un correo registrado
                 </p>
               )}
             </div>
