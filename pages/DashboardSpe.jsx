@@ -11,7 +11,9 @@ import dayjs from "dayjs";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DateCalendar } from "@mui/x-date-pickers/DateCalendar";
-import HamburgerMenu from "@/components/HamburgerMenu";
+import HamburgerMenuSpe from "@/components/HamburgerMenuSpe";
+
+
 
 // import { es } from "dayjs/locale/es";
 // dayjs.locale(es);
@@ -152,7 +154,7 @@ export default function DashboardEsp() {
           </LocalizationProvider>
         </div>
       </section>
-      <HamburgerMenu isVisible={showModal} closeModal={closeModal} />
+      <HamburgerMenuSpe isVisible={showModal} closeModal={closeModal} />
     </main>
     
   );

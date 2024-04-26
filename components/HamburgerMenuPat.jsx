@@ -1,7 +1,7 @@
 import React from 'react';
 import clsx from 'clsx';
 
-export default function HamburgerMenu({ isVisible, closeModal }) {
+export default function HamburgerMenuPat({ isVisible, closeModal }) {
     if (!isVisible) return null;
 
     return (
@@ -39,26 +39,9 @@ export default function HamburgerMenu({ isVisible, closeModal }) {
                     </div>
                         {/* KodeClinic Logo */}
 
-                        <div className='flex-col mx-5 mt-[50px]'>
-                            <div className='flex-row flex mx-auto mb-4'>
-                                <img src="assets/icons/calendar-icon2.svg" alt="" className='w-[18px] h-[20px] mx-3'/>
-                                <p className='mx-3'>Agenda</p>
-                            </div>
-                            <div className='flex-row flex mx-auto mb-4'>
-                                <img src="assets/icons/Menu-icon-b.svg" alt="" className='w-[18px] h-[20px] mx-3'/>
-                                <p className='mx-3'>Lista de Pacientes</p>
-                            </div>
-                            <div className='flex-row flex mx-auto mb-4'>
-                                <img src="assets/icons/addp-icon.svg" alt="" className='w-[18px] h-[20px] mx-3'/>
-                                <p className='mx-3'>Nuevo Paciente</p>
-                            </div>
-                            <div className='flex-row flex mx-auto mb-4'>
-                                <img src="assets/icons/newappoiment-icon.svg" alt="" className='w-[18px] h-[20px] mx-3'/>
-                                <p className='mx-3'>Nueva Cita</p>
-                            </div>
-                        </div>
+                        
 
-                        <div className='flex-col mx-5 mt-[50px] absolute bottom-0 left-0'>
+                        <div className='flex-col mx-10 mt-[50px]  '>
                             <div className='flex-row flex mx-auto mb-4'>
                                 <img src="assets/icons/config-icon.svg" alt="" className='w-[18px] h-[20px] mx-3'/>
                                 <p className='mx-3'>Perfil</p>
