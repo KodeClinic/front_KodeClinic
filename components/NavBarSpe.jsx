@@ -1,7 +1,8 @@
 import clsx from "clsx";
 import React from "react";
 
-export default function NavBarSpe({ pageName }) {
+export default function NavBarSpe({ pageName, mostrarModal }) {
+    const handleShowModal = () => {mostrarModal(true)}
   return (
     <nav className={clsx("bg-white drop-shadow-md", "fixed top-0 z-50 w-full")}>
       <div
@@ -16,11 +17,13 @@ export default function NavBarSpe({ pageName }) {
             " sm:px-14  min-[980px]:pl-20 min-[980px]:pr-0"
           )}
         >
-          <a href="" className=" flex justify-center p-[6px] w-10">
+          <a  className=" flex justify-center p-[6px] w-10">
             <img
-              className={clsx("w-auto min-h-5", "cursor-pointer")}
+              className={clsx("w-auto min-h-5")}
               src="assets/icons/menu-icon.svg"
               alt="menu"
+              onClick={handleShowModal}
+              style={{ cursor: "pointer" }}
             />
           </a>
 

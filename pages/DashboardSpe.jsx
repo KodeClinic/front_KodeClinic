@@ -66,11 +66,25 @@ export default function DashboardEsp() {
   const [Date, setDate] = useState(dayjs());
   console.log(Date);
 
+  const [showModal, setShowModal] = useState(false);
+
+  const mostrarModal = (show) => {
+    setShowModal(show);
+
+  }
+  const closeModal = () => {
+    setShowModal(false);
+  }
+
+
   return (
     
     <main className={clsx("bg-background min-h-screen w-full")}>
       
-      <NavBarSpe pageName={"Agenda"} />
+      <NavBarSpe pageName={"Agenda"}
+               mostrarModal = {mostrarModal}
+                closeModal = {closeModal}
+                 />
       
 
       <SpecialistCard
@@ -138,7 +152,7 @@ export default function DashboardEsp() {
           </LocalizationProvider>
         </div>
       </section>
-      <HamburgerMenu isVisible={true} />
+      <HamburgerMenu isVisible={showModal} closeModal={closeModal} />
     </main>
     
   );
