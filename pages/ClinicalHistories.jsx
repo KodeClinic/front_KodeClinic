@@ -448,7 +448,7 @@ export default function DashboardPat() {
       >
         <div className="">
           <Tabs.Root
-            className="max-w-screen-xl mx-auto px-4 md:px-8 "
+            className="max-w-screen-xl mx-auto px-4 md:px-0 "
             defaultValue="Historias Clínicas"
           >
             <Tabs.List
@@ -467,38 +467,37 @@ export default function DashboardPat() {
                 </Tabs.Trigger>
               ))}
             </Tabs.List>
-            <Tabs.Content value="Historias Clínicas"> {/* Aqui poner las historias clinicas */}
-            <div
-          className={clsx(
-            "flex gap-5",
-            "w-full drop-shadow-md px-6 pt-4 pb-8 min-[980px]:px-7",
-            "bg-white rounded-[20px] py-4 flex flex-col gap-3 mt-4"
-          )}
-        >
-            <span className="font-bold text-2xl">
-                Citas
-            </span>
-            
-        </div>
-            </Tabs.Content>
-            <Tabs.Content value="Antecedentes Médicos">  {/* Aqui poner los antecedentes medicos */}
-            <div
-          className={clsx(
-            "flex gap-5",
-            "w-full drop-shadow-md px-6 pt-4 pb-8 min-[980px]:px-7",
-            "bg-white rounded-[20px] py-4 flex flex-col gap-3 mt-4"
-          )}
-        >
-            <span className="font-bold text-2xl">
-                Personales patologicos
-            </span>
-            
-        </div>
+            <Tabs.Content value="Historias Clínicas">
+              {" "}
+              {/* Aqui poner las historias clinicas */}
 
+              <div
+                className={clsx(
+                  "flex gap-5",
+                  "w-full drop-shadow-md px-6 pt-4 pb-8 min-[980px]:px-7",
+                  "bg-white rounded-[20px] py-4 flex flex-col gap-3 mt-4"
+                )}
+              >
+                <span className="font-bold text-2xl">Citas</span>
+              </div>
+            </Tabs.Content>
+            <Tabs.Content value="Antecedentes Médicos">
+              {" "}
+              {/* Aqui poner los antecedentes medicos */}
+              <div
+                className={clsx(
+                  "flex gap-5",
+                  "w-full drop-shadow-md px-6 pt-4 pb-8 min-[980px]:px-7",
+                  "bg-white rounded-[20px] py-4 flex flex-col gap-3 mt-4"
+                )}
+              >
+                <span className="font-bold text-2xl">
+                  Personales patologicos
+                </span>
+              </div>
             </Tabs.Content>
           </Tabs.Root>
         </div>
-        
       </section>
     </main>
   );
