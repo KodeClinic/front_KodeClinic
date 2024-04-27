@@ -1,9 +1,8 @@
 import NavBarPat from "@/components/NavBarPat";
 import clsx from "clsx";
-import PatientBand from "@/components/PatientBand";
-import SliderPatient from "@/components/SliderPatient";
-import AppointmentListPatient from "@/components/AppointmentListPatient";
+
 import CardOfPat from "@/components/CardOfPat";
+import * as Tabs from "@radix-ui/react-tabs";
 
 const dataSpecialist = {
   name: "Francisco Xavier",
@@ -424,6 +423,7 @@ const historyAppointmentData = [
     },
   },
 ];
+const tabItems = ["Antecedentes Médicos", "Historias Clínicas"];
 export default function DashboardPat() {
   return (
     <main className={clsx("bg-background min-h-screen w-full")}>
@@ -439,23 +439,66 @@ export default function DashboardPat() {
       />
 
       {/* Proximas Citas */}
+
       <section
         className={clsx(
           "px-4 sm:px-14 min-[980px]:px-20 lg:max-w-[1440px] lg:m-auto",
           "py-5"
         )}
       >
-        <div
+        <div className="">
+          <Tabs.Root
+            className="max-w-screen-xl mx-auto px-4 md:px-8 "
+            defaultValue="Historias Clínicas"
+          >
+            <Tabs.List
+              className="w-full  flex items-center gap-x-3 overflow-x-auto text-sm"
+              aria-label="Manage your account"
+            >
+              {tabItems.map((item, idx) => (
+                <Tabs.Trigger
+                  key={idx}
+                  className="group outline-none py-1.5 border-b-2 border-background text-xl text-gray-500 data-[state=active]:border-blue_button data-[state=active]:text-blue_button"
+                  value={item}
+                >
+                  <div className="py-1.5 px-3 rounded-lg duration-150 group-hover:text-indigo-600 group-hover:bg-gray-50 group-active:bg-gray-100 font-medium">
+                    {item}
+                  </div>
+                </Tabs.Trigger>
+              ))}
+            </Tabs.List>
+            <Tabs.Content value="Historias Clínicas"> {/* Aqui poner las historias clinicas */}
+            <div
           className={clsx(
             "flex gap-5",
             "w-full drop-shadow-md px-6 pt-4 pb-8 min-[980px]:px-7",
-            "bg-white rounded-[20px] py-4 flex flex-col gap-3"
+            "bg-white rounded-[20px] py-4 flex flex-col gap-3 mt-4"
           )}
         >
-          
-
-          
+            <span className="font-bold text-2xl">
+                Citas
+            </span>
+            
         </div>
+            </Tabs.Content>
+            <Tabs.Content value="Antecedentes Médicos">  {/* Aqui poner los antecedentes medicos */}
+            <div
+          className={clsx(
+            "flex gap-5",
+            "w-full drop-shadow-md px-6 pt-4 pb-8 min-[980px]:px-7",
+            "bg-white rounded-[20px] py-4 flex flex-col gap-3 mt-4"
+          )}
+        >
+            <span className="font-bold text-2xl">
+                Personales patologicos
+            </span>
+            
+        </div>
+
+            </Tabs.Content>
+          </Tabs.Root>
+        </div>
+        
       </section>
     </main>
   );
