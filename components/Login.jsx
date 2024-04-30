@@ -25,10 +25,20 @@ export default function Login() {
 
       if (response.status === 200) {
         const dataJSON = await response.json();
-        localStorage.setItem("token", dataJSON.token);
+        localStorage.setItem("token", dataJSON.data.token);
         setIsLoading(false);
         setIsFailed(false);
-        router.push("/DashboardSpe");
+        if (dataJSON.data.role === "specialist") {
+          router.push({
+            pathname: "/DashboardSpe",
+            query: { id: dataJSON.data.id },
+          });
+        } else if (dataJSON.data.role === "patient") {
+          router.push({
+            pathname: "/DashboardPat",
+            query: { id: dataJSON.data.id },
+          });
+        }
       } else if (response.status === 401) {
         emailValidation();
       } else if (response.status === 400) {

@@ -234,7 +234,7 @@ const formData = [
     ],
   },
   {
-    label: "E. Cardiovasculares",
+    label: "E.T.S.",
     inputType: "",
     placeholder: "Selecciona todas las que apliquen",
     isCheckbox: false,

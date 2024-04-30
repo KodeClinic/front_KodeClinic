@@ -1,0 +1,30 @@
+{
+  "_id": {
+    "$oid": "66288e4952353a6e3a4a3087"
+  },
+  "email": "gduran.ricardo@gmail.com",
+  "password": "contraseña",
+  "verificationCode": "",
+  "validatedAccount": true,
+  "role": "specialist",
+  "personalInformation": {
+    "name": "Ricardo",
+    "lastname": "Gomez",
+    "birthDate": "22/01/1997",
+    "gender": "male",
+    "cellphone": "3378451256",
+    "adress": "Av. Revolución #123",
+    "colony": "Americana",
+    "state": "Guadalajara",
+    "medicalLicense": "12345678",
+    "patientList": [
+      {
+        "_id": {
+          "$oid": "66288e4952353a6e3a4a3088"
+        },
+        "userID": ""
+      }
+    ]
+  },
+  "__v": 0
+}
