@@ -13,8 +13,15 @@ const selectStyles = {
 };
 
 export default function Input({ props }) {
-  const { label, inputType, placeholder, isCheckbox, isSelect, optionSelect } =
-    props;
+  const {
+    label,
+    inputType,
+    placeholder,
+    isCheckbox,
+    isSelect,
+    isMulti,
+    optionSelect,
+  } = props;
 
   return (
     <div
@@ -35,7 +42,7 @@ export default function Input({ props }) {
       <div>
         {isSelect ? (
           <Select
-            isMulti
+            isMulti={isMulti}
             styles={selectStyles}
             placeholder={"Selecciona las opciones"}
             // className="ring-2 ring-inset ring-primary_main rounded-md w-[300px] h-12 py-2 text-gray-900 drop-shadow-sm cursor-pointer"
@@ -46,7 +53,7 @@ export default function Input({ props }) {
             type={inputType}
             required
             placeholder={placeholder}
-            class={clsx(
+            className={clsx(
               "rounded-md py-2 text-gray-900 drop-shadow-sm ring-2 ring-inset  placeholder:text-gray-900 placeholder:pl-2 cursor-pointer",
               isCheckbox
                 ? "w-6 h-6 ring-blue_gray-500"

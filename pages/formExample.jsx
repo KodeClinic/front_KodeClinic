@@ -1,5 +1,7 @@
+import { useState, useEffect } from "react";
 import Input from "@/components/Input";
 import clsx from "clsx";
+import { getbyTemplateId } from "@/services/templates";
 
 const formData = [
   {
@@ -8,6 +10,7 @@ const formData = [
     placeholder: "",
     isCheckbox: true,
     isSelect: false,
+    isMulti: false,
     optionSelect: [],
   },
   {
@@ -16,6 +19,7 @@ const formData = [
     placeholder: "",
     isCheckbox: true,
     isSelect: false,
+    isMulti: false,
     optionSelect: [],
   },
   {
@@ -24,6 +28,7 @@ const formData = [
     placeholder: "",
     isCheckbox: true,
     isSelect: false,
+    isMulti: false,
     optionSelect: [],
   },
   {
@@ -32,6 +37,7 @@ const formData = [
     placeholder: "",
     isCheckbox: true,
     isSelect: false,
+    isMulti: false,
     optionSelect: [],
   },
   {
@@ -40,6 +46,7 @@ const formData = [
     placeholder: "",
     isCheckbox: true,
     isSelect: false,
+    isMulti: false,
     optionSelect: [],
   },
   {
@@ -48,6 +55,7 @@ const formData = [
     placeholder: "Selecciona todas las que apliquen",
     isCheckbox: false,
     isSelect: true,
+    isMulti: true,
     optionSelect: [
       { value: "Umbilical", label: "Umbilical" },
       { value: "Epigastrica", label: "Epigastrica" },
@@ -62,6 +70,7 @@ const formData = [
     placeholder: "Selecciona todas las que apliquen",
     isCheckbox: false,
     isSelect: true,
+    isMulti: true,
     optionSelect: [
       { value: "Cervical", label: "Cervical" },
       { value: "Rodilla", label: "Rodilla" },
@@ -76,6 +85,7 @@ const formData = [
     placeholder: "Selecciona todas las que apliquen",
     isCheckbox: false,
     isSelect: true,
+    isMulti: true,
     optionSelect: [
       { value: "Hombro", label: "Hombro" },
       { value: "Codo", label: "Codo" },
@@ -95,6 +105,7 @@ const formData = [
     placeholder: "Selecciona todas las que apliquen",
     isCheckbox: false,
     isSelect: true,
+    isMulti: true,
     optionSelect: [
       { value: "Disco", label: "Disco" },
       { value: "Clavícula", label: "Clavícula" },
@@ -116,6 +127,7 @@ const formData = [
     placeholder: "Selecciona todas las que apliquen",
     isCheckbox: false,
     isSelect: true,
+    isMulti: true,
     optionSelect: [
       { value: "Asma", label: "Asma" },
       { value: "Disnea", label: "Disnea" },
@@ -129,6 +141,7 @@ const formData = [
     placeholder: "Selecciona todas las que apliquen",
     isCheckbox: false,
     isSelect: true,
+    isMulti: true,
     optionSelect: [
       { value: "Rupturas", label: "Rupturas" },
       { value: "Distensión", label: "Distensión" },
@@ -147,6 +160,7 @@ const formData = [
     placeholder: "Selecciona todas las que apliquen",
     isCheckbox: false,
     isSelect: true,
+    isMulti: true,
     optionSelect: [
       { value: "Arritmias", label: "Arritmias" },
       { value: "Arteriopatía coronaria", label: "Arteriopatía coronaria" },
@@ -169,6 +183,7 @@ const formData = [
     placeholder: "Selecciona todas las que apliquen",
     isCheckbox: false,
     isSelect: true,
+    isMulti: true,
     optionSelect: [
       { value: "Parkinson", label: "Parkinson" },
       { value: "EVC", label: "EVC" },
@@ -183,6 +198,7 @@ const formData = [
     placeholder: "Selecciona todas las que apliquen",
     isCheckbox: false,
     isSelect: true,
+    isMulti: true,
     optionSelect: [
       { value: "Otra", label: "Otra" },
       { value: "Ninguna", label: "Ninguna" },
@@ -194,6 +210,7 @@ const formData = [
     placeholder: "Selecciona todas las que apliquen",
     isCheckbox: false,
     isSelect: true,
+    isMulti: true,
     optionSelect: [
       { value: "Insuf. Venosa", label: "Insuf. Venosa" },
       { value: "Trombosis V.P.", label: "Trombosis V.P." },
@@ -210,6 +227,7 @@ const formData = [
     placeholder: "Selecciona todas las que apliquen",
     isCheckbox: false,
     isSelect: true,
+    isMulti: true,
     optionSelect: [
       { value: "Artritis R.", label: "Artritis R." },
       { value: "Artrosis", label: "Artrosis" },
@@ -228,6 +246,7 @@ const formData = [
     placeholder: "Selecciona todas las que apliquen",
     isCheckbox: false,
     isSelect: true,
+    isMulti: true,
     optionSelect: [
       { value: "Otra", label: "Otra" },
       { value: "Ninguna", label: "Ninguna" },
@@ -239,6 +258,7 @@ const formData = [
     placeholder: "Selecciona todas las que apliquen",
     isCheckbox: false,
     isSelect: true,
+    isMulti: true,
     optionSelect: [
       { value: "Sífilis", label: "Sífilis" },
       { value: "Gonorrea", label: "Gonorrea" },
@@ -253,6 +273,39 @@ const formData = [
 ];
 
 export default function formExample() {
+  // const dataQuery = router.query;
+  const dataQuery = { id: "1" };
+
+  const [formDataTemplate, setFormDataTemplate] = useState([]);
+
+  const onLogin = async (dataQuery, token) => {
+    const credetials = { id: dataQuery.id, token: token };
+    try {
+      const response = await getbyTemplateId(credetials);
+      const dataJSON = await response.json();
+      setFormDataTemplate(dataJSON.data.screens[0].screenInputs);
+      console.log(dataJSON.data);
+    } catch (error) {
+      alert(
+        "Ocurrió un problema al intentar acceder, por favor inténtenlo de nuevo"
+      );
+      // router.push("/LogIn");
+    }
+  };
+
+  useEffect(() => {
+    // const token = localStorage.getItem("token");
+    const token =
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NjMwNTU1N2JiMjNlODliZjllMzUzY2EiLCJlbWFpbCI6ImdkdXJhbi5yaWNhcmRvQGdtYWlsLmNvbSIsImlhdCI6MTcxNDUyMDAwMSwiZXhwIjoxNzE0NjA2NDAxfQ.EATz3tRjBA7UnHJlHMCttKrchCtf9nFRW8MfOSmW98M";
+
+    if (!token) {
+      alert(
+        "Ocurrió un problema al intentar acceder, por favor inténtenlo de nuevo"
+      );
+    }
+    onLogin(dataQuery, token);
+  }, []);
+
   return (
     <div>
       <p className="py-5">Formulario</p>
@@ -261,7 +314,7 @@ export default function formExample() {
           "grid grid-cols-1 place-items-center sm:grid-cols-2 min-[980px]:grid-cols-3 gap-5 px-6"
         )}
       >
-        {formData.map((props) => {
+        {formDataTemplate.map((props) => {
           return (
             <Input key={`${props?.inputType}-${props?.label}`} props={props} />
           );
