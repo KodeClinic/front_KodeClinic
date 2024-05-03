@@ -100,11 +100,11 @@ export default function DashboardEsp() {
       <NavBarSpe pageName={"Agenda"} />
 
       <SpecialistCard
-        name={specialistData.name + " " + specialistData.lastName}
-        gender={specialistData.gender}
-        email={specialistData.email}
-        cel={specialistData.cellphone}
-        cedProf={specialistData.cellphone}
+        name={specialistData?.name + " " + specialistData?.lastName}
+        gender={specialistData?.gender}
+        email={specialistData?.email}
+        cel={specialistData?.cellphone}
+        cedProf={specialistData?.specialistInformation?.medicalLicense}
       />
       <section
         className={clsx(

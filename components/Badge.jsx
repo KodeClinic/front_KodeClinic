@@ -39,7 +39,7 @@ export default function Badge({ badgeType, timeLapse, consultingAddress }) {
     img_styles = "bg-[#FFD0BC] sm:bg-inherit rounded-full p-1";
   } else if (badgeType == "completed") {
     icon = "/assets/icons/stethoscope_check_white-icon.svg";
-    label = "comped";
+    label = "completed";
     description = "Completada";
     styles = "sm:w-[140px] bg-[#455A64] text-white";
     img_styles = "p-[5px]";
