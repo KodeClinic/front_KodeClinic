@@ -3,6 +3,8 @@ import clsx from "clsx";
 import PatientBand from "@/components/PatientBand";
 import SliderPatient from "@/components/SliderPatient";
 import AppointmentListPatient from "@/components/AppointmentListPatient";
+import EditInformation from "@/components/EditInformation"; 
+import { useState } from "react";
 
 const dataSpecialist = {
   name: "Francisco Xavier",
@@ -424,6 +426,16 @@ const historyAppointmentData = [
   },
 ];
 export default function DashboardPat() {
+  const [showModal, setShowModal] = useState(false);
+
+  const mostrarModal = (show) => {
+    setShowModal(show);
+  };
+
+  const closeModal = () => {
+    setShowModal(false);
+  };
+
   return (
     <main className={clsx("bg-background min-h-screen w-full")}>
       <NavBarPat pageName={"Home"} />
@@ -433,6 +445,8 @@ export default function DashboardPat() {
         specialist_name={dataSpecialist.name}
         specialist_gender={dataSpecialist.gender}
         cel_Specialist={dataSpecialist.contactPhone}
+        mostrarModal={mostrarModal}
+        closeModal={closeModal}
       />
 
       {/* Proximas Citas */}
@@ -487,6 +501,7 @@ export default function DashboardPat() {
           <AppointmentListPatient props={historyAppointmentData} />
         </div>
       </section>
+      <EditInformation isVisible={showModal}  closeModal={closeModal}/>
     </main>
   );
 }
