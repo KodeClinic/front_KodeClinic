@@ -11,6 +11,9 @@ import dayjs from "dayjs";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DateCalendar } from "@mui/x-date-pickers/DateCalendar";
+import HamburgerMenuSpe from "@/components/HamburgerMenuSpe";
+
+
 
 // import { es } from "dayjs/locale/es";
 // dayjs.locale(es);
@@ -65,9 +68,26 @@ export default function DashboardEsp() {
   const [Date, setDate] = useState(dayjs());
   console.log(Date);
 
+  const [showModal, setShowModal] = useState(false);
+
+  const mostrarModal = (show) => {
+    setShowModal(show);
+
+  }
+  const closeModal = () => {
+    setShowModal(false);
+  }
+
+
   return (
+    
     <main className={clsx("bg-background min-h-screen w-full")}>
-      <NavBarSpe pageName={"Agenda"} />
+      
+      <NavBarSpe pageName={"Agenda"}
+               mostrarModal = {mostrarModal}
+                closeModal = {closeModal}
+                 />
+      
 
       <SpecialistCard
         name={"Juan José Martinez Perez"}
@@ -134,6 +154,8 @@ export default function DashboardEsp() {
           </LocalizationProvider>
         </div>
       </section>
+      <HamburgerMenuSpe isVisible={showModal} closeModal={closeModal} />
     </main>
+    
   );
 }
