@@ -1,0 +1,65 @@
+import { useState, useEffect } from "react";
+// import { useRouter } from "next/router";
+import Input from "@/components/Input";
+import AccordionFormSection from "../AccordeonFormSection";
+import clsx from "clsx";
+import { getbyTemplateId } from "@/services/templates";
+
+export default function NonPathological() {
+  const [formDataTemplate, setFormDataTemplate] = useState({});
+  const [sectionForm, setSectionForm] = useState({});
+  // const [inputList, setInputList] = useState([]);
+
+  const onLogin = async (token) => {
+    const credetials = { id: "1", token: token };
+    try {
+      const response = await getbyTemplateId(credetials);
+      const dataJSON = await response.json();
+      //   setFormDataTemplate(dataJSON.data.screens[0].sections[0].inputList);
+      setFormDataTemplate(dataJSON.data);
+      // setInputList(dataJSON.data.screens[1].inputList);
+      setSectionForm(dataJSON.data.screens[1]);
+      // console.log(dataJSON.data.screens[1]);
+    } catch (error) {
+      alert(
+        "Ocurrió un problema al intentar acceder, por favor inténtenlo de nuevo"
+      );
+      // router.push("/LogIn");
+    }
+  };
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+      alert("Usuario no autorizado, por favor inicie sesión antes");
+    }
+    onLogin(token);
+  }, []);
+
+  return (
+    <div className={clsx("bg-white")}>
+      <h1 className="pb-[14px] text-center text-xl font-semibold text-green_title sm:text-3xl sm:pb-11">
+        {formDataTemplate.name}
+      </h1>
+      <p
+        className={clsx(
+          " pb-6 text-center text-base font-medium sm:text-xl sm:font-semibold sm:text-start sm:pb-11"
+        )}
+      >
+        {sectionForm.title}
+      </p>
+      <div className={clsx("grid grid-cols-1 place-items-center gap-5")}>
+        {sectionForm?.sections?.map((props) => {
+          return (
+            <AccordionFormSection
+              key={props._id}
+              props={props.inputList}
+              sectionName={props.name}
+            />
+          );
+        })}
+      </div>
+    </div>
+  );
+}

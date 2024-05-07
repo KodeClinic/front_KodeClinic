@@ -19,14 +19,14 @@ export default function NavBarSpe({ pageName }) {
           <a href="" className=" flex justify-center p-[6px] w-10">
             <img
               className={clsx("w-auto min-h-5", "cursor-pointer")}
-              src="assets/icons/menu-icon.svg"
+              src="/assets/icons/menu-icon.svg"
               alt="menu"
             />
           </a>
 
           <img
             className={clsx("w-7 h-7", "min-[980px]:w-8 min-[980px]:h-8")}
-            src="assets/img-kodeclinic-logo.png"
+            src="/assets/img-kodeclinic-logo.png"
             alt="kodeclinic_logo"
           />
 
@@ -54,7 +54,7 @@ export default function NavBarSpe({ pageName }) {
           >
             <img
               className={clsx("w-auto min-h-5 cursor-pointer")}
-              src="assets/icons/newdate-icon.svg"
+              src="/assets/icons/newdate-icon.svg"
               alt="new-appointment"
             />
           </a>
@@ -66,7 +66,7 @@ export default function NavBarSpe({ pageName }) {
           >
             <img
               className={clsx("w-auto min-h-5 cursor-pointer")}
-              src="assets/icons/newpatient-icon.svg"
+              src="/assets/icons/newpatient-icon.svg"
               alt="new-patient"
             />
           </a>
@@ -79,7 +79,7 @@ export default function NavBarSpe({ pageName }) {
           >
             <img
               className={clsx("w-auto min-h-5 cursor-pointer")}
-              src="assets/icons/logout-icon.svg"
+              src="/assets/icons/logout-icon.svg"
               alt="log-out"
             />
           </a>

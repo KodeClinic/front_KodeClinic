@@ -1,4 +1,4 @@
-import NavBar from "@/components/NavBar";
+import NavBarSpe from "@/components/NavBarSpe";
 import Contact_info from "@/components/New_pacient/Contact_info";
 import Emergency_info from "@/components/New_pacient/Emergency_info";
 import Personal_info from "@/components/New_pacient/Personal_info";
@@ -41,7 +41,7 @@ export default function New_pacient() {
     <section
       className={clsx("bg-background", "grid place-items-center relative")}
     >
-      <NavBar />
+      <NavBarSpe pageName={"Añadir Paciente"} />
       {renderCard(currentPage)}
       <Pagination
         className="absolute bottom-10 sm:left-[500px]"
