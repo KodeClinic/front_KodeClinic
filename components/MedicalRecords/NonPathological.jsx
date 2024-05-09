@@ -1,11 +1,13 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 // import { useRouter } from "next/router";
 import Input from "@/components/Input";
 import AccordionFormSection from "../AccordeonFormSection";
 import clsx from "clsx";
+import { multiStepContext } from "@/context/MedicalRecordStepContext";
 import { getbyTemplateId } from "@/services/templates";
 
 export default function NonPathological() {
+  const { setCurrentStep, submitData } = useContext(multiStepContext);
   const [formDataTemplate, setFormDataTemplate] = useState({});
   const [sectionForm, setSectionForm] = useState({});
   // const [inputList, setInputList] = useState([]);
@@ -59,6 +61,29 @@ export default function NonPathological() {
             />
           );
         })}
+      </div>
+      <div className={clsx("flex justify-between pt-10")}>
+        <button
+          onClick={() => {
+            setCurrentStep(1);
+          }}
+          className={clsx(
+            "bg-blue_gray-50 font-semibold rounded-md text-blue_gray-700 py-2 px-3 text-lg"
+          )}
+        >
+          Atrás
+        </button>
+        <button
+          // onClick={() => {
+          //   setCurrentStep(3);
+          // }}
+          onClick={submitData}
+          className={clsx(
+            "bg-background font-semibold rounded-md text-blue_button py-2 px-3 text-lg"
+          )}
+        >
+          Siguiente
+        </button>
       </div>
     </div>
   );

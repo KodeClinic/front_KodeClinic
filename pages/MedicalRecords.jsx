@@ -1,38 +1,43 @@
 import { useState, useEffect, useContext } from "react";
 import { useRouter } from "next/router";
-import Pagination from "@mui/material/Pagination";
 import clsx from "clsx";
 
 import NavBarSpe from "@/components/NavBarSpe";
 import Pathological from "@/components/MedicalRecords/Pathological";
 import NonPathological from "@/components/MedicalRecords/NonPathological";
-import MedicalRecordStepContext from "@/context/MedicalRecordStepContext";
 import { multiStepContext } from "@/context/MedicalRecordStepContext";
+
+import Stepper from "@mui/material/Stepper";
+import Step from "@mui/material/Step";
+import StepLabel from "@mui/material/StepLabel";
 
 export default function MedicalRecords() {
   const router = useRouter();
 
+  //Estados para el Context
   const [currentStep, setCurrentStep] = useState(1);
-  const [userData, setUserData] = useState([]);
-  const [finalData, setFinalData] = useState([]);
-
-  console.log(userData);
-
-  // const { setCurrentStep } = useContext(multiStepContext);
-  // const [currentStep, finalData] = useContext(MedicalRecordStepContext);
+  const [userData, setUserData] = useState([]); //corroborar si es un array o un objeto
+  const [finalData, setFinalData] = useState([]); //corroborar si es un array o un objeto
 
   useEffect(() => {
     const token = localStorage.getItem("token");
 
     if (!token) {
-      alert("Usuario no autorizado, por favor inicie sesión antes");
+      alert("Inicio de sesión expirado, por favor inicie sesión antes");
+      router.push("/LogIn");
     }
-    // onLogin(token);
   }, []);
 
-  const handlePageChange = (event, newPage) => {
-    setCurrentStep(newPage);
+  const steps = ["Patológicos", "No Patológicos", "Heredo Familiares"];
+
+  const submitData = () => {
+    console.log("Data de UserData: ", userData);
+    setFinalData(userData);
+    setUserData("");
   };
+
+  console.log(userData);
+  console.log("Data final: ", finalData);
 
   const renderPage = (pageNumber) => {
     switch (pageNumber) {
@@ -58,8 +63,6 @@ export default function MedicalRecords() {
     }
   };
 
-  const handleInputChange = (id, event) => {};
-
   return (
     <main className={clsx("bg-background min-h-screen w-full")}>
       <NavBarSpe pageName={"Consulta"} />
@@ -83,17 +86,23 @@ export default function MedicalRecords() {
               setUserData,
               finalData,
               setFinalData,
+              submitData,
             }}
           >
-            {renderPage(currentStep)}
-            <div className={clsx("flex justify-center pt-6")}>
-              <Pagination
-                className={clsx(" sm:left-[500px]")}
-                count={2}
-                page={currentStep}
-                onChange={handlePageChange}
-              ></Pagination>
+            <div className={clsx("flex justify-center pt-5 pb-10")}>
+              <Stepper
+                style={{ width: "100%" }}
+                alternativeLabel
+                activeStep={currentStep - 1}
+              >
+                {steps.map((label) => (
+                  <Step key={label}>
+                    <StepLabel>{label}</StepLabel>
+                  </Step>
+                ))}
+              </Stepper>
             </div>
+            {renderPage(currentStep)}
           </multiStepContext.Provider>
         </div>
       </section>

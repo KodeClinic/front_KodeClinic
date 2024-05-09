@@ -9,32 +9,13 @@ export default function Input({ props }) {
   const renderInput = (props) => {
     switch (props.inputType) {
       case "checkbox":
-        return (
-          <TypeCheckbox
-            label={props.label}
-            inputType={props.inputType}
-            placeholder={props.placeholder}
-          />
-        );
+        return <TypeCheckbox props={props} />;
       case "select":
-        return (
-          <TypeSelect label={props.label} optionSelect={props.optionSelect} />
-        );
+        return <TypeSelect props={props} />;
       case "multiselect":
-        return (
-          <TypeMultiSelect
-            label={props.label}
-            optionSelect={props.optionSelect}
-          />
-        );
+        return <TypeMultiSelect props={props} />;
       default:
-        return (
-          <GeneralInput
-            label={props.label}
-            inputType={props.inputType}
-            placeholder={props.placeholder}
-          />
-        );
+        return <GeneralInput props={props} />;
     }
   };
 

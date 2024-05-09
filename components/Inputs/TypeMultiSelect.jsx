@@ -13,7 +13,8 @@ const selectStyles = {
   }),
 };
 
-export default function TypeMultiSelect({ label, optionSelect }) {
+export default function TypeMultiSelect({ props }) {
+  const { label, optionSelect, _id } = props;
   const { userData, setUserData } = useContext(multiStepContext);
   return (
     <div className={clsx("flex flex-col")}>
@@ -28,7 +29,8 @@ export default function TypeMultiSelect({ label, optionSelect }) {
           options={optionSelect}
           value={userData[label]}
           onChange={(event) => {
-            setUserData({ ...userData, [label]: event });
+            setUserData({ ...userData, [_id]: event }); //para generar un propiedad dentro del objeto global
+            // setUserData([...userData, { [label]: event }]); //para generar un nuevo objeto dentro del array
           }}
         />
       </div>

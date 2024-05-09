@@ -8,13 +8,13 @@ import { getbyTemplateId } from "@/services/templates";
 export default function Pathological() {
   const router = useRouter();
 
-  const {} = useContext(multiStepContext);
+  const { setCurrentStep } = useContext(multiStepContext);
 
   const [formDataTemplate, setFormDataTemplate] = useState({});
   const [sectionName, setSectionName] = useState("");
   const [inputList, setInputList] = useState([]);
 
-  const onLogin = async (token) => {
+  const getTemplateData = async (token) => {
     const credetials = { id: "1", token: token };
     try {
       const response = await getbyTemplateId(credetials);
@@ -36,9 +36,10 @@ export default function Pathological() {
     const token = localStorage.getItem("token");
 
     if (!token) {
-      alert("Usuario no autorizado, por favor inicie sesión antes");
+      alert("Inicio de sesión expirado, por favor inicie sesión antes");
+      router.push("/LogIn");
     }
-    onLogin(token);
+    getTemplateData(token);
   }, []);
 
   return (
@@ -62,6 +63,18 @@ export default function Pathological() {
         {inputList.map((props) => {
           return <Input key={props._id} props={props} />;
         })}
+      </div>
+      <div className={clsx("flex justify-end pt-10")}>
+        <button
+          onClick={() => {
+            setCurrentStep(2);
+          }}
+          className={clsx(
+            "bg-background font-semibold rounded-md text-blue_button py-2 px-3 text-lg"
+          )}
+        >
+          Siguiente
+        </button>
       </div>
     </div>
   );
