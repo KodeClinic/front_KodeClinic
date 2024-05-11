@@ -14,7 +14,7 @@ const selectStyles = {
 };
 
 export default function TypeSelect({ props }) {
-  const { label, optionSelect, _id } = props;
+  const { label, optionSelect, _id, propertyName } = props;
   const { userData, setUserData } = useContext(multiStepContext);
 
   return (
@@ -27,9 +27,9 @@ export default function TypeSelect({ props }) {
           styles={selectStyles}
           placeholder={"Selecciona las opciones"}
           options={optionSelect}
-          value={userData[label]}
+          value={userData[propertyName]}
           onChange={(event) => {
-            setUserData({ ...userData, [_id]: event }); //para generar un propiedad dentro del objeto global
+            setUserData({ ...userData, [propertyName]: event }); //para generar un propiedad dentro del objeto global
             // setUserData([...userData, { [label]: event }]); //para generar un nuevo objeto dentro del array
           }}
         />

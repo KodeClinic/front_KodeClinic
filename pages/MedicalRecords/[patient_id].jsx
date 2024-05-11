@@ -14,11 +14,13 @@ import StepLabel from "@mui/material/StepLabel";
 
 export default function MedicalRecords() {
   const router = useRouter();
+  const patientId = router.query.patient_id;
 
   //Estados para el Context
   const [currentStep, setCurrentStep] = useState(1);
   const [userData, setUserData] = useState([]); //corroborar si es un array o un objeto
   const [finalData, setFinalData] = useState([]); //corroborar si es un array o un objeto
+  const [modal, setModal] = useState(false);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -32,13 +34,24 @@ export default function MedicalRecords() {
   const steps = ["Patológicos", "No Patológicos", "Heredo Familiares"];
 
   const submitData = () => {
-    console.log("Data de UserData: ", userData);
+    const token = localStorage.getItem("token");
     setFinalData(userData);
-    postRecordsData({ data: userData, templateId: 1, patientId: "pendiente" });
+    console.log(finalData);
+    postRecordsData({
+      data: userData,
+      templateId: 1,
+      patientId: patientId,
+      token: token,
+    });
     setUserData("");
+    setFinalData("");
   };
 
-  console.log(userData);
+  const toggleModal = () => {
+    setModal(!modal);
+  };
+
+  //   console.log(userData);
   // console.log("Data final: ", finalData);
 
   const renderPage = (pageNumber) => {
@@ -89,6 +102,8 @@ export default function MedicalRecords() {
               finalData,
               setFinalData,
               submitData,
+              modal,
+              toggleModal,
             }}
           >
             <div className={clsx("flex justify-center pt-5 pb-10")}>

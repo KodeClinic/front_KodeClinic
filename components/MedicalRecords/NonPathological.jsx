@@ -5,14 +5,27 @@ import AccordionFormSection from "../AccordeonFormSection";
 import clsx from "clsx";
 import { multiStepContext } from "@/context/MedicalRecordStepContext";
 import { getbyTemplateId } from "@/services/templates";
+import TwoButtonsModal from "../TwoButtons_Modal.jsx";
 
 export default function NonPathological() {
-  const { setCurrentStep, submitData } = useContext(multiStepContext);
+  const { setCurrentStep, modal, toggleModal } = useContext(multiStepContext);
   const [formDataTemplate, setFormDataTemplate] = useState({});
   const [sectionForm, setSectionForm] = useState({});
+  // const [modal, setModal] = useState(false);
   // const [inputList, setInputList] = useState([]);
 
-  const onLogin = async (token) => {
+  const modalProps = {
+    title: "Antecendetes Médicos del paciente",
+    description: "¿Está seguro que desea finalizar los Antecendentes Médicos?",
+    buttonLeft: "Cancelar",
+    buttonRight: "Finalizar",
+  };
+
+  // const toggleModal = () => {
+  //   setModal(!modal);
+  // };
+
+  const getTemplateData = async (token) => {
     const credetials = { id: "1", token: token };
     try {
       const response = await getbyTemplateId(credetials);
@@ -36,7 +49,7 @@ export default function NonPathological() {
     if (!token) {
       alert("Usuario no autorizado, por favor inicie sesión antes");
     }
-    onLogin(token);
+    getTemplateData(token);
   }, []);
 
   return (
@@ -73,7 +86,7 @@ export default function NonPathological() {
         >
           Atrás
         </button>
-        <button
+        {/* <button
           // onClick={() => {
           //   setCurrentStep(3);
           // }}
@@ -83,7 +96,17 @@ export default function NonPathological() {
           )}
         >
           Siguiente
+        </button> */}
+
+        <button
+          onClick={toggleModal}
+          className={clsx(
+            "bg-background font-semibold rounded-md text-blue_button py-2 px-3 text-lg"
+          )}
+        >
+          Siguiente
         </button>
+        {modal && <TwoButtonsModal props={modalProps} />}
       </div>
     </div>
   );

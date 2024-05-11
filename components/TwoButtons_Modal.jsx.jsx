@@ -1,6 +1,12 @@
+import { useContext } from "react";
+import { multiStepContext } from "@/context/MedicalRecordStepContext";
 import clsx from "clsx";
 
-export default function TwoButtonsModal(props) {
+export default function TwoButtonsModal({ props }) {
+  const { title, description, buttonLeft, buttonRight } = props;
+
+  const { toggleModal, submitData } = useContext(multiStepContext);
+
   return (
     <>
       <div
@@ -12,7 +18,8 @@ export default function TwoButtonsModal(props) {
           "backdrop-blur-sm",
           "flex",
           "justify-center",
-          "items-center"
+          "items-center",
+          "rounded-[20px]"
         )}
       >
         <div
@@ -37,7 +44,7 @@ export default function TwoButtonsModal(props) {
                 "font-semibold"
               )}
             >
-              {props.title}
+              {title}
             </span>
           </div>
           <div
@@ -46,9 +53,10 @@ export default function TwoButtonsModal(props) {
             <span
               className={clsx("text-green_title", "text-center md:text-xl")}
             >
-              ¿Desea finalizar su sesión de
+              {/* ¿Desea finalizar su sesión de */}
+              {description}
             </span>
-            <span
+            {/* <span
               className={clsx(
                 "text-center md:text-xl",
                 "pl-2",
@@ -56,7 +64,7 @@ export default function TwoButtonsModal(props) {
               )}
             >
               KodeClinic?
-            </span>
+            </span> */}
           </div>
           <div
             className={clsx(
@@ -67,6 +75,7 @@ export default function TwoButtonsModal(props) {
             )}
           >
             <button
+              onClick={toggleModal}
               className={clsx(
                 "border",
                 " border-2",
@@ -80,9 +89,10 @@ export default function TwoButtonsModal(props) {
                 "py-2"
               )}
             >
-              {props.button1}
+              {buttonLeft}
             </button>
             <button
+              onClick={submitData}
               className={clsx(
                 "border",
                 " border-2",
@@ -96,7 +106,7 @@ export default function TwoButtonsModal(props) {
                 "py-2"
               )}
             >
-              {props.button2}
+              {buttonRight}
             </button>
           </div>
         </div>

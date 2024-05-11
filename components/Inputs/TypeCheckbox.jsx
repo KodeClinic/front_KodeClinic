@@ -3,15 +3,16 @@ import clsx from "clsx";
 import { multiStepContext } from "@/context/MedicalRecordStepContext";
 
 export default function TypeCheckbox({ props }) {
-  const { label, inputType, placeholder, _id } = props;
+  const { label, inputType, placeholder, _id, propertyName } = props;
   const { userData, setUserData } = useContext(multiStepContext);
   const [checkValue, setCheckValue] = useState(true);
 
   const checkHandler = () => {
     setCheckValue(!checkValue);
-    setUserData({ ...userData, [_id]: checkValue }); //para generar un propiedad dentro del objeto global
+    setUserData({ ...userData, [propertyName]: checkValue }); //para generar un propiedad dentro del objeto global
     // setUserData([...userData, { [_id]: checkValue }]); //para generar un nuevo objeto dentro del array
   };
+
   return (
     <div
       className={clsx("flex flex-row-reverse justify-end items-center gap-3")}
