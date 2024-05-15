@@ -14,11 +14,12 @@ import StepLabel from "@mui/material/StepLabel";
 
 export default function MedicalRecords() {
   const router = useRouter();
+  const patientId = router.query; //Pendiente validar si es así. Problamemente cambie como appointment/[appointment_id].jsx
 
   //Estados para el Context
   const [currentStep, setCurrentStep] = useState(1);
-  const [userData, setUserData] = useState([]); //corroborar si es un array o un objeto
-  const [finalData, setFinalData] = useState([]); //corroborar si es un array o un objeto
+  const [userData, setUserData] = useState([]);
+  const [finalData, setFinalData] = useState([]);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -29,12 +30,18 @@ export default function MedicalRecords() {
     }
   }, []);
 
-  const steps = ["Patológicos", "No Patológicos", "Heredo Familiares"];
+  const steps = ["Patológicos", "No Patológicos", "Heredo Familiares"]; //pendiente agregar en el template
 
   const submitData = () => {
+    const token = localStorage.getItem("token");
     console.log("Data de UserData: ", userData);
     setFinalData(userData);
-    postRecordsData({ data: userData, templateId: 1, patientId: "pendiente" });
+    postRecordsData({
+      data: userData,
+      templateId: 1,
+      patientId: patientId,
+      token: token,
+    });
     setUserData("");
   };
 

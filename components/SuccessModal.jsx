@@ -1,6 +1,7 @@
 import clsx from "clsx";
 
 export default function SuccessModal(props) {
+  const { text, button } = props;
   return (
     <>
       <div
@@ -33,7 +34,7 @@ export default function SuccessModal(props) {
             src="/assets/Vector.png"
             alt="imgCheck"
           />
-          <span className="text-center md:text-lg">{props.text}</span>
+          <span className="text-center md:text-lg">{text}</span>
           <button
             className={clsx(
               "border",
@@ -47,7 +48,7 @@ export default function SuccessModal(props) {
               "md:text-lg"
             )}
           >
-            {props.button}
+            {button}
           </button>
         </div>
         <div className={clsx("")}>

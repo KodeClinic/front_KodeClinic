@@ -10,3 +10,13 @@ export function postRecordsData(credentials) {
   };
   return fetch(URL, options);
 }
+
+export function getRecordsData(credentials) {
+  const { patientId, templateId, token } = credentials;
+  const URL = `${URL_BASE}api/medicalRecords/get/${patientId}/${templateId}`;
+  const options = {
+    method: "GET",
+    headers: { "Content-Type": "application/json", bearerauth: token },
+  };
+  return fetch(URL, options);
+}
