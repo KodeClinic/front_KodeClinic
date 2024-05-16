@@ -6,7 +6,7 @@ import { WelcomePageContext } from "@/context/WelcomePageContext";
 
 export default function Availability() {
   const router = useRouter();
-  const { setCurrentStep } = useContext(WelcomePageContext);
+  const { setCurrentStep, submitData } = useContext(WelcomePageContext);
 
   return (
     <>
@@ -89,6 +89,7 @@ export default function Availability() {
 
             <button
               onClick={() => {
+                submitData;
                 setCurrentStep(5);
               }}
               className={clsx(

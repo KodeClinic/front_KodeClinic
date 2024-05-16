@@ -1,6 +1,11 @@
 import clsx from "clsx";
+import { useContext } from "react";
+import { useRouter } from "next/router";
+import { WelcomePageContext } from "@/context/WelcomePageContext";
 
 export default function Confirmation() {
+  const router = useRouter();
+  const { submitData } = useContext(WelcomePageContext);
   return (
     <>
       <div className={clsx("p-8")}>
@@ -61,6 +66,7 @@ export default function Confirmation() {
 
         <div className={clsx("flex", "justify-center")}>
           <button
+            onClick={() => {}}
             className={clsx(
               "border",
               " border-2",
