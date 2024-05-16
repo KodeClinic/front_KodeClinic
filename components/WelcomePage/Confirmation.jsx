@@ -5,7 +5,7 @@ import { WelcomePageContext } from "@/context/WelcomePageContext";
 
 export default function Confirmation() {
   const router = useRouter();
-  const { submitData } = useContext(WelcomePageContext);
+  const { specialistId } = useContext(WelcomePageContext);
   return (
     <>
       <div className={clsx("p-8")}>
@@ -66,7 +66,12 @@ export default function Confirmation() {
 
         <div className={clsx("flex", "justify-center")}>
           <button
-            onClick={() => {}}
+            onClick={() => {
+              router.push({
+                pathname: "/DashboardSpe",
+                query: { id: specialistId },
+              });
+            }}
             className={clsx(
               "border",
               " border-2",

@@ -89,7 +89,7 @@ export default function Availability() {
 
             <button
               onClick={() => {
-                submitData;
+                submitData();
                 setCurrentStep(5);
               }}
               className={clsx(

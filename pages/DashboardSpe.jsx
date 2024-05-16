@@ -75,6 +75,13 @@ export default function DashboardEsp() {
       const response = await getUserById(credetials);
       const dataJSON = await response.json();
       setSpecialistData(dataJSON.data);
+
+      if (specialistData.informationComplete == false) {
+        router.push({
+          pathname: "/WelcomePage",
+          query: { id: dataJSON.data.id },
+        });
+      }
     } catch (error) {
       alert(
         "Ocurrió un problema al intentar acceder, por favor inténtenlo de nuevo"

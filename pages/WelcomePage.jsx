@@ -23,8 +23,6 @@ export default function WelcomePage() {
   const [userData, setUserData] = useState([]);
   const [finalData, setFinalData] = useState([]);
 
-  const steps = ["Patológicos", "No Patológicos", "Heredo Familiares"];
-
   useEffect(() => {
     const token = localStorage.getItem("token");
 
@@ -89,6 +87,7 @@ export default function WelcomePage() {
             finalData,
             setFinalData,
             submitData,
+            specialistId,
           }}
         >
           {/* <div className="grid place-items-center"> */}
