@@ -104,7 +104,7 @@ export default function DashboardEsp() {
 
   return (
     <main className={clsx("bg-background min-h-screen w-full")}>
-      <NavBarSpe pageName={"Agenda"} />
+      <NavBarSpe pageName={"Agenda"} id={dataQuery.id} />
 
       <SpecialistCard
         name={specialistData?.name + " " + specialistData?.lastName}
