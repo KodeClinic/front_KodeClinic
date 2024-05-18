@@ -75,8 +75,9 @@ export default function DashboardEsp() {
       const response = await getUserById(credetials);
       const dataJSON = await response.json();
       setSpecialistData(dataJSON.data);
+      // console.log(dataJSON.data);
 
-      if (specialistData.informationComplete == false) {
+      if (dataJSON.data.informationComplete === false) {
         router.push({
           pathname: "/WelcomePage",
           query: { id: dataJSON.data.id },
