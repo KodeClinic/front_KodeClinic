@@ -36,33 +36,37 @@ export default function SpecialistCard({ name, gender, email, cel, cedProf }) {
           )}
         >
           <div className={clsx("flex gap-[10px] items-center")}>
-            {gender == "male" ? (
+            {gender == "female" ? (
               <img
                 className={clsx("w-5 h-5")}
-                src="assets/icons/man-icon.svg"
+                src="/assets/icons/woman-icon.svg"
                 alt=""
               />
             ) : (
               <img
                 className={clsx("w-5 h-5")}
-                src="assets/icons/woman-icon.svg"
+                src="/assets/icons/man-icon.svg"
                 alt=""
               />
             )}
 
-            <span
-              className={clsx(
-                "text-base font-normal",
-                "min-[980px]:text-[18px]"
-              )}
-            >
-              {name}
-            </span>
+            {gender ? (
+              <span
+                className={clsx(
+                  "text-base font-normal",
+                  "min-[980px]:text-[18px]"
+                )}
+              >
+                {name}
+              </span>
+            ) : (
+              ""
+            )}
           </div>
           <div className={clsx("flex gap-[10px] items-center")}>
             <img
               className={clsx("w-5 h-5")}
-              src="assets/icons/mail-icon.svg"
+              src="/assets/icons/mail-icon.svg"
               alt=""
             />
             <span
@@ -78,7 +82,7 @@ export default function SpecialistCard({ name, gender, email, cel, cedProf }) {
           <div className={clsx("flex gap-[10px] items-center")}>
             <img
               className={clsx("w-5 h-5")}
-              src="assets/icons/phone-icon.svg"
+              src="/assets/icons/phone-icon.svg"
               alt=""
             />
             <span
@@ -97,7 +101,7 @@ export default function SpecialistCard({ name, gender, email, cel, cedProf }) {
           >
             <img
               className={clsx("w-5 h-5")}
-              src="assets/icons/license-icon.svg"
+              src="/assets/icons/license-icon.svg"
               alt=""
             />
             <span
@@ -119,7 +123,7 @@ export default function SpecialistCard({ name, gender, email, cel, cedProf }) {
           "absolute",
           "bottom-0 sm:right-10 min-[980px]:right-14"
         )}
-        src="assets/img-specialistCard.png"
+        src="/assets/img-specialistCard.png"
         alt="psiotherapy"
       />
     </section>

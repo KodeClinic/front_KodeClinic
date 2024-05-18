@@ -1,0 +1,52 @@
+{
+  "structural": {
+    "injury_zone": {
+      "label": "",
+      "inputType": "text",
+      "placeholder": "",
+      "value":""
+    },
+    "evolution_time": {
+      "label": "",
+      "inputType": "text",
+      "placeholder": ""
+    },
+    "structure_damaged": {
+      "label": "",
+      "inputType": "text",
+      "placeholder": ""
+    },
+    "injury_mechanism": {
+      "label": "",
+      "inputType": "text",
+      "placeholder": ""
+    },
+    "functional_limitation": {
+      "label": "",
+      "inputType": "text",
+      "placeholder": ""
+    }
+  },
+  "studies": {
+    "ENA_pain": {
+      "label": "",
+      "inputType": "text",
+      "placeholder": ""
+    },
+    "temporality": {
+      "label": "",
+      "inputType": "text",
+      "placeholder": ""
+    },
+    "type": {
+      "label": "",
+      "inputType": "text",
+      "placeholder": ""
+    },
+    "previous_studies": {
+      "label": "",
+      "inputType": "text",
+      "placeholder": ""
+    }
+  }
+}

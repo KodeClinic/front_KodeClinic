@@ -4,7 +4,10 @@ import NavBarSpe from "@/components/NavBarSpe";
 import SpecialistCard from "@/components/SpecialistCard";
 import AccordionAppointments from "@/components/AccordionAppointments";
 import AccordionFreeAgenda from "@/components/AccordeonFreeAgenda";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useRouter } from "next/router";
+import { getUserById } from "@/services/users/auth";
+
 // Para utilizar el calendario
 import { esES } from "@mui/x-date-pickers/locales";
 import dayjs from "dayjs";
@@ -65,8 +68,43 @@ const freeAgendaData = [
 ];
 
 export default function DashboardEsp() {
+  const router = useRouter();
+  const dataQuery = router.query;
   const [Date, setDate] = useState(dayjs());
-  console.log(Date);
+  const [specialistData, setSpecialistData] = useState({});
+
+  const onLogin = async (dataQuery, token) => {
+    const credetials = { id: dataQuery.id, token: token };
+    try {
+      const response = await getUserById(credetials);
+      const dataJSON = await response.json();
+      setSpecialistData(dataJSON.data);
+
+      if (specialistData.informationComplete == false) {
+        router.push({
+          pathname: "/WelcomePage",
+          query: { id: dataJSON.data.id },
+        });
+      }
+    } catch (error) {
+      alert(
+        "Ocurrió un problema al intentar acceder, por favor inténtenlo de nuevo"
+      );
+      router.push("/LogIn");
+    }
+  };
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+      alert(
+        "Ocurrió un problema al intentar acceder, por favor inténtenlo de nuevo"
+      );
+      router.push("/LogIn");
+    }
+    onLogin(dataQuery, token);
+  }, []);
 
   const [showModal, setShowModal] = useState(false);
 
@@ -90,11 +128,11 @@ export default function DashboardEsp() {
       
 
       <SpecialistCard
-        name={"Juan José Martinez Perez"}
-        gender={"male"}
-        email={"mart.juan@gmail.com"}
-        cel={"33 12 34 56 89"}
-        cedProf={"12345678"}
+        name={specialistData?.name + " " + specialistData?.lastName}
+        gender={specialistData?.gender}
+        email={specialistData?.email}
+        cel={specialistData?.cellphone}
+        cedProf={specialistData?.specialistInformation?.medicalLicense}
       />
       <section
         className={clsx(

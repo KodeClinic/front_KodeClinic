@@ -59,3 +59,16 @@ export function sendEmailCode(credentials) {
   };
   return fetch(URL, options);
 }
+
+export function getUserById(credentials) {
+  const { id, token } = credentials;
+  const URL = `${URL_BASE}api/users/${id}`;
+  const options = {
+    // method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      bearerauth: token,
+    },
+  };
+  return fetch(URL, options);
+}
