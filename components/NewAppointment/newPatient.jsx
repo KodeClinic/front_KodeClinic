@@ -385,7 +385,6 @@ export default function AppointmentNewPatient() {
         </div>
       </form>
       {submitSuccess ? (
-        // <NewPatientModal/>
         <SuccessModal
           text="Cita guardada con éxito"
           button="Confirmar"
