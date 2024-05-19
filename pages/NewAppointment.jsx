@@ -1,12 +1,8 @@
 import clsx from "clsx";
 import { useState } from "react";
-import SuccessModal from "@/components/SuccessModal";
-import { PaymentModal } from "@/components/Payment_Modal";
-import TwoButtonsModal from "@/components/TwoButtons_Modal.jsx";
-import NewPatientModal from "@/components/NewPatient_Modal";
+import NewPatientModal from "@/components/NewPatient_Modal"; //pendiente agreagar en el flujo
 import AppointmentNewPatient from "@/components/NewAppointment/newPatient";
 import AppointmentExistingPatient from "@/components/NewAppointment/existingPatient";
-import AppointmentExistingPatient2 from "@/components/NewAppointment/existingPatient2";
 import NavBarSpe from "@/components/NavBarSpe";
 
 export default function NewAppointment() {
@@ -18,8 +14,7 @@ export default function NewAppointment() {
         return <AppointmentNewPatient />;
 
       case 2:
-        return <AppointmentExistingPatient2 />;
-      // <AppointmentExistingPatient />;
+        return <AppointmentExistingPatient />;
     }
   };
 

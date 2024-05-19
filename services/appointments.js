@@ -10,3 +10,14 @@ export function postAppointmentNewPatient(credentials) {
   };
   return fetch(URL, options);
 }
+
+export function postAppointmentExistingPatient(credentials) {
+  const { specialistId, data, token } = credentials;
+  const URL = `${URL_BASE}api/appointments/createEP/${specialistId}`;
+  const options = {
+    method: "POST",
+    body: JSON.stringify(data),
+    headers: { "Content-Type": "application/json", bearerauth: token },
+  };
+  return fetch(URL, options);
+}
