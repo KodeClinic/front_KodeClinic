@@ -6,6 +6,7 @@ import { useFormik } from "formik";
 import { AppointmentNewPatientSchema } from "@/schemas/appointmentNewPatient";
 import CustomSelect from "./SelectInput";
 import { postAppointmentNewPatient } from "@/services/appointments";
+import NewPatientModal from "../NewPatient_Modal";
 import SuccessModal from "../SuccessModal";
 
 export default function AppointmentNewPatient() {
@@ -384,6 +385,7 @@ export default function AppointmentNewPatient() {
         </div>
       </form>
       {submitSuccess ? (
+        // <NewPatientModal/>
         <SuccessModal
           text="Cita guardada con éxito"
           button="Confirmar"

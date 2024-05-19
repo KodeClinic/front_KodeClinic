@@ -1,6 +1,10 @@
 import clsx from "clsx";
+import { useRouter } from "next/router";
 
-export default function NewPatientModal() {
+export default function NewPatientModal(props) {
+  const { id } = props;
+  const router = useRouter();
+
   return (
     <>
       <div
@@ -32,7 +36,10 @@ export default function NewPatientModal() {
           <div className={clsx("flex", "justify-end")}>
             <button
               onClick={() => {
-                () => onClose();
+                router.push({
+                  pathname: "/DashboardSpe",
+                  query: { id: id },
+                });
               }}
             >
               <svg
@@ -85,6 +92,12 @@ export default function NewPatientModal() {
                 "px-4",
                 "py-2"
               )}
+              onClick={() => {
+                router.push({
+                  pathname: "/DashboardSpe",
+                  query: { id: id },
+                });
+              }}
             >
               Entendido
             </button>

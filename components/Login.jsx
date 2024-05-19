@@ -28,9 +28,20 @@ export default function Login() {
         localStorage.setItem("token", dataJSON.data.token);
         setIsLoading(false);
         setIsFailed(false);
-        if (dataJSON.data.role === "specialist") {
+        if (
+          dataJSON.data.role === "specialist" &&
+          dataJSON.data.informationComplete == true
+        ) {
           router.push({
             pathname: "/DashboardSpe",
+            query: { id: dataJSON.data.id },
+          });
+        } else if (
+          dataJSON.data.role === "specialist" &&
+          dataJSON.data.informationComplete == false
+        ) {
+          router.push({
+            pathname: "/WelcomePage",
             query: { id: dataJSON.data.id },
           });
         } else if (dataJSON.data.role === "patient") {
