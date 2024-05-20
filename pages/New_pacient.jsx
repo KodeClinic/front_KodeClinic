@@ -4,10 +4,45 @@ import Emergency_info from "@/components/New_pacient/Emergency_info";
 import Personal_info from "@/components/New_pacient/Personal_info";
 import Pagination from "@mui/material/Pagination";
 import clsx from "clsx";
-import { useState } from "react";
+
+import { useEffect, useState } from "react";
+import { NewPacientContext } from "@/context/NewPacientContext";
+import { completeInformation } from "@/services/specialists";
+import { useRouter } from "next/router";
 
 export default function New_pacient() {
   const [currentPage, setCurrentPage] = useState(1);
+
+  //Estados para construir el context
+  const [newPxData, setNewPxData] = useState([]);
+  const [finalPxData, setFinalPxData] = useState([]);
+
+  const router = useRouter();
+  const specialistId = router.query.id;
+
+  //Obtencion de token para acceso controlado
+  /*  useEffect(() => {
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+      alert("Inicio de sesión expirado, por favor inicie sesión antes");
+      router.push("/LogIn");
+    }
+  }, []);*/
+
+  const submitData = () => {
+    console.log("Data de newPxData: ", newPxData);
+    const token = localStorage.getItem("token");
+    setFinalPxData(newPxData);
+    completeInformation({
+      data: newPxData,
+      specialistId: specialistId,
+      token: token,
+    });
+    setNewPxData("");
+  };
+
+  console.log(newPxData);
 
   const handlePageChange = (event, newPage) => {
     setCurrentPage(newPage);
@@ -41,14 +76,25 @@ export default function New_pacient() {
     <section
       className={clsx("bg-background", "grid place-items-center relative")}
     >
-      <NavBarSpe pageName={"Añadir Paciente"} />
-      {renderCard(currentPage)}
-      <Pagination
-        className="absolute bottom-10 sm:left-[500px]"
-        count={3}
-        page={currentPage}
-        onChange={handlePageChange}
-      ></Pagination>
+      <NewPacientContext.Provider
+        value={{
+          newPxData,
+          setNewPxData,
+          finalPxData,
+          setFinalPxData,
+          submitData,
+          specialistId,
+        }}
+      >
+        <NavBarSpe pageName={"Añadir Paciente"} />
+        {renderCard(currentPage)}
+        <Pagination
+          className="absolute bottom-10 sm:left-[500px]"
+          count={3}
+          page={currentPage}
+          onChange={handlePageChange}
+        ></Pagination>
+      </NewPacientContext.Provider>
     </section>
   );
 }

@@ -1,6 +1,10 @@
+import { NewPacientContext } from "@/context/NewPacientContext";
 import clsx from "clsx";
+import { useContext } from "react";
 
 export default function Personal_info() {
+  const { newPxData, setNewPxData } = useContext(NewPacientContext);
+
   return (
     <div className="bg-background p-5 flex justify-center">
       <article
@@ -30,6 +34,10 @@ export default function Personal_info() {
                 type="text"
                 placeholder="Raúl"
                 className="border-2 border-[#2196F3] rounded-md w-[300px] h-[40px]"
+                value={newPxData.name}
+                onChange={(event) => {
+                  setNewPxData({ ...newPxData, name: event.target.value });
+                }}
               />
             </div>
 
@@ -41,6 +49,13 @@ export default function Personal_info() {
                 type="text"
                 placeholder="Perez"
                 className="border-2 border-[#2196F3] rounded-md w-[300px] h-[40px]"
+                value={newPxData.lastName}
+                onChange={(event) => {
+                  setNewPxData({
+                    ...newPxData,
+                    lastName: event.target.value,
+                  });
+                }}
               />
             </div>
 
@@ -50,30 +65,58 @@ export default function Personal_info() {
               </p>
               <input
                 type="date"
-                placeholder="Nombres"
                 className="border-2 border-[#2196F3] rounded-md w-[300px] h-[40px]"
+                value={newPxData.birthDate}
+                onChange={(event) => {
+                  setNewPxData({
+                    ...newPxData,
+                    birthDate: event.target.value,
+                  });
+                }}
               />
             </div>
+
             <div className="mt-3">
               <p className={clsx("font-semibold text-[14px]")}>Ocupación</p>
               <input
                 type="text"
                 placeholder="Estudiante, Ingeniero, Estilista....etc"
                 className="border-2 border-[#2196F3] rounded-md w-[300px] h-[40px]"
+                value={newPxData.occupation}
+                onChange={(event) => {
+                  setNewPxData({
+                    ...newPxData,
+                    occupation: event.target.value,
+                  });
+                }}
               />
             </div>
+
             <div className="mt-3">
               <p className={clsx("font-semibold text-[14px]")}>Sexo</p>
-              <select className="border-2 border-[#2196F3] rounded-md w-[300px] h-[40px]">
+              <select
+                className="border-2 border-[#2196F3] rounded-md w-[300px] h-[40px]"
+                value={newPxData.gender}
+                onChange={(event) => {
+                  setNewPxData({ ...newPxData, gender: event.target.value });
+                }}
+              >
                 <option value="Masculino">Masculino</option>
                 <option value="Femenino">Femenino</option>
               </select>
             </div>
+
             <div className="mt-3">
               <p className={clsx("font-semibold text-[14px]")}>
                 Tipo de sanguíneo
               </p>
-              <select className="border-2 border-[#2196F3] rounded-md w-[300px] h-[40px]">
+              <select
+                className="border-2 border-[#2196F3] rounded-md w-[300px] h-[40px]"
+                value={newPxData.bloodType}
+                onChange={(event) => {
+                  setNewPxData({ ...newPxData, bloodType: event.target.value });
+                }}
+              >
                 <option value="A+">A+</option>
                 <option value="A-">A-</option>
                 <option value="B+">B+</option>
@@ -84,12 +127,17 @@ export default function Personal_info() {
                 <option value="Femenino">O-</option>
               </select>
             </div>
+
             <div className="mt-3">
               <p className={clsx("font-semibold text-[14px]")}>Religión</p>
               <input
                 type="text"
                 placeholder="Católica, Judía, Cristiano..etc"
                 className="border-2 border-[#2196F3] rounded-md w-[300px] h-[40px]"
+                value={newPxData.religion}
+                onChange={(event) => {
+                  setNewPxData({ ...newPxData, religion: event.target.value });
+                }}
               />
             </div>
           </section>
