@@ -68,7 +68,7 @@ export default function NavBar() {
             "py-5 px-4 sm:pr-14 max-w-[360px] ",
             "min-[980px]:flex-row min-[980px]:max-w-[740px] min-[980px]:pr-20 min-[980px]:pl-0 min-[980px]:gap-7 min-[980px]:py-3",
             "absolute min-[980px]:static z-[-1] right-0 top-[60spx] w-full min-[980px]:z-auto bg-white min-[980px]:items-center min-[980px]:justify-end",
-            "transition-all, ease-in duration-300",
+            "transition-all ease-in duration-300",
             isOpen ? "top-12" : "top-[-490px]"
           )}
         >

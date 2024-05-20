@@ -2,13 +2,18 @@ import clsx from "clsx";
 import React from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { useState } from "react";
+import HamburgerMenuSpe from "./HamburgerMenuSpe";
+import { navbarContext } from "@/context/NavBarContext";
 
-export default function NavBarSpe({ pageName, mostrarModal }) {
-  const handleShowModal = () => {
-    mostrarModal(true);
+export default function NavBarSpe({ pageName }) {
+  // export default function NavBarSpe({ pageName, mostrarModal }) {
+  const [showMenu, setShowMenu] = useState(false);
+  const handleMenu = () => {
+    setShowMenu(!showMenu);
   };
   const router = useRouter();
-  const { id } = router.query;
+  const id = router.query.id;
   const onLogout = () => {
     localStorage.removeItem("token");
     router.push("/");
@@ -16,6 +21,9 @@ export default function NavBarSpe({ pageName, mostrarModal }) {
 
   return (
     <nav className={clsx("bg-white drop-shadow-md", "fixed top-0 z-50 w-full")}>
+      <navbarContext.Provider value={{ handleMenu, id, onLogout }}>
+        {showMenu ? <HamburgerMenuSpe /> : ""}
+      </navbarContext.Provider>
       <div
         className={clsx(
           "flex flex-row justify-between",
@@ -33,7 +41,7 @@ export default function NavBarSpe({ pageName, mostrarModal }) {
               className={clsx("w-auto min-h-5", "cursor-pointer")}
               src="/assets/icons/menu-icon.svg"
               alt="menu"
-              onClick={handleShowModal}
+              onClick={handleMenu}
               style={{ cursor: "pointer" }}
             />
           </a>
