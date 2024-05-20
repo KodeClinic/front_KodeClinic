@@ -120,11 +120,11 @@ export default function Personal_info() {
                 <option value="A+">A+</option>
                 <option value="A-">A-</option>
                 <option value="B+">B+</option>
-                <option value="Femenino">B-</option>
-                <option value="Femenino">AB+</option>
-                <option value="Femenino">AB-</option>
-                <option value="Femenino">O+</option>
-                <option value="Femenino">O-</option>
+                <option value="B-">B-</option>
+                <option value="AB+">AB+</option>
+                <option value="AB-">AB-</option>
+                <option value="O+">O+</option>
+                <option value="O-">O-</option>
               </select>
             </div>
 

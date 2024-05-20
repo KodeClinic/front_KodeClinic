@@ -1,6 +1,10 @@
+import { NewPacientContext } from "@/context/NewPacientContext";
 import clsx from "clsx";
+import { useContext } from "react";
 
 export default function Contact_info() {
+  const { newPxData, setNewPxData } = useContext(NewPacientContext);
+
   return (
     <div className="bg-background p-5 flex justify-center">
       <article
@@ -30,6 +34,13 @@ export default function Contact_info() {
                 type="text"
                 placeholder="micorreo@mail.com"
                 className="border-2 border-[#2196F3] rounded-md w-[300px] h-[40px]"
+                value={newPxData.email}
+                onChange={(event) => {
+                  setNewPxData({
+                    ...newPxData,
+                    email: event.target.value,
+                  });
+                }}
               />
             </div>
 
@@ -39,6 +50,13 @@ export default function Contact_info() {
                 type="text"
                 placeholder="Calle y número exterior"
                 className="border-2 border-[#2196F3] rounded-md w-[300px] h-[40px]"
+                value={newPxData.address}
+                onChange={(event) => {
+                  setNewPxData({
+                    ...newPxData,
+                    address: event.target.value,
+                  });
+                }}
               />
             </div>
 
@@ -48,12 +66,28 @@ export default function Contact_info() {
                 type="text"
                 placeholder="Aquiles Serdan"
                 className="border-2 border-[#2196F3] rounded-md w-[300px] h-[40px]"
+                value={newPxData.colony}
+                onChange={(event) => {
+                  setNewPxData({
+                    ...newPxData,
+                    colony: event.target.value,
+                  });
+                }}
               />
             </div>
 
             <div className="mt-3">
               <p className={clsx("font-semibold text-[14px]")}>Estado</p>
-              <select className="border-2 border-[#2196F3] rounded-md w-[300px] h-[40px]">
+              <select
+                className="border-2 border-[#2196F3] rounded-md w-[300px] h-[40px]"
+                value={newPxData.state}
+                onChange={(event) => {
+                  setNewPxData({
+                    ...newPxData,
+                    state: event.target.value,
+                  });
+                }}
+              >
                 <option value="Ciudad_de_Mexico">Ciudad de México</option>
                 <option value="Ciudad_de_Mexico">Estado de México</option>
                 <option value="Aguascalientes">Aguascalientes</option>
@@ -96,6 +130,13 @@ export default function Contact_info() {
                 type="text"
                 placeholder="5557841726"
                 className="border-2 border-[#2196F3] rounded-md w-[300px] h-[40px]"
+                value={newPxData.cellphone}
+                onChange={(event) => {
+                  setNewPxData({
+                    ...newPxData,
+                    cellphone: event.target.value,
+                  });
+                }}
               />
             </div>
           </section>
