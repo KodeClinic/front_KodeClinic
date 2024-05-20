@@ -1,8 +1,19 @@
 import clsx from "clsx";
 import React from "react";
+import Link from "next/link";
+import { useRouter } from "next/router";
 
 export default function NavBarSpe({ pageName, mostrarModal }) {
-    const handleShowModal = () => {mostrarModal(true)}
+  const handleShowModal = () => {
+    mostrarModal(true);
+  };
+  const router = useRouter();
+  const { id } = router.query;
+  const onLogout = () => {
+    localStorage.removeItem("token");
+    router.push("/");
+  };
+
   return (
     <nav className={clsx("bg-white drop-shadow-md", "fixed top-0 z-50 w-full")}>
       <div
@@ -17,7 +28,7 @@ export default function NavBarSpe({ pageName, mostrarModal }) {
             " sm:px-14  min-[980px]:pl-20 min-[980px]:pr-0"
           )}
         >
-          <a  className=" flex justify-center p-[6px] w-10">
+          <a className=" flex justify-center p-[6px] w-10">
             <img
               className={clsx("w-auto min-h-5", "cursor-pointer")}
               src="/assets/icons/menu-icon.svg"
@@ -26,12 +37,18 @@ export default function NavBarSpe({ pageName, mostrarModal }) {
               style={{ cursor: "pointer" }}
             />
           </a>
-
-          <img
-            className={clsx("w-7 h-7", "min-[980px]:w-8 min-[980px]:h-8")}
-            src="/assets/img-kodeclinic-logo.png"
-            alt="kodeclinic_logo"
-          />
+          <Link
+            href={{
+              pathname: "/DashboardSpe",
+              query: { id: id },
+            }}
+          >
+            <img
+              className={clsx("w-7 h-7", "min-[980px]:w-8 min-[980px]:h-8")}
+              src="/assets/img-kodeclinic-logo.png"
+              alt="kodeclinic_logo"
+            />
+          </Link>
 
           <span
             className={clsx(
@@ -49,8 +66,11 @@ export default function NavBarSpe({ pageName, mostrarModal }) {
             " sm:px-14  min-[980px]:pr-20 min-[980px]:pl-0"
           )}
         >
-          <a
-            href=""
+          <Link
+            href={{
+              pathname: "/NewAppointment",
+              query: { id: id },
+            }}
             className={clsx(
               "flex justify-center p-[6px] bg-background w-10 rounded-md"
             )}
@@ -60,9 +80,12 @@ export default function NavBarSpe({ pageName, mostrarModal }) {
               src="/assets/icons/newdate-icon.svg"
               alt="new-appointment"
             />
-          </a>
-          <a
-            href=""
+          </Link>
+          <Link
+            href={{
+              pathname: "/New_pacient",
+              query: { id: id },
+            }}
             className={clsx(
               "flex justify-center p-[6px] bg-background w-10 rounded-md"
             )}
@@ -72,9 +95,9 @@ export default function NavBarSpe({ pageName, mostrarModal }) {
               src="/assets/icons/newpatient-icon.svg"
               alt="new-patient"
             />
-          </a>
-          <a
-            href=""
+          </Link>
+          <button
+            onClick={onLogout}
             className={clsx(
               "flex justify-center p-[6px] bg-background w-10 rounded-md",
               "hidden sm:block"
@@ -85,7 +108,7 @@ export default function NavBarSpe({ pageName, mostrarModal }) {
               src="/assets/icons/logout-icon.svg"
               alt="log-out"
             />
-          </a>
+          </button>
         </div>
       </div>
     </nav>

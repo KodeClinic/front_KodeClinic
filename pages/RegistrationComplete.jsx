@@ -27,11 +27,12 @@ export default function RegistrationComplete() {
             <button
               className="bg-blue_button w-full hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
               type="button"
-              onClick={() =>
-                router.push({
-                  pathname: "/DashboardSpe",
-                  query: { email: data.email },
-                })
+              onClick={
+                () => router.push("/LogIn")
+                // router.push({
+                //   pathname: "/DashboardSpe",
+                //   query: { email: data.email },
+                // })
               }
             >
               Comenzar

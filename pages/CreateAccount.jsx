@@ -19,7 +19,6 @@ export default function CreateAccount() {
         email: values.email,
         password: values.password,
         role: "specialist",
-        // specialistInformation: { medicalLicense: "12345678" },
       };
       const response = await createAccount(req);
       if (response.status === 201) {

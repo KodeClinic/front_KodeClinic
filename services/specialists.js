@@ -10,3 +10,13 @@ export function completeInformation(credentials) {
   };
   return fetch(URL, options);
 }
+
+export function getPatients(credentials) {
+  const { specialistId, token } = credentials;
+  const URL = `${URL_BASE}api/users/patientList/${specialistId}`; //pendinete definir el endpoint
+  const options = {
+    method: "GET",
+    headers: { "Content-Type": "application/json", bearerauth: token },
+  };
+  return fetch(URL, options);
+}

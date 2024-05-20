@@ -16,8 +16,6 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DateCalendar } from "@mui/x-date-pickers/DateCalendar";
 import HamburgerMenuSpe from "@/components/HamburgerMenuSpe";
 
-
-
 // import { es } from "dayjs/locale/es";
 // dayjs.locale(es);
 // import localeData from "dayjs/plugin/localeData";
@@ -79,13 +77,6 @@ export default function DashboardEsp() {
       const response = await getUserById(credetials);
       const dataJSON = await response.json();
       setSpecialistData(dataJSON.data);
-
-      if (specialistData.informationComplete == false) {
-        router.push({
-          pathname: "/WelcomePage",
-          query: { id: dataJSON.data.id },
-        });
-      }
     } catch (error) {
       alert(
         "Ocurrió un problema al intentar acceder, por favor inténtenlo de nuevo"
@@ -110,22 +101,19 @@ export default function DashboardEsp() {
 
   const mostrarModal = (show) => {
     setShowModal(show);
-
-  }
+  };
   const closeModal = () => {
     setShowModal(false);
-  }
-
+  };
 
   return (
-    
     <main className={clsx("bg-background min-h-screen w-full")}>
-      
-      <NavBarSpe pageName={"Agenda"}
-               mostrarModal = {mostrarModal}
-                closeModal = {closeModal}
-                 />
-      
+      <NavBarSpe
+        pageName={"Agenda"}
+        id={dataQuery.id}
+        mostrarModal={mostrarModal}
+        closeModal={closeModal}
+      />
 
       <SpecialistCard
         name={specialistData?.name + " " + specialistData?.lastName}
@@ -194,6 +182,5 @@ export default function DashboardEsp() {
       </section>
       <HamburgerMenuSpe isVisible={showModal} closeModal={closeModal} />
     </main>
-    
   );
 }
