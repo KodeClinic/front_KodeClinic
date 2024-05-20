@@ -1,6 +1,10 @@
+import { NewPacientContext } from "@/context/NewPacientContext";
 import clsx from "clsx";
+import { useContext } from "react";
 
 export default function Emergency_info() {
+  const { newPxData, setNewPxData } = useContext(NewPacientContext);
+
   return (
     <div className="bg-background p-5 flex justify-center">
       <article
@@ -32,6 +36,13 @@ export default function Emergency_info() {
                 type="text"
                 placeholder="Karla Romero Alcalá"
                 className="border-2 border-[#2196F3] rounded-md w-[300px] h-[40px]"
+                value={newPxData.emergencyContactName}
+                onChange={(event) => {
+                  setNewPxData({
+                    ...newPxData,
+                    emergencyContactName: event.target.value,
+                  });
+                }}
               />
             </div>
 
@@ -39,7 +50,16 @@ export default function Emergency_info() {
               <p className={clsx("font-semibold text-[14px]")}>
                 Parentesco de contacto 1
               </p>
-              <select className="border-2 border-[#2196F3] rounded-md w-[300px] h-[40px]">
+              <select
+                className="border-2 border-[#2196F3] rounded-md w-[300px] h-[40px]"
+                value={newPxData.emergencyContactRelatioship}
+                onChange={(event) => {
+                  setNewPxData({
+                    ...newPxData,
+                    emergencyContactRelatioship: event.target.value,
+                  });
+                }}
+              >
                 <option value="Padre">Padre</option>
                 <option value="Madre">Madre</option>
                 <option value="Herman@">Herman@</option>
@@ -57,6 +77,13 @@ export default function Emergency_info() {
                 type="text"
                 placeholder="5555223904"
                 className="border-2 border-[#2196F3] rounded-md w-[300px] h-[40px]"
+                value={newPxData.emergencyContactPhone}
+                onChange={(event) => {
+                  setNewPxData({
+                    ...newPxData,
+                    emergencyContactPhone: event.target.value,
+                  });
+                }}
               />
             </div>
             <div className="mt-8 sm:mt-3">
@@ -67,6 +94,13 @@ export default function Emergency_info() {
                 type="text"
                 placeholder="Karla Romero Alcalá"
                 className="border-2 border-[#2196F3] rounded-md w-[300px] h-[40px]"
+                value={newPxData.emergencyContactName2}
+                onChange={(event) => {
+                  setNewPxData({
+                    ...newPxData,
+                    emergencyContactName2: event.target.value,
+                  });
+                }}
               />
             </div>
 
@@ -74,7 +108,16 @@ export default function Emergency_info() {
               <p className={clsx("font-semibold text-[14px]")}>
                 Parentesco de contacto 2
               </p>
-              <select className="border-2 border-[#2196F3] rounded-md w-[300px] h-[40px]">
+              <select
+                className="border-2 border-[#2196F3] rounded-md w-[300px] h-[40px]"
+                value={newPxData.emergencyContactRelatioship2}
+                onChange={(event) => {
+                  setNewPxData({
+                    ...newPxData,
+                    emergencyContactRelatioship2: event.target.value,
+                  });
+                }}
+              >
                 <option value="Padre">Padre</option>
                 <option value="Madre">Madre</option>
                 <option value="Herman@">Herman@</option>
@@ -92,6 +135,13 @@ export default function Emergency_info() {
                 type="text"
                 placeholder="5555223904"
                 className="border-2 border-[#2196F3] rounded-md w-[300px] h-[40px]"
+                value={newPxData.emergencyContactPhone2}
+                onChange={(event) => {
+                  setNewPxData({
+                    ...newPxData,
+                    emergencyContactPhone2: event.target.value,
+                  });
+                }}
               />
             </div>
           </section>
