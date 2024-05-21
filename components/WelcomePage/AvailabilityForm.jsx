@@ -48,22 +48,63 @@ export default function AvailabilityForm() {
           }}
         />
         <label>Lunes</label>
-        <input
-          className={clsx("border rounded-md ml-14")}
-          type="Time"
+        <select
+          className={clsx(
+            "rounded-md ml-14",
+            "border-2 border-[#2196F3] rounded-md w-[115px] h-[30px]"
+          )}
           id="Monday"
           disabled={!checkMon}
           value={Monday}
           onChange={(e) => setMonday(e.target.value)}
-        />
-        <input
-          className={clsx("border rounded-md ml-4")}
-          type="Time"
+        >
+          <option value="06:00">06:00 a.m.</option>
+          <option value="07:00">07:00 a.m.</option>
+          <option value="08:00">08:00 a.m.</option>
+          <option value="09:00">09:00 a.m.</option>
+          <option value="10:00">10:00 a.m.</option>
+          <option value="11:00">11:00 a.m.</option>
+          <option value="12:00">12:00 a.m.</option>
+          <option value="13:00">01:00 p.m.</option>
+          <option value="14:00">02:00 p.m.</option>
+          <option value="15:00">03:00 p.m.</option>
+          <option value="16:00">04:00 p.m.</option>
+          <option value="17:00">05:00 p.m.</option>
+          <option value="18:00">06:00 p.m.</option>
+          <option value="19:00">07:00 p.m.</option>
+          <option value="20:00">08:00 p.m.</option>
+          <option value="21:00">09:00 p.m.</option>
+          <option value="22:00">10:00 p.m.</option>
+        </select>
+
+        <select
+          className={clsx(
+            "rounded-md ml-14",
+            "border-2 border-[#2196F3] rounded-md w-[115px] h-[30px]"
+          )}
           id="Monday2"
           disabled={!checkMon}
           value={Monday2}
           onChange={(e) => setMonday2(e.target.value)}
-        />
+        >
+          <option value="06:00">06:00 a.m.</option>
+          <option value="07:00">07:00 a.m.</option>
+          <option value="08:00">08:00 a.m.</option>
+          <option value="09:00">09:00 a.m.</option>
+          <option value="10:00">10:00 a.m.</option>
+          <option value="11:00">11:00 a.m.</option>
+          <option value="12:00">12:00 a.m.</option>
+          <option value="13:00">01:00 p.m.</option>
+          <option value="14:00">02:00 p.m.</option>
+          <option value="15:00">03:00 p.m.</option>
+          <option value="16:00">04:00 p.m.</option>
+          <option value="17:00">05:00 p.m.</option>
+          <option value="18:00">06:00 p.m.</option>
+          <option value="19:00">07:00 p.m.</option>
+          <option value="20:00">08:00 p.m.</option>
+          <option value="21:00">09:00 p.m.</option>
+          <option value="22:00">10:00 p.m.</option>
+        </select>
       </div>
 
       {/* MARTES */}
@@ -81,22 +122,63 @@ export default function AvailabilityForm() {
           }}
         />
         <label>Martes</label>
-        <input
-          className={clsx("border rounded-md ml-12")}
-          type="Time"
+        <select
+          className={clsx(
+            "border rounded-md ml-12",
+            "border-2 border-[#2196F3] rounded-md w-[115px] h-[30px]"
+          )}
           id="Tuesday"
           disabled={!checkTues}
           value={Tuesday}
           onChange={(e) => setTuesday(e.target.value)}
-        />
-        <input
-          className={clsx("border rounded-md ml-4")}
-          type="Time"
+        >
+          <option value="06:00">06:00 a.m.</option>
+          <option value="07:00">07:00 a.m.</option>
+          <option value="08:00">08:00 a.m.</option>
+          <option value="09:00">09:00 a.m.</option>
+          <option value="10:00">10:00 a.m.</option>
+          <option value="11:00">11:00 a.m.</option>
+          <option value="12:00">12:00 a.m.</option>
+          <option value="13:00">01:00 p.m.</option>
+          <option value="14:00">02:00 p.m.</option>
+          <option value="15:00">03:00 p.m.</option>
+          <option value="16:00">04:00 p.m.</option>
+          <option value="17:00">05:00 p.m.</option>
+          <option value="18:00">06:00 p.m.</option>
+          <option value="19:00">07:00 p.m.</option>
+          <option value="20:00">08:00 p.m.</option>
+          <option value="21:00">09:00 p.m.</option>
+          <option value="22:00">10:00 p.m.</option>
+        </select>
+
+        <select
+          className={clsx(
+            "rounded-md ml-14",
+            "border-2 border-[#2196F3] rounded-md w-[115px] h-[30px]"
+          )}
           id="Tuesday2"
           disabled={!checkTues}
           value={Tuesday2}
           onChange={(e) => setTuesday2(e.target.value)}
-        />
+        >
+          <option value="06:00">06:00 a.m.</option>
+          <option value="07:00">07:00 a.m.</option>
+          <option value="08:00">08:00 a.m.</option>
+          <option value="09:00">09:00 a.m.</option>
+          <option value="10:00">10:00 a.m.</option>
+          <option value="11:00">11:00 a.m.</option>
+          <option value="12:00">12:00 a.m.</option>
+          <option value="13:00">01:00 p.m.</option>
+          <option value="14:00">02:00 p.m.</option>
+          <option value="15:00">03:00 p.m.</option>
+          <option value="16:00">04:00 p.m.</option>
+          <option value="17:00">05:00 p.m.</option>
+          <option value="18:00">06:00 p.m.</option>
+          <option value="19:00">07:00 p.m.</option>
+          <option value="20:00">08:00 p.m.</option>
+          <option value="21:00">09:00 p.m.</option>
+          <option value="22:00">10:00 p.m.</option>
+        </select>
       </div>
 
       {/* MIERCOLES */}
@@ -114,22 +196,64 @@ export default function AvailabilityForm() {
           }}
         />
         <label>Miercoles</label>
-        <input
-          className={clsx("border rounded-md ml-5")}
-          type="Time"
+
+        <select
+          className={clsx(
+            "rounded-md ml-6",
+            "border-2 border-[#2196F3] rounded-md w-[115px] h-[30px]"
+          )}
           id="Wednesday"
           disabled={!checkWed}
           value={Wednesday}
           onChange={(e) => setWednesday(e.target.value)}
-        />
-        <input
-          className={clsx("border rounded-md ml-4")}
-          type="Time"
+        >
+          <option value="06:00">06:00 a.m.</option>
+          <option value="07:00">07:00 a.m.</option>
+          <option value="08:00">08:00 a.m.</option>
+          <option value="09:00">09:00 a.m.</option>
+          <option value="10:00">10:00 a.m.</option>
+          <option value="11:00">11:00 a.m.</option>
+          <option value="12:00">12:00 a.m.</option>
+          <option value="13:00">01:00 p.m.</option>
+          <option value="14:00">02:00 p.m.</option>
+          <option value="15:00">03:00 p.m.</option>
+          <option value="16:00">04:00 p.m.</option>
+          <option value="17:00">05:00 p.m.</option>
+          <option value="18:00">06:00 p.m.</option>
+          <option value="19:00">07:00 p.m.</option>
+          <option value="20:00">08:00 p.m.</option>
+          <option value="21:00">09:00 p.m.</option>
+          <option value="22:00">10:00 p.m.</option>
+        </select>
+
+        <select
+          className={clsx(
+            "rounded-md ml-14",
+            "border-2 border-[#2196F3] rounded-md w-[115px] h-[30px]"
+          )}
           id="Wednesday2"
           disabled={!checkWed}
           value={Wednesday2}
           onChange={(e) => setWednesday2(e.target.value)}
-        />
+        >
+          <option value="06:00">06:00 a.m.</option>
+          <option value="07:00">07:00 a.m.</option>
+          <option value="08:00">08:00 a.m.</option>
+          <option value="09:00">09:00 a.m.</option>
+          <option value="10:00">10:00 a.m.</option>
+          <option value="11:00">11:00 a.m.</option>
+          <option value="12:00">12:00 a.m.</option>
+          <option value="13:00">01:00 p.m.</option>
+          <option value="14:00">02:00 p.m.</option>
+          <option value="15:00">03:00 p.m.</option>
+          <option value="16:00">04:00 p.m.</option>
+          <option value="17:00">05:00 p.m.</option>
+          <option value="18:00">06:00 p.m.</option>
+          <option value="19:00">07:00 p.m.</option>
+          <option value="20:00">08:00 p.m.</option>
+          <option value="21:00">09:00 p.m.</option>
+          <option value="22:00">10:00 p.m.</option>
+        </select>
       </div>
 
       {/* JUEVES */}
@@ -147,22 +271,63 @@ export default function AvailabilityForm() {
           }}
         />
         <label>Jueves</label>
-        <input
-          className={clsx("border rounded-md ml-11")}
-          type="Time"
+        <select
+          className={clsx(
+            "rounded-md ml-12",
+            "border-2 border-[#2196F3] rounded-md w-[115px] h-[30px]"
+          )}
           id="Thursday"
           disabled={!checkThu}
           value={Thursday}
           onChange={(e) => setThursday(e.target.value)}
-        />
-        <input
-          className={clsx("border rounded-md ml-4")}
-          type="Time"
+        >
+          <option value="06:00">06:00 a.m.</option>
+          <option value="07:00">07:00 a.m.</option>
+          <option value="08:00">08:00 a.m.</option>
+          <option value="09:00">09:00 a.m.</option>
+          <option value="10:00">10:00 a.m.</option>
+          <option value="11:00">11:00 a.m.</option>
+          <option value="12:00">12:00 a.m.</option>
+          <option value="13:00">01:00 p.m.</option>
+          <option value="14:00">02:00 p.m.</option>
+          <option value="15:00">03:00 p.m.</option>
+          <option value="16:00">04:00 p.m.</option>
+          <option value="17:00">05:00 p.m.</option>
+          <option value="18:00">06:00 p.m.</option>
+          <option value="19:00">07:00 p.m.</option>
+          <option value="20:00">08:00 p.m.</option>
+          <option value="21:00">09:00 p.m.</option>
+          <option value="22:00">10:00 p.m.</option>
+        </select>
+
+        <select
+          className={clsx(
+            "rounded-md ml-14",
+            "border-2 border-[#2196F3] rounded-md w-[115px] h-[30px]"
+          )}
           id="Thursday2"
           disabled={!checkThu}
           value={Thursday2}
           onChange={(e) => setThursday2(e.target.value)}
-        />
+        >
+          <option value="06:00">06:00 a.m.</option>
+          <option value="07:00">07:00 a.m.</option>
+          <option value="08:00">08:00 a.m.</option>
+          <option value="09:00">09:00 a.m.</option>
+          <option value="10:00">10:00 a.m.</option>
+          <option value="11:00">11:00 a.m.</option>
+          <option value="12:00">12:00 a.m.</option>
+          <option value="13:00">01:00 p.m.</option>
+          <option value="14:00">02:00 p.m.</option>
+          <option value="15:00">03:00 p.m.</option>
+          <option value="16:00">04:00 p.m.</option>
+          <option value="17:00">05:00 p.m.</option>
+          <option value="18:00">06:00 p.m.</option>
+          <option value="19:00">07:00 p.m.</option>
+          <option value="20:00">08:00 p.m.</option>
+          <option value="21:00">09:00 p.m.</option>
+          <option value="22:00">10:00 p.m.</option>
+        </select>
       </div>
 
       {/* VIERNES */}
@@ -180,22 +345,63 @@ export default function AvailabilityForm() {
           }}
         />
         <label>Viernes</label>
-        <input
-          className={clsx("border rounded-md ml-10")}
-          type="Time"
+        <select
+          className={clsx(
+            "rounded-md ml-11",
+            "border-2 border-[#2196F3] rounded-md w-[115px] h-[30px]"
+          )}
           id="Friday"
           disabled={!checkFri}
           value={Friday}
           onChange={(e) => setFriday(e.target.value)}
-        />
-        <input
-          className={clsx("border rounded-md ml-4")}
-          type="Time"
+        >
+          <option value="06:00">06:00 a.m.</option>
+          <option value="07:00">07:00 a.m.</option>
+          <option value="08:00">08:00 a.m.</option>
+          <option value="09:00">09:00 a.m.</option>
+          <option value="10:00">10:00 a.m.</option>
+          <option value="11:00">11:00 a.m.</option>
+          <option value="12:00">12:00 a.m.</option>
+          <option value="13:00">01:00 p.m.</option>
+          <option value="14:00">02:00 p.m.</option>
+          <option value="15:00">03:00 p.m.</option>
+          <option value="16:00">04:00 p.m.</option>
+          <option value="17:00">05:00 p.m.</option>
+          <option value="18:00">06:00 p.m.</option>
+          <option value="19:00">07:00 p.m.</option>
+          <option value="20:00">08:00 p.m.</option>
+          <option value="21:00">09:00 p.m.</option>
+          <option value="22:00">10:00 p.m.</option>
+        </select>
+
+        <select
+          className={clsx(
+            "rounded-md ml-14",
+            "border-2 border-[#2196F3] rounded-md w-[115px] h-[30px]"
+          )}
           id="Friday2"
           disabled={!checkFri}
           value={Friday2}
           onChange={(e) => setFriday2(e.target.value)}
-        />
+        >
+          <option value="06:00">06:00 a.m.</option>
+          <option value="07:00">07:00 a.m.</option>
+          <option value="08:00">08:00 a.m.</option>
+          <option value="09:00">09:00 a.m.</option>
+          <option value="10:00">10:00 a.m.</option>
+          <option value="11:00">11:00 a.m.</option>
+          <option value="12:00">12:00 a.m.</option>
+          <option value="13:00">01:00 p.m.</option>
+          <option value="14:00">02:00 p.m.</option>
+          <option value="15:00">03:00 p.m.</option>
+          <option value="16:00">04:00 p.m.</option>
+          <option value="17:00">05:00 p.m.</option>
+          <option value="18:00">06:00 p.m.</option>
+          <option value="19:00">07:00 p.m.</option>
+          <option value="20:00">08:00 p.m.</option>
+          <option value="21:00">09:00 p.m.</option>
+          <option value="22:00">10:00 p.m.</option>
+        </select>
       </div>
 
       {/* SABADO */}
@@ -213,22 +419,63 @@ export default function AvailabilityForm() {
           }}
         />
         <label>Sabado</label>
-        <input
-          className={clsx("border rounded-md ml-9")}
-          type="Time"
+        <select
+          className={clsx(
+            "rounded-md ml-11",
+            "border-2 border-[#2196F3] rounded-md w-[115px] h-[30px]"
+          )}
           id="Saturday"
           disabled={!checkSat}
           value={Saturday}
           onChange={(e) => setSaturday(e.target.value)}
-        />
-        <input
-          className={clsx("border rounded-md ml-4")}
-          type="Time"
+        >
+          <option value="06:00">06:00 a.m.</option>
+          <option value="07:00">07:00 a.m.</option>
+          <option value="08:00">08:00 a.m.</option>
+          <option value="09:00">09:00 a.m.</option>
+          <option value="10:00">10:00 a.m.</option>
+          <option value="11:00">11:00 a.m.</option>
+          <option value="12:00">12:00 a.m.</option>
+          <option value="13:00">01:00 p.m.</option>
+          <option value="14:00">02:00 p.m.</option>
+          <option value="15:00">03:00 p.m.</option>
+          <option value="16:00">04:00 p.m.</option>
+          <option value="17:00">05:00 p.m.</option>
+          <option value="18:00">06:00 p.m.</option>
+          <option value="19:00">07:00 p.m.</option>
+          <option value="20:00">08:00 p.m.</option>
+          <option value="21:00">09:00 p.m.</option>
+          <option value="22:00">10:00 p.m.</option>
+        </select>
+
+        <select
+          className={clsx(
+            "rounded-md ml-14",
+            "border-2 border-[#2196F3] rounded-md w-[115px] h-[30px]"
+          )}
           id="Saturday2"
           disabled={!checkSat}
           value={Saturday2}
           onChange={(e) => setSaturday2(e.target.value)}
-        />
+        >
+          <option value="06:00">06:00 a.m.</option>
+          <option value="07:00">07:00 a.m.</option>
+          <option value="08:00">08:00 a.m.</option>
+          <option value="09:00">09:00 a.m.</option>
+          <option value="10:00">10:00 a.m.</option>
+          <option value="11:00">11:00 a.m.</option>
+          <option value="12:00">12:00 a.m.</option>
+          <option value="13:00">01:00 p.m.</option>
+          <option value="14:00">02:00 p.m.</option>
+          <option value="15:00">03:00 p.m.</option>
+          <option value="16:00">04:00 p.m.</option>
+          <option value="17:00">05:00 p.m.</option>
+          <option value="18:00">06:00 p.m.</option>
+          <option value="19:00">07:00 p.m.</option>
+          <option value="20:00">08:00 p.m.</option>
+          <option value="21:00">09:00 p.m.</option>
+          <option value="22:00">10:00 p.m.</option>
+        </select>
       </div>
 
       {/* DOMINGO */}
@@ -246,22 +493,63 @@ export default function AvailabilityForm() {
           }}
         />
         <label>Domingo</label>
-        <input
-          className={clsx("border rounded-md ml-6")}
-          type="Time"
+        <select
+          className={clsx(
+            "rounded-md ml-8",
+            "border-2 border-[#2196F3] rounded-md w-[115px] h-[30px]"
+          )}
           id="Sunday"
           disabled={!checkSun}
           value={Sunday}
           onChange={(e) => setSunday(e.target.value)}
-        />
-        <input
-          className={clsx("border rounded-md ml-4")}
-          type="Time"
+        >
+          <option value="06:00">06:00 a.m.</option>
+          <option value="07:00">07:00 a.m.</option>
+          <option value="08:00">08:00 a.m.</option>
+          <option value="09:00">09:00 a.m.</option>
+          <option value="10:00">10:00 a.m.</option>
+          <option value="11:00">11:00 a.m.</option>
+          <option value="12:00">12:00 a.m.</option>
+          <option value="13:00">01:00 p.m.</option>
+          <option value="14:00">02:00 p.m.</option>
+          <option value="15:00">03:00 p.m.</option>
+          <option value="16:00">04:00 p.m.</option>
+          <option value="17:00">05:00 p.m.</option>
+          <option value="18:00">06:00 p.m.</option>
+          <option value="19:00">07:00 p.m.</option>
+          <option value="20:00">08:00 p.m.</option>
+          <option value="21:00">09:00 p.m.</option>
+          <option value="22:00">10:00 p.m.</option>
+        </select>
+
+        <select
+          className={clsx(
+            "rounded-md ml-14",
+            "border-2 border-[#2196F3] rounded-md w-[115px] h-[30px]"
+          )}
           id="Sunday2"
           disabled={!checkSun}
           value={Sunday2}
           onChange={(e) => setSunday2(e.target.value)}
-        />
+        >
+          <option value="06:00">06:00 a.m.</option>
+          <option value="07:00">07:00 a.m.</option>
+          <option value="08:00">08:00 a.m.</option>
+          <option value="09:00">09:00 a.m.</option>
+          <option value="10:00">10:00 a.m.</option>
+          <option value="11:00">11:00 a.m.</option>
+          <option value="12:00">12:00 a.m.</option>
+          <option value="13:00">01:00 p.m.</option>
+          <option value="14:00">02:00 p.m.</option>
+          <option value="15:00">03:00 p.m.</option>
+          <option value="16:00">04:00 p.m.</option>
+          <option value="17:00">05:00 p.m.</option>
+          <option value="18:00">06:00 p.m.</option>
+          <option value="19:00">07:00 p.m.</option>
+          <option value="20:00">08:00 p.m.</option>
+          <option value="21:00">09:00 p.m.</option>
+          <option value="22:00">10:00 p.m.</option>
+        </select>
       </div>
     </div>
   );
