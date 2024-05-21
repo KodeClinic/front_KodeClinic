@@ -7,6 +7,7 @@ import AccordionFreeAgenda from "@/components/AccordeonFreeAgenda";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { getUserById } from "@/services/users/auth";
+import { getSpecialistAppointments } from "@/services/appointments";
 
 // Para utilizar el calendario
 import { esES } from "@mui/x-date-pickers/locales";
@@ -14,37 +15,11 @@ import dayjs from "dayjs";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DateCalendar } from "@mui/x-date-pickers/DateCalendar";
-import HamburgerMenuSpe from "@/components/HamburgerMenuSpe";
 
 // import { es } from "dayjs/locale/es";
 // dayjs.locale(es);
 // import localeData from "dayjs/plugin/localeData";
 // dayjs.extend(localeData);
-
-const data = [
-  {
-    id: "1",
-    name: "Patricia Hernandez",
-    gender: "female",
-    consultType: "valoration",
-    paymentType: "cash",
-    paymentStatus: "paid",
-    timeLapse: "9:00 - 10:00 am",
-    consultingAddress: "Consultorio",
-    appointmentStatus: "completed",
-  },
-  {
-    id: "2",
-    name: "Armando Félix",
-    gender: "male",
-    consultType: "therapy",
-    paymentType: "cash",
-    paymentStatus: "topay",
-    timeLapse: "10:00 - 11:00 am",
-    consultingAddress: "Consultorio",
-    appointmentStatus: "start",
-  },
-];
 
 const freeAgendaData = [
   {
@@ -70,13 +45,24 @@ export default function DashboardEsp() {
   const dataQuery = router.query;
   const [Date, setDate] = useState(dayjs());
   const [specialistData, setSpecialistData] = useState({});
+  const [appointments, setAppointments] = useState([]);
+  const [currentAppointments, setCurrentAppointments] = useState([]);
 
-  const onLogin = async (dataQuery, token) => {
-    const credetials = { id: dataQuery.id, token: token };
+  const fetchData = async (dataQuery, token) => {
     try {
-      const response = await getUserById(credetials);
-      const dataJSON = await response.json();
-      setSpecialistData(dataJSON.data);
+      const responseUser = await getUserById({
+        id: dataQuery.id,
+        token: token,
+      });
+      const responseUserJSON = await responseUser.json();
+      setSpecialistData(responseUserJSON.data);
+
+      const responseAppointment = await getSpecialistAppointments({
+        specialistId: dataQuery.id,
+        token: token,
+      });
+      const responseAppointmentJSON = await responseAppointment.json();
+      setAppointments(responseAppointmentJSON.data);
     } catch (error) {
       alert(
         "Ocurrió un problema al intentar acceder, por favor inténtenlo de nuevo"
@@ -84,6 +70,28 @@ export default function DashboardEsp() {
       router.push("/LogIn");
     }
   };
+
+  const selectDate = (newValue) => {
+    let currentDay = newValue.date();
+    let currentMonth = newValue.month();
+    let currentYear = newValue.year();
+
+    setDate(newValue);
+
+    const appointmentsForToday = appointments.map((appointment) => {
+      if (
+        appointment.date.year == currentYear &&
+        appointment.date.month == currentMonth &&
+        appointment.date.day == currentDay
+      ) {
+        return appointment;
+      }
+    });
+    setCurrentAppointments(appointmentsForToday);
+
+    console.log(appointmentsForToday);
+  };
+  console.log(currentAppointments);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -94,26 +102,12 @@ export default function DashboardEsp() {
       );
       router.push("/LogIn");
     }
-    onLogin(dataQuery, token);
+    fetchData(dataQuery, token);
   }, []);
-
-  const [showModal, setShowModal] = useState(false);
-
-  const mostrarModal = (show) => {
-    setShowModal(show);
-  };
-  const closeModal = () => {
-    setShowModal(false);
-  };
 
   return (
     <main className={clsx("bg-background min-h-screen w-full")}>
-      <NavBarSpe
-        pageName={"Agenda"}
-        id={dataQuery.id}
-        mostrarModal={mostrarModal}
-        closeModal={closeModal}
-      />
+      <NavBarSpe pageName={"Agenda"} id={dataQuery.id} />
 
       <SpecialistCard
         name={specialistData?.name + " " + specialistData?.lastName}
@@ -146,7 +140,7 @@ export default function DashboardEsp() {
           </p>
 
           <div>
-            <AccordionAppointments props={data} />
+            <AccordionAppointments props={appointments} />
           </div>
           <div>
             <AccordionFreeAgenda props={freeAgendaData} />
@@ -175,12 +169,12 @@ export default function DashboardEsp() {
           >
             <DateCalendar
               value={Date}
-              onChange={(newValue) => setDate(newValue)}
+              onChange={(newValue) => selectDate(newValue)}
             />
           </LocalizationProvider>
         </div>
       </section>
-      <HamburgerMenuSpe isVisible={showModal} closeModal={closeModal} />
+      {/* <HamburgerMenuSpe isVisible={showModal} closeModal={closeModal} /> */}
     </main>
   );
 }

@@ -3,15 +3,17 @@ import Badge from "./Badge";
 
 export default function AppointmentCard({ props }) {
   const {
-    name,
-    gender,
+    patientId,
     consultType,
     paymentType,
     paymentStatus,
     timeLapse,
     consultingAddress,
-    appointmentStatus,
+    status,
   } = props;
+
+  let fullName = `${patientId.name} ${patientId.lastName}`;
+  let gender = patientId.gender;
 
   return (
     <div
@@ -49,7 +51,7 @@ export default function AppointmentCard({ props }) {
             "min-[980px]:text-[20px]"
           )}
         >
-          {name}
+          {fullName}
         </span>
       </div>
 
@@ -127,11 +129,7 @@ export default function AppointmentCard({ props }) {
           alt="line"
         />
         <div>
-          <Badge
-            badgeType={appointmentStatus}
-            timeLapse={""}
-            consultingAddress={""}
-          />
+          <Badge badgeType={status} timeLapse={""} consultingAddress={""} />
         </div>
       </div>
     </div>
