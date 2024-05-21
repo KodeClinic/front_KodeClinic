@@ -3,7 +3,7 @@ import clsx from "clsx";
 import { useContext } from "react";
 
 export default function Emergency_info() {
-  const { newPxData, setNewPxData } = useContext(NewPacientContext);
+  const { newPxData, setNewPxData, submitData } = useContext(NewPacientContext);
 
   return (
     <div className="bg-background p-5 flex justify-center">
@@ -145,6 +145,17 @@ export default function Emergency_info() {
               />
             </div>
           </section>
+          <button
+            onClick={() => {
+              submitData();
+            }}
+            className={clsx(
+              "bg-background font-semibold rounded-md text-blue_button py-2 px-3 text-lg hover:bg-blue_button/15",
+              "mt-12 w-64"
+            )}
+          >
+            Concluir Registro
+          </button>
         </section>
 
         <section className="hidden bg-[#E5EDFF] sm:flex sm:flex-col sm:justify-center sm:items-center sm:rounded-r-lg gap-5">
