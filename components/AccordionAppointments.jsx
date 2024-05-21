@@ -46,7 +46,7 @@ export default function AccordionAppointments({ props }) {
         <div className={clsx("overflow-hidden")}>
           <div className={clsx(" flex flex-col gap-6")}>
             {props.map((date) => {
-              return <AppointmentCard key={date?.id} props={date} />;
+              return <AppointmentCard key={date?._id} props={date} />;
             })}
           </div>
         </div>

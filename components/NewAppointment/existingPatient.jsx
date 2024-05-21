@@ -63,6 +63,7 @@ export default function AppointmentExistingPatient2() {
         specialistId: id,
         data: values,
       });
+      console.log(values);
 
       if (response.status === 201) {
         setIsLoading(false);

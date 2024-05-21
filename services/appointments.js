@@ -21,3 +21,13 @@ export function postAppointmentExistingPatient(credentials) {
   };
   return fetch(URL, options);
 }
+
+export function getSpecialistAppointments(credentials) {
+  const { specialistId, token } = credentials;
+  const URL = `${URL_BASE}api/appointments/getAppointments/${specialistId}`;
+  const options = {
+    method: "GET",
+    headers: { "Content-Type": "application/json", bearerauth: token },
+  };
+  return fetch(URL, options);
+}
