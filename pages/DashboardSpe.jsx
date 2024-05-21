@@ -21,7 +21,7 @@ import { DateCalendar } from "@mui/x-date-pickers/DateCalendar";
 // import localeData from "dayjs/plugin/localeData";
 // dayjs.extend(localeData);
 
-const freeAgendaData = [
+const freeAgenda = [
   {
     id: "65",
     timeLapse: "9:00 - 10:00 am",
@@ -143,7 +143,7 @@ export default function DashboardEsp() {
             <AccordionAppointments props={appointments} />
           </div>
           <div>
-            <AccordionFreeAgenda props={freeAgendaData} />
+            <AccordionFreeAgenda props={freeAgenda} />
           </div>
         </div>
 
