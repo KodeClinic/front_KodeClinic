@@ -1,4 +1,4 @@
-import { URL_BASE } from "./config";
+// import { URL_BASE } from "./config";
 
 export function postAppointmentNewPatient(credentials) {
   const { specialistId, data, token } = credentials;

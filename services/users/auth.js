@@ -1,4 +1,4 @@
-import { URL_BASE } from "../config";
+// import { URL_BASE } from "../config";
 
 export function login(credentials) {
   const URL = `${URL_BASE}users/auth/login`;

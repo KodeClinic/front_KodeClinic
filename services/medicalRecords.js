@@ -1,4 +1,4 @@
-import { URL_BASE } from "./config";
+// import { URL_BASE } from "./config";
 
 export function postRecordsData(credentials) {
   const { patientId, templateId, data, token } = credentials;
