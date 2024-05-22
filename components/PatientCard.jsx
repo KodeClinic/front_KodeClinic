@@ -2,8 +2,13 @@ export default function PatientCard({ name, gender, number }) {
   return (
     <div className=" w-[362px] h-[140px] border border-white_grey">
       <div className="flex flex-row gap-3 px-6 py-4">
-        <img src="/assets/icons/women-icon.png" alt="Women" />
-        <p className="font-bold">Maria Ritos</p>
+        {gender == "male" ? (
+          <img src="/assets/icons/men-icon.png" alt="men" />
+        ) : (
+          <img src="/assets/icons/women-icon.png" alt="Women" />
+        )}
+        {/* <img src="/assets/icons/women-icon.png" alt="Women" /> */}
+        <p className="font-bold">{name}</p>
       </div>
       <div className="flex flex-row items-center">
         <div className="bg-pink rounded-[25px] flex flex-row object-center w-[160px] h-[30px] px-3 mx-2">
@@ -14,10 +19,10 @@ export default function PatientCard({ name, gender, number }) {
           />
           <p className="mx-1 text-center my-1">Tendinitis</p>
         </div>
-        <div class="border-l h-[64px] border-white_grey mx-5"></div>
+        <div className="border-l h-[64px] border-white_grey mx-5"></div>
         <div className="flex flex-row">
           <img src="/assets/icons/Phone.png" alt="Phone" />
-          <p className="mx-2">55 7976 2085</p>
+          <p className="mx-2">{number}</p>
         </div>
       </div>
     </div>

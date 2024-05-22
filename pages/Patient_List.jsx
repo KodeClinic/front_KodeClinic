@@ -2,15 +2,19 @@ import NavBarSpe from "@/components/NavBarSpe";
 import SpecialistCard from "@/components/SpecialistCard";
 import clsx from "clsx";
 import { useEffect, useState } from "react";
+// import { useFormik } from "formik";
 import { useRouter } from "next/router";
 import { getUserById } from "@/services/users/auth";
 import PatientCard from "@/components/PatientCard";
+import { getPatients } from "@/services/specialists";
 // import PatientsDischarged from "@/components/PatientsDischarged";
 
 export default function PatientList() {
   const router = useRouter();
   const dataQuery = router.query;
   const [specialistData, setSpecialistData] = useState({});
+  const [patientList, setPatientList] = useState([]);
+  // const [selectPatientList, setSelectPatientList] = useState([]);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -32,6 +36,22 @@ export default function PatientList() {
       });
       const responseUserJSON = await responseUser.json();
       setSpecialistData(responseUserJSON.data);
+
+      const responsePatients = await getPatients({
+        specialistId: dataQuery.id,
+        token: token,
+      });
+      const responsePatientsJSON = await responsePatients.json();
+
+      setPatientList(responsePatientsJSON.data);
+
+      // const optionSelectPatients = responsePatientsJSON.data.map((patient) => {
+      //   let fullName = `${patient.patientName} ${patient.patientLastName}`;
+      //   return { value: patient.patientID, label: fullName };
+      // });
+      // setSelectPatientList(optionSelectPatients);
+
+      // console.log(responsePatientsJSON.data);
     } catch (error) {
       alert(
         "Ocurrió un problema al intentar acceder, por favor inténtenlo de nuevo2"
@@ -91,25 +111,20 @@ export default function PatientList() {
           </div>
           <div
             className={clsx(
-              "grid grid-cols-1 gap-4 py-2 lg:grid-cols-3 mb-4 lg:h-[600px] overflow-auto"
+              "grid grid-cols-1 gap-4 py-2 lg:grid-cols-3 mb-4 overflow-auto"
             )}
           >
-            <PatientCard />
-            <PatientCard />
-            <PatientCard />
-            <PatientCard />
-            <PatientCard />
-            <PatientCard />
-            <PatientCard />
-            <PatientCard />
-            <PatientCard />
-            <PatientCard />
-            <PatientCard />
-            <PatientCard />
-            <PatientCard />
-            <PatientCard />
-            <PatientCard />
-            <PatientCard />
+            {patientList.map((patient) => {
+              let fullName = `${patient.patientName} ${patient.patientLastName}`;
+              return (
+                <PatientCard
+                  key={patient._id}
+                  name={fullName}
+                  gender={patient.patientGender}
+                  number={patient.patientCellphone}
+                />
+              );
+            })}
           </div>
         </div>
       </section>

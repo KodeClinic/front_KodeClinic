@@ -21,6 +21,8 @@ export default function MedicalRecords() {
   const [userData, setUserData] = useState([]); //corroborar si es un array o un objeto
   const [finalData, setFinalData] = useState([]); //corroborar si es un array o un objeto
   const [modal, setModal] = useState(false);
+  const [confirmation, setConfirmation] = useState(false);
+  const [clinicalStart, setClinicalStart] = useState(false);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -31,7 +33,8 @@ export default function MedicalRecords() {
     }
   }, []);
 
-  const steps = ["Patológicos", "No Patológicos", "Heredo Familiares"];
+  // const steps = ["Patológicos", "No Patológicos", "Heredo Familiares"];
+  const steps = ["Patológicos", "No Patológicos"];
 
   const submitData = () => {
     const token = localStorage.getItem("token");
@@ -45,10 +48,27 @@ export default function MedicalRecords() {
     });
     setUserData("");
     setFinalData("");
+
+    setModal(!modal);
+    setConfirmation(!confirmation);
+    console.log("confirmation modal:", confirmation);
   };
 
   const toggleModal = () => {
     setModal(!modal);
+  };
+
+  const toggleConfirmation = () => {
+    if (clinicalStart) {
+      setClinicalStart(!clinicalStart);
+      router.push({
+        pathname: "/ClinicalHistories/[patient_id]",
+        query: { patient_id: patientId },
+      });
+    } else {
+      setConfirmation(!confirmation);
+      setClinicalStart(!clinicalStart);
+    }
   };
 
   //   console.log(userData);
@@ -104,6 +124,9 @@ export default function MedicalRecords() {
               submitData,
               modal,
               toggleModal,
+              confirmation,
+              toggleConfirmation,
+              clinicalStart,
             }}
           >
             <div className={clsx("flex justify-center pt-5 pb-10")}>
