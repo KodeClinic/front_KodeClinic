@@ -3,8 +3,17 @@ import React from "react";
 import { useState } from "react";
 import AppointmentCard from "./AppointmentCard";
 
-export default function AccordionAppointments({ props }) {
+export default function AccordionAppointments(props) {
+  const appointment = props.appointment;
+  const appointmentDate = props.appointmentDate; // Se obtiene la fecha seleccionada en el componente calendar.
+
+  // Se obtienen el año el mes y el día individual para realizar el fetch
+  let selectedYear = appointmentDate.$y;
+  let selectedMonth = appointmentDate.$M + 1;
+  let selecedDay = appointmentDate.$D;
+
   const [accordionOpen, setAccordionOpen] = useState(false);
+
   return (
     <div
       className={clsx(
@@ -45,7 +54,7 @@ export default function AccordionAppointments({ props }) {
       >
         <div className={clsx("overflow-hidden")}>
           <div className={clsx(" flex flex-col gap-6")}>
-            {props.map((date) => {
+            {appointment.map((date) => {
               return <AppointmentCard key={date?._id} props={date} />;
             })}
           </div>

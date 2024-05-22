@@ -140,7 +140,10 @@ export default function DashboardEsp() {
           </p>
 
           <div>
-            <AccordionAppointments props={appointments} />
+            <AccordionAppointments
+              appointment={appointments}
+              appointmentDate={Date}
+            />
           </div>
           <div>
             <AccordionFreeAgenda props={freeAgenda} />
