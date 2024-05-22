@@ -1,10 +1,24 @@
 import clsx from "clsx";
 import { useState } from "react";
+import { useRouter } from "next/router";
+
 import NewPatientModal from "./NewPatient_Modal";
 
 export default function SuccessModal(props) {
-  const { text, button, id } = props;
+  const router = useRouter();
+  const { text, button, id, newPatient } = props;
   const [confirmation, setConfirmation] = useState(false);
+
+  const handleConfirmation = () => {
+    if (newPatient == true) {
+      setConfirmation(true);
+    } else if (newPatient == false) {
+      router.push({
+        pathname: "/DashboardSpe",
+        query: { id: id },
+      });
+    }
+  };
 
   return (
     <>
@@ -35,11 +49,7 @@ export default function SuccessModal(props) {
           )}
         >
           <div className={clsx("flex justify-end")}>
-            <button
-              onClick={() => {
-                setConfirmation(true);
-              }}
-            >
+            <button onClick={handleConfirmation}>
               <svg
                 width="25"
                 height="25"
@@ -70,9 +80,7 @@ export default function SuccessModal(props) {
             />
             <span className="text-center md:text-lg">{text}</span>
             <button
-              onClick={() => {
-                setConfirmation(true);
-              }}
+              onClick={handleConfirmation}
               className={clsx(
                 "border",
                 " border-2",
