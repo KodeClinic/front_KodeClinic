@@ -60,14 +60,45 @@ export default function DashboardEsp() {
       const responseAppointment = await getSpecialistAppointments({
         specialistId: dataQuery.id,
         token: token,
+        year: Date.$y,
+        month: Date.$M + 1,
+        day: Date.$D,
       });
+
       const responseAppointmentJSON = await responseAppointment.json();
       setAppointments(responseAppointmentJSON.data);
     } catch (error) {
+      console.log(error);
       alert(
         "Ocurrió un problema al intentar acceder, por favor inténtenlo de nuevo"
       );
       router.push("/LogIn");
+    }
+  };
+
+  const fetchCalendar = async (
+    dataQuery,
+    token,
+    currentDay,
+    currentMonth,
+    currentYear
+  ) => {
+    try {
+      const responseAppointment = await getSpecialistAppointments({
+        specialistId: dataQuery.id,
+        token: token,
+        year: currentYear,
+        month: currentMonth + 1,
+        day: currentDay,
+      });
+
+      const responseAppointmentJSON = await responseAppointment.json();
+      setAppointments(responseAppointmentJSON.data);
+    } catch (error) {
+      console.log(error);
+      alert(
+        "Ocurrió un problema al intentar acceder, por favor inténtenlo de nuevo"
+      );
     }
   };
 
@@ -76,20 +107,9 @@ export default function DashboardEsp() {
     let currentMonth = newValue.month();
     let currentYear = newValue.year();
 
+    const token = localStorage.getItem("token");
     setDate(newValue);
-
-    const appointmentsForToday = appointments.map((appointment) => {
-      if (
-        appointment.date.year == currentYear &&
-        appointment.date.month == currentMonth &&
-        appointment.date.day == currentDay
-      ) {
-        return appointment;
-      }
-    });
-    setCurrentAppointments(appointmentsForToday);
-
-    console.log(appointmentsForToday);
+    fetchCalendar(dataQuery, token, currentDay, currentMonth, currentYear);
   };
   console.log(currentAppointments);
 
@@ -140,10 +160,7 @@ export default function DashboardEsp() {
           </p>
 
           <div>
-            <AccordionAppointments
-              appointment={appointments}
-              appointmentDate={Date}
-            />
+            <AccordionAppointments props={appointments} />
           </div>
           <div>
             <AccordionFreeAgenda props={freeAgenda} />
