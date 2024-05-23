@@ -1,23 +1,47 @@
 import clsx from "clsx";
 import { useState } from "react";
+import { useRouter } from "next/router";
 
 import NavBarSpe from "@/components/NavBarSpe";
 import Evaluation from "@/components/ClinicalHistories/Evaluation";
 import Treatment from "@/components/ClinicalHistories/Treatment";
 import ClinicNotes from "@/components/ClinicalHistories/ClinicNotes";
 import { multiStepContext } from "@/context/MedicalRecordStepContext";
+import { updateClinicalHistory } from "@/services/clinicalHistories";
 
 import Stepper from "@mui/material/Stepper";
 import Step from "@mui/material/Step";
 import StepLabel from "@mui/material/StepLabel";
 
 export default function ClinicalHistories() {
+  const router = useRouter();
+  const patientId = router.query.patient_id;
+
   //Estados
   const [currentStep, setCurrentStep] = useState(1);
   const [userData, setUserData] = useState([]);
   const [finalData, setFinalData] = useState([]);
 
   const steps = ["Evaluación", "Tratamiento", "Notas Clínicas"];
+
+  const submitData = () => {
+    const token = localStorage.getItem("token");
+
+    setFinalData(userData);
+    console.log("Final Data, Clinical Histories", finalData);
+    updateClinicalHistory({
+      data: finalData,
+      templateId: 2,
+      patientId: patientId,
+      appointmentId: "asdfas",
+      token: token,
+    });
+    setUserData("");
+    setFinalData("");
+
+    setModal(!modal);
+    setConfirmation(!confirmation);
+  };
 
   const renderPage = (pageNumber) => {
     switch (pageNumber) {
@@ -65,7 +89,7 @@ export default function ClinicalHistories() {
               setUserData,
               finalData,
               setFinalData,
-              //   submitData,
+              submitData,
             }}
           >
             <div className={clsx("flex justify-center pt-5 pb-10")}>
