@@ -1,5 +1,6 @@
 import clsx from "clsx";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { WelcomePageContext } from "@/context/WelcomePageContext";
 
 export default function AvailabilityForm() {
   const [checkMon, setCheckMon] = useState(false);
@@ -10,26 +11,8 @@ export default function AvailabilityForm() {
   const [checkSat, setCheckSat] = useState(false);
   const [checkSun, setCheckSun] = useState(false);
 
-  const [Monday, setMonday] = useState("");
-  const [Monday2, setMonday2] = useState("");
-
-  const [Tuesday, setTuesday] = useState("");
-  const [Tuesday2, setTuesday2] = useState("");
-
-  const [Wednesday, setWednesday] = useState("");
-  const [Wednesday2, setWednesday2] = useState("");
-
-  const [Thursday, setThursday] = useState("");
-  const [Thursday2, setThursday2] = useState("");
-
-  const [Friday, setFriday] = useState("");
-  const [Friday2, setFriday2] = useState("");
-
-  const [Saturday, setSaturday] = useState("");
-  const [Saturday2, setSaturday2] = useState("");
-
-  const [Sunday, setSunday] = useState("");
-  const [Sunday2, setSunday2] = useState("");
+  const { userData, setUserData, setCurrentStep } =
+    useContext(WelcomePageContext);
 
   return (
     <div className="flex flex-col justify-start gap-3">
@@ -39,10 +22,10 @@ export default function AvailabilityForm() {
           type="checkbox"
           className="min-w-[120px]"
           checked={checkMon}
+          value={userData.Monday}
           onChange={() => {
             if (checkMon) {
-              setMonday("");
-              setMonday2("");
+              setUserData({ ...userData, Monday: true });
             }
             setCheckMon(!checkMon);
           }}
@@ -55,8 +38,13 @@ export default function AvailabilityForm() {
           )}
           id="Monday"
           disabled={!checkMon}
-          value={Monday}
-          onChange={(e) => setMonday(e.target.value)}
+          value={userData.mondayStart}
+          onChange={(event) => {
+            setUserData({
+              ...userData,
+              mondayStart: event.target.value,
+            });
+          }}
         >
           <option value="06:00">06:00 a.m.</option>
           <option value="07:00">07:00 a.m.</option>
@@ -84,8 +72,13 @@ export default function AvailabilityForm() {
           )}
           id="Monday2"
           disabled={!checkMon}
-          value={Monday2}
-          onChange={(e) => setMonday2(e.target.value)}
+          value={userData.mondayEnd}
+          onChange={(event) => {
+            setUserData({
+              ...userData,
+              mondayEnd: event.target.value,
+            });
+          }}
         >
           <option value="06:00">06:00 a.m.</option>
           <option value="07:00">07:00 a.m.</option>
@@ -113,10 +106,10 @@ export default function AvailabilityForm() {
           type="checkbox"
           className="min-w-[120px]"
           checked={checkTues}
+          value={userData.Tuesday}
           onChange={() => {
             if (checkTues) {
-              setTuesday("");
-              setTuesday2("");
+              setUserData({ ...userData, Tuesday: "true" });
             }
             setCheckTues(!checkTues);
           }}
@@ -129,8 +122,13 @@ export default function AvailabilityForm() {
           )}
           id="Tuesday"
           disabled={!checkTues}
-          value={Tuesday}
-          onChange={(e) => setTuesday(e.target.value)}
+          value={userData.tuesdayStart}
+          onChange={(event) => {
+            setUserData({
+              ...userData,
+              tuesdayStart: event.target.value,
+            });
+          }}
         >
           <option value="06:00">06:00 a.m.</option>
           <option value="07:00">07:00 a.m.</option>
@@ -158,8 +156,13 @@ export default function AvailabilityForm() {
           )}
           id="Tuesday2"
           disabled={!checkTues}
-          value={Tuesday2}
-          onChange={(e) => setTuesday2(e.target.value)}
+          value={userData.tuesdayEnd}
+          onChange={(event) => {
+            setUserData({
+              ...userData,
+              tuesdayEnd: event.target.value,
+            });
+          }}
         >
           <option value="06:00">06:00 a.m.</option>
           <option value="07:00">07:00 a.m.</option>
@@ -187,10 +190,10 @@ export default function AvailabilityForm() {
           type="checkbox"
           className="min-w-[120px]"
           checked={checkWed}
+          value={userData.Wednesday}
           onChange={() => {
             if (checkWed) {
-              setWednesday("");
-              setWednesday2("");
+              setUserData({ ...userData, Wednesday: "true" });
             }
             setCheckWed(!checkWed);
           }}
@@ -204,8 +207,13 @@ export default function AvailabilityForm() {
           )}
           id="Wednesday"
           disabled={!checkWed}
-          value={Wednesday}
-          onChange={(e) => setWednesday(e.target.value)}
+          value={userData.wednesdayStart}
+          onChange={(event) => {
+            setUserData({
+              ...userData,
+              wednesdayStart: event.target.value,
+            });
+          }}
         >
           <option value="06:00">06:00 a.m.</option>
           <option value="07:00">07:00 a.m.</option>
@@ -233,8 +241,13 @@ export default function AvailabilityForm() {
           )}
           id="Wednesday2"
           disabled={!checkWed}
-          value={Wednesday2}
-          onChange={(e) => setWednesday2(e.target.value)}
+          value={userData.wednesdayEnd}
+          onChange={(event) => {
+            setUserData({
+              ...userData,
+              wednesdayEnd: event.target.value,
+            });
+          }}
         >
           <option value="06:00">06:00 a.m.</option>
           <option value="07:00">07:00 a.m.</option>
@@ -262,10 +275,10 @@ export default function AvailabilityForm() {
           type="checkbox"
           className="min-w-[120px]"
           checked={checkThu}
+          value={userData.Thursday}
           onChange={() => {
             if (checkThu) {
-              setThursday("");
-              setThursday2("");
+              setUserData({ ...userData, Thursday: "true" });
             }
             setCheckThu(!checkThu);
           }}
@@ -278,8 +291,13 @@ export default function AvailabilityForm() {
           )}
           id="Thursday"
           disabled={!checkThu}
-          value={Thursday}
-          onChange={(e) => setThursday(e.target.value)}
+          value={userData.thursdayStart}
+          onChange={(event) => {
+            setUserData({
+              ...userData,
+              thursdayStart: event.target.value,
+            });
+          }}
         >
           <option value="06:00">06:00 a.m.</option>
           <option value="07:00">07:00 a.m.</option>
@@ -307,8 +325,13 @@ export default function AvailabilityForm() {
           )}
           id="Thursday2"
           disabled={!checkThu}
-          value={Thursday2}
-          onChange={(e) => setThursday2(e.target.value)}
+          value={userData.thursdayEnd}
+          onChange={(event) => {
+            setUserData({
+              ...userData,
+              thursdayEnd: event.target.value,
+            });
+          }}
         >
           <option value="06:00">06:00 a.m.</option>
           <option value="07:00">07:00 a.m.</option>
@@ -336,10 +359,10 @@ export default function AvailabilityForm() {
           type="checkbox"
           className="min-w-[120px]"
           checked={checkFri}
+          value={userData.Friday}
           onChange={() => {
             if (checkFri) {
-              setFriday("");
-              setFriday2("");
+              setUserData({ ...userData, Friday: "true" });
             }
             setCheckFri(!checkFri);
           }}
@@ -352,8 +375,13 @@ export default function AvailabilityForm() {
           )}
           id="Friday"
           disabled={!checkFri}
-          value={Friday}
-          onChange={(e) => setFriday(e.target.value)}
+          value={userData.fridayStart}
+          onChange={(event) => {
+            setUserData({
+              ...userData,
+              fridayStart: event.target.value,
+            });
+          }}
         >
           <option value="06:00">06:00 a.m.</option>
           <option value="07:00">07:00 a.m.</option>
@@ -381,8 +409,13 @@ export default function AvailabilityForm() {
           )}
           id="Friday2"
           disabled={!checkFri}
-          value={Friday2}
-          onChange={(e) => setFriday2(e.target.value)}
+          value={userData.fridayEnd}
+          onChange={(event) => {
+            setUserData({
+              ...userData,
+              fridayEnd: event.target.value,
+            });
+          }}
         >
           <option value="06:00">06:00 a.m.</option>
           <option value="07:00">07:00 a.m.</option>
@@ -410,10 +443,10 @@ export default function AvailabilityForm() {
           type="checkbox"
           className="min-w-[120px]"
           checked={checkSat}
+          value={userData.Saturday}
           onChange={() => {
             if (checkSat) {
-              setSaturday("");
-              setSaturday2("");
+              setUserData({ ...userData, Saturday: "true" });
             }
             setCheckSat(!checkSat);
           }}
@@ -426,8 +459,13 @@ export default function AvailabilityForm() {
           )}
           id="Saturday"
           disabled={!checkSat}
-          value={Saturday}
-          onChange={(e) => setSaturday(e.target.value)}
+          value={userData.saturdayStart}
+          onChange={(event) => {
+            setUserData({
+              ...userData,
+              saturdayStart: event.target.value,
+            });
+          }}
         >
           <option value="06:00">06:00 a.m.</option>
           <option value="07:00">07:00 a.m.</option>
@@ -455,8 +493,13 @@ export default function AvailabilityForm() {
           )}
           id="Saturday2"
           disabled={!checkSat}
-          value={Saturday2}
-          onChange={(e) => setSaturday2(e.target.value)}
+          value={userData.saturdayEnd}
+          onChange={(event) => {
+            setUserData({
+              ...userData,
+              saturdayEnd: event.target.value,
+            });
+          }}
         >
           <option value="06:00">06:00 a.m.</option>
           <option value="07:00">07:00 a.m.</option>
@@ -484,10 +527,10 @@ export default function AvailabilityForm() {
           type="checkbox"
           className="min-w-[120px]"
           checked={checkSun}
+          value={userData.Sunday}
           onChange={() => {
             if (checkSun) {
-              setSunday("");
-              setSunday2("");
+              setUserData({ ...userData, Sunday: "true" });
             }
             setCheckSun(!checkSun);
           }}
@@ -500,8 +543,13 @@ export default function AvailabilityForm() {
           )}
           id="Sunday"
           disabled={!checkSun}
-          value={Sunday}
-          onChange={(e) => setSunday(e.target.value)}
+          value={userData.sundayStart}
+          onChange={(event) => {
+            setUserData({
+              ...userData,
+              sundayStart: event.target.value,
+            });
+          }}
         >
           <option value="06:00">06:00 a.m.</option>
           <option value="07:00">07:00 a.m.</option>
@@ -529,8 +577,13 @@ export default function AvailabilityForm() {
           )}
           id="Sunday2"
           disabled={!checkSun}
-          value={Sunday2}
-          onChange={(e) => setSunday2(e.target.value)}
+          value={userData.sundayEnd}
+          onChange={(event) => {
+            setUserData({
+              ...userData,
+              sundayEnd: event.target.value,
+            });
+          }}
         >
           <option value="06:00">06:00 a.m.</option>
           <option value="07:00">07:00 a.m.</option>
