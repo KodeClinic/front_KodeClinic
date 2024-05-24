@@ -1,7 +1,17 @@
 import clsx from "clsx";
 import React from "react";
+import Link from "next/link";
+import { useRouter } from "next/router";
 
 export default function NavBarPat({ pageName }) {
+  const router = useRouter();
+  const id = router.query.id;
+
+  const onLogout = () => {
+    localStorage.removeItem("token");
+    router.push("/");
+  };
+
   return (
     <nav className={clsx("bg-white drop-shadow-md", "fixed top-0 z-50 w-full")}>
       <div
@@ -29,12 +39,18 @@ export default function NavBarPat({ pageName }) {
               alt="menu"
             />
           </a>
-
-          <img
-            className={clsx("w-7 h-7", "min-[980px]:w-8 min-[980px]:h-8")}
-            src="/assets/img-kodeclinic-logo.png"
-            alt="kodeclinic_logo"
-          />
+          <Link
+            href={{
+              pathname: "/DashboardPat",
+              query: { id: id },
+            }}
+          >
+            <img
+              className={clsx("w-7 h-7", "min-[980px]:w-8 min-[980px]:h-8")}
+              src="/assets/img-kodeclinic-logo.png"
+              alt="kodeclinic_logo"
+            />
+          </Link>
 
           <span
             className={clsx(
@@ -72,13 +88,13 @@ export default function NavBarPat({ pageName }) {
               "hidden sm:block"
             )}
           >
-            <a href="">
+            <button onClick={onLogout}>
               <img
                 className={clsx("w-auto min-h-5 cursor-pointer")}
                 src="/assets/icons/logout-icon.svg"
                 alt="log-out"
               />
-            </a>
+            </button>
           </div>
         </div>
       </div>

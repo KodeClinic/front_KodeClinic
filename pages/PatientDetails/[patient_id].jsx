@@ -50,12 +50,16 @@ export default function PatientDetails() {
         );
 
       case 2:
-        return <PatientAppointments />;
+        return (
+          <section>
+            <PatientAppointments />
+          </section>
+        );
     }
   };
 
   return (
-    <main className={clsx("bg-background w-full h-full")}>
+    <main className={clsx("bg-background w-full min-h-screen")}>
       <NavBarSpe pageName={"Paciente"} />
 
       <PatientDetailsBand
@@ -63,9 +67,6 @@ export default function PatientDetails() {
         gender={patientInfo.gender}
         email={patientInfo.email}
         cel={patientInfo.cellphone}
-        // work={"Programador"}
-        // religion={"Católica"}
-        // address={"Av. Juan de la barrera, #1808 Col. Condesa."}
       />
       <section
         className={clsx(

@@ -4,15 +4,30 @@ import Input from "@/components/Input";
 import clsx from "clsx";
 import { multiStepContext } from "@/context/MedicalRecordStepContext";
 import { getbyTemplateId } from "@/services/templates";
+import TwoButtonsModal from "../TwoButtons_Modal.jsx";
+import ConfirmationModal from "../MedicalRecords/ConfirmationModal.jsx";
 
 export default function ClinicNotes() {
   const router = useRouter();
-
-  const { setCurrentStep } = useContext(multiStepContext);
-
   const [formDataTemplate, setFormDataTemplate] = useState({});
   const [sectionName, setSectionName] = useState("");
   const [inputList, setInputList] = useState([]);
+
+  const { setCurrentStep, modal, toggleModal, confirmation } =
+    useContext(multiStepContext);
+
+  const modalProps = {
+    title: "Historia Clínica del paciente",
+    description: "¿Está seguro que desea finalizar la Historia Clínica?",
+    buttonLeft: "Cancelar",
+    buttonRight: "Finalizar",
+  };
+
+  const confirmationProps = {
+    text: "Historia Clínica guardada con éxito",
+    button: "Entendido",
+    successIcon: true,
+  };
 
   const getTemplateData = async (token) => {
     const credetials = { id: "2", token: token };
@@ -76,15 +91,15 @@ export default function ClinicNotes() {
           Atrás
         </button>
         <button
-          onClick={() => {
-            setCurrentStep(3);
-          }}
+          onClick={toggleModal}
           className={clsx(
             "bg-background font-semibold rounded-md text-blue_button py-2 px-3 text-lg"
           )}
         >
-          Siguiente
+          Finalizar
         </button>
+        {modal && <TwoButtonsModal props={modalProps} />}
+        {confirmation && <ConfirmationModal props={confirmationProps} />}
       </div>
     </div>
   );

@@ -118,10 +118,11 @@ export default function NonPathological() {
             "bg-background font-semibold rounded-md text-blue_button py-2 px-3 text-lg"
           )}
         >
-          Siguiente
+          Finalizar
         </button>
         {modal && <TwoButtonsModal props={modalProps} />}
         {confirmation && <ConfirmationModal props={confirmationProps} />}
+        {/* se debe cambiar por opcional para cuando se accede por patientDetails a generar antecedentes */}
         {clinicalStart && <ConfirmationModal props={clinicalStartProps} />}
       </div>
     </div>

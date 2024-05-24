@@ -62,7 +62,7 @@ export default function PatientList() {
   };
 
   return (
-    <main className={clsx("bg-background w-full h-fit")}>
+    <main className={clsx("bg-background w-full min-h-screen")}>
       <NavBarSpe pageName={"Lista de Pacientes"} />
 
       <SpecialistCard
@@ -121,7 +121,7 @@ export default function PatientList() {
                 <Link
                   href={{
                     pathname: "/PatientDetails/[patient_id]",
-                    query: { patient_id: patient.patientID },
+                    query: { id: dataQuery.id, patient_id: patient.patientID },
                   }}
                   key={`link-${patient.patientID}`}
                 >

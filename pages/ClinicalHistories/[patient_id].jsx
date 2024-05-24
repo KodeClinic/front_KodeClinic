@@ -16,31 +16,62 @@ import StepLabel from "@mui/material/StepLabel";
 export default function ClinicalHistories() {
   const router = useRouter();
   const patientId = router.query.patient_id;
+  const specialistId = router.query.id;
 
   //Estados
   const [currentStep, setCurrentStep] = useState(1);
   const [userData, setUserData] = useState([]);
-  const [finalData, setFinalData] = useState([]);
+  const [modal, setModal] = useState(false);
+  const [confirmation, setConfirmation] = useState(false);
 
   const steps = ["Evaluación", "Tratamiento", "Notas Clínicas"];
 
+  const toggleModal = () => {
+    setModal(!modal);
+  };
+
+  const toggleConfirmation = () => {
+    router.push({
+      pathname: "/DashboardSpe",
+      query: { id: specialistId },
+    });
+
+    // if (clinicalStart) {
+    //   setClinicalStart(!clinicalStart);
+    //   router.push({
+    //     pathname: "/ClinicalHistories/[patient_id]",
+    //     query: { patient_id: patientId },
+    //   });
+    // } else {
+    //   setConfirmation(!confirmation);
+    //   setClinicalStart(!clinicalStart);
+    // }
+  };
+
   const submitData = () => {
     const token = localStorage.getItem("token");
+    try {
+      console.log("Final Data, Clinical Histories", userData);
+      updateClinicalHistory({
+        data: userData,
+        templateId: 2,
+        patientId: patientId,
+        appointmentId: "asdfas",
+        token: token,
+      });
+      setUserData("");
 
-    setFinalData(userData);
-    console.log("Final Data, Clinical Histories", finalData);
-    updateClinicalHistory({
-      data: finalData,
-      templateId: 2,
-      patientId: patientId,
-      appointmentId: "asdfas",
-      token: token,
-    });
-    setUserData("");
-    setFinalData("");
-
-    setModal(!modal);
-    setConfirmation(!confirmation);
+      setModal(!modal);
+      setConfirmation(!confirmation);
+    } catch (error) {
+      alert(
+        "A ocurrido un error al crear la Historia Clínica, por favor intentalo de nuevo"
+      );
+      router.push({
+        pathname: "/ClinicalHistory/[patient_id]",
+        query: { patient_id: patientId },
+      });
+    }
   };
 
   const renderPage = (pageNumber) => {
@@ -87,9 +118,11 @@ export default function ClinicalHistories() {
               setCurrentStep,
               userData,
               setUserData,
-              finalData,
-              setFinalData,
               submitData,
+              modal,
+              toggleModal,
+              confirmation,
+              toggleConfirmation,
             }}
           >
             <div className={clsx("flex justify-center pt-5 pb-10")}>
