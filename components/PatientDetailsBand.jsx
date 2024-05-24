@@ -5,9 +5,9 @@ export default function PatientDetailsBand({
   gender,
   email,
   cel,
-  work,
-  religion,
-  address,
+  // work,
+  // religion,
+  // address,
 }) {
   return (
     <section
@@ -37,10 +37,10 @@ export default function PatientDetailsBand({
           >
             {name}
           </span>
-          <div className={clsx("flex gap-[10px] items-center")}>
+          {/* <div className={clsx("flex gap-[10px] items-center")}>
             <img
               className={clsx("w-5 h-5")}
-              src="/assets/icons/build.svg"
+              src="/assets/icons/build-icon.svg"
               alt=""
             />
             <span
@@ -51,7 +51,7 @@ export default function PatientDetailsBand({
             >
               {address}
             </span>
-          </div>
+          </div> */}
         </div>
 
         <div
@@ -115,14 +115,14 @@ export default function PatientDetailsBand({
               {cel}
             </span>
           </div>
-          <div
+          {/* <div
             className={clsx(
               "flex gap-[10px] items-center min-[980px]:invisible xl:visible"
             )}
           >
             <img
               className={clsx("w-5 h-5")}
-              src="/assets/portafolio.svg"
+              src="/assets/icons/portfolio-icon.svg"
               alt=""
             />
             <span
@@ -133,9 +133,13 @@ export default function PatientDetailsBand({
             >
               {work}
             </span>
-          </div>
-          <div className={clsx("flex gap-[10px] items-center")}>
-            <img className={clsx("w-5 h-5")} src="/assets/church.svg" alt="" />
+          </div> */}
+          {/* <div className={clsx("flex gap-[10px] items-center")}>
+            <img
+              className={clsx("w-5 h-5")}
+              src="/assets/icons/church-icon.svg"
+              alt=""
+            />
             <span
               className={clsx(
                 "text-base font-normal",
@@ -144,7 +148,7 @@ export default function PatientDetailsBand({
             >
               {religion}
             </span>
-          </div>
+          </div> */}
         </div>
       </div>
 
@@ -155,7 +159,7 @@ export default function PatientDetailsBand({
           "absolute",
           "bottom-0 sm:right-10 min-[980px]:right-8"
         )}
-        src="assets/img-PatientCard.png"
+        src="/assets/img-PatientCard.png"
         alt="psiotherapy"
       />
     </section>

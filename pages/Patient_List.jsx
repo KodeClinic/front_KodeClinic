@@ -4,6 +4,7 @@ import clsx from "clsx";
 import { useEffect, useState } from "react";
 // import { useFormik } from "formik";
 import { useRouter } from "next/router";
+import Link from "next/link";
 import { getUserById } from "@/services/users/auth";
 import PatientCard from "@/components/PatientCard";
 import { getPatients } from "@/services/specialists";
@@ -117,12 +118,20 @@ export default function PatientList() {
             {patientList.map((patient) => {
               let fullName = `${patient.patientName} ${patient.patientLastName}`;
               return (
-                <PatientCard
-                  key={patient._id}
-                  name={fullName}
-                  gender={patient.patientGender}
-                  number={patient.patientCellphone}
-                />
+                <Link
+                  href={{
+                    pathname: "/PatientDetails/[patient_id]",
+                    query: { patient_id: patient.patientID },
+                  }}
+                  key={`link-${patient.patientID}`}
+                >
+                  <PatientCard
+                    key={`card-${patient.patientID}`}
+                    name={fullName}
+                    gender={patient.patientGender}
+                    number={patient.patientCellphone}
+                  />
+                </Link>
               );
             })}
           </div>

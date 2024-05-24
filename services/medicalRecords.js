@@ -20,3 +20,14 @@ export function getRecordsData(credentials) {
   };
   return fetch(URL, options);
 }
+
+export function updateRecordsData(credentials) {
+  const { patientId, templateId, token, data } = credentials;
+  const URL = `${URL_BASE}api/medicalRecords/update/${patientId}/${templateId}`;
+  const options = {
+    method: "PATCH",
+    body: JSON.stringify(data),
+    headers: { "Content-Type": "application/json", bearerauth: token },
+  };
+  return fetch(URL, options);
+}

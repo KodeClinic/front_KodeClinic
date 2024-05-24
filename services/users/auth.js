@@ -62,7 +62,7 @@ export function sendEmailCode(credentials) {
 
 export function getUserById(credentials) {
   const { id, token } = credentials;
-  const URL = `${URL_BASE}api/users/${id}`;
+  const URL = `${URL_BASE}api/users/get/${id}`;
   const options = {
     // method: "GET",
     headers: {

@@ -14,17 +14,59 @@ const selectStyles = {
 };
 
 export default function TypeSelect({ props }) {
-  const { label, optionSelect, _id, propertyName } = props;
-  const { userData, setUserData } = useContext(multiStepContext);
+  const { label, optionSelect, _id, propertyName, fieldValue } = props;
+  const { userData, setUserData, isDisable } = useContext(multiStepContext);
 
   return (
     <div className={clsx("flex flex-col")}>
       <label className={clsx("text-gray-900 font-semibold ", "text-[14px]")}>
         {label}
       </label>
+      {/* {fieldValue.length === 0 ? (
+        <div>
+          <Select
+            styles={selectStyles}
+            placeholder={"Selecciona las opciones"}
+            options={optionSelect}
+            value={userData[propertyName]}
+            onChange={(event) => {
+              setUserData({ ...userData, [propertyName]: event }); //para generar un propiedad dentro del objeto global
+              // setUserData([...userData, { [label]: event }]); //para generar un nuevo objeto dentro del array
+            }}
+          />
+        </div>
+      ) : (
+        <div>
+          <Select
+            defaultValue={fieldValue}
+            isDisabled={isDisable}
+            styles={selectStyles}
+            placeholder={"Selecciona las opciones"}
+            options={optionSelect}
+            value={userData[propertyName]}
+            onChange={(event) => {
+              setUserData({ ...userData, [propertyName]: event }); //para generar un propiedad dentro del objeto global
+              // setUserData([...userData, { [label]: event }]); //para generar un nuevo objeto dentro del array
+            }}
+          />
+        </div>
+      )} */}
+      {/* <div>
+        <Select
+          styles={selectStyles}
+          placeholder={"Selecciona las opciones"}
+          options={optionSelect}
+          value={userData[propertyName]}
+          onChange={(event) => {
+            setUserData({ ...userData, [propertyName]: event }); //para generar un propiedad dentro del objeto global
+            // setUserData([...userData, { [label]: event }]); //para generar un nuevo objeto dentro del array
+          }}
+        />
+      </div> */}
       <div>
         <Select
           styles={selectStyles}
+          isDisabled={isDisable}
           placeholder={"Selecciona las opciones"}
           options={optionSelect}
           value={userData[propertyName]}
