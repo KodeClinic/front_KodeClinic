@@ -15,6 +15,7 @@ import StepLabel from "@mui/material/StepLabel";
 export default function MedicalRecords() {
   const router = useRouter();
   const patientId = router.query.patient_id;
+  const appointmentId = router.query.appointment;
 
   //Estados para el Context
   const [currentStep, setCurrentStep] = useState(1);
@@ -63,7 +64,7 @@ export default function MedicalRecords() {
       setClinicalStart(!clinicalStart);
       router.push({
         pathname: "/ClinicalHistories/[patient_id]",
-        query: { patient_id: patientId },
+        query: { patient_id: patientId, appointment: appointmentId },
       });
     } else {
       setConfirmation(!confirmation);

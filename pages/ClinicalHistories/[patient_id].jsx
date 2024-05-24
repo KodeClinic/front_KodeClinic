@@ -16,13 +16,15 @@ import StepLabel from "@mui/material/StepLabel";
 export default function ClinicalHistories() {
   const router = useRouter();
   const patientId = router.query.patient_id;
-  const specialistId = router.query.id;
+  // const specialistId = router.query.id;
+  const appointmentId = router.query.appointment;
 
   //Estados
   const [currentStep, setCurrentStep] = useState(1);
   const [userData, setUserData] = useState([]);
   const [modal, setModal] = useState(false);
   const [confirmation, setConfirmation] = useState(false);
+  const [specialistId, setSpecialistId] = useState("");
 
   const steps = ["Evaluación", "Tratamiento", "Notas Clínicas"];
 
@@ -48,24 +50,26 @@ export default function ClinicalHistories() {
     // }
   };
 
-  const submitData = () => {
+  const submitData = async () => {
     const token = localStorage.getItem("token");
     try {
       console.log("Final Data, Clinical Histories", userData);
-      updateClinicalHistory({
+      const response = await updateClinicalHistory({
         data: userData,
         templateId: 2,
         patientId: patientId,
-        appointmentId: "asdfas",
+        appointmentId: appointmentId,
         token: token,
       });
+      const dataJSON = await response.json();
+      setSpecialistId(dataJSON.data[1]);
       setUserData("");
 
       setModal(!modal);
       setConfirmation(!confirmation);
     } catch (error) {
       alert(
-        "A ocurrido un error al crear la Historia Clínica, por favor intentalo de nuevo"
+        "A ocurrido un error al crear la Historia Clínica, por favor intentalo de nuevo2"
       );
       router.push({
         pathname: "/ClinicalHistory/[patient_id]",

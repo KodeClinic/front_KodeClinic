@@ -10,3 +10,13 @@ export function updateClinicalHistory(credentials) {
   };
   return fetch(URL, options);
 }
+
+export function getClinicalHistory(credentials) {
+  const { patientId, appointmentId, token } = credentials;
+  const URL = `${URL_BASE}api/clinicalHistories/get/${patientId}/${appointmentId}`;
+  const options = {
+    method: "GET",
+    headers: { "Content-Type": "application/json", bearerauth: token },
+  };
+  return fetch(URL, options);
+}

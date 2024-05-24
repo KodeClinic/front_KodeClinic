@@ -35,7 +35,7 @@ export default function PatientDetailsBand({
               "min-[980px]:text-xl "
             )}
           >
-            {name}
+            Paciente: {name}
           </span>
           {/* <div className={clsx("flex gap-[10px] items-center")}>
             <img

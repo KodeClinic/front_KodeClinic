@@ -13,6 +13,7 @@ import { updateRecordsData } from "@/services/medicalRecords";
 export default function PatientMedicalRecords() {
   const router = useRouter();
   const patientId = router.query.patient_id;
+  const specialistId = router.query.id;
   const [medRecords, setMedRecords] = useState({});
   const [sectionName, setSectionName] = useState("");
   const [inputList, setInputList] = useState([]);
@@ -97,7 +98,7 @@ export default function PatientMedicalRecords() {
       alert("Error al actualizar información por favor intentelo de nuevo");
       router.push({
         pathname: "/PatientDetails/[patient_id]",
-        query: { patient_id: patientId },
+        query: { patient_id: patientId, id: specialistId },
       });
     }
     setIsDisable(!isDisable);

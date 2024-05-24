@@ -3,7 +3,7 @@ import { useEffect, useState, useContext } from "react";
 import { useRouter } from "next/router";
 
 import { getAppointmentsbyPatient } from "@/services/appointments";
-import { ClinicalHistoriesContext } from "@/context/ClinicalHistoriesContext";
+import { multiStepContext } from "@/context/MedicalRecordStepContext";
 
 export default function AppointmentList() {
   const router = useRouter();
@@ -11,9 +11,7 @@ export default function AppointmentList() {
   const specialistId = router.query.id;
   const [appointmentList, setAppointmentList] = useState([]);
 
-  const { setCurrentPage, setAppointmentId } = useContext(
-    ClinicalHistoriesContext
-  );
+  const { setCurrentPage, setAppointmentId } = useContext(multiStepContext);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
