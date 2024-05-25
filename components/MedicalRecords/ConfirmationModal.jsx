@@ -1,24 +1,24 @@
 import clsx from "clsx";
-import { useState } from "react";
-import { useRouter } from "next/router";
+import { useContext } from "react";
+// import { useRouter } from "next/router";
+import { multiStepContext } from "@/context/MedicalRecordStepContext";
 
-import NewPatientModal from "./NewPatient_Modal";
+export default function ConfirmationModal({ props }) {
+  const { toggleConfirmation } = useContext(multiStepContext);
+  //   const router = useRouter();
+  const { text, button, successIcon } = props;
+  //   const [confirmation, setConfirmation] = useState(false);
 
-export default function SuccessModal(props) {
-  const router = useRouter();
-  const { text, button, id, newPatient } = props;
-  const [confirmation, setConfirmation] = useState(false);
-
-  const handleConfirmation = () => {
-    if (newPatient == true) {
-      setConfirmation(true);
-    } else if (newPatient == false) {
-      router.push({
-        pathname: "/DashboardSpe",
-        query: { id: id },
-      });
-    }
-  };
+  //   const handleConfirmation = () => {
+  //     if (newPatient == true) {
+  //       setConfirmation(true);
+  //     } else if (newPatient == false) {
+  //       router.push({
+  //         pathname: "/DashboardSpe",
+  //         query: { id: id },
+  //       });
+  //     }
+  //   };
 
   return (
     <>
@@ -49,7 +49,7 @@ export default function SuccessModal(props) {
           )}
         >
           <div className={clsx("flex justify-end")}>
-            <button onClick={handleConfirmation}>
+            <button onClick={toggleConfirmation}>
               <svg
                 width="25"
                 height="25"
@@ -73,14 +73,19 @@ export default function SuccessModal(props) {
               "items-center"
             )}
           >
-            <img
-              className={clsx("max-w-20", "m-5")}
-              src="/assets/Vector.png"
-              alt="imgCheck"
-            />
+            {successIcon ? (
+              <img
+                className={clsx("max-w-20", "m-5")}
+                src="/assets/Vector.png"
+                alt="imgCheck"
+              />
+            ) : (
+              ""
+            )}
+
             <span className="text-center md:text-lg">{text}</span>
             <button
-              onClick={handleConfirmation}
+              onClick={toggleConfirmation}
               className={clsx(
                 "border",
                 " border-2",
@@ -96,7 +101,6 @@ export default function SuccessModal(props) {
               {button}
             </button>
           </div>
-          {confirmation ? <NewPatientModal id={id} /> : ""}
         </div>
       </div>
     </>

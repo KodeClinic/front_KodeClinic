@@ -5,50 +5,21 @@ import AccordionFormSection from "../AccordeonFormSection";
 import clsx from "clsx";
 import { multiStepContext } from "@/context/MedicalRecordStepContext";
 import { getbyTemplateId } from "@/services/templates";
-import TwoButtonsModal from "../TwoButtons_Modal.jsx";
-import ConfirmationModal from "./ConfirmationModal";
 
-export default function NonPathological() {
-  const { setCurrentStep, modal, toggleModal, confirmation, clinicalStart } =
-    useContext(multiStepContext);
+export default function Evaluation() {
+  const { setCurrentStep } = useContext(multiStepContext);
   const [formDataTemplate, setFormDataTemplate] = useState({});
   const [sectionForm, setSectionForm] = useState({});
   // const [modal, setModal] = useState(false);
   // const [inputList, setInputList] = useState([]);
 
-  const modalProps = {
-    title: "Antecendetes Médicos del paciente",
-    description: "¿Está seguro que desea finalizar los Antecendentes Médicos?",
-    buttonLeft: "Cancelar",
-    buttonRight: "Finalizar",
-  };
-
-  const confirmationProps = {
-    text: "Antecedentes Médicos guardados con éxito",
-    button: "Entendido",
-    successIcon: true,
-  };
-
-  const clinicalStartProps = {
-    text: "A continuación comenzaremos con la Historia Clínica del Paciente",
-    button: "Comenzar",
-    successIcon: false,
-  };
-
-  // const toggleModal = () => {
-  //   setModal(!modal);
-  // };
-
   const getTemplateData = async (token) => {
-    const credetials = { id: "1", token: token };
+    const credetials = { id: "2", token: token };
     try {
       const response = await getbyTemplateId(credetials);
       const dataJSON = await response.json();
-      //   setFormDataTemplate(dataJSON.data.screens[0].sections[0].inputList);
       setFormDataTemplate(dataJSON.data);
-      // setInputList(dataJSON.data.screens[1].inputList);
-      setSectionForm(dataJSON.data.screens[1]);
-      // console.log(dataJSON.data.screens[1]);
+      setSectionForm(dataJSON.data.screens[0]);
     } catch (error) {
       alert(
         "Ocurrió un problema al intentar acceder, por favor inténtenlo de nuevo"
@@ -89,41 +60,17 @@ export default function NonPathological() {
           );
         })}
       </div>
-      <div className={clsx("flex justify-between pt-10")}>
+      <div className={clsx("flex justify-end pt-10")}>
         <button
           onClick={() => {
-            setCurrentStep(1);
+            setCurrentStep(2);
           }}
-          className={clsx(
-            "bg-blue_gray-50 font-semibold rounded-md text-blue_gray-700 py-2 px-3 text-lg"
-          )}
-        >
-          Atrás
-        </button>
-        {/* <button
-          // onClick={() => {
-          //   setCurrentStep(3);
-          // }}
-          onClick={submitData}
           className={clsx(
             "bg-background font-semibold rounded-md text-blue_button py-2 px-3 text-lg"
           )}
         >
           Siguiente
-        </button> */}
-
-        <button
-          onClick={toggleModal}
-          className={clsx(
-            "bg-background font-semibold rounded-md text-blue_button py-2 px-3 text-lg"
-          )}
-        >
-          Finalizar
         </button>
-        {modal && <TwoButtonsModal props={modalProps} />}
-        {confirmation && <ConfirmationModal props={confirmationProps} />}
-        {/* se debe cambiar por opcional para cuando se accede por patientDetails a generar antecedentes */}
-        {clinicalStart && <ConfirmationModal props={clinicalStartProps} />}
       </div>
     </div>
   );

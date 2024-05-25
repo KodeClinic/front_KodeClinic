@@ -31,6 +31,27 @@ export default function AppointmentExistingPatient2() {
     { value: "valoration", label: "Valoración" },
   ];
 
+  const optionSelectDuration = [];
+  let interval = {};
+
+  for (let i = 6; i < 22; i++) {
+    let starthour = i;
+    let endhour = i + 1;
+    if (endhour < 12) {
+      interval = {
+        value: `${starthour}:00 - ${endhour}:00 am`,
+        label: `${starthour}:00 - ${endhour}:00 am`,
+      };
+      optionSelectDuration.push(interval);
+    } else if (endhour >= 12) {
+      interval = {
+        value: `${starthour}:00 - ${endhour}:00 pm`,
+        label: `${starthour}:00 - ${endhour}:00 pm`,
+      };
+      optionSelectDuration.push(interval);
+    }
+  }
+
   useEffect(() => {
     const token = localStorage.getItem("token");
 
@@ -55,6 +76,7 @@ export default function AppointmentExistingPatient2() {
 
   const onSubmit = async () => {
     setIsLoading(true);
+    console.log(values);
 
     try {
       const token = localStorage.getItem("token");
@@ -91,8 +113,7 @@ export default function AppointmentExistingPatient2() {
     initialValues: {
       patient: "",
       date: "",
-      startTime: "",
-      endTime: "",
+      timeLapse: "",
       consultType: "",
       consultingAddress: "",
     },
@@ -157,49 +178,17 @@ export default function AppointmentExistingPatient2() {
             </div>
             <div className={clsx("pt-2", "pb-2")}>
               <div className={clsx("text-sm", "md:text-base", "")}>
-                <p className={clsx("font-semibold")}> Horario</p>
-                <div className="flex">
-                  <input
-                    className={clsx(
-                      "shadow appearance-none border-2 border-primary_main rounded-md w-[136px] h-12 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline",
-                      errors.startTime && touched.startTime
-                        ? "border-red"
-                        : "border-primary_main"
-                    )}
-                    id="startTime"
-                    type="Time"
-                    placeholder=""
-                    value={values.startTime}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                  />
+                <p className={clsx("font-semibold")} htmlFor="timeLapse">
+                  {" "}
+                  Horario
+                </p>
 
-                  <p className="p-2 font-semibold">a</p>
-                  <input
-                    className={clsx(
-                      "shadow appearance-none border-2 border-primary_main rounded-md w-[136px] h-12 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline",
-                      errors.endTime && touched.endTime
-                        ? "border-red"
-                        : "border-primary_main"
-                    )}
-                    id="endTime"
-                    type="Time"
-                    placeholder=""
-                    value={values.endTime}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                  />
-                </div>
-                {(errors.startTime || errors.endTime) &&
-                (touched.startTime || errors.endTime) ? (
-                  <p
-                    className={clsx("text-sm text-red text-center font-medium")}
-                  >
-                    {errors.startTime}
-                  </p>
-                ) : (
-                  ""
-                )}
+                <CustomSelect
+                  selectStyles={selectStyles}
+                  options={optionSelectDuration}
+                  value={values.timeLapse}
+                  onChange={(value) => setFieldValue("timeLapse", value.value)}
+                />
               </div>
             </div>
           </div>
@@ -289,6 +278,7 @@ export default function AppointmentExistingPatient2() {
       </form>
       {submitSuccess ? (
         <SuccessModal
+          newPatient={false}
           text="Cita guardada con éxito"
           button="Confirmar"
           id={id}

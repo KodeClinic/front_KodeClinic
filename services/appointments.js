@@ -31,3 +31,12 @@ export function getSpecialistAppointments(credentials) {
   };
   return fetch(URL, options);
 }
+export function getAppointmentsbyPatient(credentials) {
+  const { patientId, token } = credentials;
+  const URL = `${URL_BASE}api/appointments/getAppointmentsbyPatient/${patientId}`;
+  const options = {
+    method: "GET",
+    headers: { "Content-Type": "application/json", bearerauth: token },
+  };
+  return fetch(URL, options);
+}

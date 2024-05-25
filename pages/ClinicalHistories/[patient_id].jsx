@@ -1,108 +1,110 @@
-import { useState, useEffect, useContext } from "react";
-import { useRouter } from "next/router";
 import clsx from "clsx";
+import { useState } from "react";
+import { useRouter } from "next/router";
 
 import NavBarSpe from "@/components/NavBarSpe";
-import Pathological from "@/components/MedicalRecords/Pathological";
-import NonPathological from "@/components/MedicalRecords/NonPathological";
+import Evaluation from "@/components/ClinicalHistories/Evaluation";
+import Treatment from "@/components/ClinicalHistories/Treatment";
+import ClinicNotes from "@/components/ClinicalHistories/ClinicNotes";
 import { multiStepContext } from "@/context/MedicalRecordStepContext";
-import { postRecordsData } from "@/services/medicalRecords";
+import { updateClinicalHistory } from "@/services/clinicalHistories";
 
 import Stepper from "@mui/material/Stepper";
 import Step from "@mui/material/Step";
 import StepLabel from "@mui/material/StepLabel";
 
-export default function MedicalRecords() {
+export default function ClinicalHistories() {
   const router = useRouter();
   const patientId = router.query.patient_id;
+  // const specialistId = router.query.id;
   const appointmentId = router.query.appointment;
 
-  //Estados para el Context
+  //Estados
   const [currentStep, setCurrentStep] = useState(1);
-  const [userData, setUserData] = useState([]); //corroborar si es un array o un objeto
-  const [finalData, setFinalData] = useState([]); //corroborar si es un array o un objeto
+  const [userData, setUserData] = useState([]);
   const [modal, setModal] = useState(false);
   const [confirmation, setConfirmation] = useState(false);
-  const [clinicalStart, setClinicalStart] = useState(false);
+  const [specialistId, setSpecialistId] = useState("");
 
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-
-    if (!token) {
-      alert("Inicio de sesión expirado, por favor inicie sesión antes");
-      router.push("/LogIn");
-    }
-  }, []);
-
-  // const steps = ["Patológicos", "No Patológicos", "Heredo Familiares"];
-  const steps = ["Patológicos", "No Patológicos"];
-
-  const submitData = () => {
-    const token = localStorage.getItem("token");
-    setFinalData(userData);
-    console.log(finalData);
-    postRecordsData({
-      data: userData,
-      templateId: 1,
-      patientId: patientId,
-      token: token,
-    });
-    setUserData("");
-    setFinalData("");
-
-    setModal(!modal);
-    setConfirmation(!confirmation);
-    console.log("confirmation modal:", confirmation);
-  };
+  const steps = ["Evaluación", "Tratamiento", "Notas Clínicas"];
 
   const toggleModal = () => {
     setModal(!modal);
   };
 
   const toggleConfirmation = () => {
-    if (clinicalStart) {
-      setClinicalStart(!clinicalStart);
-      router.push({
-        pathname: "/ClinicalHistories/[patient_id]",
-        query: { patient_id: patientId, appointment: appointmentId },
-      });
-    } else {
-      setConfirmation(!confirmation);
-      setClinicalStart(!clinicalStart);
-    }
+    router.push({
+      pathname: "/DashboardSpe",
+      query: { id: specialistId },
+    });
+
+    // if (clinicalStart) {
+    //   setClinicalStart(!clinicalStart);
+    //   router.push({
+    //     pathname: "/ClinicalHistories/[patient_id]",
+    //     query: { patient_id: patientId },
+    //   });
+    // } else {
+    //   setConfirmation(!confirmation);
+    //   setClinicalStart(!clinicalStart);
+    // }
   };
 
-  //   console.log(userData);
-  // console.log("Data final: ", finalData);
+  const submitData = async () => {
+    const token = localStorage.getItem("token");
+    try {
+      console.log("Final Data, Clinical Histories", userData);
+      const response = await updateClinicalHistory({
+        data: userData,
+        templateId: 2,
+        patientId: patientId,
+        appointmentId: appointmentId,
+        token: token,
+      });
+      const dataJSON = await response.json();
+      setSpecialistId(dataJSON.data[1]);
+      setUserData("");
+
+      setModal(!modal);
+      setConfirmation(!confirmation);
+    } catch (error) {
+      alert(
+        "A ocurrido un error al crear la Historia Clínica, por favor intentalo de nuevo2"
+      );
+      router.push({
+        pathname: "/ClinicalHistory/[patient_id]",
+        query: { patient_id: patientId },
+      });
+    }
+  };
 
   const renderPage = (pageNumber) => {
     switch (pageNumber) {
       case 1:
         return (
           <section className="bg-background">
-            <Pathological />
+            <Evaluation />
           </section>
         );
 
       case 2:
         return (
           <section className="bg-background">
-            <NonPathological />
+            <Treatment />
           </section>
         );
-      // case 3:
-      //   return (
-      //     <section className="bg-background">
-      //       <Emergency_info />
-      //     </section>
-      //   );
+      case 3:
+        return (
+          <section className="bg-background">
+            <ClinicNotes />
+          </section>
+        );
     }
   };
 
   return (
     <main className={clsx("bg-background min-h-screen w-full")}>
-      <NavBarSpe pageName={"Consulta"} />
-
+      <NavBarSpe pageName={"Consulta"} />;
       <section
         className={clsx(
           "pt-[88px] pb-16 min-[980px]:pt-[130px] px-4 sm:px-14 min-[980px]:px-20 lg:max-w-[1440px] lg:m-auto"
@@ -120,14 +122,11 @@ export default function MedicalRecords() {
               setCurrentStep,
               userData,
               setUserData,
-              finalData,
-              setFinalData,
               submitData,
               modal,
               toggleModal,
               confirmation,
               toggleConfirmation,
-              clinicalStart,
             }}
           >
             <div className={clsx("flex justify-center pt-5 pb-10")}>
