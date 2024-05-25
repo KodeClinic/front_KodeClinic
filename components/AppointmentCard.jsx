@@ -1,5 +1,6 @@
 import clsx from "clsx";
 import Badge from "./Badge";
+import Link from "next/link";
 
 export default function AppointmentCard({ props }) {
   const {
@@ -10,6 +11,7 @@ export default function AppointmentCard({ props }) {
     timeLapse,
     consultingAddress,
     status,
+    _id,
   } = props;
 
   let fullName = `${patientId.name} ${patientId.lastName}`;
@@ -128,9 +130,14 @@ export default function AppointmentCard({ props }) {
           src="assets/icons/vertical_line-icon.svg"
           alt="line"
         />
-        <div>
+        <Link
+          href={{
+            pathname: "/MedicalRecords/[patient_id]",
+            query: { patient_id: _id },
+          }}
+        >
           <Badge badgeType={status} timeLapse={""} consultingAddress={""} />
-        </div>
+        </Link>
       </div>
     </div>
   );

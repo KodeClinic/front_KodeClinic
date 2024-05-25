@@ -42,23 +42,23 @@ const freeAgenda = [
 
 export default function DashboardEsp() {
   const router = useRouter();
-  const dataQuery = router.query;
+  const id = localStorage.getItem("id");
   const [Date, setDate] = useState(dayjs());
   const [specialistData, setSpecialistData] = useState({});
   const [appointments, setAppointments] = useState([]);
   const [currentAppointments, setCurrentAppointments] = useState([]);
 
-  const fetchData = async (dataQuery, token) => {
+  const fetchData = async (id, token) => {
     try {
       const responseUser = await getUserById({
-        id: dataQuery.id,
+        id: id,
         token: token,
       });
       const responseUserJSON = await responseUser.json();
       setSpecialistData(responseUserJSON.data);
 
       const responseAppointment = await getSpecialistAppointments({
-        specialistId: dataQuery.id,
+        specialistId: id,
         token: token,
         year: Date.$y,
         month: Date.$M + 1,
@@ -77,7 +77,7 @@ export default function DashboardEsp() {
   };
 
   const fetchCalendar = async (
-    dataQuery,
+    id,
     token,
     currentDay,
     currentMonth,
@@ -85,7 +85,7 @@ export default function DashboardEsp() {
   ) => {
     try {
       const responseAppointment = await getSpecialistAppointments({
-        specialistId: dataQuery.id,
+        specialistId: id,
         token: token,
         year: currentYear,
         month: currentMonth + 1,
@@ -107,14 +107,13 @@ export default function DashboardEsp() {
     let currentMonth = newValue.month();
     let currentYear = newValue.year();
 
-    const token = localStorage.getItem("token");
     setDate(newValue);
-    fetchCalendar(dataQuery, token, currentDay, currentMonth, currentYear);
+    fetchCalendar(id, token, currentDay, currentMonth, currentYear);
   };
-  console.log(currentAppointments);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
+    const id = localStorage.getItem("id");
 
     if (!token) {
       alert(
@@ -122,12 +121,12 @@ export default function DashboardEsp() {
       );
       router.push("/LogIn");
     }
-    fetchData(dataQuery, token);
+    fetchData(id, token);
   }, []);
 
   return (
     <main className={clsx("bg-background min-h-screen w-full")}>
-      <NavBarSpe pageName={"Agenda"} id={dataQuery.id} />
+      <NavBarSpe pageName={"Agenda"} />
 
       <SpecialistCard
         name={specialistData?.name + " " + specialistData?.lastName}
@@ -194,7 +193,6 @@ export default function DashboardEsp() {
           </LocalizationProvider>
         </div>
       </section>
-      {/* <HamburgerMenuSpe isVisible={showModal} closeModal={closeModal} /> */}
     </main>
   );
 }

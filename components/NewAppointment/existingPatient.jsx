@@ -10,7 +10,6 @@ import { getPatients } from "@/services/specialists";
 
 export default function AppointmentExistingPatient2() {
   const router = useRouter();
-  const { id } = router.query;
   const [patientList, setPatientList] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isFailed, setIsFailed] = useState(false);
@@ -54,6 +53,7 @@ export default function AppointmentExistingPatient2() {
 
   useEffect(() => {
     const token = localStorage.getItem("token");
+    const id = localStorage.getItem("id");
 
     if (!token) {
       alert(
@@ -80,6 +80,7 @@ export default function AppointmentExistingPatient2() {
 
     try {
       const token = localStorage.getItem("token");
+      const id = localStorage.getItem("id");
       const response = await postAppointmentExistingPatient({
         token: token,
         specialistId: id,

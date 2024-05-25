@@ -2,6 +2,7 @@ import clsx from "clsx";
 import React from "react";
 import { useState } from "react";
 import AppointmentCard from "./AppointmentCard";
+import Link from "next/link";
 
 export default function AccordionAppointments({ props }) {
   const [accordionOpen, setAccordionOpen] = useState(false);
@@ -47,7 +48,12 @@ export default function AccordionAppointments({ props }) {
         <div className={clsx("overflow-hidden")}>
           <div className={clsx(" flex flex-col gap-6")}>
             {props.map((date) => {
-              return <AppointmentCard key={date?._id} props={date} />;
+              return (
+                <AppointmentCard
+                  key={`appointment-${date?._id}`}
+                  props={date}
+                />
+              );
             })}
           </div>
         </div>

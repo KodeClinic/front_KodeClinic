@@ -1,11 +1,8 @@
 import clsx from "clsx";
-import { useContext } from "react";
 import { useRouter } from "next/router";
-import { WelcomePageContext } from "@/context/WelcomePageContext";
 
 export default function Confirmation() {
   const router = useRouter();
-  const { specialistId } = useContext(WelcomePageContext);
   return (
     <>
       <div className={clsx("p-8")}>
@@ -69,7 +66,6 @@ export default function Confirmation() {
             onClick={() => {
               router.push({
                 pathname: "/DashboardSpe",
-                query: { id: specialistId },
               });
             }}
             className={clsx(

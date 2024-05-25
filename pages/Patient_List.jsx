@@ -12,13 +12,13 @@ import { getPatients } from "@/services/specialists";
 
 export default function PatientList() {
   const router = useRouter();
-  const dataQuery = router.query;
   const [specialistData, setSpecialistData] = useState({});
   const [patientList, setPatientList] = useState([]);
   // const [selectPatientList, setSelectPatientList] = useState([]);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
+    const id = localStorage.getItem("id");
 
     if (!token) {
       alert(
@@ -26,33 +26,25 @@ export default function PatientList() {
       );
       router.push("/LogIn");
     }
-    fetchData(dataQuery, token);
+    fetchData(id, token);
   }, []);
 
-  const fetchData = async (dataQuery, token) => {
+  const fetchData = async (id, token) => {
     try {
       const responseUser = await getUserById({
-        id: dataQuery.id,
+        id: id,
         token: token,
       });
       const responseUserJSON = await responseUser.json();
       setSpecialistData(responseUserJSON.data);
 
       const responsePatients = await getPatients({
-        specialistId: dataQuery.id,
+        specialistId: id,
         token: token,
       });
       const responsePatientsJSON = await responsePatients.json();
 
       setPatientList(responsePatientsJSON.data);
-
-      // const optionSelectPatients = responsePatientsJSON.data.map((patient) => {
-      //   let fullName = `${patient.patientName} ${patient.patientLastName}`;
-      //   return { value: patient.patientID, label: fullName };
-      // });
-      // setSelectPatientList(optionSelectPatients);
-
-      // console.log(responsePatientsJSON.data);
     } catch (error) {
       alert(
         "Ocurrió un problema al intentar acceder, por favor inténtenlo de nuevo2"
@@ -121,7 +113,7 @@ export default function PatientList() {
                 <Link
                   href={{
                     pathname: "/PatientDetails/[patient_id]",
-                    query: { id: dataQuery.id, patient_id: patient.patientID },
+                    query: { patient_id: patient.patientID },
                   }}
                   key={`link-${patient.patientID}`}
                 >

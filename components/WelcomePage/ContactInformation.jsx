@@ -76,7 +76,6 @@ export default function ContactInformation() {
               <p className={clsx("font-semibold")}> Telefono de Contacto</p>
               <input
                 className="shadow appearance-none border-2 border-primary_main rounded w-[300px] py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                // id="telefonoDeContacto"
                 type="text"
                 required
                 placeholder="Telefono de contacto"
@@ -94,7 +93,6 @@ export default function ContactInformation() {
               <p className={clsx("font-semibold")}> Calle y Número</p>
               <input
                 className="shadow appearance-none border-2 border-primary_main rounded w-[300px] py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                // id="calleYnumero"
                 type="text"
                 required
                 placeholder="Calle y número"

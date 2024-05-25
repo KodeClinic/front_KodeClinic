@@ -53,18 +53,8 @@ export default function TwoButtonsModal({ props }) {
             <span
               className={clsx("text-green_title", "text-center md:text-xl")}
             >
-              {/* ¿Desea finalizar su sesión de */}
               {description}
             </span>
-            {/* <span
-              className={clsx(
-                "text-center md:text-xl",
-                "pl-2",
-                "text-blue_button"
-              )}
-            >
-              KodeClinic?
-            </span> */}
           </div>
           <div
             className={clsx(

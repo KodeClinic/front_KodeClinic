@@ -13,53 +13,6 @@ export default function GeneralInput({ props }) {
         {label}
       </label>
       <div>
-        {/* {fieldValue.length === 0 ? (
-          <input
-            type={inputType}
-            required
-            placeholder={placeholder}
-            className={clsx(
-              "rounded-md py-2 text-gray-900 drop-shadow-sm ring-2 ring-inset  placeholder:text-gray-900 placeholder:pl-2 cursor-pointer",
-              "w-[300px] h-12 ring-primary_main"
-            )}
-            value={userData[propertyName]} //para generar un propiedad dentro del objeto global
-            onChange={(event) => {
-              setUserData({ ...userData, [propertyName]: event.target.value }); //para generar un propiedad dentro del objeto global
-              // setUserData([...userData, { [label]: event.target.value }]); //para generar un nuevo objeto dentro del array
-            }}
-          />
-        ) : (
-          <input
-            type={inputType}
-            defaultValue={fieldValue}
-            isDisabled={isDisable}
-            required
-            placeholder={placeholder}
-            className={clsx(
-              "rounded-md py-2 text-gray-900 drop-shadow-sm ring-2 ring-inset  placeholder:text-gray-900 placeholder:pl-2 cursor-pointer",
-              "w-[300px] h-12 ring-primary_main"
-            )}
-            value={userData[propertyName]} //para generar un propiedad dentro del objeto global
-            onChange={(event) => {
-              setUserData({ ...userData, [propertyName]: event.target.value }); //para generar un propiedad dentro del objeto global
-              // setUserData([...userData, { [label]: event.target.value }]); //para generar un nuevo objeto dentro del array
-            }}
-          />
-        )} */}
-        {/* <input
-          type={inputType}
-          required
-          placeholder={placeholder}
-          className={clsx(
-            "rounded-md py-2 text-gray-900 drop-shadow-sm ring-2 ring-inset  placeholder:text-gray-900 placeholder:pl-2 cursor-pointer",
-            "w-[300px] h-12 ring-primary_main"
-          )}
-          value={userData[propertyName]} //para generar un propiedad dentro del objeto global
-          onChange={(event) => {
-            setUserData({ ...userData, [propertyName]: event.target.value }); //para generar un propiedad dentro del objeto global
-            // setUserData([...userData, { [label]: event.target.value }]); //para generar un nuevo objeto dentro del array
-          }}
-        /> */}
         <input
           type={inputType}
           required

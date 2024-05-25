@@ -6,7 +6,7 @@ import NewPatientModal from "./NewPatient_Modal";
 
 export default function SuccessModal(props) {
   const router = useRouter();
-  const { text, button, id, newPatient } = props;
+  const { text, button, newPatient } = props;
   const [confirmation, setConfirmation] = useState(false);
 
   const handleConfirmation = () => {
@@ -15,7 +15,6 @@ export default function SuccessModal(props) {
     } else if (newPatient == false) {
       router.push({
         pathname: "/DashboardSpe",
-        query: { id: id },
       });
     }
   };
@@ -96,7 +95,7 @@ export default function SuccessModal(props) {
               {button}
             </button>
           </div>
-          {confirmation ? <NewPatientModal id={id} /> : ""}
+          {confirmation ? <NewPatientModal /> : ""}
         </div>
       </div>
     </>

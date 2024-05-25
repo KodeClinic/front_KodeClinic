@@ -18,17 +18,16 @@ export default function New_pacient() {
   const [finalPxData, setFinalPxData] = useState([]);
 
   const router = useRouter();
-  const specialistId = router.query.id;
+  const specialistId = localStorage.getItem("id");
 
-  //Obtencion de token para acceso controlado
-  /*  useEffect(() => {
+  useEffect(() => {
     const token = localStorage.getItem("token");
 
     if (!token) {
       alert("Inicio de sesión expirado, por favor inicie sesión antes");
       router.push("/LogIn");
     }
-  }, []);*/
+  }, []);
 
   const submitData = () => {
     console.log("Data de newPxData: ", newPxData);

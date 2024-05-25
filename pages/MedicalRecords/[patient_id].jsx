@@ -72,9 +72,6 @@ export default function MedicalRecords() {
     }
   };
 
-  //   console.log(userData);
-  // console.log("Data final: ", finalData);
-
   const renderPage = (pageNumber) => {
     switch (pageNumber) {
       case 1:
@@ -90,12 +87,6 @@ export default function MedicalRecords() {
             <NonPathological />
           </section>
         );
-      // case 3:
-      //   return (
-      //     <section className="bg-background">
-      //       <Emergency_info />
-      //     </section>
-      //   );
     }
   };
 

@@ -1,8 +1,7 @@
 import clsx from "clsx";
 import { useRouter } from "next/router";
 
-export default function NewPatientModal(props) {
-  const { id } = props;
+export default function NewPatientModal() {
   const router = useRouter();
 
   return (
@@ -38,7 +37,6 @@ export default function NewPatientModal(props) {
               onClick={() => {
                 router.push({
                   pathname: "/DashboardSpe",
-                  query: { id: id },
                 });
               }}
             >
@@ -95,7 +93,6 @@ export default function NewPatientModal(props) {
               onClick={() => {
                 router.push({
                   pathname: "/DashboardSpe",
-                  query: { id: id },
                 });
               }}
             >

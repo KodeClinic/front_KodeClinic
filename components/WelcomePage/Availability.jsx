@@ -1,11 +1,9 @@
 import clsx from "clsx";
 import AvailabilityForm from "./AvailabilityForm";
 import { useContext } from "react";
-import { useRouter } from "next/router";
 import { WelcomePageContext } from "@/context/WelcomePageContext";
 
 export default function Availability() {
-  const router = useRouter();
   const { setCurrentStep, submitData } = useContext(WelcomePageContext);
 
   return (

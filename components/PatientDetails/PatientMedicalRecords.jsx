@@ -13,7 +13,7 @@ import { updateRecordsData } from "@/services/medicalRecords";
 export default function PatientMedicalRecords() {
   const router = useRouter();
   const patientId = router.query.patient_id;
-  const specialistId = router.query.id;
+  const id = localStorage.getItem("");
   const [medRecords, setMedRecords] = useState({});
   const [sectionName, setSectionName] = useState("");
   const [inputList, setInputList] = useState([]);
@@ -67,15 +67,11 @@ export default function PatientMedicalRecords() {
       const dataJSON = await response.json();
       setMedRecords(dataJSON.data[0]);
       setSectionForm(dataJSON.data[0].screens[1]);
-      // console.log(dataJSON.data[0]);
       setSectionName(dataJSON.data[0].screens[0].title);
       setInputList(dataJSON.data[0].screens[0].inputList);
       setUserData(dataJSON.data[1]);
     } catch (error) {
       setEmptyRecords(true);
-      // alert(
-      //   "Ocurrió un problema al intentar acceder, por favor inténtenlo de nuevo"
-      // );
     }
   };
 
@@ -98,14 +94,13 @@ export default function PatientMedicalRecords() {
       alert("Error al actualizar información por favor intentelo de nuevo");
       router.push({
         pathname: "/PatientDetails/[patient_id]",
-        query: { patient_id: patientId, id: specialistId },
+        query: { patient_id: patientId, id: id },
       });
     }
     setIsDisable(!isDisable);
     setUserData("");
     setModal(!modal);
     setConfirmation(!confirmation);
-    // console.log("confirmation modal:", confirmation);
   };
 
   const toggleConfirmation = () => {

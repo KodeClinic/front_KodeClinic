@@ -16,7 +16,7 @@ import StepLabel from "@mui/material/StepLabel";
 
 export default function WelcomePage() {
   const router = useRouter();
-  const specialistId = router.query.id;
+  const specialistId = localStorage.getItem("id");
 
   //Estados para el Context
   const [currentStep, setCurrentStep] = useState(1);
@@ -43,7 +43,6 @@ export default function WelcomePage() {
     });
     setUserData("");
   };
-  console.log(userData);
 
   const renderCard = (pageNumber) => {
     switch (pageNumber) {
@@ -87,10 +86,8 @@ export default function WelcomePage() {
             finalData,
             setFinalData,
             submitData,
-            specialistId,
           }}
         >
-          {/* <div className="grid place-items-center"> */}
           <div className="md:flex md:justify-between ">
             <div className={clsx("w-full flex justify-center")}>
               <div className="w-full md:flex md:flex-col md:justify-center">

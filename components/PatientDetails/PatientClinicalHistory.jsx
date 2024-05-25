@@ -10,7 +10,6 @@ import Input from "../Input";
 export default function PatientClinicalHistory() {
   const router = useRouter();
   const patientId = router.query.patient_id;
-  const specialistId = router.query.id;
 
   const [clinicalData, setClinicalData] = useState({});
   const [emptyClinicalHistory, setEmptyClinicalHistory] = useState(false);
@@ -71,9 +70,6 @@ export default function PatientClinicalHistory() {
       setInputList3(dataJSON.data[0].screens[2].inputList);
     } catch (error) {
       setEmptyClinicalHistory(true);
-      // alert(
-      //   "Ocurrió un problema al intentar acceder, por favor inténtenlo de nuevo"
-      // );
     }
   };
 

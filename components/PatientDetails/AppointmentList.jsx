@@ -8,7 +8,6 @@ import { multiStepContext } from "@/context/MedicalRecordStepContext";
 export default function AppointmentList() {
   const router = useRouter();
   const patientId = router.query.patient_id;
-  const specialistId = router.query.id;
   const [appointmentList, setAppointmentList] = useState([]);
 
   const { setCurrentPage, setAppointmentId } = useContext(multiStepContext);
@@ -47,23 +46,21 @@ export default function AppointmentList() {
     }
   };
 
-  const goDetails = () => {};
-
   return (
     <div>
-      <h1 className="pb-[14px] text-start text-xl font-semibold text-green_title sm:text-3xl sm:pb-11">
-        Citas
+      <h1 className="pb-[14px] text-center text-xl font-semibold text-green_title sm:text-3xl sm:pb-11">
+        Historias Clínicas
       </h1>
-      <div>
+      <div className={clsx("flex justify-center")}>
         <table className={clsx("")}>
           {/* head */}
           <thead
-            className={clsx("bg-blue_gray-50 border-b-2 border-blue_gray-200")}
+            className={clsx("bg-blue_gray-50 border-b-2 border-blue_gray-200 ")}
           >
             <tr>
               <th
                 className={clsx(
-                  "text-[18px] font-bold w-[174px] p-4 text-start tracking-wide text-nowrap"
+                  "text-[18px] font-bold w-[174px] p-4 text-start tracking-wide text-nowrap "
                 )}
               >
                 Fecha
@@ -143,7 +140,6 @@ export default function AppointmentList() {
                     <button
                       onClick={() => {
                         setCurrentPage(2);
-                        console.log("appointmentId es:", appointment._id);
                         setAppointmentId(appointment._id);
                       }}
                       className={clsx(

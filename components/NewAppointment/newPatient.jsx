@@ -1,7 +1,5 @@
 import clsx from "clsx";
-import Select from "react-select";
-import { useEffect, useState } from "react";
-import { useRouter } from "next/router";
+import { useState } from "react";
 import { useFormik } from "formik";
 import { AppointmentNewPatientSchema } from "@/schemas/appointmentNewPatient";
 import CustomSelect from "./SelectInput";
@@ -9,8 +7,7 @@ import { postAppointmentNewPatient } from "@/services/appointments";
 import SuccessModal from "../SuccessModal";
 
 export default function AppointmentNewPatient() {
-  const router = useRouter();
-  const { id } = router.query;
+  const id = localStorage.getItem("id");
   const [isLoading, setIsLoading] = useState(false);
   const [isFailed, setIsFailed] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
@@ -58,7 +55,6 @@ export default function AppointmentNewPatient() {
 
   const onSubmit = async () => {
     setIsLoading(true);
-    // console.log(values);
 
     try {
       const token = localStorage.getItem("token");

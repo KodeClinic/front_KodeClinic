@@ -7,21 +7,20 @@ import HamburgerMenuSpe from "./HamburgerMenuSpe";
 import { navbarContext } from "@/context/NavBarContext";
 
 export default function NavBarSpe({ pageName }) {
-  // export default function NavBarSpe({ pageName, mostrarModal }) {
   const [showMenu, setShowMenu] = useState(false);
   const handleMenu = () => {
     setShowMenu(!showMenu);
   };
   const router = useRouter();
-  const id = router.query.id;
   const onLogout = () => {
     localStorage.removeItem("token");
+    localStorage.removeItem("id");
     router.push("/");
   };
 
   return (
     <nav className={clsx("bg-white drop-shadow-md", "fixed top-0 z-50 w-full")}>
-      <navbarContext.Provider value={{ handleMenu, id, onLogout }}>
+      <navbarContext.Provider value={{ handleMenu, onLogout }}>
         {showMenu ? <HamburgerMenuSpe /> : ""}
       </navbarContext.Provider>
       <div
@@ -48,7 +47,6 @@ export default function NavBarSpe({ pageName }) {
           <Link
             href={{
               pathname: "/DashboardSpe",
-              query: { id: id },
             }}
           >
             <img
@@ -77,7 +75,6 @@ export default function NavBarSpe({ pageName }) {
           <Link
             href={{
               pathname: "/NewAppointment",
-              query: { id: id },
             }}
             className={clsx(
               "flex justify-center p-[6px] bg-background w-10 rounded-md"
@@ -89,10 +86,9 @@ export default function NavBarSpe({ pageName }) {
               alt="new-appointment"
             />
           </Link>
-          {/* <Link
+          <Link
             href={{
               pathname: "/New_pacient",
-              query: { id: id },
             }}
             className={clsx(
               "flex justify-center p-[6px] bg-background w-10 rounded-md"
@@ -103,7 +99,7 @@ export default function NavBarSpe({ pageName }) {
               src="/assets/icons/newpatient-icon.svg"
               alt="new-patient"
             />
-          </Link> */}
+          </Link>
           <button
             onClick={onLogout}
             className={clsx(
