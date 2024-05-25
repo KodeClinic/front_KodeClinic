@@ -25,6 +25,16 @@ export default function AppointmentExistingPatient2() {
     }),
   };
 
+  const selectStylesError = {
+    control: (styles) => ({
+      ...styles,
+      width: 300,
+      minHeight: 48,
+      borderRadius: 6,
+      border: "2px solid #ef4444",
+    }),
+  };
+
   const optionSelectAppointment = [
     { value: "therapy", label: "Terapia" },
     { value: "valoration", label: "Valoración" },
@@ -133,18 +143,22 @@ export default function AppointmentExistingPatient2() {
                 Buscar paciente
               </p>
               <CustomSelect
-                selectStyles={selectStyles}
+                selectStyles={
+                  errors.patient && touched.patient
+                    ? selectStylesError
+                    : selectStyles
+                }
                 options={patientList}
                 value={values.patient}
                 onChange={(value) => setFieldValue("patient", value.value)}
               />
-              {/* {errors.patient && touched.patient ? (
-              <p className={clsx("text-sm text-red text-center font-medium")}>
-                {errors.patient}
-              </p>
-            ) : (
-              ""
-            )} */}
+              {errors.patient && touched.patient ? (
+                <p className={clsx("text-sm text-red text-center font-medium")}>
+                  Campo requerido
+                </p>
+              ) : (
+                ""
+              )}
             </div>
           </div>
 
@@ -185,11 +199,24 @@ export default function AppointmentExistingPatient2() {
                 </p>
 
                 <CustomSelect
-                  selectStyles={selectStyles}
+                  selectStyles={
+                    errors.timeLapse && touched.timeLapse
+                      ? selectStylesError
+                      : selectStyles
+                  }
                   options={optionSelectDuration}
                   value={values.timeLapse}
                   onChange={(value) => setFieldValue("timeLapse", value.value)}
                 />
+                {errors.timeLapse && touched.timeLapse ? (
+                  <p
+                    className={clsx("text-sm text-red text-center font-medium")}
+                  >
+                    Campo requerido
+                  </p>
+                ) : (
+                  ""
+                )}
               </div>
             </div>
           </div>
@@ -202,13 +229,26 @@ export default function AppointmentExistingPatient2() {
                   Tipo de Cita
                 </p>
                 <CustomSelect
-                  selectStyles={selectStyles}
+                  selectStyles={
+                    errors.consultType && touched.consultType
+                      ? selectStylesError
+                      : selectStyles
+                  }
                   options={optionSelectAppointment}
                   value={values.consultType}
                   onChange={(value) =>
                     setFieldValue("consultType", value.value)
                   }
                 />
+                {errors.consultType && touched.consultType ? (
+                  <p
+                    className={clsx("text-sm text-red text-center font-medium")}
+                  >
+                    Campo requerido
+                  </p>
+                ) : (
+                  ""
+                )}
               </div>
             </div>
             <div className={clsx("pt-2")}>
