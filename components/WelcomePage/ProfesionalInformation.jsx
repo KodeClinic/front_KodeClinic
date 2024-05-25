@@ -1,26 +1,65 @@
 import clsx from "clsx";
 import { useContext } from "react";
 import { WelcomePageContext } from "@/context/WelcomePageContext";
-import Select from "react-select";
-
-const selectStyles = {
-  control: (styles) => ({
-    ...styles,
-    width: 300,
-    minHeight: 48,
-    borderRadius: 6,
-    border: "2px solid #2196F3",
-  }),
-};
-
-const optionSelect = [
-  { value: "physiotherapy", label: "Fisioterápia" },
-  { value: "other", label: "Otra" },
-];
+import { useFormik } from "formik";
+import CustomSelect from "../NewAppointment/SelectInput";
+import { profesionalInformationSchema } from "@/schemas/welcomePage/profesionalInformation";
 
 export default function ProfesionalInformation() {
   const { userData, setUserData, setCurrentStep } =
     useContext(WelcomePageContext);
+
+  const selectStyles = {
+    control: (styles) => ({
+      ...styles,
+      width: 300,
+      minHeight: 48,
+      borderRadius: 6,
+      border: "2px solid #2196F3",
+    }),
+  };
+
+  const selectStylesError = {
+    control: (styles) => ({
+      ...styles,
+      width: 300,
+      minHeight: 48,
+      borderRadius: 6,
+      border: "2px solid #ef4444",
+    }),
+  };
+
+  const optionSelect = [
+    { value: "physiotherapy", label: "Fisioterápia" },
+    { value: "other", label: "Otra" },
+  ];
+
+  const onSubmit = () => {
+    setUserData({
+      ...userData,
+      medicalLicense: values.medicalLicense,
+      medicalSpeciality: values.medicalSpeciality,
+    });
+    console.log("la data", userData);
+    setCurrentStep(4);
+  };
+
+  const {
+    values,
+    errors,
+    handleBlur,
+    touched,
+    handleChange,
+    handleSubmit,
+    setFieldValue,
+  } = useFormik({
+    initialValues: {
+      medicalLicense: "",
+      medicalSpeciality: "",
+    },
+    validationSchema: profesionalInformationSchema,
+    onSubmit,
+  });
 
   return (
     <>
@@ -73,75 +112,93 @@ export default function ProfesionalInformation() {
             Información Profesional
           </p>
         </div>
-        <div
-          className={clsx(
-            "mt-10",
-            "text-base",
-            "md:text-xl",
-            "flex-col",
-            "space-y-2",
-            "m-2",
-            "p-2",
-            "sm:flex",
-            "gap-5"
-          )}
-        >
-          <div className={clsx("flex flex-col md:flex-row md:justify-between")}>
-            <div className={clsx("space-y-2", "ml-2")}>
-              <p className={clsx("font-semibold")}> Cédula Profesional</p>
-              <input
-                className="shadow appearance-none border-2 border-primary_main rounded w-[300px] py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                id="cedulaProfesional"
-                type="text"
-                placeholder="Cedula Profesional"
-                value={userData.medicalLicense} //para generar un propiedad dentro del objeto global
-                onChange={(event) => {
-                  setUserData({
-                    ...userData,
-                    medicalLicense: event.target.value,
-                  }); //para generar un propiedad dentro del objeto global
-                  // setUserData([...userData, { [label]: event.target.value }]); //para generar un nuevo objeto dentro del array
-                }}
-              />
-            </div>
-            <div className={clsx("space-y-2", "ml-2")}>
-              <p className={clsx("font-semibold")}> Especialidad</p>
-              <Select
-                styles={selectStyles}
-                placeholder={"Selecciona la opción"}
-                options={optionSelect}
-                value={userData.medicalSpeciality}
-                onChange={(event) => {
-                  setUserData({ ...userData, medicalSpeciality: event }); //para generar un propiedad dentro del objeto global
-                  // setUserData([...userData, { [label]: event }]); //para generar un nuevo objeto dentro del array
-                }}
-              />
-            </div>
-          </div>
-          <div className={clsx("flex justify-between pt-10")}>
-            <button
-              onClick={() => {
-                setCurrentStep(2);
-              }}
-              className={clsx(
-                "bg-blue_gray-50 font-semibold rounded-md text-blue_gray-700 py-2 px-3 text-lg"
-              )}
+        <form onSubmit={handleSubmit}>
+          <div
+            className={clsx(
+              "mt-10",
+              "text-base",
+              "md:text-xl",
+              "flex-col",
+              "space-y-2",
+              "m-2",
+              "p-2",
+              "sm:flex",
+              "gap-5"
+            )}
+          >
+            <div
+              className={clsx("flex flex-col md:flex-row md:justify-between")}
             >
-              Atrás
-            </button>
+              <div className={clsx("space-y-2", "ml-2")}>
+                <p className={clsx("font-semibold")}> Cédula Profesional</p>
+                <input
+                  className={clsx(
+                    "shadow appearance-none border-2 border-primary_main rounded w-[300px] py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline",
+                    errors.medicalLicense && touched.medicalLicense
+                      ? "border-red"
+                      : "border-primary_main"
+                  )}
+                  id="medicalLicense"
+                  type="text"
+                  placeholder="Cedula Profesional"
+                  value={values.medicalLicense}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                />
+                {errors.medicalLicense && touched.medicalLicense ? (
+                  <p
+                    className={clsx("text-sm text-red text-center font-medium")}
+                  >
+                    {errors.medicalLicense}
+                  </p>
+                ) : (
+                  ""
+                )}
+              </div>
+              <div className={clsx("space-y-2", "ml-2")}>
+                <p
+                  className={clsx("font-semibold")}
+                  htmlFor="medicalSpeciality"
+                >
+                  {" "}
+                  Especialidad
+                </p>
 
-            <button
-              onClick={() => {
-                setCurrentStep(4);
-              }}
-              className={clsx(
-                "bg-background font-semibold rounded-md text-blue_button py-2 px-3 text-lg"
-              )}
-            >
-              Siguiente
-            </button>
+                <CustomSelect
+                  selectStyles={
+                    errors.medicalSpeciality && touched.medicalSpeciality
+                      ? selectStylesError
+                      : selectStyles
+                  }
+                  options={optionSelect}
+                  value={values.medicalSpeciality}
+                  onChange={(value) =>
+                    setFieldValue("medicalSpeciality", value.value)
+                  }
+                />
+                {errors.medicalSpeciality && touched.medicalSpeciality ? (
+                  <p
+                    className={clsx("text-sm text-red text-center font-medium")}
+                  >
+                    Genero requerido
+                  </p>
+                ) : (
+                  ""
+                )}
+              </div>
+            </div>
+            <div className={clsx("flex justify-end pt-10")}>
+              <button
+                onClick={handleSubmit}
+                className={clsx(
+                  "bg-background font-semibold rounded-md text-blue_button py-2 px-3 text-lg"
+                )}
+              >
+                Siguiente
+              </button>
+            </div>
           </div>
-        </div>
+        </form>
       </div>
     </>
   );
