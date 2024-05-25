@@ -5,6 +5,7 @@ import AppointmentCard from "./AppointmentCard";
 
 export default function AccordionAppointments({ props }) {
   const [accordionOpen, setAccordionOpen] = useState(false);
+
   return (
     <div
       className={clsx(
