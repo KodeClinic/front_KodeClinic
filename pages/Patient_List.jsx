@@ -122,6 +122,7 @@ export default function PatientList() {
                     name={fullName}
                     gender={patient.patientGender}
                     number={patient.patientCellphone}
+                    birthdate={patient.patientBirthdate}
                   />
                 </Link>
               );

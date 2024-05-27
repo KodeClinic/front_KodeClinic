@@ -42,7 +42,9 @@ const freeAgenda = [
 
 export default function DashboardEsp() {
   const router = useRouter();
-  const id = localStorage.getItem("id");
+  const id = typeof window !== "undefined" ? localStorage.getItem("id") : null;
+  const token =
+    typeof window !== "undefined" ? localStorage.getItem("token") : null;
   const [Date, setDate] = useState(dayjs());
   const [specialistData, setSpecialistData] = useState({});
   const [appointments, setAppointments] = useState([]);
@@ -55,6 +57,7 @@ export default function DashboardEsp() {
         token: token,
       });
       const responseUserJSON = await responseUser.json();
+      console.log(responseUserJSON.data);
       setSpecialistData(responseUserJSON.data);
 
       const responseAppointment = await getSpecialistAppointments({

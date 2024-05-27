@@ -41,3 +41,14 @@ export function getAppointmentsbyPatient(credentials) {
   };
   return fetch(URL, options);
 }
+
+export function getSpecialistAvailability(credentials) {
+  const { specialistId, token, data } = credentials;
+  const URL = `${URL_BASE}api/appointments/getAvailability/${specialistId}`;
+  const options = {
+    method: "POST",
+    body: JSON.stringify(data),
+    headers: { "Content-Type": "application/json", bearerauth: token },
+  };
+  return fetch(URL, options);
+}

@@ -50,18 +50,14 @@ export default function SpecialistCard({ name, gender, email, cel, cedProf }) {
               />
             )}
 
-            {gender ? (
-              <span
-                className={clsx(
-                  "text-base font-normal",
-                  "min-[980px]:text-[18px]"
-                )}
-              >
-                {name}
-              </span>
-            ) : (
-              ""
-            )}
+            <span
+              className={clsx(
+                "text-base font-normal",
+                "min-[980px]:text-[18px]"
+              )}
+            >
+              {name}
+            </span>
           </div>
           <div className={clsx("flex gap-[10px] items-center")}>
             <img
