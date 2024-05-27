@@ -8,6 +8,7 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { getUserById } from "@/services/users/auth";
 import { getSpecialistAppointments } from "@/services/appointments";
+import { getSpecialistAvailability } from "@/services/appointments";
 
 // Para utilizar el calendario
 import { esES } from "@mui/x-date-pickers/locales";
@@ -49,8 +50,14 @@ export default function DashboardEsp() {
   const [specialistData, setSpecialistData] = useState({});
   const [appointments, setAppointments] = useState([]);
   const [currentAppointments, setCurrentAppointments] = useState([]);
+  const [schedule, setSchedule] = useState([]);
 
   const fetchData = async (id, token) => {
+    let dateObjet = {
+      year: Date.$y,
+      month: Date.$M + 1,
+      day: Date.$D,
+    };
     try {
       const responseUser = await getUserById({
         id: id,
@@ -70,6 +77,15 @@ export default function DashboardEsp() {
 
       const responseAppointmentJSON = await responseAppointment.json();
       setAppointments(responseAppointmentJSON.data);
+
+      const responseFreeAgenda = await getSpecialistAvailability({
+        token: token,
+        specialistId: id,
+        data: dateObjet,
+      });
+
+      const responseFreeAgendaJSON = await responseFreeAgenda.json();
+      setSchedule(responseFreeAgendaJSON.data);
     } catch (error) {
       console.log(error);
       alert(
@@ -105,6 +121,28 @@ export default function DashboardEsp() {
     }
   };
 
+  const getAvailability = async (currentDay, currentMonth, currentYear) => {
+    let dateObjet = {
+      year: currentYear,
+      month: currentMonth + 1,
+      day: currentDay,
+    };
+
+    try {
+      const res = await getSpecialistAvailability({
+        token: token,
+        specialistId: id,
+        data: dateObjet,
+      });
+      const dataJSON = await res.json();
+      setSchedule(dataJSON.data);
+      console.log(dataJSON.data);
+    } catch (error) {
+      console.log(error);
+      alert("Error al intentar obtener la disponibilidad");
+    }
+  };
+
   const selectDate = (newValue) => {
     let currentDay = newValue.date();
     let currentMonth = newValue.month();
@@ -112,6 +150,7 @@ export default function DashboardEsp() {
 
     setDate(newValue);
     fetchCalendar(id, token, currentDay, currentMonth, currentYear);
+    getAvailability(currentDay, currentMonth, currentYear);
   };
 
   useEffect(() => {
@@ -165,7 +204,7 @@ export default function DashboardEsp() {
             <AccordionAppointments props={appointments} />
           </div>
           <div>
-            <AccordionFreeAgenda props={freeAgenda} />
+            <AccordionFreeAgenda props={schedule} />
           </div>
         </div>
 

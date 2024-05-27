@@ -19,7 +19,6 @@ export default function AppointmentExistingPatient2() {
   const [isFailed, setIsFailed] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
   const [schedule, setSchedule] = useState([]);
-  const [show, setShow] = useState(false);
 
   const selectStyles = {
     control: (styles) => ({

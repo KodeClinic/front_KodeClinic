@@ -46,27 +46,6 @@ export default function AppointmentNewPatient() {
     { value: "female", label: "Mujer" },
   ];
 
-  // const optionSelectDuration = [];
-  // let interval = {};
-
-  // for (let i = 6; i < 22; i++) {
-  //   let starthour = i;
-  //   let endhour = i + 1;
-  //   if (endhour < 12) {
-  //     interval = {
-  //       value: `${starthour}:00 - ${endhour}:00 am`,
-  //       label: `${starthour}:00 - ${endhour}:00 am`,
-  //     };
-  //     optionSelectDuration.push(interval);
-  //   } else if (endhour >= 12) {
-  //     interval = {
-  //       value: `${starthour}:00 - ${endhour}:00 pm`,
-  //       label: `${starthour}:00 - ${endhour}:00 pm`,
-  //     };
-  //     optionSelectDuration.push(interval);
-  //   }
-  // }
-
   const onSubmit = async () => {
     setIsLoading(true);
 
@@ -122,6 +101,7 @@ export default function AppointmentNewPatient() {
 
   const onChangeDate = (date) => {
     getAvailability(date);
+    console.log(date);
   };
 
   const {

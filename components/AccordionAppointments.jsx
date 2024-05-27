@@ -2,7 +2,6 @@ import clsx from "clsx";
 import React from "react";
 import { useState } from "react";
 import AppointmentCard from "./AppointmentCard";
-import Link from "next/link";
 
 export default function AccordionAppointments({ props }) {
   const [accordionOpen, setAccordionOpen] = useState(false);
@@ -22,7 +21,7 @@ export default function AccordionAppointments({ props }) {
           accordionOpen ? "py-4" : ""
         )}
       >
-        <span>Citas programadas</span>
+        <span>Citas programadas {props.length}</span>
         {accordionOpen ? (
           <img
             className={clsx("rotate-90 transition-transform")}

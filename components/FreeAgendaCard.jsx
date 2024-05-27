@@ -1,5 +1,6 @@
 import clsx from "clsx";
 import Badge from "./Badge";
+import Link from "next/link";
 
 export default function FreeAgendaCard({ props }) {
   return (
@@ -39,7 +40,7 @@ export default function FreeAgendaCard({ props }) {
         <div className={clsx("inline-flex flex-col gap-3")}>
           <Badge
             badgeType={"appointment"}
-            timeLapse={props.timeLapse}
+            timeLapse={props.value}
             consultingAddress={""}
           />
         </div>
@@ -55,9 +56,13 @@ export default function FreeAgendaCard({ props }) {
           src="assets/icons/vertical_line-icon.svg"
           alt="line"
         />
-        <div>
+        <Link
+          href={{
+            pathname: "/NewAppointment",
+          }}
+        >
           <Badge badgeType={"schedule"} timeLapse={""} consultingAddress={""} />
-        </div>
+        </Link>
       </div>
     </div>
   );
