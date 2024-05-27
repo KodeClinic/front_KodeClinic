@@ -363,7 +363,16 @@ export default function AppointmentNewPatient() {
               </div>
             </div>
             <div className={clsx("pt-2", "pb-2")}>
-              <div className={clsx("text-sm", "md:text-base", "")}>
+              <div
+                className={clsx(
+                  "text-sm",
+                  "md:text-base",
+                  "transition-all duration-300 ease-linear",
+                  values.date != ""
+                    ? "visible opacity-100"
+                    : "invisible opacity-0"
+                )}
+              >
                 <p className={clsx("font-semibold")} htmlFor="timeLapse">
                   {" "}
                   Tu disponibilidad
