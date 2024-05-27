@@ -4,9 +4,10 @@ import { WelcomePageContext } from "@/context/WelcomePageContext";
 import { useFormik } from "formik";
 import CustomSelect from "../NewAppointment/SelectInput";
 import { profesionalInformationSchema } from "@/schemas/welcomePage/profesionalInformation";
+import TwoButtonsModalWelcomePage from "./TwoButtonsModal";
 
 export default function ProfesionalInformation() {
-  const { userData, setUserData, setCurrentStep } =
+  const { userData, setUserData, setCurrentStep, modal, toggleModal } =
     useContext(WelcomePageContext);
 
   const selectStyles = {
@@ -34,6 +35,13 @@ export default function ProfesionalInformation() {
     { value: "other", label: "Otra" },
   ];
 
+  const modalProps = {
+    title: "Actualización de Datos Personales",
+    description: "¿Está seguro que desea finalizar el registro?",
+    buttonLeft: "Cancelar",
+    buttonRight: "Finalizar",
+  };
+
   const onSubmit = () => {
     setUserData({
       ...userData,
@@ -41,7 +49,8 @@ export default function ProfesionalInformation() {
       medicalSpeciality: values.medicalSpeciality,
     });
     console.log("la data", userData);
-    setCurrentStep(4);
+    // setCurrentStep(4);
+    toggleModal();
   };
 
   const {
@@ -196,6 +205,7 @@ export default function ProfesionalInformation() {
               >
                 Siguiente
               </button>
+              {modal && <TwoButtonsModalWelcomePage props={modalProps} />}
             </div>
           </div>
         </form>
