@@ -3,11 +3,15 @@ import clsx from "clsx";
 import PatientBand from "@/components/PatientBand";
 import SliderPatient from "@/components/SliderPatient";
 import AppointmentListPatient from "@/components/AppointmentListPatient";
-import EditInformation from "@/components/EditInformation"; 
-import { useState } from "react";
+import EditInformation from "@/components/EditInformation";
+import { useEffect, useState } from "react";
+import { useParams } from "next/navigation";
+import { pxInformation } from "@/services/patients";
+import { getUserById } from "@/services/users/auth";
+import { useRouter } from "next/router";
 
 const dataSpecialist = {
-  name: "Francisco Xavier",
+  name: "Xavier",
   lastName: "Hernandez Torres",
   birthDate: "20/12/1980",
   gender: "male",
@@ -23,7 +27,7 @@ const dataSpecialist = {
 const dataPatient = {
   specialist: "id_specialist_1",
   medicalRecord: "id_medicalRecord_1",
-  name: "Roberto Michel",
+  name: "Roberto ",
   lastName: "Cisneros Ávila",
   birthDate: "20/12/1996",
   gender: "male",
@@ -436,6 +440,35 @@ export default function DashboardPat() {
     setShowModal(false);
   };
 
+  const [pxData, setPxData] = useState({});
+  const [appointments, setAppointments] = useState([]);
+  const [currentAppointments, setCurrentAppointments] = useState([]);
+  const router = useRouter();
+  const dataQuery = router.query;
+
+  const fetchData = async (dataQuery, token) => {
+    try {
+      const responseUser = await getUserById({
+        id: dataQuery.id,
+        token: token,
+      });
+      const responseUserJSON = await responseUser.json();
+      setPxData(responseUserJSON.data);
+    } catch (error) {
+      alert("Ocurrio un error");
+    }
+  };
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      alert("Ocurrio un problema");
+    }
+    fetchData(dataQuery, token);
+  }, []);
+
+  console.log(dataQuery);
+
   return (
     <main className={clsx("bg-background min-h-screen w-full")}>
       <NavBarPat pageName={"Home"} />
@@ -501,7 +534,7 @@ export default function DashboardPat() {
           <AppointmentListPatient props={historyAppointmentData} />
         </div>
       </section>
-      <EditInformation isVisible={showModal}  closeModal={closeModal}/>
+      <EditInformation isVisible={showModal} closeModal={closeModal} />
     </main>
   );
 }
