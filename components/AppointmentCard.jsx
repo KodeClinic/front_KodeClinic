@@ -1,6 +1,8 @@
 import clsx from "clsx";
 import Badge from "./Badge";
 import Link from "next/link";
+import { useContext } from "react";
+import { DashboardContext } from "@/context/DashboardContex";
 
 export default function AppointmentCard({ props }) {
   const {
@@ -13,6 +15,9 @@ export default function AppointmentCard({ props }) {
     status,
     _id,
   } = props;
+
+  const { setPatientRef, toggleModal, setAppointmentRef } =
+    useContext(DashboardContext);
 
   let fullName = `${patientId.name} ${patientId.lastName}`;
   let gender = patientId.gender;
@@ -130,14 +135,23 @@ export default function AppointmentCard({ props }) {
           src="assets/icons/vertical_line-icon.svg"
           alt="line"
         />
-        <Link
+        <button
+          onClick={() => {
+            toggleModal();
+            setPatientRef(patientId._id);
+            setAppointmentRef(_id);
+          }}
+        >
+          <Badge badgeType={status} timeLapse={""} consultingAddress={""} />
+        </button>
+        {/* <Link
           href={{
             pathname: "/MedicalRecords/[patient_id]",
             query: { patient_id: _id },
           }}
         >
           <Badge badgeType={status} timeLapse={""} consultingAddress={""} />
-        </Link>
+        </Link> */}
       </div>
     </div>
   );

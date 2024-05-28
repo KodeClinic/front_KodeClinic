@@ -7,6 +7,7 @@ import Pathological from "@/components/MedicalRecords/Pathological";
 import NonPathological from "@/components/MedicalRecords/NonPathological";
 import { multiStepContext } from "@/context/MedicalRecordStepContext";
 import { postRecordsData } from "@/services/medicalRecords";
+import { getRecordsData } from "@/services/medicalRecords";
 
 import Stepper from "@mui/material/Stepper";
 import Step from "@mui/material/Step";
@@ -24,6 +25,7 @@ export default function MedicalRecords() {
   const [modal, setModal] = useState(false);
   const [confirmation, setConfirmation] = useState(false);
   const [clinicalStart, setClinicalStart] = useState(false);
+  const [emptyRecords, setEmptyRecords] = useState(false);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -32,9 +34,28 @@ export default function MedicalRecords() {
       alert("Inicio de sesión expirado, por favor inicie sesión antes");
       router.push("/LogIn");
     }
+
+    getMedRecords(token, patientId);
   }, []);
 
-  // const steps = ["Patológicos", "No Patológicos", "Heredo Familiares"];
+  const getMedRecords = async (token, patientId) => {
+    try {
+      const response = await getRecordsData({
+        patientId: patientId,
+        token: token,
+        templateId: 1,
+      });
+
+      if (response.status === 201) {
+        const dataJSON = await response.json();
+        console.log("la data", dataJSON.data);
+        setUserData(dataJSON.data[1]);
+      }
+    } catch (error) {
+      setEmptyRecords(true);
+    }
+  };
+
   const steps = ["Patológicos", "No Patológicos"];
 
   const submitData = () => {

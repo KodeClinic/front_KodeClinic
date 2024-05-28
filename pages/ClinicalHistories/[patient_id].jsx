@@ -58,6 +58,7 @@ export default function ClinicalHistories() {
         appointmentId: appointmentId,
         token: token,
       });
+      console.log(response);
       const dataJSON = await response.json();
       setUserData("");
 
