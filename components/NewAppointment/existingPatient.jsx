@@ -7,14 +7,18 @@ import CustomSelect from "./SelectInput";
 import { postAppointmentExistingPatient } from "@/services/appointments";
 import SuccessModal from "../SuccessModal";
 import { getPatients } from "@/services/specialists";
+import { getSpecialistAvailability } from "@/services/appointments";
 
 export default function AppointmentExistingPatient2() {
+  const id = typeof window !== "undefined" ? localStorage.getItem("id") : null;
+  const token =
+    typeof window !== "undefined" ? localStorage.getItem("token") : null;
   const router = useRouter();
-  const { id } = router.query;
   const [patientList, setPatientList] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isFailed, setIsFailed] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
+  const [schedule, setSchedule] = useState([]);
 
   const selectStyles = {
     control: (styles) => ({
@@ -26,34 +30,24 @@ export default function AppointmentExistingPatient2() {
     }),
   };
 
+  const selectStylesError = {
+    control: (styles) => ({
+      ...styles,
+      width: 300,
+      minHeight: 48,
+      borderRadius: 6,
+      border: "2px solid #ef4444",
+    }),
+  };
+
   const optionSelectAppointment = [
     { value: "therapy", label: "Terapia" },
     { value: "valoration", label: "Valoración" },
   ];
 
-  const optionSelectDuration = [];
-  let interval = {};
-
-  for (let i = 6; i < 22; i++) {
-    let starthour = i;
-    let endhour = i + 1;
-    if (endhour < 12) {
-      interval = {
-        value: `${starthour}:00 - ${endhour}:00 am`,
-        label: `${starthour}:00 - ${endhour}:00 am`,
-      };
-      optionSelectDuration.push(interval);
-    } else if (endhour >= 12) {
-      interval = {
-        value: `${starthour}:00 - ${endhour}:00 pm`,
-        label: `${starthour}:00 - ${endhour}:00 pm`,
-      };
-      optionSelectDuration.push(interval);
-    }
-  }
-
   useEffect(() => {
     const token = localStorage.getItem("token");
+    const id = localStorage.getItem("id");
 
     if (!token) {
       alert(
@@ -80,6 +74,7 @@ export default function AppointmentExistingPatient2() {
 
     try {
       const token = localStorage.getItem("token");
+      const id = localStorage.getItem("id");
       const response = await postAppointmentExistingPatient({
         token: token,
         specialistId: id,
@@ -99,6 +94,37 @@ export default function AppointmentExistingPatient2() {
       setIsLoading(false);
       setIsFailed(true);
     }
+  };
+
+  const getAvailability = async (date) => {
+    const token = localStorage.getItem("token");
+    console.log(token);
+    console.log(id);
+
+    let arrayDate = date.split("-");
+    let dateObjet = {
+      year: +arrayDate[0],
+      month: +arrayDate[1],
+      day: +arrayDate[2],
+    };
+    console.log(dateObjet);
+
+    try {
+      const res = await getSpecialistAvailability({
+        token: token,
+        specialistId: id,
+        data: dateObjet,
+      });
+      const dataJSON = await res.json();
+      // console.log("lo importante", dataJSON.data);
+      setSchedule(dataJSON.data);
+    } catch (error) {
+      console.log(error);
+      alert("Error al intentar obtener la disponibilidad");
+    }
+  };
+  const onChangeDate = (date) => {
+    getAvailability(date);
   };
 
   const {
@@ -132,18 +158,22 @@ export default function AppointmentExistingPatient2() {
                 Buscar paciente
               </p>
               <CustomSelect
-                selectStyles={selectStyles}
+                selectStyles={
+                  errors.patient && touched.patient
+                    ? selectStylesError
+                    : selectStyles
+                }
                 options={patientList}
                 value={values.patient}
                 onChange={(value) => setFieldValue("patient", value.value)}
               />
-              {/* {errors.patient && touched.patient ? (
-              <p className={clsx("text-sm text-red text-center font-medium")}>
-                {errors.patient}
-              </p>
-            ) : (
-              ""
-            )} */}
+              {errors.patient && touched.patient ? (
+                <p className={clsx("text-sm text-red text-center font-medium")}>
+                  Campo requerido
+                </p>
+              ) : (
+                ""
+              )}
             </div>
           </div>
 
@@ -162,7 +192,10 @@ export default function AppointmentExistingPatient2() {
                   type="Date"
                   placeholder="Número de Teléfono"
                   value={values.date}
-                  onChange={handleChange}
+                  onChange={(event) => {
+                    handleChange(event);
+                    onChangeDate(event.target.value);
+                  }}
                   onBlur={handleBlur}
                 />
                 {errors.date && touched.date ? (
@@ -177,18 +210,40 @@ export default function AppointmentExistingPatient2() {
               </div>
             </div>
             <div className={clsx("pt-2", "pb-2")}>
-              <div className={clsx("text-sm", "md:text-base", "")}>
+              <div
+                className={clsx(
+                  "text-sm",
+                  "md:text-base",
+                  "transition-all duration-300 ease-linear",
+                  values.date != ""
+                    ? "visible opacity-100"
+                    : "invisible opacity-0"
+                )}
+              >
                 <p className={clsx("font-semibold")} htmlFor="timeLapse">
                   {" "}
-                  Horario
+                  Tu disponibilidad
                 </p>
 
                 <CustomSelect
-                  selectStyles={selectStyles}
-                  options={optionSelectDuration}
+                  selectStyles={
+                    errors.timeLapse && touched.timeLapse
+                      ? selectStylesError
+                      : selectStyles
+                  }
+                  options={schedule}
                   value={values.timeLapse}
                   onChange={(value) => setFieldValue("timeLapse", value.value)}
                 />
+                {errors.timeLapse && touched.timeLapse ? (
+                  <p
+                    className={clsx("text-sm text-red text-center font-medium")}
+                  >
+                    Campo requerido
+                  </p>
+                ) : (
+                  ""
+                )}
               </div>
             </div>
           </div>
@@ -201,13 +256,26 @@ export default function AppointmentExistingPatient2() {
                   Tipo de Cita
                 </p>
                 <CustomSelect
-                  selectStyles={selectStyles}
+                  selectStyles={
+                    errors.consultType && touched.consultType
+                      ? selectStylesError
+                      : selectStyles
+                  }
                   options={optionSelectAppointment}
                   value={values.consultType}
                   onChange={(value) =>
                     setFieldValue("consultType", value.value)
                   }
                 />
+                {errors.consultType && touched.consultType ? (
+                  <p
+                    className={clsx("text-sm text-red text-center font-medium")}
+                  >
+                    Campo requerido
+                  </p>
+                ) : (
+                  ""
+                )}
               </div>
             </div>
             <div className={clsx("pt-2")}>

@@ -2,10 +2,10 @@ import { useContext } from "react";
 import { multiStepContext } from "@/context/MedicalRecordStepContext";
 import clsx from "clsx";
 
-export default function TwoButtonsModal({ props }) {
+export default function SkipRecordsModal({ props }) {
   const { title, description, buttonLeft, buttonRight } = props;
 
-  const { toggleModal, submitData } = useContext(multiStepContext);
+  const { toggleSkipRecords, onSkipRecords } = useContext(multiStepContext);
 
   return (
     <>
@@ -65,7 +65,7 @@ export default function TwoButtonsModal({ props }) {
             )}
           >
             <button
-              onClick={toggleModal}
+              onClick={toggleSkipRecords}
               className={clsx(
                 "border",
                 " border-2",
@@ -82,7 +82,7 @@ export default function TwoButtonsModal({ props }) {
               {buttonLeft}
             </button>
             <button
-              onClick={submitData}
+              onClick={onSkipRecords}
               className={clsx(
                 "border",
                 " border-2",

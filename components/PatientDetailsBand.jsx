@@ -81,7 +81,7 @@ export default function PatientDetailsBand({
                 "min-[980px]:text-[18px]"
               )}
             >
-              {gender == "male" ? "Masculino" : "Femenino"}
+              {gender == "male" ? "Genero: Masculino" : "Genero: Femenino"}
             </span>
           </div>
           <div className={clsx("flex gap-[10px] items-center")}>
@@ -96,7 +96,7 @@ export default function PatientDetailsBand({
                 "min-[980px]:text-[18px]"
               )}
             >
-              {email}
+              Correo: {email}
             </span>
           </div>
 
@@ -112,7 +112,7 @@ export default function PatientDetailsBand({
                 "min-[980px]:text-[18px]"
               )}
             >
-              {cel}
+              Teléfono: {cel}
             </span>
           </div>
           {/* <div

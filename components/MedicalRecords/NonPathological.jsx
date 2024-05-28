@@ -1,6 +1,4 @@
 import { useState, useEffect, useContext } from "react";
-// import { useRouter } from "next/router";
-// import Input from "@/components/Input";
 import AccordionFormSection from "../AccordeonFormSection";
 import clsx from "clsx";
 import { multiStepContext } from "@/context/MedicalRecordStepContext";
@@ -13,8 +11,6 @@ export default function NonPathological() {
     useContext(multiStepContext);
   const [formDataTemplate, setFormDataTemplate] = useState({});
   const [sectionForm, setSectionForm] = useState({});
-  // const [modal, setModal] = useState(false);
-  // const [inputList, setInputList] = useState([]);
 
   const modalProps = {
     title: "Antecendetes Médicos del paciente",
@@ -35,25 +31,17 @@ export default function NonPathological() {
     successIcon: false,
   };
 
-  // const toggleModal = () => {
-  //   setModal(!modal);
-  // };
-
   const getTemplateData = async (token) => {
     const credetials = { id: "1", token: token };
     try {
       const response = await getbyTemplateId(credetials);
       const dataJSON = await response.json();
-      //   setFormDataTemplate(dataJSON.data.screens[0].sections[0].inputList);
       setFormDataTemplate(dataJSON.data);
-      // setInputList(dataJSON.data.screens[1].inputList);
       setSectionForm(dataJSON.data.screens[1]);
-      // console.log(dataJSON.data.screens[1]);
     } catch (error) {
       alert(
         "Ocurrió un problema al intentar acceder, por favor inténtenlo de nuevo"
       );
-      // router.push("/LogIn");
     }
   };
 
@@ -100,17 +88,6 @@ export default function NonPathological() {
         >
           Atrás
         </button>
-        {/* <button
-          // onClick={() => {
-          //   setCurrentStep(3);
-          // }}
-          onClick={submitData}
-          className={clsx(
-            "bg-background font-semibold rounded-md text-blue_button py-2 px-3 text-lg"
-          )}
-        >
-          Siguiente
-        </button> */}
 
         <button
           onClick={toggleModal}

@@ -1,6 +1,4 @@
 import { useState, useEffect, useContext } from "react";
-// import { useRouter } from "next/router";
-// import Input from "@/components/Input";
 import AccordionFormSection from "../AccordeonFormSection";
 import clsx from "clsx";
 import { multiStepContext } from "@/context/MedicalRecordStepContext";
@@ -10,8 +8,6 @@ export default function Evaluation() {
   const { setCurrentStep } = useContext(multiStepContext);
   const [formDataTemplate, setFormDataTemplate] = useState({});
   const [sectionForm, setSectionForm] = useState({});
-  // const [modal, setModal] = useState(false);
-  // const [inputList, setInputList] = useState([]);
 
   const getTemplateData = async (token) => {
     const credetials = { id: "2", token: token };
@@ -24,7 +20,6 @@ export default function Evaluation() {
       alert(
         "Ocurrió un problema al intentar acceder, por favor inténtenlo de nuevo"
       );
-      // router.push("/LogIn");
     }
   };
 

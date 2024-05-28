@@ -1,11 +1,11 @@
 import { useContext } from "react";
-import { multiStepContext } from "@/context/MedicalRecordStepContext";
+import { WelcomePageContext } from "@/context/WelcomePageContext";
 import clsx from "clsx";
 
-export default function TwoButtonsModal({ props }) {
+export default function TwoButtonsModalWelcomePage({ props }) {
   const { title, description, buttonLeft, buttonRight } = props;
 
-  const { toggleModal, submitData } = useContext(multiStepContext);
+  const { toggleModal, submitData } = useContext(WelcomePageContext);
 
   return (
     <>

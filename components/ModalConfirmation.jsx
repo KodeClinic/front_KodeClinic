@@ -1,11 +1,11 @@
 import { useContext } from "react";
-import { multiStepContext } from "@/context/MedicalRecordStepContext";
 import clsx from "clsx";
+import { DashboardContext } from "@/context/DashboardContex";
 
-export default function TwoButtonsModal({ props }) {
+export default function ModalConfirmation({ props }) {
   const { title, description, buttonLeft, buttonRight } = props;
 
-  const { toggleModal, submitData } = useContext(multiStepContext);
+  const { toggleModal, handleConfirmation } = useContext(DashboardContext);
 
   return (
     <>
@@ -82,7 +82,7 @@ export default function TwoButtonsModal({ props }) {
               {buttonLeft}
             </button>
             <button
-              onClick={submitData}
+              onClick={handleConfirmation}
               className={clsx(
                 "border",
                 " border-2",

@@ -1,19 +1,20 @@
 import clsx from "clsx";
-import Select from "react-select";
-import { useEffect, useState } from "react";
-import { useRouter } from "next/router";
+import { useState } from "react";
 import { useFormik } from "formik";
 import { AppointmentNewPatientSchema } from "@/schemas/appointmentNewPatient";
 import CustomSelect from "./SelectInput";
 import { postAppointmentNewPatient } from "@/services/appointments";
 import SuccessModal from "../SuccessModal";
+import { getSpecialistAvailability } from "@/services/appointments";
 
 export default function AppointmentNewPatient() {
-  const router = useRouter();
-  const { id } = router.query;
+  const id = typeof window !== "undefined" ? localStorage.getItem("id") : null;
+  const token =
+    typeof window !== "undefined" ? localStorage.getItem("token") : null;
   const [isLoading, setIsLoading] = useState(false);
   const [isFailed, setIsFailed] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
+  const [schedule, setSchedule] = useState([]);
 
   const selectStyles = {
     control: (styles) => ({
@@ -22,6 +23,16 @@ export default function AppointmentNewPatient() {
       minHeight: 48,
       borderRadius: 6,
       border: "2px solid #2196F3",
+    }),
+  };
+
+  const selectStylesError = {
+    control: (styles) => ({
+      ...styles,
+      width: 300,
+      minHeight: 48,
+      borderRadius: 6,
+      border: "2px solid #ef4444",
     }),
   };
 
@@ -35,30 +46,8 @@ export default function AppointmentNewPatient() {
     { value: "female", label: "Mujer" },
   ];
 
-  const optionSelectDuration = [];
-  let interval = {};
-
-  for (let i = 6; i < 22; i++) {
-    let starthour = i;
-    let endhour = i + 1;
-    if (endhour < 12) {
-      interval = {
-        value: `${starthour}:00 - ${endhour}:00 am`,
-        label: `${starthour}:00 - ${endhour}:00 am`,
-      };
-      optionSelectDuration.push(interval);
-    } else if (endhour >= 12) {
-      interval = {
-        value: `${starthour}:00 - ${endhour}:00 pm`,
-        label: `${starthour}:00 - ${endhour}:00 pm`,
-      };
-      optionSelectDuration.push(interval);
-    }
-  }
-
   const onSubmit = async () => {
     setIsLoading(true);
-    // console.log(values);
 
     try {
       const token = localStorage.getItem("token");
@@ -82,6 +71,39 @@ export default function AppointmentNewPatient() {
     }
   };
 
+  const getAvailability = async (date) => {
+    const token = localStorage.getItem("token");
+    console.log(token);
+    console.log(id);
+
+    let arrayDate = date.split("-");
+    let dateObjet = {
+      year: +arrayDate[0],
+      month: +arrayDate[1],
+      day: +arrayDate[2],
+    };
+    console.log(dateObjet);
+
+    try {
+      const res = await getSpecialistAvailability({
+        token: token,
+        specialistId: id,
+        data: dateObjet,
+      });
+      const dataJSON = await res.json();
+      // console.log("lo importante", dataJSON.data);
+      setSchedule(dataJSON.data);
+    } catch (error) {
+      console.log(error);
+      alert("Error al intentar obtener la disponibilidad");
+    }
+  };
+
+  const onChangeDate = (date) => {
+    getAvailability(date);
+    console.log(date);
+  };
+
   const {
     values,
     errors,
@@ -101,12 +123,11 @@ export default function AppointmentNewPatient() {
       timeLapse: "",
       consultType: "",
       consultingAddress: "",
+      birthDate: "",
     },
     validationSchema: AppointmentNewPatientSchema,
     onSubmit,
   });
-
-  console.log(values);
 
   return (
     <>
@@ -170,7 +191,7 @@ export default function AppointmentNewPatient() {
               )}
             </div>
           </div>
-          <div className={clsx("", "md:flex", "md:space-x-10 ")}>
+          <div className={clsx("md:flex", "md:space-x-10 ")}>
             <div className={clsx("pt-2 pb-2")}>
               <div className={clsx("text-sm", "md:text-base")}>
                 <p className={clsx("font-semibold")}> Número de Teléfono</p>
@@ -229,7 +250,12 @@ export default function AppointmentNewPatient() {
             </div>
           </div>
 
-          <div className={clsx("pt-2", "pb-2 min-[980px]:pb-9")}>
+          <div
+            className={clsx(
+              "md:flex md:space-x-10",
+              "pb-2 pt-2 min-[980px]:pb-9"
+            )}
+          >
             <div className={clsx("text-sm", "md:text-base")}>
               <p className={clsx("font-semibold")} htmlFor="gender">
                 {" "}
@@ -237,15 +263,54 @@ export default function AppointmentNewPatient() {
               </p>
 
               <CustomSelect
-                selectStyles={selectStyles}
+                selectStyles={
+                  errors.gender && touched.gender
+                    ? selectStylesError
+                    : selectStyles
+                }
                 options={optionSelectGender}
                 value={values.gender}
                 onChange={(value) => setFieldValue("gender", value.value)}
               />
+              {errors.gender && touched.gender ? (
+                <p className={clsx("text-sm text-red text-center font-medium")}>
+                  Genero requerido
+                </p>
+              ) : (
+                ""
+              )}
+            </div>
+            <div className={clsx("pb-2")}>
+              <div className={clsx("text-sm", "md:text-base")}>
+                <p className={clsx("font-semibold")}> Fecha de Nacimiento</p>
+                <input
+                  className={clsx(
+                    "shadow appearance-none border-2 border-primary_main rounded-md w-[300px] h-12 py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline",
+                    errors.birthDate && touched.birthDate
+                      ? "border-red"
+                      : "border-primary_main"
+                  )}
+                  id="birthDate"
+                  type="Date"
+                  placeholder="Número de Teléfono"
+                  value={values.birthDate}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                />
+                {errors.birthDate && touched.birthDate ? (
+                  <p
+                    className={clsx("text-sm text-red text-center font-medium")}
+                  >
+                    {errors.birthDate}
+                  </p>
+                ) : (
+                  ""
+                )}
+              </div>
             </div>
           </div>
 
-          <div className={clsx("", "md:flex", "md:space-x-10")}>
+          <div className={clsx("md:flex", "md:space-x-10")}>
             <div className={clsx("pt-2", "pb-2")}>
               <div className={clsx("text-sm", "md:text-base")}>
                 <p className={clsx("font-semibold")}> Fecha para Agendar</p>
@@ -260,7 +325,10 @@ export default function AppointmentNewPatient() {
                   type="Date"
                   placeholder="Número de Teléfono"
                   value={values.date}
-                  onChange={handleChange}
+                  onChange={(event) => {
+                    handleChange(event);
+                    onChangeDate(event.target.value);
+                  }}
                   onBlur={handleBlur}
                 />
                 {errors.date && touched.date ? (
@@ -275,18 +343,40 @@ export default function AppointmentNewPatient() {
               </div>
             </div>
             <div className={clsx("pt-2", "pb-2")}>
-              <div className={clsx("text-sm", "md:text-base", "")}>
+              <div
+                className={clsx(
+                  "text-sm",
+                  "md:text-base",
+                  "transition-all duration-300 ease-linear",
+                  values.date != ""
+                    ? "visible opacity-100"
+                    : "invisible opacity-0"
+                )}
+              >
                 <p className={clsx("font-semibold")} htmlFor="timeLapse">
                   {" "}
-                  Horario
+                  Tu disponibilidad
                 </p>
 
                 <CustomSelect
-                  selectStyles={selectStyles}
-                  options={optionSelectDuration}
+                  selectStyles={
+                    errors.timeLapse && touched.timeLapse
+                      ? selectStylesError
+                      : selectStyles
+                  }
+                  options={schedule}
                   value={values.timeLapse}
                   onChange={(value) => setFieldValue("timeLapse", value.value)}
                 />
+                {errors.timeLapse && touched.timeLapse ? (
+                  <p
+                    className={clsx("text-sm text-red text-center font-medium")}
+                  >
+                    {errors.timeLapse}
+                  </p>
+                ) : (
+                  ""
+                )}
               </div>
             </div>
           </div>
@@ -299,13 +389,26 @@ export default function AppointmentNewPatient() {
                   Tipo de Cita
                 </p>
                 <CustomSelect
-                  selectStyles={selectStyles}
+                  selectStyles={
+                    errors.consultType && touched.consultType
+                      ? selectStylesError
+                      : selectStyles
+                  }
                   options={optionSelectAppointment}
                   value={values.consultType}
                   onChange={(value) =>
                     setFieldValue("consultType", value.value)
                   }
                 />
+                {errors.consultType && touched.consultType ? (
+                  <p
+                    className={clsx("text-sm text-red text-center font-medium")}
+                  >
+                    {errors.consultType}
+                  </p>
+                ) : (
+                  ""
+                )}
               </div>
             </div>
             <div className={clsx("pt-2")}>

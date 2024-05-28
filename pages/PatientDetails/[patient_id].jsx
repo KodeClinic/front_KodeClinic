@@ -30,7 +30,6 @@ export default function PatientDetails() {
     try {
       const response = await getUserById({
         id: patientId,
-        // id: "664c07d67173bf0403f9f717",
         token: token,
       });
       const dataJSON = await response.json();
@@ -60,7 +59,7 @@ export default function PatientDetails() {
 
   return (
     <main className={clsx("bg-background w-full min-h-screen")}>
-      <NavBarSpe pageName={"Paciente"} />
+      <NavBarSpe pageName={"Expediente Médico"} />
 
       <PatientDetailsBand
         name={`${patientInfo.name} ${patientInfo.lastName}`}

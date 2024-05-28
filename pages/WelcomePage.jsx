@@ -5,7 +5,6 @@ import { useRouter } from "next/router";
 import PersonalInformation from "@/components/WelcomePage/PersonalInformation";
 import ContactInformation from "@/components/WelcomePage/ContactInformation";
 import ProfesionalInformation from "@/components/WelcomePage/ProfesionalInformation";
-import Availability from "@/components/WelcomePage/Availability";
 import Confirmation from "@/components/WelcomePage/Confirmation";
 import { WelcomePageContext } from "@/context/WelcomePageContext";
 import { completeInformation } from "@/services/specialists";
@@ -16,15 +15,18 @@ import StepLabel from "@mui/material/StepLabel";
 
 export default function WelcomePage() {
   const router = useRouter();
-  const specialistId = router.query.id;
+  const specialistId =
+    typeof window !== "undefined" ? localStorage.getItem("id") : null;
 
   //Estados para el Context
   const [currentStep, setCurrentStep] = useState(1);
   const [userData, setUserData] = useState([]);
   const [finalData, setFinalData] = useState([]);
+  const [modal, setModal] = useState(false);
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
+    const token =
+      typeof window !== "undefined" ? localStorage.getItem("token") : null;
 
     if (!token) {
       alert("Inicio de sesión expirado, por favor inicie sesión antes");
@@ -42,8 +44,12 @@ export default function WelcomePage() {
       token: token,
     });
     setUserData("");
+    setCurrentStep(4);
   };
-  console.log(userData);
+
+  const toggleModal = () => {
+    setModal(!modal);
+  };
 
   const renderCard = (pageNumber) => {
     switch (pageNumber) {
@@ -54,8 +60,6 @@ export default function WelcomePage() {
       case 3:
         return <ProfesionalInformation />;
       case 4:
-        return <Availability />;
-      case 5:
         return <Confirmation />;
       default:
         return null;
@@ -87,10 +91,10 @@ export default function WelcomePage() {
             finalData,
             setFinalData,
             submitData,
-            specialistId,
+            toggleModal,
+            modal,
           }}
         >
-          {/* <div className="grid place-items-center"> */}
           <div className="md:flex md:justify-between ">
             <div className={clsx("w-full flex justify-center")}>
               <div className="w-full md:flex md:flex-col md:justify-center">
@@ -101,9 +105,6 @@ export default function WelcomePage() {
                     alternativeLabel
                     activeStep={currentStep - 1}
                   >
-                    <Step>
-                      <StepLabel></StepLabel>
-                    </Step>
                     <Step>
                       <StepLabel></StepLabel>
                     </Step>

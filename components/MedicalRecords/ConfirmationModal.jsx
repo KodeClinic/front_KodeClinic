@@ -1,24 +1,10 @@
 import clsx from "clsx";
 import { useContext } from "react";
-// import { useRouter } from "next/router";
 import { multiStepContext } from "@/context/MedicalRecordStepContext";
 
 export default function ConfirmationModal({ props }) {
   const { toggleConfirmation } = useContext(multiStepContext);
-  //   const router = useRouter();
   const { text, button, successIcon } = props;
-  //   const [confirmation, setConfirmation] = useState(false);
-
-  //   const handleConfirmation = () => {
-  //     if (newPatient == true) {
-  //       setConfirmation(true);
-  //     } else if (newPatient == false) {
-  //       router.push({
-  //         pathname: "/DashboardSpe",
-  //         query: { id: id },
-  //       });
-  //     }
-  //   };
 
   return (
     <>

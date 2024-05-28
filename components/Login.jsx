@@ -26,6 +26,7 @@ export default function Login() {
       if (response.status === 200) {
         const dataJSON = await response.json();
         localStorage.setItem("token", dataJSON.data.token);
+        localStorage.setItem("id", dataJSON.data.id);
         setIsLoading(false);
         setIsFailed(false);
         if (
@@ -34,7 +35,7 @@ export default function Login() {
         ) {
           router.push({
             pathname: "/DashboardSpe",
-            query: { id: dataJSON.data.id },
+            // query: { id: dataJSON.data.id },
           });
         } else if (
           dataJSON.data.role === "specialist" &&
@@ -42,12 +43,12 @@ export default function Login() {
         ) {
           router.push({
             pathname: "/WelcomePage",
-            query: { id: dataJSON.data.id },
+            // query: { id: dataJSON.data.id },
           });
         } else if (dataJSON.data.role === "patient") {
           router.push({
             pathname: "/DashboardPat",
-            query: { id: dataJSON.data.id },
+            // query: { id: dataJSON.data.id },
           });
         }
       } else if (response.status === 401) {

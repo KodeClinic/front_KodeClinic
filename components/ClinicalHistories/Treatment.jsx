@@ -19,16 +19,13 @@ export default function Treatment() {
     try {
       const response = await getbyTemplateId(credetials);
       const dataJSON = await response.json();
-      //   setFormDataTemplate(dataJSON.data.screens[0].sections[0].inputList);
       setFormDataTemplate(dataJSON.data);
       setInputList(dataJSON.data.screens[1].inputList);
       setSectionName(dataJSON.data.screens[1].title);
-      //   console.log(dataJSON.data);
     } catch (error) {
       alert(
         "Ocurrió un problema al intentar acceder, por favor inténtenlo de nuevo"
       );
-      // router.push("/LogIn");
     }
   };
 

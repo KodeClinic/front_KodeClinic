@@ -20,7 +20,7 @@ export default function AccordionFreeAgenda({ props }) {
           accordionOpen ? "py-4" : ""
         )}
       >
-        <span>Horarios Libres</span>
+        <span>Horarios Libres {props.length} / 16</span>
         {accordionOpen ? (
           <img
             className={clsx("rotate-90 transition-transform")}
@@ -47,8 +47,10 @@ export default function AccordionFreeAgenda({ props }) {
           <div
             className={clsx(" grid grid-cols-1 gap-6 min-[980px]:grid-cols-2")}
           >
-            {props.map((date) => {
-              return <FreeAgendaCard key={date?.id} props={date} />;
+            {props.map((date, index) => {
+              return (
+                <FreeAgendaCard key={`freeAgendaCard-${index}`} props={date} />
+              );
             })}
           </div>
         </div>

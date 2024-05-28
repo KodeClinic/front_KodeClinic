@@ -5,6 +5,7 @@ import AppointmentCard from "./AppointmentCard";
 
 export default function AccordionAppointments({ props }) {
   const [accordionOpen, setAccordionOpen] = useState(false);
+
   return (
     <div
       className={clsx(
@@ -20,7 +21,7 @@ export default function AccordionAppointments({ props }) {
           accordionOpen ? "py-4" : ""
         )}
       >
-        <span>Citas programadas</span>
+        <span>Citas programadas {props.length}</span>
         {accordionOpen ? (
           <img
             className={clsx("rotate-90 transition-transform")}
@@ -45,9 +46,16 @@ export default function AccordionAppointments({ props }) {
       >
         <div className={clsx("overflow-hidden")}>
           <div className={clsx(" flex flex-col gap-6")}>
-            {props.map((date) => {
-              return <AppointmentCard key={date?._id} props={date} />;
-            })}
+            {props.length != 0
+              ? props.map((date) => {
+                  return (
+                    <AppointmentCard
+                      key={`appointment-${date?._id}`}
+                      props={date}
+                    />
+                  );
+                })
+              : ""}
           </div>
         </div>
       </div>

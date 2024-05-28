@@ -5,7 +5,7 @@ import { navbarContext } from "@/context/NavBarContext";
 import Link from "next/link";
 
 export default function HamburgerMenuSpe() {
-  const { handleMenu, id, onLogout } = useContext(navbarContext);
+  const { handleMenu, onLogout } = useContext(navbarContext);
 
   return (
     <div className="fixed z-50 bg-black bg-opacity-25 backdrop-blur-sm flex justify-start items-center w-full ">
@@ -46,7 +46,6 @@ export default function HamburgerMenuSpe() {
             <Link
               href={{
                 pathname: "/DashboardSpe",
-                query: { id: id },
               }}
               className="flex-row flex mx-auto mb-4"
             >
@@ -60,7 +59,6 @@ export default function HamburgerMenuSpe() {
             <Link
               href={{
                 pathname: "/Patient_List",
-                query: { id: id },
               }}
               className="flex-row flex mx-auto mb-4"
             >
@@ -71,10 +69,9 @@ export default function HamburgerMenuSpe() {
               />
               <p className="mx-3 font-medium">Lista de Pacientes</p>
             </Link>
-            {/* <Link
+            <Link
               href={{
                 pathname: "/New_pacient",
-                query: { id: id },
               }}
               className="flex-row flex mx-auto mb-4"
             >
@@ -84,12 +81,11 @@ export default function HamburgerMenuSpe() {
                 className="w-[18px] h-[20px] mx-3"
               />
               <p className="mx-3 font-medium">Nuevo Paciente</p>
-            </Link> */}
+            </Link>
             <Link
               className="flex-row flex mx-auto mb-4"
               href={{
                 pathname: "/NewAppointment",
-                query: { id: id },
               }}
             >
               <img

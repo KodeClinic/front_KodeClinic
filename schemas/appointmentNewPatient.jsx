@@ -13,4 +13,5 @@ export const AppointmentNewPatientSchema = yup.object().shape({
   timeLapse: yup.string().required("Campo requerido"),
   consultType: yup.string().required("Campo requerido"),
   consultingAddress: yup.string().required("Campo requerido"),
+  birthDate: yup.string().required("Campo requerido"),
 });

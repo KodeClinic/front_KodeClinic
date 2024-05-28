@@ -8,6 +8,7 @@ import Treatment from "@/components/ClinicalHistories/Treatment";
 import ClinicNotes from "@/components/ClinicalHistories/ClinicNotes";
 import { multiStepContext } from "@/context/MedicalRecordStepContext";
 import { updateClinicalHistory } from "@/services/clinicalHistories";
+import { completeClinicalHistory } from "@/services/clinicalHistories";
 
 import Stepper from "@mui/material/Stepper";
 import Step from "@mui/material/Step";
@@ -16,7 +17,6 @@ import StepLabel from "@mui/material/StepLabel";
 export default function ClinicalHistories() {
   const router = useRouter();
   const patientId = router.query.patient_id;
-  // const specialistId = router.query.id;
   const appointmentId = router.query.appointment;
 
   //Estados
@@ -24,7 +24,6 @@ export default function ClinicalHistories() {
   const [userData, setUserData] = useState([]);
   const [modal, setModal] = useState(false);
   const [confirmation, setConfirmation] = useState(false);
-  const [specialistId, setSpecialistId] = useState("");
 
   const steps = ["Evaluación", "Tratamiento", "Notas Clínicas"];
 
@@ -35,7 +34,6 @@ export default function ClinicalHistories() {
   const toggleConfirmation = () => {
     router.push({
       pathname: "/DashboardSpe",
-      query: { id: specialistId },
     });
 
     // if (clinicalStart) {
@@ -61,8 +59,8 @@ export default function ClinicalHistories() {
         appointmentId: appointmentId,
         token: token,
       });
+      console.log(response);
       const dataJSON = await response.json();
-      setSpecialistId(dataJSON.data[1]);
       setUserData("");
 
       setModal(!modal);

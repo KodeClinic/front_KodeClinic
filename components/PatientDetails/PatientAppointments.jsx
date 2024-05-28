@@ -14,8 +14,8 @@ import { updateClinicalHistory } from "@/services/clinicalHistories";
 export default function PatientAppointments() {
   const router = useRouter();
   const patientId = router.query.patient_id;
-  const specialistId = router.query.id;
-  const [appointmentList, setAppointmentList] = useState([]);
+  const id = localStorage.getItem("id");
+  // const [appointmentList, setAppointmentList] = useState([]);
 
   //Context
   const [currentPage, setCurrentPage] = useState(1);
@@ -58,8 +58,7 @@ export default function PatientAppointments() {
         token: token,
       });
       const dataJSON = await response.json();
-      setAppointmentList(dataJSON.data);
-      console.log("fecth appointments", dataJSON.data);
+      // setAppointmentList(dataJSON.data);
     } catch (error) {
       alert(
         "Ocurrió un problema al intentar acceder, por favor inténtenlo de nuevo"
@@ -82,7 +81,7 @@ export default function PatientAppointments() {
       alert("Error al actualizar información por favor intentelo de nuevo");
       router.push({
         pathname: "/PatientDetails/[patient_id]",
-        query: { patient_id: patientId, id: specialistId },
+        query: { patient_id: patientId, id: id },
       });
     }
     setIsDisable(!isDisable);
@@ -125,8 +124,6 @@ export default function PatientAppointments() {
         );
     }
   };
-
-  const goDetails = () => {};
 
   return (
     <multiStepContext.Provider
