@@ -59,7 +59,7 @@ export default function PatientDetails() {
 
   return (
     <main className={clsx("bg-background w-full min-h-screen")}>
-      <NavBarSpe pageName={"Detalles del Paciente"} />
+      <NavBarSpe pageName={"Expediente Médico"} />
 
       <PatientDetailsBand
         name={`${patientInfo.name} ${patientInfo.lastName}`}

@@ -7,7 +7,9 @@ import Pathological from "@/components/MedicalRecords/Pathological";
 import NonPathological from "@/components/MedicalRecords/NonPathological";
 import { multiStepContext } from "@/context/MedicalRecordStepContext";
 import { postRecordsData } from "@/services/medicalRecords";
+import { updateRecordsData } from "@/services/medicalRecords";
 import { getRecordsData } from "@/services/medicalRecords";
+import SkipRecordsModal from "@/components/MedicalRecords/SkipRecordsModal";
 
 import Stepper from "@mui/material/Stepper";
 import Step from "@mui/material/Step";
@@ -23,9 +25,10 @@ export default function MedicalRecords() {
   const [userData, setUserData] = useState([]); //corroborar si es un array o un objeto
   const [finalData, setFinalData] = useState([]); //corroborar si es un array o un objeto
   const [modal, setModal] = useState(false);
+  const [skipMedRecords, setSkipMedRecords] = useState(false);
   const [confirmation, setConfirmation] = useState(false);
   const [clinicalStart, setClinicalStart] = useState(false);
-  const [emptyRecords, setEmptyRecords] = useState(false);
+  const [emptyRecords, setEmptyRecords] = useState(true);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -50,6 +53,8 @@ export default function MedicalRecords() {
         const dataJSON = await response.json();
         console.log("la data", dataJSON.data);
         setUserData(dataJSON.data[1]);
+        setEmptyRecords(false);
+        setSkipMedRecords(true);
       }
     } catch (error) {
       setEmptyRecords(true);
@@ -58,38 +63,76 @@ export default function MedicalRecords() {
 
   const steps = ["Patológicos", "No Patológicos"];
 
-  const submitData = () => {
+  const modalProps = {
+    title: "Antecendetes Médicos del paciente",
+    description:
+      "El paciente ya cuenta con Antecedentes Médicos ¿Desea pasar directamente a la Historia Clínica?",
+    buttonLeft: "Editar Antecedentes",
+    buttonRight: "Avanzar",
+  };
+
+  const submitData = async () => {
     const token = localStorage.getItem("token");
     setFinalData(userData);
-    console.log(finalData);
-    postRecordsData({
-      data: userData,
-      templateId: 1,
-      patientId: patientId,
-      token: token,
-    });
-    setUserData("");
-    setFinalData("");
+    console.log(userData);
 
-    setModal(!modal);
-    setConfirmation(!confirmation);
-    console.log("confirmation modal:", confirmation);
+    try {
+      if (!emptyRecords) {
+        await updateRecordsData({
+          data: userData,
+          templateId: 1,
+          patientId: patientId,
+          token: token,
+        });
+      } else {
+        await postRecordsData({
+          data: userData,
+          templateId: 1,
+          patientId: patientId,
+          token: token,
+        });
+      }
+      setUserData("");
+      setFinalData("");
+
+      setModal(!modal);
+      setConfirmation(!confirmation);
+    } catch (error) {}
   };
 
   const toggleModal = () => {
     setModal(!modal);
   };
 
+  const toggleSkipRecords = () => {
+    setSkipMedRecords(!skipMedRecords);
+  };
+
+  const onSkipRecords = () => {
+    setSkipMedRecords(!skipMedRecords);
+    router.push({
+      pathname: "/ClinicalHistories/[patient_id]",
+      query: { patient_id: patientId, appointment: appointmentId },
+    });
+  };
+
   const toggleConfirmation = () => {
-    if (clinicalStart) {
-      setClinicalStart(!clinicalStart);
+    if (appointmentId === undefined) {
       router.push({
-        pathname: "/ClinicalHistories/[patient_id]",
-        query: { patient_id: patientId, appointment: appointmentId },
+        pathname: "/PatientDetails/[patient_id]",
+        query: { patient_id: patientId },
       });
     } else {
-      setConfirmation(!confirmation);
-      setClinicalStart(!clinicalStart);
+      if (clinicalStart) {
+        setClinicalStart(!clinicalStart);
+        router.push({
+          pathname: "/ClinicalHistories/[patient_id]",
+          query: { patient_id: patientId, appointment: appointmentId },
+        });
+      } else {
+        setConfirmation(!confirmation);
+        setClinicalStart(!clinicalStart);
+      }
     }
   };
 
@@ -140,6 +183,8 @@ export default function MedicalRecords() {
               confirmation,
               toggleConfirmation,
               clinicalStart,
+              toggleSkipRecords,
+              onSkipRecords,
             }}
           >
             <div className={clsx("flex justify-center pt-5 pb-10")}>
@@ -156,6 +201,7 @@ export default function MedicalRecords() {
               </Stepper>
             </div>
             {renderPage(currentStep)}
+            {skipMedRecords && <SkipRecordsModal props={modalProps} />}
           </multiStepContext.Provider>
         </div>
       </section>

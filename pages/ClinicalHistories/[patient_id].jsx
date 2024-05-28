@@ -8,6 +8,7 @@ import Treatment from "@/components/ClinicalHistories/Treatment";
 import ClinicNotes from "@/components/ClinicalHistories/ClinicNotes";
 import { multiStepContext } from "@/context/MedicalRecordStepContext";
 import { updateClinicalHistory } from "@/services/clinicalHistories";
+import { completeClinicalHistory } from "@/services/clinicalHistories";
 
 import Stepper from "@mui/material/Stepper";
 import Step from "@mui/material/Step";
