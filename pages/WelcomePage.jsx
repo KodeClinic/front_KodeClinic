@@ -25,12 +25,12 @@ export default function WelcomePage() {
   const [modal, setModal] = useState(false);
 
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      const token = localStorage.getItem("token");
-      const specialistId = localStorage.getItem("id");
-      setToken(token);
-      setId(specialistId);
-    }
+    // if (typeof window !== "undefined") {
+    const token = localStorage.getItem("token");
+    const specialistId = localStorage.getItem("id");
+    setToken(token);
+    setId(specialistId);
+    // }
 
     if (!token) {
       alert("Inicio de sesión expirado, por favor inicie sesión antes");

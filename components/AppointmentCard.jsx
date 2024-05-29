@@ -23,9 +23,11 @@ export default function AppointmentCard({ props }) {
     setAppointmentStatus,
     setToDelete,
   } = useContext(DashboardContext);
+  console.log("props de appointment", props);
 
   let fullName = `${patientId.name} ${patientId.lastName}`;
   let gender = patientId.gender;
+  console.log("el full name", fullName);
 
   return (
     <div

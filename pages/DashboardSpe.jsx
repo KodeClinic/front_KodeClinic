@@ -115,7 +115,7 @@ export default function DashboardEsp() {
 
       const responseAppointmentJSON = await responseAppointment.json();
       setAppointments(responseAppointmentJSON.data);
-
+      console.log("appointmentsss", responseAppointmentJSON.data);
       const responseFreeAgenda = await getSpecialistAvailability({
         token: token,
         specialistId: id,
@@ -192,12 +192,12 @@ export default function DashboardEsp() {
   };
 
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      const token = localStorage.getItem("token");
-      const id = localStorage.getItem("id");
-      setToken(token);
-      setId(id);
-    }
+    // if (typeof window !== "undefined") {
+    const token = localStorage.getItem("token");
+    const id = localStorage.getItem("id");
+    setToken(token);
+    setId(id);
+    // }
 
     if (!token) {
       alert(

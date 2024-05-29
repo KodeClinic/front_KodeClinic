@@ -28,10 +28,10 @@ export default function formExample() {
   };
 
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      const token = localStorage.getItem("token");
-      setToken(token);
-    }
+    // if (typeof window !== "undefined") {
+    const token = localStorage.getItem("token");
+    setToken(token);
+    // }
 
     if (!token) {
       alert(

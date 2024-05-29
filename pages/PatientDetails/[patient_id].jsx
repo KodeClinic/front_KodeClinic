@@ -17,10 +17,10 @@ export default function PatientDetails() {
   useEffect(() => {
     const patientId = router.query.patient_id;
 
-    if (typeof window !== "undefined") {
-      const token = localStorage.getItem("token");
-      setToken(token);
-    }
+    // if (typeof window !== "undefined") {
+    const token = localStorage.getItem("token");
+    setToken(token);
+    // }
 
     if (!token) {
       alert(

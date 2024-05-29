@@ -17,12 +17,12 @@ export default function PatientList() {
   const [patientList, setPatientList] = useState([]);
 
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      const token = localStorage.getItem("token");
-      const id = localStorage.getItem("id");
-      setToken(token);
-      setId(id);
-    }
+    // if (typeof window !== "undefined") {
+    const token = localStorage.getItem("token");
+    const id = localStorage.getItem("id");
+    setToken(token);
+    setId(id);
+    // }
 
     if (!token) {
       alert(
