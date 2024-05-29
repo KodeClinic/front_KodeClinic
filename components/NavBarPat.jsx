@@ -69,7 +69,7 @@ export default function NavBarPat({ pageName }) {
             " sm:px-14 min-[980px]:pr-20 min-[980px]:pl-0"
           )}
         >
-          <div
+          {/* <div
             className={clsx(
               "flex justify-center p-[6px] bg-background w-10 rounded-md",
               "hidden sm:block"
@@ -82,7 +82,7 @@ export default function NavBarPat({ pageName }) {
                 alt="settings"
               />
             </a>
-          </div>
+          </div> */}
           <div
             className={clsx(
               "flex justify-center p-[6px] bg-background w-10 rounded-md",

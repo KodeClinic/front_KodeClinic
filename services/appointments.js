@@ -62,3 +62,13 @@ export function deleteAppointment(credentials) {
   };
   return fetch(URL, options);
 }
+
+export function getSingleAppointment(credentials) {
+  const { idAppointment, token } = credentials;
+  const URL = `${URL_BASE}/api/appointments/findAppointment/${idAppointment}`;
+  const options = {
+    method: "GET",
+    headers: { "Content-Type": "application/json", bearerauth: token },
+  };
+  return fetch(URL, options);
+}

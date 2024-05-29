@@ -1,9 +1,12 @@
 import { useRouter } from "next/router";
+import { useState, useEffect } from "react";
 import NavBarPat from "@/components/NavBarPat";
 import PatientBand from "@/components/PatientBand";
 import clsx from "clsx";
 import Badge from "@/components/Badge";
 import Link from "next/link";
+import { getUserById } from "@/services/users/auth";
+import { getSingleAppointment } from "@/services/appointments";
 
 const props = {
   patient_id: "12345",
@@ -37,15 +40,70 @@ const props = {
 export default function AppointmentDetails() {
   const router = useRouter();
   const appointmentId = router.query.appointment_id;
+
+  const [pxData, setPxData] = useState({});
+  const [specialistData, setSpecialistData] = useState({});
+  const [appointmentData, setAppointmentData] = useState({});
+
+  const [token, setToken] = useState(null);
+  const [id, setId] = useState(null);
+
+  const fetchDataPx = async (id, token) => {
+    try {
+      //data del Paciente
+      const responsePatient = await getUserById({
+        id: id,
+        token: token,
+      });
+      const responsePatientJSON = await responsePatient.json();
+      setPxData(responsePatientJSON.data);
+
+      //data del Especialista
+      const responseSpecialist = await getUserById({
+        id: responsePatientJSON.data.patientInformation.specialistId,
+        token: token,
+      });
+      const responseSpecialistJSON = await responseSpecialist.json();
+      setSpecialistData(responseSpecialistJSON.data);
+
+      //Data de la cita del paciente
+      const responseAppointment = await getSingleAppointment({
+        idAppointment: appointmentId,
+        token: token,
+      });
+      const responseAppointmentJSON = await responseAppointment.json();
+      setAppointmentData(responseAppointmentJSON.data);
+      console.log("Información de Cita: ", responseAppointmentJSON.data);
+    } catch (error) {
+      alert("Ocurrio un error");
+    }
+  };
+
+  useEffect(() => {
+    // if (typeof window !== "undefined") {
+    const token = localStorage.getItem("token");
+    const id = localStorage.getItem("id");
+    setToken(token);
+    setId(id);
+    // }
+
+    if (!token) {
+      alert("Ocurrio un problema");
+    }
+    fetchDataPx(id, token);
+  }, []);
+
   return (
     <main className={clsx("bg-background min-h-screen w-full")}>
       <NavBarPat pageName={"Detalles de la Cita"} />
       <PatientBand
-        patient_name={props.patient_name}
-        patient_gender={props.patient_gender}
-        specialist_name={props.specialist_name}
-        specialist_gender={props.specialist_gender}
-        cel_Specialist={"33 12 34 56 89"}
+        patient_name={pxData.name}
+        patient_lastname={pxData.lastName}
+        patient_gender={pxData.gender}
+        patientbirthdate={pxData.birthDate}
+        specialist_name={`${specialistData.name} ${specialistData.lastName}`}
+        specialist_gender={specialistData.gender}
+        cel_Specialist={specialistData.cellphone}
       />
       <section
         className={clsx(
@@ -130,7 +188,7 @@ export default function AppointmentDetails() {
                     "text-base font-normal sm:text-lg text-nowrap"
                   )}
                 >
-                  {props.timeLapse}
+                  {appointmentData.timeLapse}
                 </span>
               </div>
             </div>
@@ -155,7 +213,7 @@ export default function AppointmentDetails() {
                 className={clsx("flex flex-col justify-center sm:min-h-[64px]")}
               >
                 <Badge
-                  badgeType={props.consultType}
+                  badgeType={appointmentData.consultType}
                   timeLapse={""}
                   consultingAddress={""}
                 />
@@ -217,13 +275,13 @@ export default function AppointmentDetails() {
                     "text-base font-normal text-center sm:text-lg"
                   )}
                 >
-                  {props.consultingAddress}
+                  {appointmentData.consultingAddress}
                 </span>
               </div>
             </div>
 
             {/* Tipo de Cita */}
-            <div
+            {/* <div
               className={clsx(
                 "flex flex-col items-center p-[10px] min-[980px]:border min-[980px]:border-blue_gray-100"
               )}
@@ -242,12 +300,12 @@ export default function AppointmentDetails() {
                 className={clsx("flex flex-col justify-center sm:min-h-[64px]")}
               >
                 <Badge
-                  badgeType={props.paymentStatus}
+                  badgeType={appointmentData.paymentStatus}
                   timeLapse={""}
                   consultingAddress={""}
                 />
               </div>
-            </div>
+            </div> */}
           </div>
 
           {/* Trataimiento */}

@@ -4,14 +4,15 @@ export default function PatientBand({
   patient_name,
   patient_lastname,
   patient_gender,
+  patientbirthdate,
   specialist_name,
   specialist_gender,
   cel_Specialist,
   mostrarModal,
 }) {
-  const handleShowModal = () => {
-    mostrarModal(true);
-  };
+  // const handleShowModal = () => {
+  //   mostrarModal(true);
+  // };
 
   return (
     <section
@@ -73,6 +74,21 @@ export default function PatientBand({
             <div className={clsx("flex gap-[10px] items-center")}>
               <img
                 className={clsx("w-5 h-5")}
+                src="/assets/icons/birthdate-icon.svg"
+                alt=""
+              />
+              <span
+                className={clsx(
+                  "text-base font-normal",
+                  "min-[980px]:text-[18px]"
+                )}
+              >
+                {patientbirthdate}
+              </span>
+            </div>
+            {/* <div className={clsx("flex gap-[10px] items-center")}>
+              <img
+                className={clsx("w-5 h-5")}
                 src="/assets/icons/source_notes-icon.svg"
                 alt=""
               />
@@ -85,7 +101,7 @@ export default function PatientBand({
               >
                 Último tratamiento
               </span>
-            </div>
+            </div> */}
           </div>
         </div>
 
@@ -143,7 +159,7 @@ export default function PatientBand({
               </span>
             </div>
 
-            <div className={clsx("flex gap-[10px] items-center")}>
+            {/* <div className={clsx("flex gap-[10px] items-center")}>
               <img
                 className={clsx("w-5 h-5")}
                 src="/assets/icons/med_info-icon.svg"
@@ -160,7 +176,7 @@ export default function PatientBand({
               >
                 Ver más
               </span>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
