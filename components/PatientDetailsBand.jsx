@@ -5,6 +5,7 @@ export default function PatientDetailsBand({
   gender,
   email,
   cel,
+  birthdate,
   // work,
   // religion,
   // address,
@@ -37,10 +38,10 @@ export default function PatientDetailsBand({
           >
             Paciente: {name}
           </span>
-          {/* <div className={clsx("flex gap-[10px] items-center")}>
+          <div className={clsx("flex gap-[10px] items-center")}>
             <img
               className={clsx("w-5 h-5")}
-              src="/assets/icons/build-icon.svg"
+              src="/assets/icons/birthdate-icon.svg"
               alt=""
             />
             <span
@@ -49,9 +50,9 @@ export default function PatientDetailsBand({
                 "min-[980px]:text-[18px]"
               )}
             >
-              {address}
+              Fecha de Nacimiento: {birthdate}
             </span>
-          </div> */}
+          </div>
         </div>
 
         <div

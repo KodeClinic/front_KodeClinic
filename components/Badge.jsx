@@ -41,19 +41,22 @@ export default function Badge({ badgeType, timeLapse, consultingAddress }) {
     icon = "/assets/icons/stethoscope_check_white-icon.svg";
     label = "completed";
     description = "Completada";
-    styles = "sm:w-[140px] bg-[#455A64] text-white";
+    styles =
+      "sm:w-[140px] bg-[#455A64] text-white transition ease-in-out delay-50 hover:-translate-y-1 hover:scale-110 hover:bg-[#303f46] duration-300";
     img_styles = "p-[5px]";
   } else if (badgeType == "start") {
     icon = "/assets/icons/play_white-icon.svg";
     label = "start";
     description = "Comenzar";
-    styles = "sm:w-[140px] bg-[#46B251] text-white";
+    styles =
+      "sm:w-[140px] bg-[#46B251] text-white transition ease-in-out delay-50 hover:-translate-y-1 hover:scale-110 hover:bg-[#388d40] duration-300";
     img_styles = "p-[5px]";
   } else if (badgeType == "schedule") {
     icon = "/assets/icons/schedule_white-icon.svg";
     label = "schedule";
     description = "Agendar cita";
-    styles = "sm:w-[140px] bg-[#0745CB] text-white";
+    styles =
+      "sm:w-[140px] bg-[#0745CB] text-white transition ease-in-out delay-50 hover:-translate-y-1 hover:scale-110 hover:bg-[#05349a] duration-300";
     img_styles = "p-[6px]";
   } else if (badgeType == "appointment") {
     icon = "/assets/icons/access_time-icon.svg";
@@ -67,6 +70,13 @@ export default function Badge({ badgeType, timeLapse, consultingAddress }) {
     description = consultingAddress;
     styles = "sm:w-[155px] text-blue_gray-700";
     img_styles = "bg-[#C3D7EE] rounded-full p-1";
+  } else if (badgeType == "delete") {
+    icon = "/assets/icons/cancel-icon.svg"; //
+    label = "delete-appointment";
+    description = "Borrar Cita";
+    styles =
+      "sm:w-[155px] text-[#b32606] transition ease-in-out delay-50 hover:text-white hover:-translate-y-1 hover:scale-110 hover:bg-[#b32606] duration-300";
+    img_styles = "bg-[#b32606] rounded-full p-1";
   }
 
   return (

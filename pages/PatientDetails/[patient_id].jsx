@@ -10,12 +10,12 @@ import { getUserById } from "@/services/users/auth";
 
 export default function PatientDetails() {
   const router = useRouter();
-  const patientId = router.query.patient_id;
   const [currentPage, setCurrentPage] = useState(1);
   const [patientInfo, setPatientInfo] = useState({});
 
   useEffect(() => {
     const token = localStorage.getItem("token");
+    const patientId = router.query.patient_id;
 
     if (!token) {
       alert(
@@ -66,6 +66,7 @@ export default function PatientDetails() {
         gender={patientInfo.gender}
         email={patientInfo.email}
         cel={patientInfo.cellphone}
+        birthdate={patientInfo.birthDate}
       />
       <section
         className={clsx(
