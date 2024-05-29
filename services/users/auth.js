@@ -1,7 +1,7 @@
-// import { URL_BASE } from "../config";
+import { URL_BASE } from "../config";
 
 export function login(credentials) {
-  const URL = `${process.env.URL_BASE}/users/auth/login`;
+  const URL = `${URL_BASE}/users/auth/login`;
   const options = {
     method: "POST",
     body: JSON.stringify(credentials),
@@ -11,7 +11,7 @@ export function login(credentials) {
 }
 
 export function validateEmail(credentials) {
-  const URL = `${process.env.URL_BASE}/users/validateEmail`;
+  const URL = `${URL_BASE}/users/validateEmail`;
   const options = {
     method: "POST",
     body: JSON.stringify(credentials),
@@ -21,7 +21,7 @@ export function validateEmail(credentials) {
 }
 
 export function createAccount(credentials) {
-  const URL = `${process.env.URL_BASE}/users/createAccount`;
+  const URL = `${URL_BASE}/users/createAccount`;
   const options = {
     method: "POST",
     body: JSON.stringify(credentials),
@@ -31,7 +31,7 @@ export function createAccount(credentials) {
 }
 
 export function forgotPassword(credentials) {
-  const URL = `${process.env.URL_BASE}/users/forgotPassword`;
+  const URL = `${URL_BASE}/users/forgotPassword`;
   const options = {
     method: "POST",
     body: JSON.stringify(credentials),
@@ -41,7 +41,7 @@ export function forgotPassword(credentials) {
 }
 
 export function restorePassword(credentials) {
-  const URL = `${process.env.URL_BASE}/users/restorePassword`;
+  const URL = `${URL_BASE}/users/restorePassword`;
   const options = {
     method: "PATCH",
     body: JSON.stringify(credentials),
@@ -51,7 +51,7 @@ export function restorePassword(credentials) {
 }
 
 export function sendEmailCode(credentials) {
-  const URL = `${process.env.URL_BASE}/users/sendEmailCode`;
+  const URL = `${URL_BASE}/users/sendEmailCode`;
   const options = {
     method: "POST",
     body: JSON.stringify(credentials),
@@ -62,7 +62,7 @@ export function sendEmailCode(credentials) {
 
 export function getUserById(credentials) {
   const { id, token } = credentials;
-  const URL = `${URL_BASE}api/users/get/${id}`;
+  const URL = `${URL_BASE}/api/users/get/${id}`;
   const options = {
     // method: "GET",
     headers: {
