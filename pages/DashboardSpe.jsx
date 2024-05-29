@@ -10,6 +10,7 @@ import { getSpecialistAppointments } from "@/services/appointments";
 import { getSpecialistAvailability } from "@/services/appointments";
 import { DashboardContext } from "@/context/DashboardContex";
 import ModalConfirmation from "@/components/ModalConfirmation";
+import { deleteAppointment } from "@/services/appointments";
 
 // Para utilizar el calendario
 import { esES } from "@mui/x-date-pickers/locales";
@@ -36,25 +37,57 @@ export default function DashboardEsp() {
   const [modal, setModal] = useState(false);
   const [patientRef, setPatientRef] = useState("");
   const [appointmentRef, setAppointmentRef] = useState("");
+  const [appointmentStatus, setAppointmentStatus] = useState("");
+  const [toDelete, setToDelete] = useState(false);
 
-  const modalProps = {
+  const modalPropsStart = {
     title: "Comenzar Cita con el Paciente",
     description: "¿Deseas iniciar con la Colsulta del Paciente?",
     buttonLeft: "Cancelar",
     buttonRight: "Iniciar",
   };
+  const modalPropsCompleted = {
+    title: "Cita del Paciente Completada",
+    description:
+      "Al dar clic en continuar será redirigido al Expediente Médico del Paciente",
+    buttonLeft: "Cancelar",
+    buttonRight: "Continuar",
+  };
 
   const toggleModal = () => {
     setPatientRef("");
     setAppointmentRef("");
+    setAppointmentStatus("");
     setModal(!modal);
   };
 
   const handleConfirmation = () => {
-    router.push({
-      pathname: "/MedicalRecords/[patient_id]",
-      query: { patient_id: patientRef, appointment: appointmentRef },
-    });
+    if (appointmentStatus == "completed") {
+      router.push({
+        pathname: "/PatientDetails/[patient_id]",
+        query: { patient_id: patientRef },
+      });
+    } else if (appointmentStatus == "start") {
+      router.push({
+        pathname: "/MedicalRecords/[patient_id]",
+        query: { patient_id: patientRef, appointment: appointmentRef },
+      });
+    } else if (toDelete == true) {
+      deleteAppointmentFunction(appointmentRef);
+    }
+  };
+
+  const deleteAppointmentFunction = async (appointmentRef) => {
+    try {
+      const response = await deleteAppointment({
+        appointmentId: appointmentRef,
+        token: token,
+      });
+      setModal(!modal);
+      router.reload();
+    } catch (error) {
+      alert("Imposible borrar la Cita, intentelo más tarde");
+    }
   };
 
   const fetchData = async (id, token) => {
@@ -188,6 +221,8 @@ export default function DashboardEsp() {
           handleConfirmation,
           setPatientRef,
           setAppointmentRef,
+          setAppointmentStatus,
+          setToDelete,
         }}
       >
         <section
@@ -249,7 +284,15 @@ export default function DashboardEsp() {
           </div>
         </section>
 
-        {modal && <ModalConfirmation props={modalProps} />}
+        {modal && (
+          <ModalConfirmation
+            props={
+              appointmentStatus == "completed"
+                ? modalPropsCompleted
+                : modalPropsStart
+            }
+          />
+        )}
       </DashboardContext.Provider>
     </main>
   );

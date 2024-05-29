@@ -13,7 +13,7 @@ import { updateRecordsData } from "@/services/medicalRecords";
 export default function PatientMedicalRecords() {
   const router = useRouter();
   const patientId = router.query.patient_id;
-  const id = localStorage.getItem("");
+  const id = typeof window !== "undefined" ? localStorage.getItem("id") : null;
   const [medRecords, setMedRecords] = useState({});
   const [sectionName, setSectionName] = useState("");
   const [inputList, setInputList] = useState([]);

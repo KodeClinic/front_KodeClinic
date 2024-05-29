@@ -51,7 +51,7 @@ export default function ClinicalHistories() {
   const submitData = async () => {
     const token = localStorage.getItem("token");
     try {
-      console.log("Final Data, Clinical Histories", userData);
+      // console.log("Final Data, Clinical Histories", userData);
       const response = await updateClinicalHistory({
         data: userData,
         templateId: 2,
@@ -59,7 +59,7 @@ export default function ClinicalHistories() {
         appointmentId: appointmentId,
         token: token,
       });
-      console.log(response);
+      // console.log(response);
       const dataJSON = await response.json();
       setUserData("");
 

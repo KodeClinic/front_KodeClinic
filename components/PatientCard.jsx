@@ -2,7 +2,7 @@ import clsx from "clsx";
 
 export default function PatientCard({ name, gender, number, birthdate }) {
   return (
-    <div className=" w-[362px] h-[140px] border border-white_grey">
+    <div className=" w-[362px] h-[140px] border border-white_grey shadow-md">
       <div className="flex flex-row gap-3 px-6 py-4">
         {gender == "male" ? (
           <img
@@ -23,7 +23,7 @@ export default function PatientCard({ name, gender, number, birthdate }) {
       <div className="flex flex-row items-center">
         <div className="bg-pink rounded-[25px] flex flex-row object-center w-[160px] h-[30px] px-3 mx-2">
           <img
-            src="/assets/icons/church-icon.svg"
+            src="/assets/icons/birthdate-icon.svg"
             alt="stethoscope"
             className="w-[13px] h-[13px] mx-2 my-2"
           />
