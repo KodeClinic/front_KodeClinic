@@ -17,10 +17,9 @@ export default function EmailVerification() {
     try {
       const req = { email: data.email, securityCode: values.code };
       const response = await validateEmail(req);
-      if (response.status === 200) {
-        const dataJSON = await response.json();
-        localStorage.setItem("token", dataJSON.token);
-        // router.push("/DashboardSpe");
+      const dataJSON = await response.json();
+      if (response.status === 200 && data[1] === false) {
+        localStorage.setItem("token", dataJSON.data[0]);
         router.push({
           pathname: "/RegistrationComplete",
           query: { email: data.email },
@@ -30,6 +29,11 @@ export default function EmailVerification() {
       } else if (response.status === 401) {
         setIsLoading(false);
         setIsFailed(true);
+      } else if (response.status === 200 && dataJSON.data[1] === true) {
+        router.push({
+          pathname: "restorePassword",
+          query: { email: data.email },
+        });
       }
     } catch (error) {
       setIsLoading(false);

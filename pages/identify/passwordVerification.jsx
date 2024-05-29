@@ -22,7 +22,7 @@ export default function passwordVerification() {
         localStorage.setItem("token", dataJSON.token);
         router.push({
           pathname: "restorePassword",
-          query: { email: data.email }, //pendiente conocer cómo se valida el token del lado del front
+          query: { email: data.email },
         });
         setIsLoading(false);
         setIsFailed(false);
