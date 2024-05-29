@@ -429,6 +429,52 @@ const historyAppointmentData = [
     },
   },
 ];
+
+const [pacientData, setPacientData] = useState({});
+const [Date, setDate] = useState(dayjs());
+const [appointments, setAppointments] = useState([]);
+
+const fetchDataPx = async (id, token) => {
+  try {
+    const responsePx = await getUserById({
+      id: id,
+      token: token,
+    });
+    const responseUserJSON = await responsePx.json();
+    console.log(responseUserJSON.data);
+    setPacientData(responseUserJSON.data);
+
+    const responseAppointments = await getAppointmentsbyPatient({
+      patientId: id,
+      token: token,
+      year: Date.$y,
+      month: Date.$M + 1,
+      day: Date.$D,
+    });
+
+    const responseAppointmentsJSON = await responseAppointments.json();
+    setAppointments(responseAppointmentsJSON.data);
+  } catch (error) {
+    console.log(error);
+    alert(
+      "Ocurrió un problema al intentar acceder, por favor inténtenlo de nuevo"
+    );
+  }
+};
+
+useEffect(() => {
+  const token = localStorage.getItem("token");
+  const id = localStorage.getItem("id");
+
+  /*if (!token) {
+    alert(
+      "Ocurrió un problema al intentar acceder, por favor inténtenlo de nuevo"
+    );
+    router.push("/LogIn");
+  }*/
+  fetchDataPx(id, token);
+}, []);
+
 export default function DashboardPat() {
   const [showModal, setShowModal] = useState(false);
 
