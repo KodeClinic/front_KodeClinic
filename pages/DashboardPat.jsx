@@ -9,6 +9,7 @@ import { useParams } from "next/navigation";
 import { pxInformation } from "@/services/patients";
 import { getUserById } from "@/services/users/auth";
 import { useRouter } from "next/router";
+import { getAppointmentsbyPatient } from "@/services/appointments";
 
 const dataSpecialist = {
   name: "Xavier",
@@ -442,39 +443,62 @@ export default function DashboardPat() {
 
   const [pxData, setPxData] = useState({});
   const [appointments, setAppointments] = useState([]);
-  const [currentAppointments, setCurrentAppointments] = useState([]);
-  const router = useRouter();
-  const dataQuery = router.query;
+  const [specialistId, setSpecialistId] = useState({});
 
-  const fetchData = async (dataQuery, token) => {
+  const id = typeof window !== "undefined" ? localStorage.getItem("id") : null;
+  const token =
+    typeof window !== "undefined" ? localStorage.getItem("token") : null;
+
+  const fetchDataPx = async (id, token) => {
     try {
       const responseUser = await getUserById({
-        id: dataQuery.id,
+        id: id,
         token: token,
       });
       const responseUserJSON = await responseUser.json();
       setPxData(responseUserJSON.data);
+      console.log("Informacion del paciente: ", responseUserJSON.data);
+
+      const responseAppointmentsPx = await getAppointmentsbyPatient({
+        patientId: id,
+        token: token,
+      });
+      const responseAppointmentsPxJSON = await responseAppointmentsPx.json();
+      setAppointments(responseAppointmentsPxJSON.data);
+      console.log("Información de Citas: ", responseAppointmentsPxJSON.data);
     } catch (error) {
       alert("Ocurrio un error");
     }
   };
 
+  /*const fetchDataSpecialist = async (id, token) => {
+    try {
+      const responseUserSpec = await getUserById({
+        id: id,
+        token: token,
+      });
+      const responseUserSpecJSON = await responseUserSpec.json();
+      console.log(responseUserSpecJSON.data);
+    } catch (error) {
+      alert("ERROR");
+    }
+  };*/
+
   useEffect(() => {
-    const token = localStorage.getItem("token");
     if (!token) {
       alert("Ocurrio un problema");
     }
-    fetchData(dataQuery, token);
+    fetchDataPx(id, token);
+    //fetchDataSpecialist(specialistId, token);
   }, []);
-
-  console.log(dataQuery);
 
   return (
     <main className={clsx("bg-background min-h-screen w-full")}>
       <NavBarPat pageName={"Home"} />
       <PatientBand
-        patient_name={dataPatient.name}
-        patient_gender={dataPatient.gender}
+        patient_name={pxData.name}
+        patient_lastname={pxData.lastName}
+        patient_gender={pxData.gender}
         specialist_name={dataSpecialist.name}
         specialist_gender={dataSpecialist.gender}
         cel_Specialist={dataSpecialist.contactPhone}
