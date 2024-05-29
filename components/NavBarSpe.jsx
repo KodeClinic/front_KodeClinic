@@ -86,7 +86,7 @@ export default function NavBarSpe({ pageName }) {
               alt="new-appointment"
             />
           </Link>
-          <Link
+          {/* <Link
             href={{
               pathname: "/New_pacient",
             }}
@@ -99,7 +99,7 @@ export default function NavBarSpe({ pageName }) {
               src="/assets/icons/newpatient-icon.svg"
               alt="new-patient"
             />
-          </Link>
+          </Link> */}
           <button
             onClick={onLogout}
             className={clsx(

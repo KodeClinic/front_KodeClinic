@@ -69,7 +69,7 @@ export default function HamburgerMenuSpe() {
               />
               <p className="mx-3 font-medium">Lista de Pacientes</p>
             </Link>
-            <Link
+            {/* <Link
               href={{
                 pathname: "/New_pacient",
               }}
@@ -81,7 +81,7 @@ export default function HamburgerMenuSpe() {
                 className="w-[18px] h-[20px] mx-3"
               />
               <p className="mx-3 font-medium">Nuevo Paciente</p>
-            </Link>
+            </Link> */}
             <Link
               className="flex-row flex mx-auto mb-4"
               href={{

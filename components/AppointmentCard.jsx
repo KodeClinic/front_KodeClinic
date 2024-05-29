@@ -16,8 +16,13 @@ export default function AppointmentCard({ props }) {
     _id,
   } = props;
 
-  const { setPatientRef, toggleModal, setAppointmentRef } =
-    useContext(DashboardContext);
+  const {
+    setPatientRef,
+    toggleModal,
+    setAppointmentRef,
+    setAppointmentStatus,
+    setToDelete,
+  } = useContext(DashboardContext);
 
   let fullName = `${patientId.name} ${patientId.lastName}`;
   let gender = patientId.gender;
@@ -54,7 +59,7 @@ export default function AppointmentCard({ props }) {
 
         <span
           className={clsx(
-            "text-blue_gray-700 text-[16px] font-bold",
+            "text-blue_gray-700 text-[16px] font-bold pl-2",
             "min-[980px]:text-[20px]"
           )}
         >
@@ -69,14 +74,16 @@ export default function AppointmentCard({ props }) {
           "min-[980px]:flex-row min-[980px]:justify-between"
         )}
       >
-        {/* tipo de cita */}
-        <div>
-          <Badge
-            badgeType={consultType}
-            timeLapse={""}
-            consultingAddress={""}
-          />
-        </div>
+        {/* Borrar cita */}
+        <button
+          onClick={() => {
+            toggleModal();
+            setAppointmentRef(_id);
+            setToDelete(true);
+          }}
+        >
+          <Badge badgeType={"delete"} timeLapse={""} consultingAddress={""} />
+        </button>
 
         <img
           className={clsx("min-[980px]:hidden")}
@@ -90,10 +97,10 @@ export default function AppointmentCard({ props }) {
           alt="line"
         />
 
-        {/* Pagos */}
+        {/* Tipo de Cita */}
         <div>
           <Badge
-            badgeType={paymentStatus}
+            badgeType={consultType}
             timeLapse={""}
             consultingAddress={""}
           />
@@ -140,18 +147,11 @@ export default function AppointmentCard({ props }) {
             toggleModal();
             setPatientRef(patientId._id);
             setAppointmentRef(_id);
+            setAppointmentStatus(status);
           }}
         >
           <Badge badgeType={status} timeLapse={""} consultingAddress={""} />
         </button>
-        {/* <Link
-          href={{
-            pathname: "/MedicalRecords/[patient_id]",
-            query: { patient_id: _id },
-          }}
-        >
-          <Badge badgeType={status} timeLapse={""} consultingAddress={""} />
-        </Link> */}
       </div>
     </div>
   );

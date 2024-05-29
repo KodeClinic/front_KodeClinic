@@ -31,6 +31,7 @@ export function getSpecialistAppointments(credentials) {
   };
   return fetch(URL, options);
 }
+
 export function getAppointmentsbyPatient(credentials) {
   const { patientId, token } = credentials;
   const URL = `${URL_BASE}/api/appointments/getAppointmentsbyPatient/${patientId}`;
@@ -47,6 +48,16 @@ export function getSpecialistAvailability(credentials) {
   const options = {
     method: "POST",
     body: JSON.stringify(data),
+    headers: { "Content-Type": "application/json", bearerauth: token },
+  };
+  return fetch(URL, options);
+}
+
+export function deleteAppointment(credentials) {
+  const { appointmentId, token } = credentials;
+  const URL = `${URL_BASE}api/appointments/deleteAppointment/${appointmentId}`;
+  const options = {
+    method: "DELETE",
     headers: { "Content-Type": "application/json", bearerauth: token },
   };
   return fetch(URL, options);
