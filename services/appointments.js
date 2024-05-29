@@ -2,7 +2,7 @@ import { URL_BASE } from "./config";
 
 export function postAppointmentNewPatient(credentials) {
   const { specialistId, data, token } = credentials;
-  const URL = `${process.env.URL_BASE}/api/appointments/createNP/${specialistId}`;
+  const URL = `${URL_BASE}/api/appointments/createNP/${specialistId}`;
   const options = {
     method: "POST",
     body: JSON.stringify(data),
@@ -13,7 +13,7 @@ export function postAppointmentNewPatient(credentials) {
 
 export function postAppointmentExistingPatient(credentials) {
   const { specialistId, data, token } = credentials;
-  const URL = `${process.env.URL_BASE}/api/appointments/createEP/${specialistId}`;
+  const URL = `${URL_BASE}/api/appointments/createEP/${specialistId}`;
   const options = {
     method: "POST",
     body: JSON.stringify(data),
