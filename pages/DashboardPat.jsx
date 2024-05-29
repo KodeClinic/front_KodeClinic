@@ -443,11 +443,8 @@ export default function DashboardPat() {
 
   const [pxData, setPxData] = useState({});
   const [appointments, setAppointments] = useState([]);
-  const [specialistId, setSpecialistId] = useState({});
-
-  const id = typeof window !== "undefined" ? localStorage.getItem("id") : null;
-  const token =
-    typeof window !== "undefined" ? localStorage.getItem("token") : null;
+  const [token, setToken] = useState(null);
+  const [id, setId] = useState(null);
 
   const fetchDataPx = async (id, token) => {
     try {
@@ -485,6 +482,13 @@ export default function DashboardPat() {
   };*/
 
   useEffect(() => {
+    if (typeof window !== "undefined") {
+      const token = localStorage.getItem("token");
+      const id = localStorage.getItem("id");
+      setToken(token);
+      setId(id);
+    }
+
     if (!token) {
       alert("Ocurrio un problema");
     }
