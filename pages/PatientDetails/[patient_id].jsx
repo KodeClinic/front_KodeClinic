@@ -10,12 +10,17 @@ import { getUserById } from "@/services/users/auth";
 
 export default function PatientDetails() {
   const router = useRouter();
+  const [token, setToken] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [patientInfo, setPatientInfo] = useState({});
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
     const patientId = router.query.patient_id;
+
+    if (typeof window !== "undefined") {
+      const token = localStorage.getItem("token");
+      setToken(token);
+    }
 
     if (!token) {
       alert(

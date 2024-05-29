@@ -13,6 +13,7 @@ export default function Pathological() {
   const [formDataTemplate, setFormDataTemplate] = useState({});
   const [sectionName, setSectionName] = useState("");
   const [inputList, setInputList] = useState([]);
+  const [token, setToken] = useState(null);
 
   const getTemplateData = async (token) => {
     const credetials = { id: "1", token: token };
@@ -31,7 +32,10 @@ export default function Pathological() {
   };
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
+    if (typeof window !== "undefined") {
+      const token = localStorage.getItem("token");
+      setToken(token);
+    }
 
     if (!token) {
       alert("Inicio de sesión expirado, por favor inicie sesión antes");

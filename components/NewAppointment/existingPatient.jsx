@@ -10,15 +10,14 @@ import { getPatients } from "@/services/specialists";
 import { getSpecialistAvailability } from "@/services/appointments";
 
 export default function AppointmentExistingPatient2() {
-  const id = typeof window !== "undefined" ? localStorage.getItem("id") : null;
-  const token =
-    typeof window !== "undefined" ? localStorage.getItem("token") : null;
   const router = useRouter();
   const [patientList, setPatientList] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isFailed, setIsFailed] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
   const [schedule, setSchedule] = useState([]);
+  const [token, setToken] = useState(null);
+  const [id, setId] = useState(null);
 
   const selectStyles = {
     control: (styles) => ({
@@ -46,8 +45,12 @@ export default function AppointmentExistingPatient2() {
   ];
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    const id = localStorage.getItem("id");
+    if (typeof window !== "undefined") {
+      const token = localStorage.getItem("token");
+      const id = localStorage.getItem("id");
+      setToken(token);
+      setId(id);
+    }
 
     if (!token) {
       alert(
@@ -73,8 +76,6 @@ export default function AppointmentExistingPatient2() {
     console.log(values);
 
     try {
-      const token = localStorage.getItem("token");
-      const id = localStorage.getItem("id");
       const response = await postAppointmentExistingPatient({
         token: token,
         specialistId: id,
@@ -97,10 +98,6 @@ export default function AppointmentExistingPatient2() {
   };
 
   const getAvailability = async (date) => {
-    const token = localStorage.getItem("token");
-    console.log(token);
-    console.log(id);
-
     let arrayDate = date.split("-");
     let dateObjet = {
       year: +arrayDate[0],

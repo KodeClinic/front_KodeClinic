@@ -430,6 +430,8 @@ const historyAppointmentData = [
   },
 ];
 export default function DashboardPat() {
+  const [token, setToken] = useState(null);
+
   const [showModal, setShowModal] = useState(false);
 
   const mostrarModal = (show) => {
@@ -460,7 +462,11 @@ export default function DashboardPat() {
   };
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
+    if (typeof window !== "undefined") {
+      const token = localStorage.getItem("token");
+      setToken(token);
+    }
+
     if (!token) {
       alert("Ocurrio un problema");
     }

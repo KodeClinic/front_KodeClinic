@@ -26,10 +26,8 @@ import { DateCalendar } from "@mui/x-date-pickers/DateCalendar";
 
 export default function DashboardEsp() {
   const router = useRouter();
-  const id = typeof window !== "undefined" ? localStorage.getItem("id") : null;
-
-  const token =
-    typeof window !== "undefined" ? localStorage.getItem("token") : null;
+  const [token, setToken] = useState(null);
+  const [id, setId] = useState(null);
 
   const [Date, setDate] = useState(dayjs());
   const [specialistData, setSpecialistData] = useState({});
@@ -194,8 +192,12 @@ export default function DashboardEsp() {
   };
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    const id = localStorage.getItem("id");
+    if (typeof window !== "undefined") {
+      const token = localStorage.getItem("token");
+      const id = localStorage.getItem("id");
+      setToken(token);
+      setId(id);
+    }
 
     if (!token) {
       alert(

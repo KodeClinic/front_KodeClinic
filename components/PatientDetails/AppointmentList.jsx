@@ -10,11 +10,15 @@ export default function AppointmentList() {
   const router = useRouter();
   const patientId = router.query.patient_id;
   const [appointmentList, setAppointmentList] = useState([]);
+  const [token, setToken] = useState(null);
 
   const { setCurrentPage, setAppointmentId } = useContext(multiStepContext);
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
+    if (typeof window !== "undefined") {
+      const token = localStorage.getItem("token");
+      setToken(token);
+    }
 
     if (!token) {
       alert(
@@ -33,17 +37,12 @@ export default function AppointmentList() {
       });
       const dataJSON = await response.json();
       setAppointmentList(dataJSON.data);
-      console.log("fecth appointments", dataJSON.data);
-      // setSectionForm(dataJSON.data[0].screens[1]);
-      // // console.log(dataJSON.data[0]);
-      // setSectionName(dataJSON.data[0].screens[0].title);
-      // setInputList(dataJSON.data[0].screens[0].inputList);
-      // setUserData(dataJSON.data[1]);
     } catch (error) {
       // setEmptyRecords(true);
-      // alert(
-      //   "Ocurrió un problema al intentar acceder, por favor inténtenlo de nuevo"
-      // );
+      alert(
+        "Ocurrió un problema al intentar acceder, por favor inténtenlo de nuevo"
+      );
+      router.push({ pathname: "/DashboardSpe" });
     }
   };
 
@@ -110,14 +109,7 @@ export default function AppointmentList() {
           <tbody className={clsx("divide-y divide-blue_gray-100")}>
             {appointmentList.map((appointment) => {
               let date = `${appointment.date.day}/${appointment.date.month}/${appointment.date.year}`;
-              let consultName = "";
               let statusName = "";
-
-              if (appointment.consultType === "valoration") {
-                consultName = "Valoración";
-              } else if (appointment.consultType === "therapy") {
-                consultName = "Terapia";
-              }
 
               if (appointment.status === "completed") {
                 statusName = "Completada";

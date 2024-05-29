@@ -10,6 +10,7 @@ import Input from "../Input";
 export default function PatientClinicalHistory() {
   const router = useRouter();
   const patientId = router.query.patient_id;
+  const [token, setToken] = useState(null);
 
   const [clinicalData, setClinicalData] = useState({});
   const [emptyClinicalHistory, setEmptyClinicalHistory] = useState(false);
@@ -38,7 +39,10 @@ export default function PatientClinicalHistory() {
   } = useContext(multiStepContext);
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
+    if (typeof window !== "undefined") {
+      const token = localStorage.getItem("token");
+      setToken(token);
+    }
 
     if (!token) {
       alert(

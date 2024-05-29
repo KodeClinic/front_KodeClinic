@@ -19,6 +19,7 @@ export default function MedicalRecords() {
   const router = useRouter();
   const patientId = router.query.patient_id;
   const appointmentId = router.query.appointment;
+  const [token, setToken] = useState(null);
 
   //Estados para el Context
   const [currentStep, setCurrentStep] = useState(1);
@@ -31,7 +32,10 @@ export default function MedicalRecords() {
   const [emptyRecords, setEmptyRecords] = useState(true);
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
+    if (typeof window !== "undefined") {
+      const token = localStorage.getItem("token");
+      setToken(token);
+    }
 
     if (!token) {
       alert("Inicio de sesión expirado, por favor inicie sesión antes");
@@ -72,7 +76,6 @@ export default function MedicalRecords() {
   };
 
   const submitData = async () => {
-    const token = localStorage.getItem("token");
     setFinalData(userData);
     console.log(userData);
 

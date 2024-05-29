@@ -9,6 +9,7 @@ export default function NavBarPat({ pageName }) {
 
   const onLogout = () => {
     localStorage.removeItem("token");
+    localStorage.removeItem("id");
     router.push("/");
   };
 

@@ -13,7 +13,8 @@ import { updateRecordsData } from "@/services/medicalRecords";
 export default function PatientMedicalRecords() {
   const router = useRouter();
   const patientId = router.query.patient_id;
-  const id = typeof window !== "undefined" ? localStorage.getItem("id") : null;
+  const [token, setToken] = useState(null);
+  const [id, setId] = useState(null);
   const [medRecords, setMedRecords] = useState({});
   const [sectionName, setSectionName] = useState("");
   const [inputList, setInputList] = useState([]);
@@ -46,7 +47,12 @@ export default function PatientMedicalRecords() {
   };
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
+    if (typeof window !== "undefined") {
+      const token = localStorage.getItem("token");
+      const id = localStorage.getItem("id");
+      setToken(token);
+      setId(id);
+    }
 
     if (!token) {
       alert(
@@ -80,8 +86,6 @@ export default function PatientMedicalRecords() {
   };
 
   const submitData = async () => {
-    const token = localStorage.getItem("token");
-    console.log("data del submit", userData);
     try {
       const responseUpdate = await updateRecordsData({
         data: userData,

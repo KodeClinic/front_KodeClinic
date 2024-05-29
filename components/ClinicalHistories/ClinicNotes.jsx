@@ -12,6 +12,7 @@ export default function ClinicNotes() {
   const [formDataTemplate, setFormDataTemplate] = useState({});
   const [sectionName, setSectionName] = useState("");
   const [inputList, setInputList] = useState([]);
+  const [token, setToken] = useState(null);
 
   const { setCurrentStep, modal, toggleModal, confirmation } =
     useContext(multiStepContext);
@@ -46,7 +47,10 @@ export default function ClinicNotes() {
   };
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
+    if (typeof window !== "undefined") {
+      const token = localStorage.getItem("token");
+      setToken(token);
+    }
 
     if (!token) {
       alert("Inicio de sesión expirado, por favor inicie sesión antes");

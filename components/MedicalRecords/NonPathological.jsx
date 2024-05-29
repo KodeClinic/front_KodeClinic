@@ -11,6 +11,7 @@ export default function NonPathological() {
     useContext(multiStepContext);
   const [formDataTemplate, setFormDataTemplate] = useState({});
   const [sectionForm, setSectionForm] = useState({});
+  const [token, setToken] = useState(null);
 
   const modalProps = {
     title: "Antecendetes Médicos del paciente",
@@ -46,7 +47,10 @@ export default function NonPathological() {
   };
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
+    if (typeof window !== "undefined") {
+      const token = localStorage.getItem("token");
+      setToken(token);
+    }
 
     if (!token) {
       alert("Usuario no autorizado, por favor inicie sesión antes");

@@ -13,6 +13,8 @@ import { completeInformation } from "@/services/specialists";
 import { useRouter } from "next/router";
 
 export default function New_pacient() {
+  const [token, setToken] = useState(null);
+  const [specialistId, setId] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
 
   //Estados para construir el context
@@ -20,11 +22,14 @@ export default function New_pacient() {
   const [finalPxData, setFinalPxData] = useState([]);
 
   const router = useRouter();
-  const specialistId = localStorage.getItem("id");
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
-
+    if (typeof window !== "undefined") {
+      const token = localStorage.getItem("token");
+      const specialistId = localStorage.getItem("id");
+      setToken(token);
+      setId(specialistId);
+    }
     if (!token) {
       alert("Inicio de sesión expirado, por favor inicie sesión antes");
       router.push("/LogIn");
@@ -33,7 +38,6 @@ export default function New_pacient() {
 
   const submitData = () => {
     console.log("Data de newPxData: ", newPxData);
-    const token = localStorage.getItem("token");
     setFinalPxData(newPxData);
     completeInformation({
       data: newPxData,

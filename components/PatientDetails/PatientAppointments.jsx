@@ -14,7 +14,6 @@ import { updateClinicalHistory } from "@/services/clinicalHistories";
 export default function PatientAppointments() {
   const router = useRouter();
   const patientId = router.query.patient_id;
-  const id = localStorage.getItem("id");
   // const [appointmentList, setAppointmentList] = useState([]);
 
   //Context
@@ -24,6 +23,8 @@ export default function PatientAppointments() {
   const [modal, setModal] = useState(false);
   const [confirmation, setConfirmation] = useState(false);
   const [isDisable, setIsDisable] = useState(true);
+  const [token, setToken] = useState(null);
+  const [id, setId] = useState(null);
 
   const modalProps = {
     title: "Historia Clínica del paciente",
@@ -40,7 +41,12 @@ export default function PatientAppointments() {
   };
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
+    if (typeof window !== "undefined") {
+      const token = localStorage.getItem("token");
+      const id = localStorage.getItem("id");
+      setToken(token);
+      setId(id);
+    }
 
     if (!token) {
       alert(
@@ -67,7 +73,6 @@ export default function PatientAppointments() {
   };
 
   const submitData = async () => {
-    const token = localStorage.getItem("token");
     try {
       const responseUpdate = await updateClinicalHistory({
         data: userData,

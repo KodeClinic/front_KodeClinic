@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useFormik } from "formik";
 import { AppointmentNewPatientSchema } from "@/schemas/appointmentNewPatient";
 import CustomSelect from "./SelectInput";
@@ -8,13 +8,12 @@ import SuccessModal from "../SuccessModal";
 import { getSpecialistAvailability } from "@/services/appointments";
 
 export default function AppointmentNewPatient() {
-  const id = typeof window !== "undefined" ? localStorage.getItem("id") : null;
-  const token =
-    typeof window !== "undefined" ? localStorage.getItem("token") : null;
   const [isLoading, setIsLoading] = useState(false);
   const [isFailed, setIsFailed] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
   const [schedule, setSchedule] = useState([]);
+  const [token, setToken] = useState(null);
+  const [id, setId] = useState(null);
 
   const selectStyles = {
     control: (styles) => ({
@@ -46,11 +45,26 @@ export default function AppointmentNewPatient() {
     { value: "female", label: "Mujer" },
   ];
 
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const token = localStorage.getItem("token");
+      const id = localStorage.getItem("id");
+      setToken(token);
+      setId(id);
+    }
+
+    if (!token) {
+      alert(
+        "Ocurrió un problema al intentar acceder, por favor inténtenlo de nuevo"
+      );
+      router.push("/LogIn");
+    }
+  }, []);
+
   const onSubmit = async () => {
     setIsLoading(true);
 
     try {
-      const token = localStorage.getItem("token");
       const response = await postAppointmentNewPatient({
         token: token,
         specialistId: id,
@@ -72,10 +86,6 @@ export default function AppointmentNewPatient() {
   };
 
   const getAvailability = async (date) => {
-    const token = localStorage.getItem("token");
-    console.log(token);
-    console.log(id);
-
     let arrayDate = date.split("-");
     let dateObjet = {
       year: +arrayDate[0],
@@ -91,7 +101,6 @@ export default function AppointmentNewPatient() {
         data: dateObjet,
       });
       const dataJSON = await res.json();
-      // console.log("lo importante", dataJSON.data);
       setSchedule(dataJSON.data);
     } catch (error) {
       console.log(error);

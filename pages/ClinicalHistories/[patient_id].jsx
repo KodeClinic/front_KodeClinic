@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 
 import NavBarSpe from "@/components/NavBarSpe";
@@ -16,6 +16,7 @@ import StepLabel from "@mui/material/StepLabel";
 
 export default function ClinicalHistories() {
   const router = useRouter();
+  const [token, setToken] = useState(null);
   const patientId = router.query.patient_id;
   const appointmentId = router.query.appointment;
 
@@ -48,10 +49,22 @@ export default function ClinicalHistories() {
     // }
   };
 
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const token = localStorage.getItem("token");
+      setToken(token);
+    }
+
+    if (!token) {
+      alert(
+        "Ocurrió un problema al intentar acceder, por favor inténtenlo de nuevo"
+      );
+      router.push("/LogIn");
+    }
+  }, []);
+
   const submitData = async () => {
-    const token = localStorage.getItem("token");
     try {
-      // console.log("Final Data, Clinical Histories", userData);
       const response = await updateClinicalHistory({
         data: userData,
         templateId: 2,
@@ -59,7 +72,6 @@ export default function ClinicalHistories() {
         appointmentId: appointmentId,
         token: token,
       });
-      // console.log(response);
       const dataJSON = await response.json();
       setUserData("");
 

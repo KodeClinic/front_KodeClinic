@@ -8,17 +8,21 @@ import Link from "next/link";
 import { getUserById } from "@/services/users/auth";
 import PatientCard from "@/components/PatientCard";
 import { getPatients } from "@/services/specialists";
-// import PatientsDischarged from "@/components/PatientsDischarged";
 
 export default function PatientList() {
   const router = useRouter();
+  const [token, setToken] = useState(null);
+  const [id, setId] = useState(null);
   const [specialistData, setSpecialistData] = useState({});
   const [patientList, setPatientList] = useState([]);
-  // const [selectPatientList, setSelectPatientList] = useState([]);
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    const id = localStorage.getItem("id");
+    if (typeof window !== "undefined") {
+      const token = localStorage.getItem("token");
+      const id = localStorage.getItem("id");
+      setToken(token);
+      setId(id);
+    }
 
     if (!token) {
       alert(

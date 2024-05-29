@@ -15,8 +15,8 @@ import StepLabel from "@mui/material/StepLabel";
 
 export default function WelcomePage() {
   const router = useRouter();
-  const specialistId =
-    typeof window !== "undefined" ? localStorage.getItem("id") : null;
+  const [token, setToken] = useState(null);
+  const [specialistId, setId] = useState(null);
 
   //Estados para el Context
   const [currentStep, setCurrentStep] = useState(1);
@@ -25,8 +25,12 @@ export default function WelcomePage() {
   const [modal, setModal] = useState(false);
 
   useEffect(() => {
-    const token =
-      typeof window !== "undefined" ? localStorage.getItem("token") : null;
+    if (typeof window !== "undefined") {
+      const token = localStorage.getItem("token");
+      const specialistId = localStorage.getItem("id");
+      setToken(token);
+      setId(specialistId);
+    }
 
     if (!token) {
       alert("Inicio de sesión expirado, por favor inicie sesión antes");
@@ -35,8 +39,6 @@ export default function WelcomePage() {
   }, []);
 
   const submitData = () => {
-    console.log("Data de UserData: ", userData);
-    const token = localStorage.getItem("token");
     setFinalData(userData);
     completeInformation({
       data: userData,

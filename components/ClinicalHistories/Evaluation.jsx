@@ -8,6 +8,7 @@ export default function Evaluation() {
   const { setCurrentStep } = useContext(multiStepContext);
   const [formDataTemplate, setFormDataTemplate] = useState({});
   const [sectionForm, setSectionForm] = useState({});
+  const [token, setToken] = useState(null);
 
   const getTemplateData = async (token) => {
     const credetials = { id: "2", token: token };
@@ -24,7 +25,10 @@ export default function Evaluation() {
   };
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
+    if (typeof window !== "undefined") {
+      const token = localStorage.getItem("token");
+      setToken(token);
+    }
 
     if (!token) {
       alert("Usuario no autorizado, por favor inicie sesión antes");

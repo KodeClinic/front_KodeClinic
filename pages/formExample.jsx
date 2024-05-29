@@ -10,6 +10,7 @@ export default function formExample() {
   const dataQuery = { id: "1" };
 
   const [formDataTemplate, setFormDataTemplate] = useState([]);
+  const [token, setToken] = useState(null);
 
   const onLogin = async (dataQuery, token) => {
     const credetials = { id: dataQuery.id, token: token };
@@ -27,7 +28,10 @@ export default function formExample() {
   };
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
+    if (typeof window !== "undefined") {
+      const token = localStorage.getItem("token");
+      setToken(token);
+    }
 
     if (!token) {
       alert(
