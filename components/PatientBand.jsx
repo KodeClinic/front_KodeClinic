@@ -2,14 +2,16 @@ import clsx from "clsx";
 
 export default function PatientBand({
   patient_name,
+  patient_lastname,
   patient_gender,
   specialist_name,
   specialist_gender,
   cel_Specialist,
   mostrarModal,
 }) {
-  const handleShowModal = () => { mostrarModal(true)}
-
+  const handleShowModal = () => {
+    mostrarModal(true);
+  };
 
   return (
     <section
@@ -64,7 +66,7 @@ export default function PatientBand({
                   "min-[980px]:text-[18px]"
                 )}
               >
-                {patient_name}
+                {patient_name + patient_lastname}
               </span>
             </div>
 
@@ -152,9 +154,9 @@ export default function PatientBand({
                   "text-base font-normal",
                   "min-[980px]:text-[18px]",
                   "underline"
-                )} 
+                )}
                 onClick={handleShowModal}
-                style={{cursor: "pointer"}}
+                style={{ cursor: "pointer" }}
               >
                 Ver más
               </span>
