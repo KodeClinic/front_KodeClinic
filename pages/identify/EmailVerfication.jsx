@@ -18,7 +18,7 @@ export default function EmailVerification() {
       const req = { email: data.email, securityCode: values.code };
       const response = await validateEmail(req);
       const dataJSON = await response.json();
-      if (response.status === 200 && data[1] === false) {
+      if (response.status === 200 && dataJSON.data[1] === false) {
         localStorage.setItem("token", dataJSON.data[0]);
         router.push({
           pathname: "/RegistrationComplete",

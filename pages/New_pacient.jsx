@@ -1,3 +1,5 @@
+"use client";
+
 import NavBarSpe from "@/components/NavBarSpe";
 import Contact_info from "@/components/New_pacient/Contact_info";
 import Emergency_info from "@/components/New_pacient/Emergency_info";
