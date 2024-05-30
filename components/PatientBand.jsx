@@ -8,7 +8,7 @@ export default function PatientBand({
   specialist_name,
   specialist_gender,
   cel_Specialist,
-  mostrarModal,
+  // mostrarModal,
 }) {
   // const handleShowModal = () => {
   //   mostrarModal(true);

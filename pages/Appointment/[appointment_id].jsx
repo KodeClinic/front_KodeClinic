@@ -50,6 +50,7 @@ export default function AppointmentDetails() {
   const [id, setId] = useState(null);
 
   const fetchDataPx = async (id, token) => {
+    console.log("se hace fretch cita");
     try {
       //data del Paciente
       const responsePatient = await getUserById({
@@ -75,7 +76,7 @@ export default function AppointmentDetails() {
       const responseAppointmentJSON = await responseAppointment.json();
       setAppointmentData(responseAppointmentJSON.data[0]);
       setClinicalData(responseAppointmentJSON.data[1]);
-      console.log("Información de Cita: ", responseAppointmentJSON.data);
+      console.log("Información de Cita2: ", responseAppointmentJSON.data);
     } catch (error) {
       alert("Ocurrio un error");
     }
@@ -92,6 +93,7 @@ export default function AppointmentDetails() {
     if (!token) {
       alert("Ocurrio un problema");
     }
+    console.log("entra useeffect");
     fetchDataPx(id, token);
   }, []);
 
@@ -123,7 +125,7 @@ export default function AppointmentDetails() {
           {/* <h1>{`Detalles de la cita ${appointmentId}`}</h1> */}
           <h1
             className={clsx(
-              "text-[18px] font-bold text-blue_gray-700 text-center sm:text-2xl"
+              "text-[18px] font-bold text-green_title text-center sm:text-2xl"
             )}
           >
             {"Detalles de la cita"}
@@ -161,7 +163,7 @@ export default function AppointmentDetails() {
                     "text-base font-normal sm:text-lg text-nowrap "
                   )}
                 >
-                  {"30 /Oct / 2023"}
+                  {`${appointmentData.date.day}/${appointmentData.date.month}/${appointmentData.date.year}`}
                 </span>
               </div>
             </div>
@@ -230,7 +232,7 @@ export default function AppointmentDetails() {
             >
               <div className={clsx(" flex flex-col items-center")}>
                 <span className={clsx("text-base font-bold sm:text-xl ")}>
-                  Motivo de Consulta
+                  Padecimiento
                 </span>
                 <img
                   className={clsx("py-[10px]")}
@@ -246,9 +248,7 @@ export default function AppointmentDetails() {
                     "text-base font-normal text-center sm:text-lg min-[980px]:min-w-[315px] "
                   )}
                 >
-                  {
-                    "Dolor en pie izquierdo despues de accidente realizando actividad física."
-                  }
+                  {clinicalData.values.padecimiento}
                 </span>
               </div>
             </div>
@@ -311,9 +311,13 @@ export default function AppointmentDetails() {
           </div>
 
           {/* Trataimiento */}
-          <div className={clsx("border border-blue_gray-100 py-5")}>
+          <div className={clsx("border border-blue_gray-100 py-5 px-6")}>
             <div className={clsx(" flex flex-col items-center")}>
-              <span className={clsx("text-base font-bold sm:text-xl ")}>
+              <span
+                className={clsx(
+                  "text-[18px] font-bold  text-center sm:text-2xl text-green_title"
+                )}
+              >
                 Tratamiento
               </span>
               <img
@@ -323,13 +327,105 @@ export default function AppointmentDetails() {
               />
             </div>
 
-            {props.clinic_history.treatment.isAvailable ? (
+            {clinicalData.status == "completed" ? (
               <div
                 className={clsx(
-                  "flex flex-col justify-center items-center sm:min-h-[64px] text-center gap-5"
+                  "flex flex-col justify-center items-center md:flex-row md:justify-around md:items-center sm:min-h-[64px] text-center gap-5"
                 )}
               >
-                <p className={clsx("text-base font-bold sm:text-xl ")}>
+                <div className={clsx("flex flex-col gap-2")}>
+                  <span
+                    className={clsx(
+                      "text-lg font-semibold text-green_title sm:text-xl"
+                    )}
+                  >
+                    Ejercicios de Rehabilitación
+                  </span>
+                  <div className={clsx("flex flex-col md:flex-row")}>
+                    <p
+                      className={clsx(
+                        "text-base font-semibold pr-3 text-main_text"
+                      )}
+                    >
+                      Tipo de Ejercicio:
+                    </p>
+                    <p className={clsx("text-base ")}>
+                      {clinicalData.values.tipoEjercicio}
+                    </p>
+                  </div>
+                  <div className={clsx("flex flex-col md:flex-row")}>
+                    <p
+                      className={clsx(
+                        "text-base font-semibold pr-3 text-main_text"
+                      )}
+                    >
+                      Número de repeticiones:
+                    </p>
+                    <p className={clsx("text-base ")}>
+                      {clinicalData.values.noRepeticiones}
+                    </p>
+                  </div>
+                  <div className={clsx("flex flex-col md:flex-row")}>
+                    <p
+                      className={clsx(
+                        "text-base font-semibold pr-3 text-main_text"
+                      )}
+                    >
+                      Periodicidad del Ejercicio:
+                    </p>
+                    <p className={clsx("text-base ")}>
+                      {clinicalData.values.periodicidadEjercicios}
+                    </p>
+                  </div>
+                </div>
+
+                <div className={clsx("flex flex-col gap-2 items-center")}>
+                  <span
+                    className={clsx(
+                      "text-lg font-semibold text-green_title sm:text-xl"
+                    )}
+                  >
+                    Medicación
+                  </span>
+                  <div className={clsx("flex flex-col md:flex-row")}>
+                    <p
+                      className={clsx(
+                        "text-base font-semibold pr-3 text-main_text"
+                      )}
+                    >
+                      Medicamento:
+                    </p>
+                    <p className={clsx("text-base ")}>
+                      {clinicalData.values.medicacion}
+                    </p>
+                  </div>
+                  <div className={clsx("flex flex-col md:flex-row")}>
+                    <p
+                      className={clsx(
+                        "text-base font-semibold pr-3 text-main_text"
+                      )}
+                    >
+                      Periodicidad:
+                    </p>
+                    <p className={clsx("text-base ")}>
+                      {clinicalData.values.periodicidadMedicacion}
+                    </p>
+                  </div>
+                  <div className={clsx("flex flex-col md:flex-row")}>
+                    <p
+                      className={clsx(
+                        "text-base font-semibold pr-3 text-main_text"
+                      )}
+                    >
+                      Recomendaciones:
+                    </p>
+                    <p className={clsx("text-base ")}>
+                      {clinicalData.values.recomendaciones}
+                    </p>
+                  </div>
+                </div>
+
+                {/* <p className={clsx("text-base font-bold sm:text-xl ")}>
                   Ejercicios movimiento con ligas
                 </p>
                 <span
@@ -340,7 +436,7 @@ export default function AppointmentDetails() {
                   Ejercer movimiento circulares en las muñecas haciendo uso de
                   las ligas de resistencia. 30 rep por cada dirección X 3
                   series.
-                </span>
+                </span> */}
               </div>
             ) : (
               <div

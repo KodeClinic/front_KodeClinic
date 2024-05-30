@@ -72,7 +72,7 @@ function DayNames(number) {
 export default function AppointmentCard_Patient({ props }) {
   const { consultType, paymentStatus, timeLapse, consultingAddress, date } =
     props;
-  console.log("props de appointmer patin", props);
+  // console.log("props de appointmer patin", props);
 
   return (
     <div

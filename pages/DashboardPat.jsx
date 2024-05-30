@@ -5,7 +5,6 @@ import SliderPatient from "@/components/SliderPatient";
 import AppointmentListPatient from "@/components/AppointmentListPatient";
 // import EditInformation from "@/components/EditInformation";
 import { useEffect, useState } from "react";
-import { pxInformation } from "@/services/patients";
 import { getUserById } from "@/services/users/auth";
 import { getAppointmentsbyPatient } from "@/services/appointments";
 
@@ -42,7 +41,7 @@ export default function DashboardPat() {
       });
       const responseAppointmentsPxJSON = await responseAppointmentsPx.json();
       setAppointments(responseAppointmentsPxJSON.data);
-      console.log("Información de Citas: ", responseAppointmentsPxJSON.data);
+      // console.log("Información de Citas: ", responseAppointmentsPxJSON.data);
     } catch (error) {
       alert("Ocurrio un error");
     }
