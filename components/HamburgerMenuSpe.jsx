@@ -98,14 +98,14 @@ export default function HamburgerMenuSpe() {
           </div>
 
           <div className="flex-col mx-5 mt-[50px] absolute bottom-0 left-0">
-            <div className="flex-row flex mx-auto mb-4">
+            {/* <div className="flex-row flex mx-auto mb-4">
               <img
                 src="/assets/icons/config-icon.svg"
                 alt=""
                 className="w-[18px] h-[20px] mx-3"
               />
               <p className="mx-3 font-medium">Perfil</p>
-            </div>
+            </div> */}
             <button onClick={onLogout} className="flex-row flex mx-auto mb-4">
               <img
                 src="/assets/icons/signout-icon.svg"

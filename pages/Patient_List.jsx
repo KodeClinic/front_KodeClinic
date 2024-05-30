@@ -93,7 +93,7 @@ export default function PatientList() {
             <p className="text-xl font-medium  text-main_text min-[980px]:text-2xl ">
               Mis pacientes
             </p>
-            <div className="flex items-center border-2 border-primary_main py-1 rounded-lg ">
+            {/* <div className="flex items-center border-2 border-primary_main py-1 rounded-lg ">
               <input
                 type="text"
                 placeholder="Buscar Paciente"
@@ -104,7 +104,7 @@ export default function PatientList() {
                 alt="Buscador"
                 className="px-2"
               />
-            </div>
+            </div> */}
           </div>
           <div
             className={clsx(
