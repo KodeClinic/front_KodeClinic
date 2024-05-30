@@ -70,13 +70,9 @@ function DayNames(number) {
 }
 
 export default function AppointmentCard_Patient({ props }) {
-  const {
-    consultType,
-    paymentStatus,
-    timeLapse,
-    consultingAddress,
-    appointment_date,
-  } = props;
+  const { consultType, paymentStatus, timeLapse, consultingAddress, date } =
+    props;
+  console.log("props de appointmer patin", props);
 
   return (
     <div
@@ -148,23 +144,21 @@ export default function AppointmentCard_Patient({ props }) {
         {/* Fehca y Pagos */}
         <div className={clsx("inline-flex flex-col gap-3 items-center")}>
           <div className={clsx("flex items-center gap-2")}>
-            <div className={clsx("text-[42px] font-bold")}>
-              {appointment_date.D}
-            </div>
+            <div className={clsx("text-[42px] font-bold")}>{date.day}</div>
             <div>
               <div className={clsx("text-[16px] font-bold")}>
-                {MonthNames(appointment_date.M)}
+                {MonthNames(date.month)}
               </div>
               <div className={clsx("text-[16px] font-normal")}>
-                {DayNames(appointment_date.W)}
+                {DayNames(date.year)}
               </div>
             </div>
           </div>
-          <Badge
+          {/* <Badge
             badgeType={paymentStatus}
             timeLapse={""}
             consultingAddress={""}
-          />
+          /> */}
         </div>
       </div>
     </div>

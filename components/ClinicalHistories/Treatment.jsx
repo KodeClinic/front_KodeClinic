@@ -31,10 +31,10 @@ export default function Treatment() {
   };
 
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      const token = localStorage.getItem("token");
-      setToken(token);
-    }
+    // if (typeof window !== "undefined") {
+    const token = localStorage.getItem("token");
+    setToken(token);
+    // }
 
     if (!token) {
       alert("Inicio de sesión expirado, por favor inicie sesión antes");

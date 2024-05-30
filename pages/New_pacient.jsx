@@ -24,12 +24,12 @@ export default function New_pacient() {
   const router = useRouter();
 
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      const token = localStorage.getItem("token");
-      const specialistId = localStorage.getItem("id");
-      setToken(token);
-      setId(specialistId);
-    }
+    // if (typeof window !== "undefined") {
+    const token = localStorage.getItem("token");
+    const specialistId = localStorage.getItem("id");
+    setToken(token);
+    setId(specialistId);
+    // }
     if (!token) {
       alert("Inicio de sesión expirado, por favor inicie sesión antes");
       router.push("/LogIn");
