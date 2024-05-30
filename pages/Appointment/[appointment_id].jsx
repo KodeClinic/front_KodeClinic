@@ -44,6 +44,7 @@ export default function AppointmentDetails() {
   const [pxData, setPxData] = useState({});
   const [specialistData, setSpecialistData] = useState({});
   const [appointmentData, setAppointmentData] = useState({});
+  const [clinicalData, setClinicalData] = useState({});
 
   const [token, setToken] = useState(null);
   const [id, setId] = useState(null);
@@ -72,7 +73,8 @@ export default function AppointmentDetails() {
         token: token,
       });
       const responseAppointmentJSON = await responseAppointment.json();
-      setAppointmentData(responseAppointmentJSON.data);
+      setAppointmentData(responseAppointmentJSON.data[0]);
+      setClinicalData(responseAppointmentJSON.data[1]);
       console.log("Información de Cita: ", responseAppointmentJSON.data);
     } catch (error) {
       alert("Ocurrio un error");
