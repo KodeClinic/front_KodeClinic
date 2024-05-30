@@ -43,7 +43,7 @@ export default function AccordionFormSection({ props, sectionName }) {
             : "grid-rows-[0fr] opacity-0"
         )}
       >
-        <div className={clsx("overflow-hidden")}>
+        <div className={clsx("overflow-hidden", accordionOpen ? "pb-36" : "")}>
           <div
             className={clsx(
               "grid grid-cols-1 items-center gap-6 sm:grid-cols-2 min-[980px]:grid-cols-3"

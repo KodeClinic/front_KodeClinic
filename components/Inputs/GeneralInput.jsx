@@ -19,7 +19,7 @@ export default function GeneralInput({ props }) {
           disabled={isDisable}
           placeholder={placeholder}
           className={clsx(
-            "rounded-md py-2 text-gray-900 drop-shadow-sm ring-2 ring-inset  placeholder:text-gray-900 placeholder:pl-2 cursor-pointer",
+            "rounded-md p-3 text-gray-900 drop-shadow-sm ring-2 ring-inset  placeholder:text-gray-900  cursor-pointer",
             "w-[300px] h-12 ring-primary_main"
           )}
           value={userData[propertyName]} //para generar un propiedad dentro del objeto global
