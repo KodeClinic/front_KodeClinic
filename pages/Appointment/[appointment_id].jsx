@@ -8,48 +8,40 @@ import Link from "next/link";
 import { getUserById } from "@/services/users/auth";
 import { getSingleAppointment } from "@/services/appointments";
 
-const props = {
-  patient_id: "12345",
-  patient_name: "Patricia Hernandez",
-  patient_gender: "female",
-  specialist_id: "1",
-  specialist_name: "Xavier Medina Flores Reinoso",
-  specialist_gender: "male",
-  timeLapse: "9:00 - 10:00 am",
-  appointment_date: {
-    y: 2023,
-    M: 10,
-    D: 20,
-    W: 1,
-  },
-  consultingAddress: "Consultorio",
-  consultType: "valoration",
-  paymentType: "cash",
-  paymentStatus: "paid",
-  appointmentStatus: "completed",
-  condition: "Fisura",
-  clinic_history: {
-    evaluation: {},
-    treatment: {
-      isAvailable: true,
-    },
-    clinic_notes: {},
-  },
-};
-
 export default function AppointmentDetails() {
   const router = useRouter();
-  const appointmentId = router.query.appointment_id;
+  const appointmentid = router.query.appointment_id;
+  // console.log("appoinmentid", appointmentid);
 
   const [pxData, setPxData] = useState({});
   const [specialistData, setSpecialistData] = useState({});
   const [appointmentData, setAppointmentData] = useState({});
   const [clinicalData, setClinicalData] = useState({});
+  const [appointmentId, setappointmentId] = useState(null);
 
   const [token, setToken] = useState(null);
   const [id, setId] = useState(null);
 
-  const fetchDataPx = async (id, token) => {
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    const id = localStorage.getItem("id");
+    setappointmentId(appointmentid);
+    // console.log("appoinmentid", appointmentid);
+
+    // const appointment_id = localStorage.getItem("appointment_id");
+    setToken(token);
+    setId(id);
+    // setappointmentId(appointmentid);
+
+    if (!token) {
+      alert("Ocurrio un problema");
+    }
+    console.log("appointmentId", appointmentId);
+    fetchDataPx(id, token, appointmentid);
+    // console.log("despues del fetch");
+  }, [router.query.appointment_id]);
+
+  const fetchDataPx = async (id, token, appointmentid) => {
     console.log("se hace fretch cita");
     try {
       //data del Paciente
@@ -70,7 +62,7 @@ export default function AppointmentDetails() {
 
       //Data de la cita del paciente
       const responseAppointment = await getSingleAppointment({
-        idAppointment: appointmentId,
+        idAppointment: appointmentid,
         token: token,
       });
       const responseAppointmentJSON = await responseAppointment.json();
@@ -81,21 +73,6 @@ export default function AppointmentDetails() {
       alert("Ocurrio un error");
     }
   };
-
-  useEffect(() => {
-    // if (typeof window !== "undefined") {
-    const token = localStorage.getItem("token");
-    const id = localStorage.getItem("id");
-    setToken(token);
-    setId(id);
-    // }
-
-    if (!token) {
-      alert("Ocurrio un problema");
-    }
-    console.log("entra useeffect");
-    fetchDataPx(id, token);
-  }, []);
 
   return (
     <main className={clsx("bg-background min-h-screen w-full")}>
@@ -284,30 +261,30 @@ export default function AppointmentDetails() {
 
             {/* Tipo de Cita */}
             {/* <div
-              className={clsx(
-                "flex flex-col items-center p-[10px] min-[980px]:border min-[980px]:border-blue_gray-100"
-              )}
-            >
-              <div className={clsx(" flex flex-col items-center")}>
-                <span className={clsx("text-base font-bold sm:text-xl ")}>
-                  Tipo de Cita
-                </span>
-                <img
-                  className={clsx("py-[10px]")}
-                  src="/assets/icons/horizontal_line-icon.svg"
-                  alt="line"
-                />
-              </div>
-              <div
-                className={clsx("flex flex-col justify-center sm:min-h-[64px]")}
-              >
-                <Badge
-                  badgeType={appointmentData.paymentStatus}
-                  timeLapse={""}
-                  consultingAddress={""}
-                />
-              </div>
-            </div> */}
+      className={clsx(
+        "flex flex-col items-center p-[10px] min-[980px]:border min-[980px]:border-blue_gray-100"
+      )}
+    >
+      <div className={clsx(" flex flex-col items-center")}>
+        <span className={clsx("text-base font-bold sm:text-xl ")}>
+          Tipo de Cita
+        </span>
+        <img
+          className={clsx("py-[10px]")}
+          src="/assets/icons/horizontal_line-icon.svg"
+          alt="line"
+        />
+      </div>
+      <div
+        className={clsx("flex flex-col justify-center sm:min-h-[64px]")}
+      >
+        <Badge
+          badgeType={appointmentData.paymentStatus}
+          timeLapse={""}
+          consultingAddress={""}
+        />
+      </div>
+    </div> */}
           </div>
 
           {/* Trataimiento */}
@@ -426,17 +403,17 @@ export default function AppointmentDetails() {
                 </div>
 
                 {/* <p className={clsx("text-base font-bold sm:text-xl ")}>
-                  Ejercicios movimiento con ligas
-                </p>
-                <span
-                  className={clsx(
-                    "text-base font-normal text-center sm:text-lg"
-                  )}
-                >
-                  Ejercer movimiento circulares en las muñecas haciendo uso de
-                  las ligas de resistencia. 30 rep por cada dirección X 3
-                  series.
-                </span> */}
+          Ejercicios movimiento con ligas
+        </p>
+        <span
+          className={clsx(
+            "text-base font-normal text-center sm:text-lg"
+          )}
+        >
+          Ejercer movimiento circulares en las muñecas haciendo uso de
+          las ligas de resistencia. 30 rep por cada dirección X 3
+          series.
+        </span> */}
               </div>
             ) : (
               <div
@@ -452,14 +429,14 @@ export default function AppointmentDetails() {
                   Pendiente - Asiste a tu cita para recibir tus próximas
                   indicaciones
                 </span>
-                <Link
-                  href={""}
-                  className={clsx(
-                    "px-6 py-2 bg-green_button text-white text-lg font-medium max-w-[160px] rounded-md"
-                  )}
-                >
-                  Pagar mi cita
-                </Link>
+                {/* <Link
+          href={""}
+          className={clsx(
+            "px-6 py-2 bg-green_button text-white text-lg font-medium max-w-[160px] rounded-md"
+          )}
+        >
+          Pagar mi cita
+        </Link> */}
               </div>
             )}
           </div>

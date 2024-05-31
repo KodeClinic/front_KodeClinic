@@ -21,7 +21,13 @@ export default function NewAppointment() {
     <>
       <NavBarSpe pageName={"Agenda"} />
 
-      <main className={clsx("bg-background", "w-full", "p-10 pt-[128px]")}>
+      <main
+        className={clsx(
+          "bg-background",
+          "w-full min-h-screen",
+          "p-10 pt-[128px]"
+        )}
+      >
         <div
           className={clsx(
             "min-[980px]:max-w-[1128px]",
