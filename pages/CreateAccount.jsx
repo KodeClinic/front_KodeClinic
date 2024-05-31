@@ -33,6 +33,9 @@ export default function CreateAccount() {
       } else if (response.status === 401) {
         setIsLoading(false);
         setIsFailed(true);
+      } else if (response.status === 400) {
+        setIsLoading(false);
+        setIsFailed(true);
       }
     } catch (error) {
       setIsLoading(false);
@@ -154,7 +157,7 @@ export default function CreateAccount() {
                 </p>
               )}
             </div>
-            <div className="flex items-center justify-between">
+            <div className="flex flex-col items-center justify-between">
               <button
                 className={clsx(
                   "bg-blue_button w-full hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline flex justify-center items-center gap-2",
