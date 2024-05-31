@@ -3,7 +3,7 @@ import clsx from "clsx";
 import PatientBand from "@/components/PatientBand";
 import SliderPatient from "@/components/SliderPatient";
 import AppointmentListPatient from "@/components/AppointmentListPatient";
-// import EditInformation from "@/components/EditInformation";
+import AppointmentCard_Patient from "@/components/AppointmentCard_Patient";
 import { useEffect, useState } from "react";
 import { getUserById } from "@/services/users/auth";
 import { getAppointmentsbyPatient } from "@/services/appointments";
@@ -11,7 +11,8 @@ import { getAppointmentsbyPatient } from "@/services/appointments";
 export default function DashboardPat() {
   const [pxData, setPxData] = useState({});
   const [specialistData, setSpecialistData] = useState({});
-  const [appointments, setAppointments] = useState([]);
+  const [appointmentsPending, setAppointmentsPending] = useState([]);
+  const [appointmentsCompleted, setAppointmentsCompleted] = useState([]);
 
   const [token, setToken] = useState(null);
   const [id, setId] = useState(null);
@@ -40,20 +41,33 @@ export default function DashboardPat() {
         token: token,
       });
       const responseAppointmentsPxJSON = await responseAppointmentsPx.json();
-      setAppointments(responseAppointmentsPxJSON.data);
-      // console.log("Información de Citas: ", responseAppointmentsPxJSON.data);
+
+      if (responseAppointmentsPxJSON.data.length == 1) {
+        responseAppointmentsPxJSON.data[0].status == "start" &&
+          setAppointmentsPending(responseAppointmentsPxJSON.data[0]);
+
+        responseAppointmentsPxJSON.data[0].status == "completed" &&
+          setAppointmentsCompleted([responseAppointmentsPxJSON.data[0]]);
+      } else if (responseAppointmentsPxJSON.data.length > 1) {
+        responseAppointmentsPxJSON.data.forEach((appointment) => {
+          appointment.status == "start" &&
+            setAppointmentsPending(...appointmentsPending, appointment);
+
+          appointment.status == "completed" &&
+            setAppointmentsCompleted([...appointmentsPending, appointment]);
+        });
+      }
     } catch (error) {
       alert("Ocurrio un error");
     }
   };
+  console.log("completed", appointmentsCompleted);
 
   useEffect(() => {
-    // if (typeof window !== "undefined") {
     const token = localStorage.getItem("token");
     const id = localStorage.getItem("id");
     setToken(token);
     setId(id);
-    // }
 
     if (!token) {
       alert("Ocurrio un problema");
@@ -96,7 +110,31 @@ export default function DashboardPat() {
           >
             Proximas citas
           </p>
-          <SliderPatient props={appointments} />
+          {appointmentsPending.length == 0 && (
+            <p
+              className={clsx(
+                "text-base font-normal",
+                "min-[980px]:text-[18px]"
+              )}
+            >
+              No cuentas con próximas citas, por favor contacta a tu
+              Especialista para agendar una nueva.
+            </p>
+          )}
+          {appointmentsPending.length == 1 && (
+            <AppointmentCard_Patient
+              key={"appointment-1"}
+              props={appointmentsPending}
+            />
+          )}
+          {appointmentsPending > 2 && (
+            <AppointmentCard_Patient
+              key={"appointment-1"}
+              props={appointmentsPending}
+            />
+          )}
+
+          {/* <SliderPatient props={appointments} /> */}
         </div>
       </section>
 
@@ -110,8 +148,8 @@ export default function DashboardPat() {
         <div
           className={clsx(
             "flex gap-5",
-            "w-full drop-shadow-md px-6 py-4 min-[980px]:px-7",
-            "bg-white rounded-[20px] py-4 flex flex-col gap-3"
+            "w-full drop-shadow-md px-6 pt-5 pb-6 min-[980px]:px-7",
+            "bg-white rounded-[20px] flex flex-col gap-3"
           )}
         >
           <p
@@ -123,7 +161,7 @@ export default function DashboardPat() {
             Historial de citas
           </p>
 
-          <AppointmentListPatient props={appointments} />
+          <AppointmentListPatient props={appointmentsCompleted} />
         </div>
       </section>
     </main>
