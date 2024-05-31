@@ -23,7 +23,6 @@ export default function Pathological() {
       setFormDataTemplate(dataJSON.data);
       setInputList(dataJSON.data.screens[0].inputList);
       setSectionName(dataJSON.data.screens[0].title);
-      console.log(dataJSON.data);
     } catch (error) {
       alert(
         "Ocurrió un problema al intentar acceder, por favor inténtenlo de nuevo"

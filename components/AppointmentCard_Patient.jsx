@@ -81,7 +81,6 @@ export default function AppointmentCard_Patient({ props }) {
     status,
     _id,
   } = props;
-  // console.log("props de appointmer patin", props);
 
   let statusType = "";
   if (status == "start") {

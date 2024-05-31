@@ -52,7 +52,6 @@ export default function AppointmentDetails() {
       });
       const responseSpecialistJSON = await responseSpecialist.json();
       setSpecialistData(responseSpecialistJSON.data);
-      console.log("gender", responseSpecialistJSON.data);
 
       //Data de la cita del paciente
       const responseAppointment = await getSingleAppointment({
@@ -62,7 +61,6 @@ export default function AppointmentDetails() {
       const responseAppointmentJSON = await responseAppointment.json();
       setAppointmentData(responseAppointmentJSON.data[0]);
       setClinicalData(responseAppointmentJSON.data[1]);
-      console.log("Información de Cita2: ", responseAppointmentJSON.data);
     } catch (error) {
       alert("Ocurrio un error");
     }

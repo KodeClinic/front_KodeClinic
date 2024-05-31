@@ -43,7 +43,6 @@ export default function PatientMedicalRecords() {
 
   const handleDisable = () => {
     setIsDisable(!isDisable);
-    console.log("userdata", userData);
   };
 
   useEffect(() => {

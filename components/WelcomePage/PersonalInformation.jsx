@@ -42,7 +42,6 @@ export default function PersonalInformation() {
       gender: values.gender,
       birthDate: values.birthDate,
     });
-    console.log("la data", userData);
     setCurrentStep(2);
   };
 

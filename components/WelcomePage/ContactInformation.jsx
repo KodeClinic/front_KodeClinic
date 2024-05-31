@@ -72,7 +72,6 @@ export default function ContactInformation() {
       colony: values.colony,
       state: values.state,
     });
-    console.log("la data", userData);
     setCurrentStep(3);
   };
 

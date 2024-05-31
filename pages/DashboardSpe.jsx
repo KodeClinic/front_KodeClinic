@@ -102,7 +102,6 @@ export default function DashboardEsp() {
         token: token,
       });
       const responseUserJSON = await responseUser.json();
-      console.log(responseUserJSON.data);
       setSpecialistData(responseUserJSON.data);
 
       const responseAppointment = await getSpecialistAppointments({
@@ -115,7 +114,6 @@ export default function DashboardEsp() {
 
       const responseAppointmentJSON = await responseAppointment.json();
       setAppointments(responseAppointmentJSON.data);
-      console.log("appointmentsss", responseAppointmentJSON.data);
       const responseFreeAgenda = await getSpecialistAvailability({
         token: token,
         specialistId: id,
@@ -125,7 +123,6 @@ export default function DashboardEsp() {
       const responseFreeAgendaJSON = await responseFreeAgenda.json();
       setSchedule(responseFreeAgendaJSON.data);
     } catch (error) {
-      console.log(error);
       alert(
         "Ocurrió un problema al intentar acceder, por favor inténtenlo de nuevo"
       );
@@ -152,7 +149,6 @@ export default function DashboardEsp() {
       const responseAppointmentJSON = await responseAppointment.json();
       setAppointments(responseAppointmentJSON.data);
     } catch (error) {
-      console.log(error);
       alert(
         "Ocurrió un problema al intentar acceder, por favor inténtenlo de nuevo"
       );
@@ -174,9 +170,7 @@ export default function DashboardEsp() {
       });
       const dataJSON = await res.json();
       setSchedule(dataJSON.data);
-      console.log(dataJSON.data);
     } catch (error) {
-      console.log(error);
       alert("Error al intentar obtener la disponibilidad");
     }
   };

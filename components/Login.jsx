@@ -66,7 +66,6 @@ export default function Login() {
   const emailValidation = async () => {
     try {
       const response = await sendEmailCode({ email: values.email });
-      console.log("response de funcion", response);
       if (response.status === 201) {
         router.push({
           pathname: "identify/EmailVerfication",

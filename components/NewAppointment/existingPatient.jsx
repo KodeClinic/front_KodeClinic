@@ -73,7 +73,6 @@ export default function AppointmentExistingPatient2() {
 
   const onSubmit = async () => {
     setIsLoading(true);
-    console.log(values);
 
     try {
       const response = await postAppointmentExistingPatient({
@@ -81,7 +80,6 @@ export default function AppointmentExistingPatient2() {
         specialistId: id,
         data: values,
       });
-      console.log(values);
 
       if (response.status === 201) {
         setIsLoading(false);
@@ -104,7 +102,6 @@ export default function AppointmentExistingPatient2() {
       month: +arrayDate[1],
       day: +arrayDate[2],
     };
-    console.log(dateObjet);
 
     try {
       const res = await getSpecialistAvailability({
@@ -113,10 +110,8 @@ export default function AppointmentExistingPatient2() {
         data: dateObjet,
       });
       const dataJSON = await res.json();
-      // console.log("lo importante", dataJSON.data);
       setSchedule(dataJSON.data);
     } catch (error) {
-      console.log(error);
       alert("Error al intentar obtener la disponibilidad");
     }
   };

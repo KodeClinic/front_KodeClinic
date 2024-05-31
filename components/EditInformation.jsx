@@ -56,9 +56,7 @@ const InfoSchema = Yup.object().shape({
 
 export default function EditInformation({ isVisible, closeModal }) {
   if (!isVisible) return null;
-  const onSubmit = (values) => {
-    console.log(values);
-  };
+  const onSubmit = (values) => {};
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-25 backdrop-blur-sm flex justify-center items-center ">

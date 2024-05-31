@@ -61,8 +61,6 @@ export default function DashboardPat() {
       alert("Ocurrio un error");
     }
   };
-  console.log("completed", appointmentsCompleted);
-  console.log("pending", appointmentsPending);
 
   useEffect(() => {
     const token = localStorage.getItem("token");

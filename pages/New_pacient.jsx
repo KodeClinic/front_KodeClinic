@@ -37,7 +37,6 @@ export default function New_pacient() {
   }, []);
 
   const submitData = () => {
-    console.log("Data de newPxData: ", newPxData);
     setFinalPxData(newPxData);
     completeInformation({
       data: newPxData,
@@ -46,8 +45,6 @@ export default function New_pacient() {
     });
     setNewPxData("");
   };
-
-  console.log(newPxData);
 
   const handlePageChange = (event, newPage) => {
     setCurrentPage(newPage);

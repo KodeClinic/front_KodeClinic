@@ -92,7 +92,6 @@ export default function AppointmentNewPatient() {
       month: +arrayDate[1],
       day: +arrayDate[2],
     };
-    console.log(dateObjet);
 
     try {
       const res = await getSpecialistAvailability({
@@ -103,14 +102,12 @@ export default function AppointmentNewPatient() {
       const dataJSON = await res.json();
       setSchedule(dataJSON.data);
     } catch (error) {
-      console.log(error);
       alert("Error al intentar obtener la disponibilidad");
     }
   };
 
   const onChangeDate = (date) => {
     getAvailability(date);
-    console.log(date);
   };
 
   const {

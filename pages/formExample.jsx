@@ -18,7 +18,6 @@ export default function formExample() {
       const response = await getbyTemplateId(credetials);
       const dataJSON = await response.json();
       setFormDataTemplate(dataJSON.data.screens[1].sections[0].inputList);
-      console.log(dataJSON.data);
     } catch (error) {
       alert(
         "Ocurrió un problema al intentar acceder, por favor inténtenlo de nuevo"

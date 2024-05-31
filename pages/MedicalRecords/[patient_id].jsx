@@ -55,7 +55,6 @@ export default function MedicalRecords() {
 
       if (response.status === 201) {
         const dataJSON = await response.json();
-        console.log("la data", dataJSON.data);
         setUserData(dataJSON.data[1]);
         setEmptyRecords(false);
         setSkipMedRecords(true);
@@ -77,7 +76,6 @@ export default function MedicalRecords() {
 
   const submitData = async () => {
     setFinalData(userData);
-    console.log(userData);
 
     try {
       if (!emptyRecords) {

@@ -55,10 +55,8 @@ export default function PatientClinicalHistory() {
         token: token,
       });
       const dataJSON = await response.json();
-      console.log(dataJSON.data);
       setClinicalData(dataJSON.data[0]);
       setUserData(dataJSON.data[1]);
-      console.log("historia clinica", dataJSON.data[0]);
       setSectionName1(dataJSON.data[0].screens[0].title);
       setSectionName2(dataJSON.data[0].screens[1].title);
       setSectionName3(dataJSON.data[0].screens[2].title);

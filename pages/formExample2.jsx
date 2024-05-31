@@ -4,9 +4,7 @@ import { formExampleSchema } from "@/schemas/formExample";
 import CustomSelect from "@/components/NewAppointment/SelectInput";
 
 export default function formExample2() {
-  const onSubmit = () => {
-    console.log("valores finales", values);
-  };
+  const onSubmit = () => {};
 
   const selectStyles1 = {
     control: (styles) => ({

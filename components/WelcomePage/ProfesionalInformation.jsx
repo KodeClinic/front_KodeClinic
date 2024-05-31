@@ -48,7 +48,6 @@ export default function ProfesionalInformation() {
       medicalLicense: values.medicalLicense,
       medicalSpeciality: values.medicalSpeciality,
     });
-    console.log("la data", userData);
     // setCurrentStep(4);
     toggleModal();
   };

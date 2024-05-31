@@ -101,7 +101,6 @@ export default function PatientAppointments() {
 
   const handleDisable = () => {
     setIsDisable(!isDisable);
-    console.log("userdata", userData);
   };
 
   const toggleConfirmation = () => {
