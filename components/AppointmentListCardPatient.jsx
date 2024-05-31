@@ -1,19 +1,11 @@
 import clsx from "clsx";
 import Badge from "./Badge";
-import Link from "next/link";
+// import Link from "next/link";
 import { useRouter } from "next/router";
 
 export default function AppointmentListCardPatient({ props }) {
   const router = useRouter();
-  const {
-    _id,
-    timeLapse,
-    date,
-    consultingAddress,
-    consultType,
-    // paymentType,
-    // condition,
-  } = props;
+  const { _id, timeLapse, date, consultingAddress, consultType } = props;
 
   return (
     <tr className={clsx("")}>
@@ -31,13 +23,7 @@ export default function AppointmentListCardPatient({ props }) {
       >
         {timeLapse}
       </td>
-      {/* <td
-        className={clsx(
-          "text-[16px] sm:text-[18px] text-blue_gray-700 font-normal p-4 text-nowrap"
-        )}
-      >
-        {condition}
-      </td> */}
+
       <td
         className={clsx(
           "text-[16px] sm:text-[18px] text-blue_gray-700 font-normal p-4 text-nowrap"
@@ -52,18 +38,12 @@ export default function AppointmentListCardPatient({ props }) {
       >
         {consultingAddress}
       </td>
-      {/* <td
-        className={clsx(
-          "text-[16px] sm:text-[18px] text-blue_gray-700 font-normal p-4 text-nowrap"
-        )}
-      >
-        <Badge badgeType={paymentType} timeLapse={""} consultingAddress={""} />
-      </td> */}
+
       <td>
         <button
           onClick={() => {
             router.push({
-              pathname: "Appointment/[appointment_id]",
+              pathname: "/Appointment/[appointment_id]",
               query: { appointment_id: _id },
             });
           }}

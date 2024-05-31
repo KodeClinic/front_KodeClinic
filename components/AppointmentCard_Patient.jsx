@@ -1,5 +1,6 @@
 import clsx from "clsx";
 import Badge from "./Badge";
+import { useRouter } from "next/router";
 
 function MonthNames(number) {
   let month = "";
@@ -70,9 +71,24 @@ function DayNames(number) {
 }
 
 export default function AppointmentCard_Patient({ props }) {
-  const { consultType, paymentStatus, timeLapse, consultingAddress, date } =
-    props;
+  const router = useRouter();
+  const {
+    consultType,
+    paymentStatus,
+    timeLapse,
+    consultingAddress,
+    date,
+    status,
+    _id,
+  } = props;
   // console.log("props de appointmer patin", props);
+
+  let statusType = "";
+  if (status == "start") {
+    statusType = "pending";
+  } else if (status == "completed") {
+    statusType = "completed";
+  }
 
   return (
     <div
@@ -142,23 +158,31 @@ export default function AppointmentCard_Patient({ props }) {
         />
 
         {/* Fehca y Pagos */}
-        <div className={clsx("inline-flex flex-col gap-3 items-center")}>
+        <div className={clsx("inline-flex flex-col gap-3 items-center ")}>
           <div className={clsx("flex items-center gap-2")}>
-            <div className={clsx("text-[42px] font-bold")}>{date.day}</div>
+            <div className={clsx("text-[42px] font-bold")}>{date?.day}</div>
             <div>
               <div className={clsx("text-[16px] font-bold")}>
-                {MonthNames(date.month)}
+                {MonthNames(date?.month)}
               </div>
-              <div className={clsx("text-[16px] font-normal")}>
-                {DayNames(date.year)}
-              </div>
+              <div className={clsx("text-[16px] font-bold")}>{date?.year}</div>
             </div>
           </div>
-          {/* <Badge
-            badgeType={paymentStatus}
-            timeLapse={""}
-            consultingAddress={""}
-          /> */}
+          <button
+            onClick={() => {
+              router.push({
+                pathname: "/Appointment/[appointment_id]",
+                query: { appointment_id: _id },
+              });
+            }}
+            className={clsx(
+              "text-green_button font-bold  text-center border-2 border-green_button px-2 py-1 rounded-md cursor-pointer text-sm",
+              "hover:text-white hover:border-white hover:bg-green_button"
+            )}
+          >
+            Ver detallle
+          </button>
+          {/* <Badge badgeType={statusType} timeLapse={""} consultingAddress={""} /> */}
         </div>
       </div>
     </div>

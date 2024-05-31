@@ -6,448 +6,36 @@ import AppointmentListPatient from "@/components/AppointmentListPatient";
 import AppointmentCard_Patient from "@/components/AppointmentCard_Patient";
 import { useEffect, useState } from "react";
 import { getUserById } from "@/services/users/auth";
-import { useRouter } from "next/router";
 import { getAppointmentsbyPatient } from "@/services/appointments";
 
-const dataSpecialist = {
-  name: "Xavier",
-  lastName: "Hernandez Torres",
-  birthDate: "20/12/1980",
-  gender: "male",
-  contactPhone: 3336393538,
-  email: "xavier@gmail.com",
-  adress: "Av. Revolución 1580",
-  colony: "Americana",
-  state: "Jalisco",
-  license: "12345678",
-  patientList: ["id_patient_1", "id_patient_2", "id_patient_3"],
-};
-
-const dataPatient = {
-  specialist: "id_specialist_1",
-  medicalRecord: "id_medicalRecord_1",
-  name: "Roberto ",
-  lastName: "Cisneros Ávila",
-  birthDate: "20/12/1996",
-  gender: "male",
-  ocupation: "Abogado",
-  bloodType: "O+",
-  religion: "Católico",
-  contactPhone: 3345867898,
-  email: "roberto@gmail.com",
-  adress: "Ladron de Guevara 158",
-  colony: "Alpes",
-  state: "Oaxaca",
-  emergencyContact: [
-    {
-      emergencyName1: "Raimundo Cisneros",
-      phoneContact1: 3335363837,
-      relationship: "Padre",
-    },
-    {
-      emergencyName1: "Maria Cisneros",
-      phoneContact1: 3336383230,
-      relationship: "Madre",
-    },
-  ],
-};
-
-const nextAppointmentData = [
-  {
-    patient_id: "12345",
-    patient_name: "Patricia Hernandez",
-    patient_gender: "female",
-    specialist_id: "1",
-    specialist_name: "Xavier Medina Flores Reinoso",
-    specialist_gender: "male",
-    timeLapse: "9:00 - 10:00 am",
-    appointment_date: {
-      y: 2023,
-      M: 10,
-      D: 20,
-      W: 1,
-    },
-    consultingAddress: "Consultorio",
-    consultType: "valoration",
-    paymentType: "cash",
-    paymentStatus: "paid",
-    appointmentStatus: "completed",
-    condition: "Fisura",
-    clinic_history: {
-      evaluation: {},
-      treatment: {},
-      clinic_notes: {},
-    },
-  },
-  {
-    patient_id: "12345",
-    patient_name: "Patricia Hernandez",
-    patient_gender: "female",
-    specialist_id: "1",
-    specialist_name: "Xavier Medina Flores Reinoso",
-    specialist_gender: "male",
-    timeLapse: "10:00 - 11:00 am",
-    appointment_date: {
-      y: 2023,
-      M: 10,
-      D: 21,
-      W: 2,
-    },
-    consultingAddress: "Consultorio",
-    consultType: "valoration",
-    paymentType: "cash",
-    paymentStatus: "topay",
-    appointmentStatus: "completed",
-    condition: "Fisura",
-    clinic_history: {
-      evaluation: {},
-      treatment: {},
-      clinic_notes: {},
-    },
-  },
-  {
-    patient_id: "12345",
-    patient_name: "Patricia Hernandez",
-    patient_gender: "female",
-    specialist_id: "1",
-    specialist_name: "Xavier Medina Flores Reinoso",
-    specialist_gender: "male",
-    timeLapse: "10:00 - 11:00 am",
-    appointment_date: {
-      y: 2023,
-      M: 10,
-      D: 22,
-      W: 3,
-    },
-    consultingAddress: "Consultorio",
-    consultType: "valoration",
-    paymentType: "cash",
-    paymentStatus: "topay",
-    appointmentStatus: "completed",
-    condition: "Fractura",
-    clinic_history: {
-      evaluation: {},
-      treatment: {},
-      clinic_notes: {},
-    },
-  },
-  {
-    patient_id: "12345",
-    patient_name: "Patricia Hernandez",
-    patient_gender: "female",
-    specialist_id: "1",
-    specialist_name: "Xavier Medina Flores Reinoso",
-    specialist_gender: "male",
-    timeLapse: "11:00 - 12:00 pm",
-    appointment_date: {
-      y: 2023,
-      M: 10,
-      D: 23,
-      W: 4,
-    },
-    consultingAddress: "Consultorio",
-    consultType: "therapy",
-    paymentType: "cash",
-    paymentStatus: "topay",
-    appointmentStatus: "start",
-    condition: "",
-    clinic_history: {
-      evaluation: {},
-      treatment: {},
-      clinic_notes: {},
-    },
-  },
-  {
-    patient_id: "12345",
-    patient_name: "Patricia Hernandez",
-    patient_gender: "female",
-    specialist_id: "1",
-    specialist_name: "Xavier Medina Flores Reinoso",
-    specialist_gender: "male",
-    timeLapse: "12:00 - 13:00 pm",
-    appointment_date: {
-      y: 2023,
-      M: 10,
-      D: 24,
-      W: 5,
-    },
-    consultingAddress: "Consultorio",
-    consultType: "therapy",
-    paymentType: "cash",
-    paymentStatus: "topay",
-    appointmentStatus: "start",
-    condition: "",
-    clinic_history: {
-      evaluation: {},
-      treatment: {},
-      clinic_notes: {},
-    },
-  },
-  {
-    patient_id: "12345",
-    patient_name: "Patricia Hernandez",
-    patient_gender: "female",
-    specialist_id: "1",
-    specialist_name: "Xavier Medina Flores Reinoso",
-    specialist_gender: "male",
-    timeLapse: "12:00 - 13:00 pm",
-    appointment_date: {
-      y: 2023,
-      M: 10,
-      D: 27,
-      W: 1,
-    },
-    consultingAddress: "Consultorio",
-    consultType: "therapy",
-    paymentType: "cash",
-    paymentStatus: "topay",
-    appointmentStatus: "start",
-    condition: "",
-    clinic_history: {
-      evaluation: {},
-      treatment: {},
-      clinic_notes: {},
-    },
-  },
-  {
-    patient_id: "12345",
-    patient_name: "Patricia Hernandez",
-    patient_gender: "female",
-    specialist_id: "1",
-    specialist_name: "Xavier Medina Flores Reinoso",
-    specialist_gender: "male",
-    timeLapse: "12:00 - 13:00 pm",
-    appointment_date: {
-      y: 2023,
-      M: 10,
-      D: 28,
-      W: 2,
-    },
-    consultingAddress: "Consultorio",
-    consultType: "therapy",
-    paymentType: "cash",
-    paymentStatus: "topay",
-    appointmentStatus: "start",
-    condition: "",
-    clinic_history: {
-      evaluation: {},
-      treatment: {},
-      clinic_notes: {},
-    },
-  },
-];
-
-const historyAppointmentData = [
-  {
-    id: "1",
-    patient_id: "12345",
-    patient_name: "Patricia Hernandez",
-    patient_gender: "female",
-    specialist_id: "1",
-    specialist_name: "Xavier Medina Flores Reinoso",
-    specialist_gender: "male",
-    timeLapse: "9:00 - 10:00 am",
-    appointment_date: {
-      y: 2023,
-      M: 10,
-      D: 20,
-      W: 1,
-    },
-    consultingAddress: "Consultorio",
-    consultType: "valoration",
-    paymentType: "cash",
-    paymentStatus: "paid",
-    appointmentStatus: "completed",
-    condition: "Fisura",
-    clinic_history: {
-      evaluation: {},
-      treatment: {},
-      clinic_notes: {},
-    },
-  },
-  {
-    id: "2",
-    patient_id: "12345",
-    patient_name: "Patricia Hernandez",
-    patient_gender: "female",
-    specialist_id: "1",
-    specialist_name: "Xavier Medina Flores Reinoso",
-    specialist_gender: "male",
-    timeLapse: "10:00 - 11:00 am",
-    appointment_date: {
-      y: 2023,
-      M: 10,
-      D: 21,
-      W: 2,
-    },
-    consultingAddress: "Consultorio",
-    consultType: "valoration",
-    paymentType: "cash",
-    paymentStatus: "topay",
-    appointmentStatus: "completed",
-    condition: "Fisura",
-    clinic_history: {
-      evaluation: {},
-      treatment: {},
-      clinic_notes: {},
-    },
-  },
-  {
-    id: "3",
-    patient_id: "12345",
-    patient_name: "Patricia Hernandez",
-    patient_gender: "female",
-    specialist_id: "1",
-    specialist_name: "Xavier Medina Flores Reinoso",
-    specialist_gender: "male",
-    timeLapse: "10:00 - 11:00 am",
-    appointment_date: {
-      y: 2023,
-      M: 10,
-      D: 22,
-      W: 3,
-    },
-    consultingAddress: "Consultorio",
-    consultType: "valoration",
-    paymentType: "cash",
-    paymentStatus: "topay",
-    appointmentStatus: "completed",
-    condition: "Fractura",
-    clinic_history: {
-      evaluation: {},
-      treatment: {},
-      clinic_notes: {},
-    },
-  },
-  {
-    id: "4",
-    patient_id: "12345",
-    patient_name: "Patricia Hernandez",
-    patient_gender: "female",
-    specialist_id: "1",
-    specialist_name: "Xavier Medina Flores Reinoso",
-    specialist_gender: "male",
-    timeLapse: "11:00 - 12:00 pm",
-    appointment_date: {
-      y: 2023,
-      M: 10,
-      D: 23,
-      W: 4,
-    },
-    consultingAddress: "Consultorio",
-    consultType: "therapy",
-    paymentType: "cash",
-    paymentStatus: "topay",
-    appointmentStatus: "start",
-    condition: "",
-    clinic_history: {
-      evaluation: {},
-      treatment: {},
-      clinic_notes: {},
-    },
-  },
-  {
-    id: "5",
-    patient_id: "12345",
-    patient_name: "Patricia Hernandez",
-    patient_gender: "female",
-    specialist_id: "1",
-    specialist_name: "Xavier Medina Flores Reinoso",
-    specialist_gender: "male",
-    timeLapse: "12:00 - 13:00 pm",
-    appointment_date: {
-      y: 2023,
-      M: 10,
-      D: 24,
-      W: 5,
-    },
-    consultingAddress: "Consultorio",
-    consultType: "therapy",
-    paymentType: "cash",
-    paymentStatus: "topay",
-    appointmentStatus: "start",
-    condition: "",
-    clinic_history: {
-      evaluation: {},
-      treatment: {},
-      clinic_notes: {},
-    },
-  },
-  {
-    id: "6",
-    patient_id: "12345",
-    patient_name: "Patricia Hernandez",
-    patient_gender: "female",
-    specialist_id: "1",
-    specialist_name: "Xavier Medina Flores Reinoso",
-    specialist_gender: "male",
-    timeLapse: "12:00 - 13:00 pm",
-    appointment_date: {
-      y: 2023,
-      M: 10,
-      D: 27,
-      W: 1,
-    },
-    consultingAddress: "Consultorio",
-    consultType: "therapy",
-    paymentType: "cash",
-    paymentStatus: "topay",
-    appointmentStatus: "start",
-    condition: "",
-    clinic_history: {
-      evaluation: {},
-      treatment: {},
-      clinic_notes: {},
-    },
-  },
-  {
-    id: "7",
-    patient_id: "12345",
-    patient_name: "Patricia Hernandez",
-    patient_gender: "female",
-    specialist_id: "1",
-    specialist_name: "Xavier Medina Flores Reinoso",
-    specialist_gender: "male",
-    timeLapse: "12:00 - 13:00 pm",
-    appointment_date: {
-      y: 2023,
-      M: 10,
-      D: 28,
-      W: 2,
-    },
-    consultingAddress: "Consultorio",
-    consultType: "therapy",
-    paymentType: "cash",
-    paymentStatus: "topay",
-    appointmentStatus: "start",
-    condition: "",
-    clinic_history: {
-      evaluation: {},
-      treatment: {},
-      clinic_notes: {},
-    },
-  },
-];
 export default function DashboardPat() {
   const [pxData, setPxData] = useState({});
   const [specialistData, setSpecialistData] = useState({});
   const [appointmentsPending, setAppointmentsPending] = useState([]);
   const [appointmentsCompleted, setAppointmentsCompleted] = useState([]);
 
-  const id = typeof window !== "undefined" ? localStorage.getItem("id") : null;
-  const token =
-    typeof window !== "undefined" ? localStorage.getItem("token") : null;
+  const [token, setToken] = useState(null);
+  const [id, setId] = useState(null);
 
   const fetchDataPx = async (id, token) => {
     try {
-      const responseUser = await getUserById({
+      //data del Paciente
+      const responsePatient = await getUserById({
         id: id,
         token: token,
       });
-      const responseUserJSON = await responseUser.json();
-      setPxData(responseUserJSON.data);
-      console.log("Informacion del paciente: ", responseUserJSON.data);
+      const responsePatientJSON = await responsePatient.json();
+      setPxData(responsePatientJSON.data);
 
+      //data del Especialista
+      const responseSpecialist = await getUserById({
+        id: responsePatientJSON.data.patientInformation.specialistId,
+        token: token,
+      });
+      const responseSpecialistJSON = await responseSpecialist.json();
+      setSpecialistData(responseSpecialistJSON.data);
+
+      //Data de las citas del Paciente
       const responseAppointmentsPx = await getAppointmentsbyPatient({
         patientId: id,
         token: token,
@@ -463,7 +51,7 @@ export default function DashboardPat() {
       } else if (responseAppointmentsPxJSON.data.length > 1) {
         responseAppointmentsPxJSON.data.forEach((appointment) => {
           appointment.status == "start" &&
-            setAppointmentsPending(...appointmentsPending, appointment);
+            setAppointmentsPending([...appointmentsPending, appointment]);
 
           appointment.status == "completed" &&
             setAppointmentsCompleted([...appointmentsPending, appointment]);
@@ -474,6 +62,7 @@ export default function DashboardPat() {
     }
   };
   console.log("completed", appointmentsCompleted);
+  console.log("pending", appointmentsPending);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -485,7 +74,6 @@ export default function DashboardPat() {
       alert("Ocurrio un problema");
     }
     fetchDataPx(id, token);
-    //fetchDataSpecialist(specialistId, token);
   }, []);
 
   return (
@@ -495,11 +83,10 @@ export default function DashboardPat() {
         patient_name={pxData.name}
         patient_lastname={pxData.lastName}
         patient_gender={pxData.gender}
-        specialist_name={dataSpecialist.name}
-        specialist_gender={dataSpecialist.gender}
-        cel_Specialist={dataSpecialist.contactPhone}
-        mostrarModal={mostrarModal}
-        closeModal={closeModal}
+        patientbirthdate={pxData.birthDate}
+        specialist_name={`${specialistData.name} ${specialistData.lastName}`}
+        specialist_gender={specialistData.gender}
+        cel_Specialist={specialistData.cellphone}
       />
 
       {/* Proximas Citas */}
@@ -535,20 +122,19 @@ export default function DashboardPat() {
               Especialista para agendar una nueva.
             </p>
           )}
-          {appointmentsPending.length == 1 && (
+          {[appointmentsPending].length == 1 && (
             <AppointmentCard_Patient
               key={"appointment-1"}
               props={appointmentsPending}
             />
           )}
-          {appointmentsPending > 2 && (
-            <AppointmentCard_Patient
-              key={"appointment-1"}
-              props={appointmentsPending}
-            />
+          {appointmentsPending > 1 && (
+            <SliderPatient props={appointmentsPending} />
+            // <AppointmentCard_Patient
+            //   key={"appointment-1"}
+            //   props={appointmentsPending}
+            // />
           )}
-
-          {/* <SliderPatient props={appointments} /> */}
         </div>
       </section>
 
@@ -574,8 +160,20 @@ export default function DashboardPat() {
           >
             Historial de citas
           </p>
-
-          <AppointmentListPatient props={appointmentsCompleted} />
+          {appointmentsCompleted.length == 0 && (
+            <p
+              className={clsx(
+                "text-base font-normal",
+                "min-[980px]:text-[18px]"
+              )}
+            >
+              Las citas a las que asistas y se encuentren como completadas las
+              podrá visualizar aquí.
+            </p>
+          )}
+          {appointmentsCompleted.length != 0 && (
+            <AppointmentListPatient props={appointmentsCompleted} />
+          )}
         </div>
       </section>
     </main>

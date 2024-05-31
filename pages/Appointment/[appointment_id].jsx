@@ -10,14 +10,12 @@ import { getSingleAppointment } from "@/services/appointments";
 
 export default function AppointmentDetails() {
   const router = useRouter();
-  const appointmentid = router.query.appointment_id;
-  // console.log("appoinmentid", appointmentid);
+  const { appointment_id } = router.query;
 
   const [pxData, setPxData] = useState({});
   const [specialistData, setSpecialistData] = useState({});
   const [appointmentData, setAppointmentData] = useState({});
   const [clinicalData, setClinicalData] = useState({});
-  const [appointmentId, setappointmentId] = useState(null);
 
   const [token, setToken] = useState(null);
   const [id, setId] = useState(null);
@@ -25,26 +23,21 @@ export default function AppointmentDetails() {
   useEffect(() => {
     const token = localStorage.getItem("token");
     const id = localStorage.getItem("id");
-    setappointmentId(appointmentid);
-    // console.log("appoinmentid", appointmentid);
 
-    // const appointment_id = localStorage.getItem("appointment_id");
     setToken(token);
     setId(id);
-    // setappointmentId(appointmentid);
 
+    if (!appointment_id) {
+      return;
+    }
     if (!token) {
       alert("Ocurrio un problema");
     }
-    console.log("appointmentId", appointmentId);
-    fetchDataPx(id, token, appointmentid);
-    // console.log("despues del fetch");
-  }, [router.query.appointment_id]);
+    fetchDataPx(id, token, appointment_id);
+  }, [appointment_id]);
 
-  const fetchDataPx = async (id, token, appointmentid) => {
-    console.log("se hace fretch cita");
+  const fetchDataPx = async (id, token, appointment_id) => {
     try {
-      //data del Paciente
       const responsePatient = await getUserById({
         id: id,
         token: token,
@@ -59,10 +52,11 @@ export default function AppointmentDetails() {
       });
       const responseSpecialistJSON = await responseSpecialist.json();
       setSpecialistData(responseSpecialistJSON.data);
+      console.log("gender", responseSpecialistJSON.data);
 
       //Data de la cita del paciente
       const responseAppointment = await getSingleAppointment({
-        idAppointment: appointmentid,
+        idAppointment: appointment_id,
         token: token,
       });
       const responseAppointmentJSON = await responseAppointment.json();
@@ -78,13 +72,13 @@ export default function AppointmentDetails() {
     <main className={clsx("bg-background min-h-screen w-full")}>
       <NavBarPat pageName={"Detalles de la Cita"} />
       <PatientBand
-        patient_name={pxData.name}
-        patient_lastname={pxData.lastName}
-        patient_gender={pxData.gender}
-        patientbirthdate={pxData.birthDate}
-        specialist_name={`${specialistData.name} ${specialistData.lastName}`}
-        specialist_gender={specialistData.gender}
-        cel_Specialist={specialistData.cellphone}
+        patient_name={pxData?.name}
+        patient_lastname={pxData?.lastName}
+        patient_gender={pxData?.gender}
+        patientbirthdate={pxData?.birthDate}
+        specialist_name={`${specialistData?.name} ${specialistData?.lastName}`}
+        specialist_gender={specialistData?.gender}
+        cel_Specialist={specialistData?.cellphone}
       />
       <section
         className={clsx(
@@ -99,7 +93,6 @@ export default function AppointmentDetails() {
             "bg-white rounded-[20px] py-4 flex flex-col gap-3"
           )}
         >
-          {/* <h1>{`Detalles de la cita ${appointmentId}`}</h1> */}
           <h1
             className={clsx(
               "text-[18px] font-bold text-green_title text-center sm:text-2xl"
@@ -108,7 +101,6 @@ export default function AppointmentDetails() {
             {"Detalles de la cita"}
           </h1>
 
-          {/* Container */}
           <div
             className={clsx(
               "flex flex-col items-center gap-3 min-[980px]:flex-row min-[980px]:justify-between min-[980px]:items-start",
@@ -116,7 +108,6 @@ export default function AppointmentDetails() {
               "min-[980px]:overflow-x-auto"
             )}
           >
-            {/* Fecha */}
             <div
               className={clsx(
                 "flex flex-col items-center p-[10px] min-[980px]:border min-[980px]:border-blue_gray-100 "
@@ -140,12 +131,11 @@ export default function AppointmentDetails() {
                     "text-base font-normal sm:text-lg text-nowrap "
                   )}
                 >
-                  {`${appointmentData.date.day}/${appointmentData.date.month}/${appointmentData.date.year}`}
+                  {`${appointmentData?.date?.day}/${appointmentData?.date?.month}/${appointmentData?.date?.year}`}
                 </span>
               </div>
             </div>
 
-            {/* Hora */}
             <div
               className={clsx(
                 "flex flex-col items-center p-[10px] min-[980px]:border min-[980px]:border-blue_gray-100 "
@@ -169,12 +159,11 @@ export default function AppointmentDetails() {
                     "text-base font-normal sm:text-lg text-nowrap"
                   )}
                 >
-                  {appointmentData.timeLapse}
+                  {appointmentData?.timeLapse}
                 </span>
               </div>
             </div>
 
-            {/* Tipo de Cita */}
             <div
               className={clsx(
                 "flex flex-col items-center p-[10px] min-[980px]:border min-[980px]:border-blue_gray-100"
@@ -194,14 +183,13 @@ export default function AppointmentDetails() {
                 className={clsx("flex flex-col justify-center sm:min-h-[64px]")}
               >
                 <Badge
-                  badgeType={appointmentData.consultType}
+                  badgeType={appointmentData?.consultType}
                   timeLapse={""}
                   consultingAddress={""}
                 />
               </div>
             </div>
 
-            {/* Motivo Consulta */}
             <div
               className={clsx(
                 "flex flex-col items-center p-[10px] min-[980px]:border min-[980px]:border-blue_gray-100"
@@ -225,12 +213,11 @@ export default function AppointmentDetails() {
                     "text-base font-normal text-center sm:text-lg min-[980px]:min-w-[315px] "
                   )}
                 >
-                  {clinicalData.values.padecimiento}
+                  {clinicalData?.values?.padecimiento}
                 </span>
               </div>
             </div>
 
-            {/* Lugar */}
             <div
               className={clsx(
                 "flex flex-col items-center p-[10px] min-[980px]:border min-[980px]:border-blue_gray-100"
@@ -254,40 +241,12 @@ export default function AppointmentDetails() {
                     "text-base font-normal text-center sm:text-lg"
                   )}
                 >
-                  {appointmentData.consultingAddress}
+                  {appointmentData?.consultingAddress}
                 </span>
               </div>
             </div>
-
-            {/* Tipo de Cita */}
-            {/* <div
-      className={clsx(
-        "flex flex-col items-center p-[10px] min-[980px]:border min-[980px]:border-blue_gray-100"
-      )}
-    >
-      <div className={clsx(" flex flex-col items-center")}>
-        <span className={clsx("text-base font-bold sm:text-xl ")}>
-          Tipo de Cita
-        </span>
-        <img
-          className={clsx("py-[10px]")}
-          src="/assets/icons/horizontal_line-icon.svg"
-          alt="line"
-        />
-      </div>
-      <div
-        className={clsx("flex flex-col justify-center sm:min-h-[64px]")}
-      >
-        <Badge
-          badgeType={appointmentData.paymentStatus}
-          timeLapse={""}
-          consultingAddress={""}
-        />
-      </div>
-    </div> */}
           </div>
 
-          {/* Trataimiento */}
           <div className={clsx("border border-blue_gray-100 py-5 px-6")}>
             <div className={clsx(" flex flex-col items-center")}>
               <span
@@ -304,7 +263,7 @@ export default function AppointmentDetails() {
               />
             </div>
 
-            {clinicalData.status == "completed" ? (
+            {clinicalData?.status == "completed" ? (
               <div
                 className={clsx(
                   "flex flex-col justify-center items-center md:flex-row md:justify-around md:items-center sm:min-h-[64px] text-center gap-5"
@@ -327,7 +286,7 @@ export default function AppointmentDetails() {
                       Tipo de Ejercicio:
                     </p>
                     <p className={clsx("text-base ")}>
-                      {clinicalData.values.tipoEjercicio}
+                      {clinicalData?.values?.tipoEjercicio}
                     </p>
                   </div>
                   <div className={clsx("flex flex-col md:flex-row")}>
@@ -339,7 +298,7 @@ export default function AppointmentDetails() {
                       Número de repeticiones:
                     </p>
                     <p className={clsx("text-base ")}>
-                      {clinicalData.values.noRepeticiones}
+                      {clinicalData?.values?.noRepeticiones}
                     </p>
                   </div>
                   <div className={clsx("flex flex-col md:flex-row")}>
@@ -351,7 +310,7 @@ export default function AppointmentDetails() {
                       Periodicidad del Ejercicio:
                     </p>
                     <p className={clsx("text-base ")}>
-                      {clinicalData.values.periodicidadEjercicios}
+                      {clinicalData?.values?.periodicidadEjercicios}
                     </p>
                   </div>
                 </div>
@@ -373,7 +332,7 @@ export default function AppointmentDetails() {
                       Medicamento:
                     </p>
                     <p className={clsx("text-base ")}>
-                      {clinicalData.values.medicacion}
+                      {clinicalData?.values?.medicacion}
                     </p>
                   </div>
                   <div className={clsx("flex flex-col md:flex-row")}>
@@ -385,7 +344,7 @@ export default function AppointmentDetails() {
                       Periodicidad:
                     </p>
                     <p className={clsx("text-base ")}>
-                      {clinicalData.values.periodicidadMedicacion}
+                      {clinicalData?.values?.periodicidadMedicacion}
                     </p>
                   </div>
                   <div className={clsx("flex flex-col md:flex-row")}>
@@ -397,23 +356,10 @@ export default function AppointmentDetails() {
                       Recomendaciones:
                     </p>
                     <p className={clsx("text-base ")}>
-                      {clinicalData.values.recomendaciones}
+                      {clinicalData?.values?.recomendaciones}
                     </p>
                   </div>
                 </div>
-
-                {/* <p className={clsx("text-base font-bold sm:text-xl ")}>
-          Ejercicios movimiento con ligas
-        </p>
-        <span
-          className={clsx(
-            "text-base font-normal text-center sm:text-lg"
-          )}
-        >
-          Ejercer movimiento circulares en las muñecas haciendo uso de
-          las ligas de resistencia. 30 rep por cada dirección X 3
-          series.
-        </span> */}
               </div>
             ) : (
               <div
@@ -429,14 +375,6 @@ export default function AppointmentDetails() {
                   Pendiente - Asiste a tu cita para recibir tus próximas
                   indicaciones
                 </span>
-                {/* <Link
-          href={""}
-          className={clsx(
-            "px-6 py-2 bg-green_button text-white text-lg font-medium max-w-[160px] rounded-md"
-          )}
-        >
-          Pagar mi cita
-        </Link> */}
               </div>
             )}
           </div>
