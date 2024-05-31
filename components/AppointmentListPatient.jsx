@@ -60,7 +60,9 @@ export default function AppointmentListPatient({ props }) {
           </tr>
         </thead>
         <tbody className={clsx("divide-y divide-blue_gray-100")}>
-          {props.length == 1 && <AppointmentListCardPatient props={props[0]} />}
+          {props.length == 1 && (
+            <AppointmentListCardPatient key={`item-1`} props={props[0]} />
+          )}
 
           {props.length < 1 &&
             props.map((appointment, index) => {

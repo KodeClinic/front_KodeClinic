@@ -1,7 +1,6 @@
 import clsx from "clsx";
 import { useEffect, useState, useContext } from "react";
 import { useRouter } from "next/router";
-
 import { multiStepContext } from "@/context/MedicalRecordStepContext";
 import { getClinicalHistory } from "@/services/clinicalHistories";
 import AccordionFormSection from "../AccordeonFormSection";
@@ -11,16 +10,12 @@ export default function PatientClinicalHistory() {
   const router = useRouter();
   const patientId = router.query.patient_id;
   const [token, setToken] = useState(null);
-
   const [clinicalData, setClinicalData] = useState({});
   const [emptyClinicalHistory, setEmptyClinicalHistory] = useState(false);
-
   const [sectionName1, setSectionName1] = useState("");
   const [sectionForm1, setSectionForm1] = useState({});
-
   const [sectionName2, setSectionName2] = useState("");
   const [inputList2, setInputList2] = useState([]);
-
   const [sectionName3, setSectionName3] = useState("");
   const [inputList3, setInputList3] = useState([]);
 
@@ -43,7 +38,6 @@ export default function PatientClinicalHistory() {
     const token = localStorage.getItem("token");
     setToken(token);
     // }
-
     if (!token) {
       alert(
         "Ocurrió un problema al intentar acceder, por favor inténtenlo de nuevo"
@@ -61,14 +55,13 @@ export default function PatientClinicalHistory() {
         token: token,
       });
       const dataJSON = await response.json();
+      console.log(dataJSON.data);
       setClinicalData(dataJSON.data[0]);
       setUserData(dataJSON.data[1]);
       console.log("historia clinica", dataJSON.data[0]);
-
       setSectionName1(dataJSON.data[0].screens[0].title);
       setSectionName2(dataJSON.data[0].screens[1].title);
       setSectionName3(dataJSON.data[0].screens[2].title);
-
       setSectionForm1(dataJSON.data[0].screens[0]);
       setInputList2(dataJSON.data[0].screens[1].inputList);
       setInputList3(dataJSON.data[0].screens[2].inputList);
@@ -147,7 +140,6 @@ export default function PatientClinicalHistory() {
               })}
             </div>
           </div>
-
           <div className={clsx("pt-14")}>
             <p
               className={clsx(
@@ -156,7 +148,6 @@ export default function PatientClinicalHistory() {
             >
               {sectionName2}
             </p>
-
             <div
               className={clsx(
                 "grid grid-cols-1 place-items-center sm:grid-cols-2 min-[980px]:grid-cols-3 gap-5"
@@ -167,7 +158,6 @@ export default function PatientClinicalHistory() {
               })}
             </div>
           </div>
-
           <div className={clsx("pt-14")}>
             <p
               className={clsx(
@@ -176,7 +166,6 @@ export default function PatientClinicalHistory() {
             >
               {sectionName3}
             </p>
-
             <div
               className={clsx(
                 "grid grid-cols-1 place-items-center sm:grid-cols-2 min-[980px]:grid-cols-3 gap-5"
@@ -187,7 +176,6 @@ export default function PatientClinicalHistory() {
               })}
             </div>
           </div>
-
           {isDisable ? (
             <div className={clsx("flex justify-between pt-10")}>
               <button
