@@ -41,6 +41,7 @@ export default function DashboardPat() {
         token: token,
       });
       const responseAppointmentsPxJSON = await responseAppointmentsPx.json();
+      console.log(responseAppointmentsPxJSON.data);
 
       if (responseAppointmentsPxJSON.data.length == 1) {
         responseAppointmentsPxJSON.data[0].status == "start" &&
