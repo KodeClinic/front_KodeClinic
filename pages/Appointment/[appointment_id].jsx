@@ -211,7 +211,9 @@ export default function AppointmentDetails() {
                     "text-base font-normal text-center sm:text-lg min-[980px]:min-w-[315px] "
                   )}
                 >
-                  {clinicalData?.values?.padecimiento}
+                  {clinicalData?.status == "completed"
+                    ? clinicalData?.values?.padecimiento
+                    : "El padecimiento será mostrado una vez que tu Especialista lo defina en tu cita"}
                 </span>
               </div>
             </div>

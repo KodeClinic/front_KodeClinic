@@ -41,28 +41,37 @@ export default function DashboardPat() {
         token: token,
       });
       const responseAppointmentsPxJSON = await responseAppointmentsPx.json();
-      console.log(responseAppointmentsPxJSON.data);
+      console.log("appointments", responseAppointmentsPxJSON.data);
+      console.log("numero", responseAppointmentsPxJSON.data.length);
+      let pendingAppointmentsArray = [];
+      let completedAppointmentsArray = [];
 
       if (responseAppointmentsPxJSON.data.length == 1) {
         responseAppointmentsPxJSON.data[0].status == "start" &&
-          setAppointmentsPending(responseAppointmentsPxJSON.data[0]);
+          setAppointmentsPending([responseAppointmentsPxJSON.data[0]]);
 
         responseAppointmentsPxJSON.data[0].status == "completed" &&
           setAppointmentsCompleted([responseAppointmentsPxJSON.data[0]]);
       } else if (responseAppointmentsPxJSON.data.length > 1) {
         responseAppointmentsPxJSON.data.forEach((appointment) => {
           appointment.status == "start" &&
-            setAppointmentsPending([...appointmentsPending, appointment]);
+            // setAppointmentsPending(...appointmentsPending, appointment);
+            pendingAppointmentsArray.push(appointment);
 
           appointment.status == "completed" &&
-            setAppointmentsCompleted([...appointmentsPending, appointment]);
+            // setAppointmentsCompleted(...appointmentsPending, appointment);
+            completedAppointmentsArray.push(appointment);
         });
+        setAppointmentsPending(pendingAppointmentsArray);
+        setAppointmentsCompleted(completedAppointmentsArray);
       }
     } catch (error) {
       alert("Ocurrio un error");
     }
   };
 
+  console.log("pending", appointmentsPending);
+  console.log("completed", appointmentsCompleted);
   useEffect(() => {
     const token = localStorage.getItem("token");
     const id = localStorage.getItem("id");
@@ -121,13 +130,13 @@ export default function DashboardPat() {
               Especialista para agendar una nueva.
             </p>
           )}
-          {[appointmentsPending].length == 1 && (
+          {appointmentsPending.length == 1 && (
             <AppointmentCard_Patient
               key={"appointment-1"}
-              props={appointmentsPending}
+              props={appointmentsPending[0]}
             />
           )}
-          {appointmentsPending > 1 && (
+          {appointmentsPending.length >= 2 && (
             <SliderPatient props={appointmentsPending} />
             // <AppointmentCard_Patient
             //   key={"appointment-1"}

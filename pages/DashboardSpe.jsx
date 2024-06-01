@@ -46,12 +46,28 @@ export default function DashboardEsp() {
     buttonLeft: "Cancelar",
     buttonRight: "Iniciar",
   };
+  const modalPropsDelete = {
+    title: "Borrar Cita con el Paciente",
+    description: "¿Deseas eliminar la Cita del Paciente?",
+    buttonLeft: "Cancelar",
+    buttonRight: "Eliminar",
+  };
   const modalPropsCompleted = {
     title: "Cita del Paciente Completada",
     description:
       "Al dar clic en continuar será redirigido al Expediente Médico del Paciente",
     buttonLeft: "Cancelar",
     buttonRight: "Continuar",
+  };
+
+  const propsConfirmation = () => {
+    if (appointmentStatus == "completed") {
+      return modalPropsCompleted;
+    } else if (appointmentStatus == "start") {
+      return modalPropsStart;
+    } else if (toDelete == true) {
+      return modalPropsDelete;
+    }
   };
 
   const toggleModal = () => {
@@ -282,15 +298,7 @@ export default function DashboardEsp() {
           </div>
         </section>
 
-        {modal && (
-          <ModalConfirmation
-            props={
-              appointmentStatus == "completed"
-                ? modalPropsCompleted
-                : modalPropsStart
-            }
-          />
-        )}
+        {modal && <ModalConfirmation props={propsConfirmation()} />}
       </DashboardContext.Provider>
     </main>
   );
