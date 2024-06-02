@@ -107,7 +107,7 @@ export default function AppointmentList() {
             </tr>
           </thead>
           <tbody className={clsx("divide-y divide-blue_gray-100")}>
-            {appointmentList.map((appointment) => {
+            {appointmentList.map((appointment, index) => {
               let date = `${appointment.date.day}/${appointment.date.month}/${appointment.date.year}`;
               let statusName = "";
 
@@ -118,7 +118,7 @@ export default function AppointmentList() {
               }
 
               return (
-                <tr>
+                <tr key={`tr-${index}`}>
                   <td
                     className={clsx(
                       "text-[16px] sm:text-[18px] text-blue_gray-700 font-normal p-4 text-nowrap"

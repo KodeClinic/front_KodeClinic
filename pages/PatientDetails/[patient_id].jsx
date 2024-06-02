@@ -15,12 +15,16 @@ export default function PatientDetails() {
   const [patientInfo, setPatientInfo] = useState({});
 
   useEffect(() => {
-    const patientId = router.query.patient_id;
+    const { patient_id } = router.query;
 
     // if (typeof window !== "undefined") {
     const token = localStorage.getItem("token");
     setToken(token);
     // }
+
+    if (!patient_id) {
+      return;
+    }
 
     if (!token) {
       alert(
@@ -28,13 +32,13 @@ export default function PatientDetails() {
       );
       router.push("/LogIn");
     }
-    getPatient(token, patientId);
-  }, []);
+    getPatient(token, patient_id);
+  }, [router]);
 
-  const getPatient = async (token, patientId) => {
+  const getPatient = async (token, patient_id) => {
     try {
       const response = await getUserById({
-        id: patientId,
+        id: patient_id,
         token: token,
       });
       const dataJSON = await response.json();
