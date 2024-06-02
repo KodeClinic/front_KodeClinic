@@ -41,8 +41,7 @@ export default function DashboardPat() {
         token: token,
       });
       const responseAppointmentsPxJSON = await responseAppointmentsPx.json();
-      console.log("appointments", responseAppointmentsPxJSON.data);
-      console.log("numero", responseAppointmentsPxJSON.data.length);
+
       let pendingAppointmentsArray = [];
       let completedAppointmentsArray = [];
 
@@ -70,8 +69,6 @@ export default function DashboardPat() {
     }
   };
 
-  console.log("pending", appointmentsPending);
-  console.log("completed", appointmentsCompleted);
   useEffect(() => {
     const token = localStorage.getItem("token");
     const id = localStorage.getItem("id");
