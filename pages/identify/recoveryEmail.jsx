@@ -16,7 +16,7 @@ export default function RecoveryEmail() {
 
     try {
       const response = await forgotPassword(values);
-      if (response.status === 201) {
+      if (response.status === 200) {
         const dataJSON = await response.json();
         router.push({
           pathname: "passwordVerification",
@@ -88,7 +88,7 @@ export default function RecoveryEmail() {
               )}
             </div>
 
-            <div className="flex items-center justify-between">
+            <div className="flex flex-col items-center justify-between">
               <button
                 className={clsx(
                   "bg-blue_button w-full hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline flex justify-center items-center gap-2",

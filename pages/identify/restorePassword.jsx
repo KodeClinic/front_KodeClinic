@@ -18,7 +18,7 @@ export default function NewPassword() {
     try {
       const req = { email: data.email, newpassword: values.newPassword };
       const response = await restorePassword(req);
-      if (response.status === 201) {
+      if (response.status === 200) {
         const dataJSON = await response.json();
         localStorage.setItem("token", dataJSON.token);
         router.push({
