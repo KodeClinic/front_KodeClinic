@@ -88,7 +88,7 @@ export default function PatientMedicalRecords() {
     try {
       const responseUpdate = await updateRecordsData({
         data: userData,
-        templateId: 1,
+        // templateId: 1,
         patientId: patientId,
         token: token,
       });

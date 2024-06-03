@@ -81,7 +81,7 @@ export default function MedicalRecords() {
       if (!emptyRecords) {
         await updateRecordsData({
           data: userData,
-          templateId: 1,
+          // templateId: 1,
           patientId: patientId,
           token: token,
         });
