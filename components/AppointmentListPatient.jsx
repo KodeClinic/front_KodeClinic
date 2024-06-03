@@ -2,6 +2,8 @@ import clsx from "clsx";
 import AppointmentListCardPatient from "./AppointmentListCardPatient";
 
 export default function AppointmentListPatient({ props }) {
+  console.log("propslenght", props.length);
+
   return (
     <div
       className={clsx(
@@ -64,7 +66,7 @@ export default function AppointmentListPatient({ props }) {
             <AppointmentListCardPatient key={`item-1`} props={props[0]} />
           )}
 
-          {props.length < 1 &&
+          {props.length > 1 &&
             props.map((appointment, index) => {
               return (
                 <AppointmentListCardPatient

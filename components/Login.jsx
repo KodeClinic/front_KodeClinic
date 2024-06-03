@@ -51,9 +51,9 @@ export default function Login() {
             // query: { id: dataJSON.data.id },
           });
         }
-      } else if (response.status === 401) {
+      } else if (response.status === 406) {
         emailValidation();
-      } else if (response.status === 400) {
+      } else if (response.status === 401) {
         setIsLoading(false);
         setIsFailed(true);
       }
@@ -66,7 +66,7 @@ export default function Login() {
   const emailValidation = async () => {
     try {
       const response = await sendEmailCode({ email: values.email });
-      if (response.status === 201) {
+      if (response.status === 200) {
         router.push({
           pathname: "identify/EmailVerfication",
           query: { email: values.email },
