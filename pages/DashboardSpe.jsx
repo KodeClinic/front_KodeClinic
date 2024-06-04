@@ -133,7 +133,9 @@ export default function DashboardEsp() {
       const responseFreeAgenda = await getSpecialistAvailability({
         token: token,
         specialistId: id,
-        data: dateObjet,
+        day: dateObjet.day,
+        month: dateObjet.month,
+        year: dateObjet.year,
       });
 
       const responseFreeAgendaJSON = await responseFreeAgenda.json();

@@ -2,7 +2,7 @@ import { URL_BASE } from "./config";
 
 export function postAppointmentNewPatient(credentials) {
   const { specialistId, data, token } = credentials;
-  const URL = `${URL_BASE}/api/appointments/createNP/${specialistId}`;
+  const URL = `${URL_BASE}/api/appointments/specialists/${specialistId}/newpatient`;
   const options = {
     method: "POST",
     body: JSON.stringify(data),
@@ -13,7 +13,7 @@ export function postAppointmentNewPatient(credentials) {
 
 export function postAppointmentExistingPatient(credentials) {
   const { specialistId, data, token } = credentials;
-  const URL = `${URL_BASE}/api/appointments/createEP/${specialistId}`;
+  const URL = `${URL_BASE}/api/appointments/specialists/${specialistId}/existingpatient`;
   const options = {
     method: "POST",
     body: JSON.stringify(data),
@@ -24,7 +24,7 @@ export function postAppointmentExistingPatient(credentials) {
 
 export function getSpecialistAppointments(credentials) {
   const { specialistId, token, year, month, day } = credentials;
-  const URL = `${URL_BASE}/api/appointments/getAppointments/${specialistId}/${year}/${month}/${day}`;
+  const URL = `${URL_BASE}/api/appointments/specialists/${specialistId}/year/${year}/month/${month}/day/${day}`;
   const options = {
     method: "GET",
     headers: { "Content-Type": "application/json", bearerauth: token },
@@ -34,7 +34,7 @@ export function getSpecialistAppointments(credentials) {
 
 export function getAppointmentsbyPatient(credentials) {
   const { patientId, token } = credentials;
-  const URL = `${URL_BASE}/api/appointments/getAppointmentsbyPatient/${patientId}`;
+  const URL = `${URL_BASE}/api/appointments/patients/${patientId}`;
   const options = {
     method: "GET",
     headers: { "Content-Type": "application/json", bearerauth: token },
@@ -42,12 +42,12 @@ export function getAppointmentsbyPatient(credentials) {
   return fetch(URL, options);
 }
 
+//pendiente
 export function getSpecialistAvailability(credentials) {
-  const { specialistId, token, data } = credentials;
-  const URL = `${URL_BASE}/api/appointments/getAvailability/${specialistId}`;
+  const { specialistId, token, year, month, day } = credentials;
+  const URL = `${URL_BASE}/api/appointments/availability/specialists/${specialistId}year/${year}/month/${month}/day/${day}`;
   const options = {
-    method: "POST",
-    body: JSON.stringify(data),
+    method: "GET",
     headers: { "Content-Type": "application/json", bearerauth: token },
   };
   return fetch(URL, options);
@@ -55,7 +55,7 @@ export function getSpecialistAvailability(credentials) {
 
 export function deleteAppointment(credentials) {
   const { appointmentId, token } = credentials;
-  const URL = `${URL_BASE}/api/appointments/deleteAppointment/${appointmentId}`;
+  const URL = `${URL_BASE}/api/appointments/${appointmentId}`;
   const options = {
     method: "DELETE",
     headers: { "Content-Type": "application/json", bearerauth: token },
@@ -65,7 +65,7 @@ export function deleteAppointment(credentials) {
 
 export function getSingleAppointment(credentials) {
   const { idAppointment, token } = credentials;
-  const URL = `${URL_BASE}/api/appointments/findAppointment/${idAppointment}`;
+  const URL = `${URL_BASE}/api/appointments/${idAppointment}`;
   const options = {
     method: "GET",
     headers: { "Content-Type": "application/json", bearerauth: token },
