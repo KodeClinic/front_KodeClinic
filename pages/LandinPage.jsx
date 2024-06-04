@@ -262,6 +262,7 @@ export default function LandinPage() {
               </span>
 
               <button
+                onClick={() => router.push("/CreateAccount")}
                 className={clsx(
                   "text-blue_button font-semibold drop-shadow-md text-[14px] min-[980px]:text-xl",
                   "border-2 border-blue_button rounded-full",
