@@ -21,7 +21,7 @@ export default function CreateAccount() {
         role: "specialist",
       };
       const response = await createAccount(req);
-      if (response.status === 201) {
+      if (response.status === 200) {
         const dataJSON = await response.json();
         localStorage.setItem("token", dataJSON.token);
         router.push({
