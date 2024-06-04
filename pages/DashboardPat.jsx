@@ -52,7 +52,6 @@ export default function DashboardPat() {
         responseAppointmentsPxJSON.data[0].status == "completed" &&
           setAppointmentsCompleted([responseAppointmentsPxJSON.data[0]]);
       } else if (responseAppointmentsPxJSON.data.length > 1) {
-        console.log("entra >1", responseAppointmentsPxJSON.data.length);
         responseAppointmentsPxJSON.data.forEach((appointment) => {
           appointment.status == "start" &&
             // setAppointmentsPending(...appointmentsPending, appointment);
@@ -64,7 +63,6 @@ export default function DashboardPat() {
         });
         setAppointmentsPending(pendingAppointmentsArray);
         setAppointmentsCompleted(completedAppointmentsArray);
-        console.log("completed", completedAppointmentsArray);
       }
     } catch (error) {
       alert("Ocurrio un error");
@@ -81,7 +79,6 @@ export default function DashboardPat() {
       alert("Ocurrio un problema");
     }
     fetchDataPx(id, token);
-    console.log("complete2", appointmentsCompleted);
   }, []);
 
   return (

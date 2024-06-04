@@ -45,7 +45,7 @@ export function getAppointmentsbyPatient(credentials) {
 //pendiente
 export function getSpecialistAvailability(credentials) {
   const { specialistId, token, year, month, day } = credentials;
-  const URL = `${URL_BASE}/api/appointments/availability/specialists/${specialistId}year/${year}/month/${month}/day/${day}`;
+  const URL = `${URL_BASE}/api/appointments/availability/specialists/${specialistId}/year/${year}/month/${month}/day/${day}`;
   const options = {
     method: "GET",
     headers: { "Content-Type": "application/json", bearerauth: token },

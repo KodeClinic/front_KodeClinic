@@ -2,8 +2,6 @@ import clsx from "clsx";
 import AppointmentListCardPatient from "./AppointmentListCardPatient";
 
 export default function AppointmentListPatient({ props }) {
-  console.log("propslenght", props.length);
-
   return (
     <div
       className={clsx(

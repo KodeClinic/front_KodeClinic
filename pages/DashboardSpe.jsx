@@ -184,7 +184,9 @@ export default function DashboardEsp() {
       const res = await getSpecialistAvailability({
         token: token,
         specialistId: id,
-        data: dateObjet,
+        day: dateObjet.day,
+        month: dateObjet.month,
+        year: dateObjet.year,
       });
       const dataJSON = await res.json();
       setSchedule(dataJSON.data);
