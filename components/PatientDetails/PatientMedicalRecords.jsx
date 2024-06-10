@@ -46,12 +46,14 @@ export default function PatientMedicalRecords() {
   };
 
   useEffect(() => {
-    // if (typeof window !== "undefined") {
     const token = localStorage.getItem("token");
     const id = localStorage.getItem("id");
     setToken(token);
     setId(id);
-    // }
+
+    if (!patientId) {
+      return;
+    }
 
     if (!token) {
       alert(
@@ -59,8 +61,9 @@ export default function PatientMedicalRecords() {
       );
       router.push("/LogIn");
     }
+    console.log("entra en refres");
     getRecords(token, patientId);
-  }, []);
+  }, [patientId]);
 
   const getRecords = async (token, patientId) => {
     try {
