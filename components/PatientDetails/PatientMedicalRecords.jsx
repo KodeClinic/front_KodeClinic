@@ -61,7 +61,6 @@ export default function PatientMedicalRecords() {
       );
       router.push("/LogIn");
     }
-    console.log("entra en refres");
     getRecords(token, patientId);
   }, [patientId]);
 

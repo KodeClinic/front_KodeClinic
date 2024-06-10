@@ -4,9 +4,43 @@ import clsx from "clsx";
 import Card_function from "@/components/Card_function";
 import { useRouter } from "next/router";
 import Link from "next/link";
+import { sendInformationSchema } from "@/schemas/sendInformation";
+import { useFormik } from "formik";
+import { useState } from "react";
+import { moreInformation } from "@/services/users/auth";
 
 export default function LandinPage() {
   const router = useRouter();
+  const [isLoading, setIsLoading] = useState(false);
+  const [isFailed, setIsFailed] = useState(false);
+  const [isInformationSent, setIsInformationSent] = useState(false);
+
+  const onSubmit = async () => {
+    setIsLoading(true);
+    try {
+      const response = await moreInformation(values);
+      if (response.status == 200) {
+        setIsLoading(false);
+        setIsFailed(false);
+        setIsInformationSent(true);
+      } else if (response.status === 400) {
+        setIsLoading(false);
+        setIsFailed(true);
+      }
+    } catch (error) {
+      setIsLoading(false);
+      setIsFailed(true);
+    }
+  };
+
+  const { values, errors, handleBlur, touched, handleChange, handleSubmit } =
+    useFormik({
+      initialValues: {
+        email: "",
+      },
+      validationSchema: sendInformationSchema,
+      onSubmit,
+    });
 
   return (
     <main className="bg-background h-full w-full">
@@ -309,31 +343,33 @@ export default function LandinPage() {
         >
           Funcionalidades
         </h1>
-        <span
-          className={clsx(
-            "text-center text-[#0745CB]",
-            "sm:text-[14px] md:text-[18px] lg:text-[22px]"
-          )}
-        >
-          Kode
-        </span>
-        <span
-          className={clsx(
-            "text-center text-[#0745CB] font-bold",
-            "sm:text-[14px] md:text-[18px] lg:text-[22px]"
-          )}
-        >
-          Clinic{" "}
-        </span>
-        <span
-          className={clsx(
-            "text-center text-blue_gray-600",
-            "sm:text-[14px] md:text-[18px] lg:text-[22px]"
-          )}
-        >
-          cuenta con funciones especializadas en la gestión de documentación
-          médica para que saques el mejor provecho a tu Consultorio
-        </span>
+        <div className={clsx("text-center")}>
+          <span
+            className={clsx(
+              "text-center text-[#0745CB]",
+              "sm:text-[14px] md:text-[18px] lg:text-[22px]"
+            )}
+          >
+            Kode
+          </span>
+          <span
+            className={clsx(
+              "text-center text-[#0745CB] font-bold",
+              "sm:text-[14px] md:text-[18px] lg:text-[22px]"
+            )}
+          >
+            Clinic{" "}
+          </span>
+          <span
+            className={clsx(
+              "text-center text-blue_gray-600",
+              "sm:text-[14px] md:text-[18px] lg:text-[22px]"
+            )}
+          >
+            cuenta con funciones especializadas en la gestión de documentación
+            médica para que saques el mejor provecho a tu Consultorio
+          </span>
+        </div>
 
         <div className="flex flex-row justify-center gap-16 over">
           <Card_function />
@@ -376,35 +412,69 @@ export default function LandinPage() {
           </div>
         </div>
 
-        <div
+        <form
+          onSubmit={handleSubmit}
           className={clsx(
             "bg-white",
             "flex items-center mt-4 gap-2",
             "flex-col sm:flex-row sm:justify-between min-[980px]:justify-center"
           )}
         >
-          <input
-            className={clsx(
-              "border-2 rounded-full border-[#0745CB] font-bold placeholder:text-[#0745CB] placeholder:text-center h-[48px] text-[13px]",
-              "min-w-[328px] sm:min-w-[420px]",
-              "min-[980px]:min-w-0 min-[980px]:w-[350px]",
-              "mt-3 lg:mt-12"
+          <div>
+            <input
+              className={clsx(
+                "border-2 rounded-full border-[#0745CB] font-bold placeholder:text-[#0745CB] placeholder:text-center h-[48px] text-[13px]",
+                "min-w-[328px] sm:min-w-[420px]",
+                "min-[980px]:min-w-0 min-[980px]:w-[350px]",
+                "mt-3 lg:mt-12",
+                "px-3",
+                "text-center text-[#0745CB]",
+                errors.email && touched.email
+                  ? "border-red"
+                  : "border-[#0745CB]"
+              )}
+              value={values.email}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              type="email"
+              id="email"
+              placeholder="Correo electronico"
+            />
+            {errors.email && touched.email ? (
+              <p className={clsx("text-sm text-red text-center font-medium")}>
+                {errors.email}
+              </p>
+            ) : (
+              ""
             )}
-            type="mail"
-            name=""
-            id=""
-            placeholder="Correo electronico"
-          />
+          </div>
+
           <button
+            type="submit"
             className={clsx(
               "min-w-[328px] h-[48px] text-[12px] font-bold mt-2",
               "border-2 rounded-full border-[#0745CB] bg-[#0745CB] text-white",
               "sm:min-w-0 sm:w-[180px] md:ml-6 lg:mt-12",
-              "min-[980px]:w-[185px]"
+              "min-[980px]:w-[185px]",
+              isLoading ? "opacity-65" : ""
             )}
+            disabled={isLoading}
           >
-            Recibir Información
+            {isLoading ? "Enviando..." : "Recibir Información"}
           </button>
+        </form>
+        <div className={clsx("flex flex-col justify-center items-center")}>
+          {isFailed && (
+            <p className="text-sm font-medium text-red p-2 rounded flex text-center">
+              Ocurrió un error, por favor intentanlo de nuevo con otro correo
+              electrónico
+            </p>
+          )}
+          {isInformationSent && (
+            <p className="text-sm font-medium text-green_button p-2 rounded flex text-center">
+              ¡Información enviada con éxito!
+            </p>
+          )}
         </div>
       </section>
 

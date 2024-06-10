@@ -72,3 +72,14 @@ export function getUserById(credentials) {
   };
   return fetch(URL, options);
 }
+
+export function moreInformation(credentials) {
+  const { email } = credentials;
+  const URL = `${URL_BASE}/users/moreInformation/${email}`;
+  const options = {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+  return fetch(URL, options);
+}
