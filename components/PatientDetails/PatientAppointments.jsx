@@ -41,12 +41,14 @@ export default function PatientAppointments() {
   };
 
   useEffect(() => {
-    // if (typeof window !== "undefined") {
     const token = localStorage.getItem("token");
     const id = localStorage.getItem("id");
     setToken(token);
     setId(id);
-    // }
+
+    if (!patientId) {
+      return;
+    }
 
     if (!token) {
       alert(
@@ -55,7 +57,7 @@ export default function PatientAppointments() {
       router.push("/LogIn");
     }
     getAppointments(token, patientId);
-  }, []);
+  }, [patientId]);
 
   const getAppointments = async (token, patientId) => {
     try {
