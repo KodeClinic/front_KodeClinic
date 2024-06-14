@@ -197,7 +197,7 @@ export default function Login() {
               className="text-blue_button font-bold hover:underline ml-2"
               href="/CreateAccount"
             >
-              Registrate
+              Regístrate
             </Link>
           </p>
         </div>

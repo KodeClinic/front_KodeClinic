@@ -113,7 +113,7 @@ export default function AppointmentCard_Patient({ props }) {
         >
           {consultType == "valoration"
             ? "Sesión de Valoración"
-            : "Sesión de Fisioterápia"}
+            : "Sesión de Fisioterapia"}
         </span>
       </div>
 

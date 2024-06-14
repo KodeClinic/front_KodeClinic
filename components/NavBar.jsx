@@ -114,7 +114,7 @@ export default function NavBar() {
                 "min-[980px]:rounded-full min-[980px]:w-[150px]"
               )}
             >
-              ¡Registrate!
+              ¡Regístrate!
             </button>
             <button
               onClick={() => router.push("/LogIn")}

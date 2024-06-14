@@ -73,7 +73,7 @@ export default function NewPatientModal() {
           </div>
           <div className={clsx("flex", "justify-center")}>
             <span className={clsx("text-center md:text-xl", "")}>
-              ¡No olvides comunicarselo!
+              ¡No olvides comunicárselo!
             </span>
           </div>
           <div className={clsx("flex", "justify-center")}>

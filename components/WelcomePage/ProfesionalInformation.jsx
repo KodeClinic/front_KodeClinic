@@ -31,7 +31,7 @@ export default function ProfesionalInformation() {
   };
 
   const optionSelect = [
-    { value: "physiotherapy", label: "Fisioterápia" },
+    { value: "physiotherapy", label: "Fisioterapia" },
     { value: "other", label: "Otra" },
   ];
 

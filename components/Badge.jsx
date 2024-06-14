@@ -16,7 +16,7 @@ export default function Badge({ badgeType, timeLapse, consultingAddress }) {
   } else if (badgeType == "therapy") {
     icon = "/assets/icons/physical_therapy-icon.svg";
     label = "physical-therapy";
-    description = "Fisioterápia";
+    description = "Fisioterapia";
     styles = "sm:w-[140px] sm:bg-[#FFBCE4] text-blue_gray-700";
     img_styles = "bg-[#FFBCE4] sm:bg-inherit rounded-full p-1";
   } else if (badgeType == "cash") {

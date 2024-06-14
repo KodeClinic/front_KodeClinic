@@ -4,7 +4,7 @@ import clsx from "clsx";
 const functionalities = [
   {
     icon: "assets/icons/medical_exp.svg",
-    title: "Expediente Medico",
+    title: "Expediente Médico",
     description:
       "Digitaliza el Expediente Medico de tus pacientes y accede a él en cualquier momento",
   },

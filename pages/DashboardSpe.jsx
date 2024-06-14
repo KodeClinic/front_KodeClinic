@@ -42,7 +42,7 @@ export default function DashboardEsp() {
 
   const modalPropsStart = {
     title: "Comenzar Cita con el Paciente",
-    description: "¿Deseas iniciar con la Colsulta del Paciente?",
+    description: "¿Deseas iniciar con la Consulta del Paciente?",
     buttonLeft: "Cancelar",
     buttonRight: "Iniciar",
   };

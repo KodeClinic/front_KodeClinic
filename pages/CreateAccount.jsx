@@ -153,7 +153,7 @@ export default function CreateAccount() {
                     "text-sm text-red text-center font-medium mb-4"
                   )}
                 >
-                  Las contraseñas deben de ser identicas
+                  Las contraseñas deben de ser idénticas
                 </p>
               )}
             </div>

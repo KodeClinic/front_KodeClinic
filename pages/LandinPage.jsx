@@ -104,7 +104,7 @@ export default function LandinPage() {
                 "min-[980px]:text-[25px]"
               )}
             >
-              Libera tu tiempo para lo esencial: tus pacientes
+              Libera tu tiempo para lo esencial: <strong>tus pacientes</strong>
             </span>
             <span
               className={clsx(
@@ -177,7 +177,7 @@ export default function LandinPage() {
         <div className={clsx("flex flex-col items-center gap-2")}>
           <span
             className={clsx(
-              "text-[14px] font-semibold text-green_button leading-[26px] text-center",
+              "text-[14px] font-semibold text-green_button leading-[26px] text-center pt-3",
               "sm:text-xl"
             )}
           >
@@ -204,21 +204,21 @@ export default function LandinPage() {
         <HeroCard
           name={"Expediente Médico"}
           description={
-            "Digitaliza el Expediente Medico de tus pacientes y accede a él en cualquier momento"
+            "Digitaliza el Expediente Médico de tus pacientes y accede a él en cualquier momento"
           }
           icon={"assets/icons/newspaper-icon.svg"}
         />
         <HeroCard
           name={"Agenda"}
           description={
-            "Genera y visualiza tus citas, así como tus pacientes sin peder ningún detalle"
+            "Genera y visualiza tus citas, así como tus pacientes sin perder ningún detalle"
           }
           icon={"assets/icons/calendar-icon.svg"}
         />
         <HeroCard
           name={"Tratamiento"}
           description={
-            "Comparte los tratamientos con tus pacientes que podrán visualizar desde su perfil."
+            "Comparte los tratamientos con tus pacientes que podrán visualizar desde su perfil"
           }
           icon={"assets/icons/medkit-icon.svg"}
         />
@@ -284,7 +284,7 @@ export default function LandinPage() {
                   "text-[14px] sm:text-base min-[980px]:text-[22px] text-blue_gray-700 font-medium text-center min-[980px]:text-justify"
                 )}
               >
-                Actualmente contamos con el Módulo de Fisioterápia y seguimos
+                Actualmente contamos con el Módulo de Fisioterapia y seguimos
                 trabajando para poner a tu disposición muchos otros
               </span>
               <span

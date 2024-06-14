@@ -83,7 +83,7 @@ export default function DashboardPat() {
 
   return (
     <main className={clsx("bg-background min-h-screen w-full")}>
-      <NavBarPat pageName={"Home"} />
+      <NavBarPat pageName={"Inicio"} />
       <PatientBand
         patient_name={pxData.name}
         patient_lastname={pxData.lastName}
@@ -114,7 +114,7 @@ export default function DashboardPat() {
               "min-[980px]:text-2xl min-[980px]:text-start"
             )}
           >
-            Proximas citas
+            Próximas citas
           </p>
           {appointmentsPending.length == 0 && (
             <p
